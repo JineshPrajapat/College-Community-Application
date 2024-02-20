@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './Opportunity.scss';
 import { images } from '../../constants'
-import { Card } from '@material-ui/core';
 import SearchingForm from '../SearchingForm/SearchingForm';
 
 const opportunity = [

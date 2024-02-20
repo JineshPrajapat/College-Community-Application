@@ -5,6 +5,7 @@ import Users from './Components/Users/Users';
 import ImageCarousel from './Components/ImageCarousel/ImageCarousel';
 import Opportunity from './Components/Opportunity/Opportunity';
 import Experience from './Components/Experience/Experience';
+import QuestionForm from './Components/QuestionForm/QuestionForm';
 
 function App() {
   return (
@@ -13,10 +14,11 @@ function App() {
         <h1>Placement Opportunity</h1>
       </header>
       <Question/>
-      {/* <Users/> */}
-      {/* <ImageCarousel/> */}
-      {/* <Opportunity/> */}
-      {/* <Experience/> */}
+      <Users/>
+      <ImageCarousel/>
+      <Opportunity/>
+      <Experience/>
+      <QuestionForm/>
     </div>
   );
 }
