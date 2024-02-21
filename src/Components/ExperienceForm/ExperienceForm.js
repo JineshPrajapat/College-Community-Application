@@ -1,0 +1,138 @@
+import React, { useState } from "react";
+import MyCKeditor from "../MyCKEditor/MyCKEditor";
+import axios from "axios";
+import { images } from "../../constants";
+import "./ExperienceForm.scss";
+import ConfirmationDialog from "../ConfirmationDialog/ConfirmationDialog";
+import FlashMessage from "../FlashMessage/FlashMessage";
+
+function ExperienceForm() {
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [flashMessage, setFlashMessage] = useState(false);
+
+  const [formValue, setformValue] = useState({
+    experienceDescription: "",
+    title: "",
+  });
+
+  const handleChange = (event) => {
+    setformValue({
+      ...formValue,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleDescriptionChange = (experienceDescription) => {
+    // console.log(questionDescription);
+    setformValue((prevState) => ({
+      ...prevState,
+      experienceDescription: experienceDescription,
+    }));
+  };
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    setShowConfirmation(true);
+  };
+
+  const handleConfirmation = (isConfirmed) => {
+    if (isConfirmed) {
+      axios
+        .post("http://localhost:3000/Questions", {
+          link: formValue.link,
+          experienceDescription: formValue.experienceDescription,
+        })
+        .then((response) => {
+          console.log("Response:", response);
+
+          if (response.status === 200) {
+            setFlashMessage({
+              type: "success",
+              message:
+                "We recieved your questions, will be update in 2 working days. Happy to see you soon!",
+            });
+          }
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.error("Error:", error);
+            setFlashMessage({
+              type: "error",
+              message: "Reservation failed, try again!",
+            });
+          } else {
+            console.error("Network or request error");
+          }
+        });
+    }
+    setShowConfirmation(false);
+  };
+
+  return (
+    <div
+      className={`experience-body ${showConfirmation ? "show-confirmation" : ""}`}
+    >
+      <div className="experience-heading">
+        <h2> Uniting Experiences for Growth</h2>
+        <p>
+          "Transform your interview jitters into success stories, inspiring
+          others to navigate their career paths with confidence and resilience."
+        </p>
+        <p>
+          Contribute your invaluable insights on placement preparation and job
+          experiences, enriching our community with practical wisdom and
+          collective learning.
+        </p>
+        <p>
+          Together, let's cultivate a supportive environment where shared
+          experiences propel us all towards professional growth and foster
+          lasting connections.
+        </p>
+      </div>
+      <div className="experience-form-container">
+        {/* <img src={images.garima} alt="Dal-makhani" /> */}
+        <form id="experience-form" onSubmit={handleFormSubmit}>
+
+          <label htmlFor="title" aria-required="true">
+            Question Title:
+            <input
+              type="text"
+              placeholder="Title"
+              id="title"
+              name="title"
+              value={formValue.title}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label htmlFor="experienceDescription">
+            Share your Experience/Review:
+            <MyCKeditor onDescriptionChange={handleDescriptionChange} />
+          </label>
+
+          <button className="experience-btn" type="submit">
+            Submit
+          </button>
+        </form>
+
+        {/* confirmation component */}
+        {showConfirmation && (
+          <ConfirmationDialog
+            message={"Are you sure you want to submit this form?"}
+            onConfirm={handleConfirmation}
+          />
+        )}
+
+        {/* flash component */}
+        {flashMessage && (
+          <FlashMessage
+            type={flashMessage.type}
+            message={flashMessage.message}
+          />
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default ExperienceForm;

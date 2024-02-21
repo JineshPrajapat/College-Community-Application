@@ -1,0 +1,79 @@
+.opportunity-body {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    margin: 0;
+    padding: 50px;
+
+    .opportunity-heading {
+        margin-bottom: 20px;
+
+        h2 {
+            font-size: 28px;
+            color: #333;
+        }
+
+        p {
+            font-size: 20px;
+            color: #666;
+            line-height: 1.5;
+        }
+    }
+
+    .opportunity-form-container {
+        max-width: 900px;
+        margin: 0 auto;
+        form {
+            label {
+                display: block;
+                text-align: left;
+                margin-bottom: 18px;
+                font-size: 1.1rem;
+                color: #333;
+
+                input[type="text"],
+                input[type="date"],
+                select {
+                    width: 100%;
+                    padding: 10px;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                    margin-top: 5px;
+                    font-size: 16px;
+                    color: #666;
+
+                    &:focus {
+                        outline: none;
+                        border-color: #007bff;
+                        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+                    }
+                }
+            }
+
+            button.opportunity-btn {
+                display: inline-block;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                background-color: #007bff;
+                color: #fff;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+
+                &:hover {
+                    background-color: #0056b3;
+                }
+            }
+        }
+    }
+}
+
+.opportunity-body {
+    &.show-confirmation {
+        .confirmation-popup {
+            opacity: 1;
+        }
+    }
+}
