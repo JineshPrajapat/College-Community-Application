@@ -1,0 +1,88 @@
+.query-container {
+    margin-bottom: 0;
+    padding: 10px;
+
+    .query-form {
+        Form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .title-post-btn {
+                display: flex;
+                justify-content: space-between;
+
+                input {
+                    height: 40px;
+                    width: 50%;
+                    font-size: 20px;
+                    padding: 4px;
+                    border-radius: 4px;
+                    border: 2px solid rgb(168, 167, 167);
+                }
+
+                .btn-post {
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+
+                    .close {
+                        border: 2px solid rgb(179, 179, 179);
+                        border-radius: 3px;
+                        padding: 6px;
+                        align-items: center;
+                        background-color: none;
+                        transition: all 0.5s ease-in;
+                        cursor: pointer;
+
+                        &:hover{
+                            background-color:rgb(179, 179, 179);
+                            font-weight: 450;
+                        }
+                    }
+
+                    button {
+                        background: linear-gradient(215deg, #09acf7, #33464f);
+                        color: #fafafa;
+                        border-radius: 2px;
+                        border: 0;
+                        // height: 40px;
+                        padding: 3px;
+                        cursor: pointer;
+                        
+
+                        i {
+                            width: 50px;
+                            height: 30px;
+                            // vertical-align: middle;
+                            display: flex;
+                            fill: currentColor;
+                            justify-content: center;
+                            align-items: center;
+                            transition: all 0.4s ease-in;
+                        }
+
+                        &:hover{
+                            i{
+                                font-size: 20px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.query-container {
+    &.show-confirmation {
+        .confirmation-popup {
+            opacity: 1;
+        }
+    }
+}
+
+// text-editor for ckeditor
+.ck-content{
+    height: 60vh;
+}

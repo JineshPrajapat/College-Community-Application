@@ -8,21 +8,25 @@ import Experience from "./Components/Experience/Experience";
 import QuestionForm from "./Components/QuestionForm/QuestionForm";
 import ExperienceForm from "./Components/ExperienceForm/ExperienceForm";
 import OpportunityForm from "./Components/OpportunityForm/OpportunityForm";
+import Discuss from "./Components/Discuss/Discuss";
+import AddQuery from "./Components/Discuss/AddQuery/AddQuery";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Placement Opportunity</h1>
+        <h1>CareerPrepHub</h1>
       </header>
-      {/* <Question/> */}
-      {/* <Users/> */}
-      {/* <ImageCarousel/> */}
-      {/* <Opportunity/> */}
-      {/* <Experience/> */}
+      {/* <Question/>
+      <Users/>
+      <ImageCarousel/>
+      <Opportunity/>
+      <Experience/> */}
       {/* <QuestionForm /> */}
       {/* <ExperienceForm/> */}
-      <OpportunityForm/>
+      {/* <OpportunityForm/> */}
+      <Discuss/>
+      {/* <AddQuery/> */}
     </div>
   );
 }

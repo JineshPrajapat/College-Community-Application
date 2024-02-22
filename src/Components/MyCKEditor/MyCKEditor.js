@@ -1,14 +1,30 @@
 import React, { Component } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import Editor from 'ckeditor5-custom-build/build/ckeditor';             //consist of codeblock, color, cont-size, etc.
+
 import './MyCKEditor.scss';
 
+const editorConfiguration = {
+    toolbar: {
+        items: [
+            'undo', 'redo',
+            '|', 'heading',
+            '|', 'fontfamily', 'fontsize', 'fontColor', 'fontBackgroundColor',
+            '|', 'bold', 'italic', 'strikethrough', 'subscript', 'superscript', 'code',
+            '|', 'link', 'uploadImage', 'blockQuote', 'codeBlock',
+            '|', 'bulletedList', 'numberedList', 'todoList', 'outdent', 'indent'
+        ],
+        shouldNotGroupWhenFull: false
+    }
+};
+
 class MyCKeditor extends Component {
+
     render() {
         return (
-            // <div className="App">
             <CKEditor
-                editor={ClassicEditor}
+                editor={Editor}
+                config={ editorConfiguration }
                 data="<p>Write your contribution here</p>"
                 onReady={editor => {
                     // You can store the "editor" and use when it is needed.
@@ -24,9 +40,7 @@ class MyCKeditor extends Component {
                 onFocus={(event, editor) => {
                     console.log('Focus.', editor);
                 }}
-                style={{ height: '300px' }}
             />
-            // </div>
         );
     }
 }

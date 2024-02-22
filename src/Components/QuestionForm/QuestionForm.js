@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import MyCKeditor from "../MyCKEditor/MyCKEditor";
 import axios from "axios";
-import { images } from "../../constants";
 import "./QuestionForm.scss";
 import ConfirmationDialog from "../ConfirmationDialog/ConfirmationDialog";
 import FlashMessage from "../FlashMessage/FlashMessage";
