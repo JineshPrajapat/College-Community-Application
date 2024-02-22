@@ -17,16 +17,16 @@ function App() {
       <header className="App-header">
         <h1>CareerPrepHub</h1>
       </header>
-      {/* <Question/>
+      <Question/>
       <Users/>
       <ImageCarousel/>
       <Opportunity/>
-      <Experience/> */}
-      {/* <QuestionForm /> */}
-      {/* <ExperienceForm/> */}
-      {/* <OpportunityForm/> */}
+      <Experience/>
+      <QuestionForm />
+      <ExperienceForm/>
+      <OpportunityForm/>
       <Discuss/>
-      {/* <AddQuery/> */}
+      <AddQuery/>
     </div>
   );
 }
