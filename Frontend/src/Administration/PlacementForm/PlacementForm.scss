@@ -1,0 +1,63 @@
+.input-placement-details {
+    background-color: #f2efef;
+    // height: 100vh;
+
+    .form-header{
+        background-color: cyan;
+        padding: 40px;
+
+        p{
+            font-size: 1.3rem;
+        }
+    }
+    
+    .placements-form {
+        max-width: 500px;
+        margin: 0 auto;
+        padding:80px;
+    
+        .form-group {
+            margin-bottom: 20px;
+    
+            label {
+                display: block;
+                margin-bottom: 5px;
+                text-align: left;
+            }
+    
+            input, select {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 16px;
+                transition: border-color 0.3s ease;
+            }
+
+            select{
+                width: calc(100% + 15px);
+            }
+    
+            input:focus, select:focus {
+                border-color: #007bff;
+                outline: none;
+            }
+        }
+    
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+    
+            &:hover {
+                background-color: #0056b3;
+            }
+        }
+    }
+    
+}
