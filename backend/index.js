@@ -1,18 +1,27 @@
 const express = require("express");
-const app=express();
+require("dotenv").config();
+const dbConnect = require("./config/database");
+const userRoutes = require("./routes/user");
+const app = express();
+var cors = require("cors");
+const PORT = process.env.PORT || 4000;
 
-require('dotenv').config();
-const PORT =process.env.PORT;
- 
+app.use(
+  cors({
+    origin: "*",
+  })
+);
+// Middleware
 app.use(express.json());
 
-require("./config/database").connect();
+app.use("/api/v1", userRoutes);
 
-//route import anaad mount;
+app.listen(PORT, () => {
+  console.log(`THE SERVER IS UP AND RUNNING AT PORT ${PORT}`);
+});
 
-const user =require("./routes/user");
+dbConnect();
 
-// activation
-app.listen(4000, ()=>{
-    console.log(`server is start on port ${PORT}`);
-})
+app.get("/", (req, res) => {
+  res.send(`<h1>Backend is Running and this is '/' Route</h1>`);
+});

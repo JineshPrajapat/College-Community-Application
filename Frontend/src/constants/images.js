@@ -10,6 +10,7 @@ import luv from '../assets/reviews/luv.png';
 import shashank from '../assets/reviews/shashank.jpg'
 import laksh from '../assets/reviews/laksh.png';
 import yuvraj from '../assets/reviews/Yuvraj.png'
+import background from '../assets/background.png';
 
 export default {
     email,
@@ -23,7 +24,8 @@ export default {
     instagram,
     youtube,
     linkedin,
-    twitter
+    twitter,
+    background
 };
 
 // export default images

@@ -1,18 +1,18 @@
-const mongoose =require("mongoose");
+const mongoose = require("mongoose");
 
 const companySchema = new mongoose.Schema({
-    companyName:{
-        type:String,
-        required:true,
-        trim:true
+    companyName: {
+        type: String,
+        required: true,
+        trim: true
     },
-    location:{
-        type:String,
-        required:true,
+    location: {
+        type: String,
+        required: true,
     },
-    companyURL:{
-        type:URL,
-        required:true
+    companyURL: {
+        type: URL,
+        required: true
     }
 });
 

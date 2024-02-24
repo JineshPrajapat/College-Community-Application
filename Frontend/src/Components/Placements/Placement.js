@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import fetchData from '../../FetchData/FetchData';
+import baseURL from '../../api/api';
 import './Placement.scss';
 
 const Placement = () => {
@@ -35,6 +37,12 @@ const Placement = () => {
         },
     ];
 
+    // // fetching data from server
+    // const [placementsData, setPlacementsData] =useState([]);
+    // useState(() =>{
+    //     fetchData(`${baseURL}/placement`, setPlacementsData);
+    // },[]);
+    
     const [selectedYear, setSelectedYear] = useState(null);
     const [selectedBranch, setSelectedBranch] = useState(null);
 
@@ -68,7 +76,9 @@ const Placement = () => {
                     <label htmlFor="year">Select Year:</label>
                     <select className="year-select" id="year" value={selectedYear || ''} onChange={handleChangeYear} >
                         <option value="">All Years</option>
-                        {[...new Set(placementsData.map(data => data.year))].map(year => (
+                        {[...new Set(placementsData.map(data => data.year))]
+                            .sort((a,b) => b - a)
+                            .map(year => (
                             <option key={year} value={year}>{year}</option>
                         ))}
                     </select>

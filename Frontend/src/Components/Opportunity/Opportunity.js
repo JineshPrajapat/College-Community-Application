@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import baseURL from '../../api/api';
+import fetchData from '../../FetchData/FetchData';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './Opportunity.scss';
 import { images } from '../../constants'
@@ -88,6 +90,12 @@ const opportunity = [
 ];
 
 const Opportunity = () => {
+
+    // // fetching data
+    // const [opportunity, setOpportunity] =useState([]);
+    // useState(()=>{
+    //     fetchData(`${baseURL}/opportunity`, setOpportunity);
+    // },[]);
 
     return (
         <div className='opportunity'>

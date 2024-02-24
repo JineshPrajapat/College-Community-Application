@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import './AddQuery.scss'
 import '@fortawesome/fontawesome-free/css/all.css';
@@ -15,6 +16,11 @@ function AddQuery() {
         title: "",
         post: ""
     });
+
+    const navigate = useNavigate();     
+    const handleCancel = () => {
+        navigate(-1);                   // Navigate back to previous page
+    };
 
     const handleChange = (event) => {
         setformValue({
@@ -83,8 +89,8 @@ function AddQuery() {
                             required
                         />
 
-                        <div className="btn-post">
-                            <div className="close">Cancel</div>
+                        <div className="btn-post" onClick={handleCancel}>
+                            <div className="close" >Cancel</div>
                             <button type="submit">
                                 <i class="fa-solid fa-paper-plane" />
                             </button>

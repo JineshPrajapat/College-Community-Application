@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import baseURL from '../../api/api';
+import fetchData from '../../FetchData/FetchData';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './Experience.scss';
 import { images } from '../../constants'
@@ -72,6 +74,12 @@ const review = [
 ];
 
 const Experience = () => {
+
+    // // fetching data
+    // const [review, setReview] = useState([]);
+    // useState(()=>{
+    //     fetchData(`${baseURL}/review`, setReview);
+    // })
 
     const [expandedIndex, setExpandedIndex] = useState(null);
 

@@ -12,6 +12,9 @@ import Discuss from "./Components/Discuss/Discuss";
 import AddQuery from "./Components/Discuss/AddQuery/AddQuery";
 import Placement from "./Components/Placements/Placement";
 import PlacementsForm from "./Administration/PlacementForm/PlacementForm";
+import Notes from "./Components/Notes/Notes";
+import UserProfile from "./Components/UserProfile/UserProfile";
+import Home from "./Components/UserProfile/Home/Home";
 
 function App() {
   return (
@@ -19,18 +22,20 @@ function App() {
       <header className="App-header">
         <h1>CareerPrepHub</h1>
       </header>
-      {/* <Question/>
+      {/* <Question/>/ */}
       <Users/>
-      <ImageCarousel/>
-      <Opportunity/>
-      <Experience/>
-      <QuestionForm />
-      <ExperienceForm/>
-      <OpportunityForm/>
-      <Discuss/>
-      <AddQuery/> */}
+      {/* <ImageCarousel/> */}
+      {/* <Opportunity/> */}
+      {/* <Experience/> */}
+      {/* <QuestionForm /> */}
+      {/* <ExperienceForm/> */}
+      {/* <OpportunityForm/> */}
+      {/* <Discuss/> */}
+      {/* <AddQuery/> */}
       {/* <Placement/> */}
-      <PlacementsForm/>
+      {/* <PlacementsForm/> */}
+      {/* <Notes/> */}
+      {/* <UserProfile/> */}
     </div>
   );
 }

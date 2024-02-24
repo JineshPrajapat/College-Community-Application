@@ -72,6 +72,7 @@
                     color: #fafafa;
                     border-radius: 2px;
                     border: 0;
+                    text-decoration: none;
                     cursor: pointer;
                     .btn-content-container{
                         display: flex;
@@ -82,7 +83,8 @@
                         i{
                             width: 14px;
                             height: 14px;
-                            vertical-align: middle;
+                            display: flex;
+                            align-items: center;
                             fill: currentColor;
                         }
                     }

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import './Questions.scss';
+import baseURL from '../../api/api';
+import fetchData from '../../FetchData/FetchData';
 import SearchingForm from '../SearchingForm/SearchingForm';
-// import {questions} from '../../Dataset/questions.js';
 
 const questions = [
     { questionNo: 1, branch: 'Computer Science', description: 'Given an array of size n, write a program to check if the given array is sorted in (ascending / Increasing / Non-decreasing) order or not. If the array is sorted then return True, Else return False.', link: 'https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/', difficulty: 'Medium', company: 'App Perfect', year: 2023 },
@@ -23,7 +24,13 @@ const Question = () => {
     const [selectedBranch, setSelectedBranch] = useState([]);
     const [selectedCompany, setSelectedCompany] = useState([]);
 
-    const MAX_WORDS = 10;           // Maximum words before truncation
+    // // fetching data
+    // const [questions, setQuestions] =useState([]);
+    // useState(()=>{
+    //     fetchData(`${baseURL}/questions`, setQuestions);
+    // },[]);
+
+    const MAX_WORDS = 10;               // Maximum words before truncation
 
     const [expandedQuestion, setExpandedQuestion] = useState(null);
 
