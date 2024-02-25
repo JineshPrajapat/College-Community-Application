@@ -15,15 +15,31 @@ import PlacementsForm from "./Administration/PlacementForm/PlacementForm";
 import Notes from "./Components/Notes/Notes";
 import UserProfile from "./Components/UserProfile/UserProfile";
 import Home from "./Components/UserProfile/Home/Home";
+import Landing from "./Components/Landing/Landing";
+import NavBar from "./Components/NavBar/NavBar";
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <h1>CareerPrepHub</h1>
+        <NavBar />
       </header>
+      <Routes >
+        <Route path="/" element={<Landing/>} />
+        <Route path="users" element={<Users />} />
+        <Route path="questions" element={<Question />} />
+        <Route path="opportunity" element={<Opportunity />} />
+        <Route path="experience" element={<Experience />} />
+        <Route path="discuss/*" element={<Discuss />} />
+        <Route path="placementStats" element={<Placement />} />
+        <Route path="userProfile/*" element={<UserProfile />} />
+      </Routes>
+
+
       {/* <Question/>/ */}
-      <Users/>
+      {/* <Users/> */}
       {/* <ImageCarousel/> */}
       {/* <Opportunity/> */}
       {/* <Experience/> */}

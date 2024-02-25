@@ -149,7 +149,7 @@ function Discuss() {
                                     onChange={handleSearchInputChange}
                                 />
                             </span>
-                            <Link to="addQuery" className="subheader-search-button">
+                            <Link to="./addQuery" className="subheader-search-button">
                                 <div className="btn-content-container">
                                     <span className="btn-content">New</span>
                                     <i className="fa-light fa-plus"></i>
@@ -160,6 +160,7 @@ function Discuss() {
                     <Routes>
                         <Route path="addQuery" element={<AddQuery />} />
                     </Routes>
+                    {/* <Outlet/> */}
                     <div className="topic-list-container">
                         <div className="topic-list-content">
                             <div>

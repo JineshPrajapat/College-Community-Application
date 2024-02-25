@@ -8,6 +8,7 @@ import Contact from './Contact/Contact';
 import Profile from './Profile/Profile';
 import Resume from './Resume/Resume';
 import Achievement from './Achievments/Achievement';
+import UserProfileSettings from './UserProfileSettings/UserProfileSettings';
 
 function UserProfile() {
   
@@ -30,19 +31,22 @@ function UserProfile() {
         <div className="nav-tabs">
           <ul className="tab-list">
             <li className="nav-item" >
-              <Link exact to="/" className="nav-link" id="home-tab" activeClassName="active">Home</Link>
+              <Link exact to="./" className="nav-link" id="home-tab" activeClassName="active">Home</Link>
             </li>
             <li className="nav-item">
-              <Link to="/Profile" className="nav-link" id="profile-tab" activeClassName="active">Profile</Link>
+              <Link to="./Profile" className="nav-link" id="profile-tab" activeClassName="active">Profile</Link>
             </li>
             <li className="nav-item">
-              <Link to="/Resume" className="nav-link" id="resume-tab" activeClassName="active">Resume</Link>
+              <Link to="./Resume" className="nav-link" id="resume-tab" activeClassName="active">Resume</Link>
             </li>
             <li className="nav-item">
-              <Link to="/Achievement" className="nav-link" id="achievement-tab" activeClassName="active">Achievement</Link>
+              <Link to="./Achievement" className="nav-link" id="achievement-tab" activeClassName="active">Achievement</Link>
             </li>
             <li className="nav-item">
-              <Link to="/Contact" className="nav-link" id="contact-tab" activeClassName="active">Contact</Link>
+              <Link to="./Contact" className="nav-link" id="contact-tab" activeClassName="active">Contact</Link>
+            </li>
+            <li className="nav-item">
+              <Link to="./setting" className="nav-link" id="contact-tab" activeClassName="active">Setting</Link>
             </li>
           </ul>
         </div>
@@ -55,6 +59,7 @@ function UserProfile() {
             <Route path="Profile" element={<Profile/>} />
             <Route path="Resume" element={<Resume/>} />
             <Route path="Achievement" element={<Achievement/>} />
+            <Route path="setting" element = {<UserProfileSettings/>}/>
           </Routes>
           {/* <Contact/> */}
         </div>
