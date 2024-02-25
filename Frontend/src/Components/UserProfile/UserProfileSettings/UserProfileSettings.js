@@ -22,6 +22,7 @@ const UserProfileSettings = () => {
     photo: null,
     coverPhoto: null,
     pdf: null,
+    studentID: null
   });
 
   const handleChange = (event) => {
@@ -53,6 +54,7 @@ const UserProfileSettings = () => {
     formData.append('photo', formValue.photo);
     formData.append('coverPhoto', formValue.coverPhoto);
     formData.append('resume', formValue.resume);
+    formData.append('studentID',formValue.studentID);
 
     try {
       const response = await axios.post("http://localhost:3000/userProfile/setting", formData, {
@@ -66,7 +68,8 @@ const UserProfileSettings = () => {
         window.location.href = 'http://localhost:3001/userProfile';
         setFlashMessage({ type: 'success', message: 'Update Successful' });
       }
-    } catch (error) {
+    } 
+    catch (error) {
       console.error('Error:', error);
       if (error.response) {
         if (error.response.status === 400) {
@@ -167,6 +170,20 @@ const UserProfileSettings = () => {
           />
         </div>
 
+        <div className='input_container'>
+          <label className='input_label' htmlFor='studentID_field'>Student ID</label>
+          <input
+            className='input_field'
+            placeholder='User Photo'
+            title='Input title'
+            name='studentID'
+            type='file'
+            id='studentID_field'
+            accept="image/*"
+            onChange={handleFileChange}
+            required
+          />
+        </div>
         <div className='input_container'>
           <label className='input_label' htmlFor='userPhoto_field'>Profile Photo</label>
           <input

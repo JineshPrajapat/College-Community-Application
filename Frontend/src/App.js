@@ -18,6 +18,9 @@ import Home from "./Components/UserProfile/Home/Home";
 import Landing from "./Components/Landing/Landing";
 import NavBar from "./Components/NavBar/NavBar";
 import { Route, Routes } from 'react-router-dom';
+import SignUp from "./Components/SignUp/SignUp";
+import Login from "./Components/SignIn/SignIn";
+import ForgetPassword from "./Components/ForgetPassword/ForgetPassword";
 
 function App() {
   return (
@@ -28,15 +31,17 @@ function App() {
       </header>
       <Routes >
         <Route path="/" element={<Landing/>} />
-        <Route path="users" element={<Users />} />
-        <Route path="questions" element={<Question />} />
-        <Route path="opportunity" element={<Opportunity />} />
-        <Route path="experience" element={<Experience />} />
-        <Route path="discuss/*" element={<Discuss />} />
-        <Route path="placementStats" element={<Placement />} />
-        <Route path="userProfile/*" element={<UserProfile />} />
+        <Route path="Users" element={<Users />} />
+        <Route path="Questions" element={<Question />} />
+        <Route path="Opportunity" element={<Opportunity />} />
+        <Route path="Experience" element={<Experience />} />
+        <Route path="Discuss/*" element={<Discuss />} />
+        <Route path="PlacementStats" element={<Placement />} />
+        <Route path="UserProfile/*" element={<UserProfile />} />
+        <Route path="Signup" element={<SignUp/>} />
+        <Route path="Login" element={<Login/>} />
+        <Route path="ForgetPassword" element={<ForgetPassword/>} />
       </Routes>
-
 
       {/* <Question/>/ */}
       {/* <Users/> */}
