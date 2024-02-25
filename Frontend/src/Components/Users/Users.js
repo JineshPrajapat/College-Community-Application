@@ -8,13 +8,14 @@ import { images } from '../../constants'
 const usersData = [
     {
         id: 1,
-        name: 'Garima Ahari ',
+        name: 'Garima Ahari',
         photo: images.garima,
         passingYear: 2020,
         branch: 'DA',
-        linkedin: 'https://www.linkedin.com/in/johndoe',
-        github: 'https://github.com/johndoe',
-        twitter: 'https://twitter.com/johndoe'
+        speciality:'Data Engineer',
+        linkedin: 'https://www.linkedin.com/in/jinesh',
+        github: 'https://github.com/jinesh',
+        twitter: 'https://twitter.com/jinesh'
     },
     {
         id: 1,
@@ -22,9 +23,10 @@ const usersData = [
         photo: images.shashank,
         passingYear: 2021,
         branch: 'DA',
-        linkedin: 'https://www.linkedin.com/in/johndoe',
-        github: 'https://github.com/johndoe',
-        twitter: 'https://twitter.com/johndoe'
+        speciality:'Student',
+        linkedin: 'https://www.linkedin.com/in/jinesh',
+        github: 'https://github.com/jinesh',
+        twitter: 'https://twitter.com/jinesh'
     },
     {
         id: 1,
@@ -32,29 +34,32 @@ const usersData = [
         photo: images.luv,
         passingYear: 2020,
         branch: 'CSE',
-        linkedin: 'https://www.linkedin.com/in/johndoe',
-        github: 'https://github.com/johndoe',
-        twitter: 'https://twitter.com/johndoe'
+        speciality:'Student',
+        linkedin: 'https://www.linkedin.com/in/jinesh',
+        github: 'https://github.com/jinesh',
+        twitter: 'https://twitter.com/jinesh'
     },
     {
         id: 1,
         name: 'Laksh Raj',
         photo: images.laksh,
         passingYear: 2022,
-        branch: 'EEE',
-        linkedin: 'https://www.linkedin.com/in/johndoe',
-        github: 'https://github.com/johndoe',
-        twitter: 'https://twitter.com/johndoe'
+        branch: 'EE',
+        speciality:'Student',
+        linkedin: 'https://www.linkedin.com/in/jinesh',
+        github: 'https://github.com/jinesh',
+        twitter: 'https://twitter.com/jinesh'
     },
     {
         id: 1,
         name: 'Jinesh Prajapat',
         photo: images.jinesh,
         passingYear: 2018,
-        branch: 'CSE',
-        linkedin: 'https://www.linkedin.com/in/johndoe',
-        github: 'https://github.com/johndoe',
-        twitter: 'https://twitter.com/johndoe'
+        branch: 'DA',
+        speciality:'Student',
+        linkedin: 'https://www.linkedin.com/in/jinesh',
+        github: 'https://github.com/jinesh',
+        twitter: 'https://twitter.com/jinesh'
     },
     {
         id: 1,
@@ -62,9 +67,10 @@ const usersData = [
         photo: images.yuvraj,
         passingYear: 2020,
         branch: 'CSE',
-        linkedin: 'https://www.linkedin.com/in/johndoe',
-        github: 'https://github.com/johndoe',
-        twitter: 'https://twitter.com/johndoe'
+        speciality:'Student',
+        linkedin: 'https://www.linkedin.com/in/jinesh',
+        github: 'https://github.com/jinesh',
+        twitter: 'https://twitter.com/jinesh'
     },
     {
         id: 1,
@@ -72,9 +78,10 @@ const usersData = [
         photo: images.shashank,
         passingYear: 2020,
         branch: 'DA',
-        linkedin: 'https://www.linkedin.com/in/johndoe',
-        github: 'https://github.com/johndoe',
-        twitter: 'https://twitter.com/johndoe'
+        speciality:'Student',
+        linkedin: 'https://www.linkedin.com/in/jinesh',
+        github: 'https://github.com/jinesh',
+        twitter: 'https://twitter.com/jinesh'
     },
     {
         id: 1,
@@ -82,9 +89,10 @@ const usersData = [
         photo: images.luv,
         passingYear: 2020,
         branch: 'CSE',
-        linkedin: 'https://www.linkedin.com/in/johndoe',
-        github: 'https://github.com/johndoe',
-        twitter: 'https://twitter.com/johndoe'
+        speciality:'Student',
+        linkedin: 'https://www.linkedin.com/in/jinesh',
+        github: 'https://github.com/jinesh',
+        twitter: 'https://twitter.com/jinesh'
     },
     {
         id: 1,
@@ -92,9 +100,10 @@ const usersData = [
         photo: images.laksh,
         passingYear: 2020,
         branch: 'CSE',
-        linkedin: 'https://www.linkedin.com/in/johndoe',
-        github: 'https://github.com/johndoe',
-        twitter: 'https://twitter.com/johndoe'
+        speciality:'Student',
+        linkedin: 'https://www.linkedin.com/in/jinesh',
+        github: 'https://github.com/jinesh',
+        twitter: 'https://twitter.com/jinesh'
     },
     {
         id: 1,
@@ -102,9 +111,10 @@ const usersData = [
         photo: images.jinesh,
         passingYear: 2020,
         branch: 'CSE',
-        linkedin: 'https://www.linkedin.com/in/johndoe',
-        github: 'https://github.com/johndoe',
-        twitter: 'https://twitter.com/johndoe'
+        speciality:'Student',
+        linkedin: 'https://www.linkedin.com/in/jinesh',
+        github: 'https://github.com/jinesh',
+        twitter: 'https://twitter.com/jinesh'
     },
     {
         id: 1,
@@ -112,9 +122,10 @@ const usersData = [
         photo: images.yuvraj,
         passingYear: 2020,
         branch: 'CSE',
-        linkedin: 'https://www.linkedin.com/in/johndoe',
-        github: 'https://github.com/johndoe',
-        twitter: 'https://twitter.com/johndoe'
+        speciality:'Student',
+        linkedin: 'https://www.linkedin.com/in/jinesh',
+        github: 'https://github.com/jinesh',
+        twitter: 'https://twitter.com/jinesh'
     },
     {
         id: 1,
@@ -122,9 +133,10 @@ const usersData = [
         photo: images.shashank,
         passingYear: 2020,
         branch: 'DA',
-        linkedin: 'https://www.linkedin.com/in/johndoe',
-        github: 'https://github.com/johndoe',
-        twitter: 'https://twitter.com/johndoe'
+        speciality:'Student',
+        linkedin: 'https://www.linkedin.com/in/jinesh',
+        github: 'https://github.com/jinesh',
+        twitter: 'https://twitter.com/jinesh'
     },
     {
         id: 1,
@@ -132,9 +144,10 @@ const usersData = [
         photo: images.luv,
         passingYear: 2020,
         branch: 'CSE',
-        linkedin: 'https://www.linkedin.com/in/johndoe',
-        github: 'https://github.com/johndoe',
-        twitter: 'https://twitter.com/johndoe'
+        speciality:'Student',
+        linkedin: 'https://www.linkedin.com/in/jinesh',
+        github: 'https://github.com/jinesh',
+        twitter: 'https://twitter.com/jinesh'
     },
     {
         id: 1,
@@ -142,9 +155,10 @@ const usersData = [
         photo: images.laksh,
         passingYear: 2020,
         branch: 'CSE',
-        linkedin: 'https://www.linkedin.com/in/johndoe',
-        github: 'https://github.com/johndoe',
-        twitter: 'https://twitter.com/johndoe'
+        speciality:'Student',
+        linkedin: 'https://www.linkedin.com/in/jinesh',
+        github: 'https://github.com/jinesh',
+        twitter: 'https://twitter.com/jinesh'
     },
     {
         id: 1,
@@ -152,9 +166,10 @@ const usersData = [
         photo: images.jinesh,
         passingYear: 2020,
         branch: 'CSE',
-        linkedin: 'https://www.linkedin.com/in/johndoe',
-        github: 'https://github.com/johndoe',
-        twitter: 'https://twitter.com/johndoe'
+        speciality:'Student',
+        linkedin: 'https://www.linkedin.com/in/jinesh',
+        github: 'https://github.com/jinesh',
+        twitter: 'https://twitter.com/jinesh'
     },
     {
         id: 1,
@@ -162,9 +177,10 @@ const usersData = [
         photo: images.yuvraj,
         passingYear: 2020,
         branch: 'CSE',
-        linkedin: 'https://www.linkedin.com/in/johndoe',
-        github: 'https://github.com/johndoe',
-        twitter: 'https://twitter.com/johndoe'
+        speciality:'Student',
+        linkedin: 'https://www.linkedin.com/in/jinesh',
+        github: 'https://github.com/jinesh',
+        twitter: 'https://twitter.com/jinesh'
     },
     {
         id: 1,
@@ -172,9 +188,10 @@ const usersData = [
         photo: images.shashank,
         passingYear: 2020,
         branch: 'DA',
-        linkedin: 'https://www.linkedin.com/in/johndoe',
-        github: 'https://github.com/johndoe',
-        twitter: 'https://twitter.com/johndoe'
+        speciality:'Student',
+        linkedin: 'https://www.linkedin.com/in/jinesh',
+        github: 'https://github.com/jinesh',
+        twitter: 'https://twitter.com/jinesh'
     },
     {
         id: 1,
@@ -182,9 +199,10 @@ const usersData = [
         photo: images.luv,
         passingYear: 2020,
         branch: 'CSE',
-        linkedin: 'https://www.linkedin.com/in/johndoe',
-        github: 'https://github.com/johndoe',
-        twitter: 'https://twitter.com/johndoe'
+        speciality:'Student',
+        linkedin: 'https://www.linkedin.com/in/jinesh',
+        github: 'https://github.com/jinesh',
+        twitter: 'https://twitter.com/jinesh'
     },
     {
         id: 1,
@@ -192,9 +210,10 @@ const usersData = [
         photo: images.laksh,
         passingYear: 2020,
         branch: 'CSE',
-        linkedin: 'https://www.linkedin.com/in/johndoe',
-        github: 'https://github.com/johndoe',
-        twitter: 'https://twitter.com/johndoe'
+        speciality:'Student',
+        linkedin: 'https://www.linkedin.com/in/jinesh',
+        github: 'https://github.com/jinesh',
+        twitter: 'https://twitter.com/jinesh'
     },
     {
         id: 1,
@@ -202,19 +221,21 @@ const usersData = [
         photo: images.jinesh,
         passingYear: 2020,
         branch: 'CSE',
-        linkedin: 'https://www.linkedin.com/in/johndoe',
-        github: 'https://github.com/johndoe',
-        twitter: 'https://twitter.com/johndoe'
+        speciality:'Student',
+        linkedin: 'https://www.linkedin.com/in/jinesh',
+        github: 'https://github.com/jinesh',
+        twitter: 'https://twitter.com/jinesh'
     },
     {
         id: 1,
         name: 'Yuvraj Singh',
-        photo: images.yuvraj,
+        photo: "",
         passingYear: 2020,
         branch: 'CSE',
-        linkedin: 'https://www.linkedin.com/in/johndoe',
-        github: 'https://github.com/johndoe',
-        twitter: 'https://twitter.com/johndoe'
+        speciality:'Student',
+        linkedin: 'https://www.linkedin.com/in/jinesh',
+        github: 'https://github.com/jinesh',
+        twitter: 'https://twitter.com/jinesh'
     },
 
     // Add more user objects here
@@ -250,18 +271,19 @@ const Users = () => {
     const [filter, setFilter] = useState({
         year: '',
         branch: '',
-        location: '',
+        // location: '',
         speciality: '',
         username: '',
     });
 
 
+    // Filter users based on the filter object
     useEffect(() => {
-        // Filter users based on the filter object
         const filteredData = users.filter(user => {
             return (
-                (filter.year === '' || user.passingYear === filter.year) &&
+                (filter.year === '' || user.passingYear === (+filter.year)) &&
                 (filter.branch === '' || user.branch === filter.branch) &&
+                (filter.speciality === '' || user.speciality === filter.speciality) &&
                 (filter.username === '' || user.name.toLowerCase().includes(filter.username.toLowerCase()))
             );
         });
@@ -283,10 +305,10 @@ const Users = () => {
                     <input className="input"
                         type="text"
                         placeholder="Search by name"
-                    // value={searchQuery}
+                        value={filter.username}
+                        onChange={e => handleFilterChange('username', e.target.value)}
                     />
                 </div>
-
                 <div className="filter-option">
                     <label htmlFor="year">Year:</label>
                     <select
@@ -294,7 +316,7 @@ const Users = () => {
                         value={filter.year}
                         onChange={e => handleFilterChange('year', e.target.value)}
                     >
-                        <option value="">Select Year</option>
+                        <option value="">All Year</option>
                         {[...new Set(users.map(data => data.passingYear))]                    //selecting unique year
                             .sort((a, b) => b - a)                                            // sorting year
                             .map(year => (
@@ -311,7 +333,7 @@ const Users = () => {
                         value={filter.branch}
                         onChange={e => handleFilterChange('branch', e.target.value)}
                     >
-                        <option value="">Select Branch</option>
+                        <option value="">All Branch</option>
                         <option value="CSE">Computer Science Engineering</option>
                         <option value="DA">Artificial Intelligence & Data Science Engineering</option>
                         <option value="ECE">Electronics & Communication Engineering</option>
@@ -325,6 +347,23 @@ const Users = () => {
                     </select>
                 </div>
                 <div className="filter-option">
+                    <label htmlFor="speciality">Position:</label>
+                    <select
+                        id="speciality"
+                        value={filter.speciality}
+                        onChange={e => handleFilterChange('speciality', e.target.value)}
+                    >
+                        <option value="">All</option>
+                        {[...new Set(users.map(data => data.speciality))]                    //selecting unique year
+                            .sort((a, b) => b - a)                                            // sorting year
+                            .map(speciality => (
+                                <option key={speciality} value={speciality}>
+                                    {speciality}
+                                </option>
+                            ))}
+                    </select>
+                </div>
+                {/* <div className="filter-option">
                     <label htmlFor="location">Location:</label>
                     <input
                         type="text"
@@ -332,16 +371,8 @@ const Users = () => {
                         value={filter.location}
                         onChange={e => handleFilterChange('location', e.target.value)}
                     />
-                </div>
-                <div className="filter-option">
-                    <label htmlFor="specialty">Specialty:</label>
-                    <input
-                        type="text"
-                        id="specialty"
-                        value={filter.specialty}
-                        onChange={e => handleFilterChange('specialty', e.target.value)}
-                    />
-                </div>
+                </div> */}
+                
             </div>
 
             {/* User cards */}
@@ -351,13 +382,14 @@ const Users = () => {
                 ) : (filteredUsers.map(user => (
                     <div className="user-card" key={user.id}>
                         <div className="user-photo">
-                            <img src={user.photo} alt={user.name} />
+                            <img src={`${user.photo ? user.photo :images.user}`} alt={user.name} />
                             <div className="passing-year">{user.passingYear}</div>
                         </div>
 
                         <div className="user-details">
                             <div className="user-name">{user.name}</div>
                             <div className="user-branch">{user.branch}</div>
+                            <div className="user-specialty">{user.speciality}</div>
                             <div className="user-links">
                                 <a href={user.linkedin} target="_blank" rel="noopener noreferrer">
                                     <i className="fab fa-linkedin"></i>

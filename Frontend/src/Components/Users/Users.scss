@@ -1,6 +1,7 @@
 .user-list {
     display: flex;
-    flex-direction: row;
+    // flex-direction: row;
+    flex-wrap: wrap;
     margin:10px;
 
     .filter-section {
@@ -45,7 +46,7 @@
       margin:20px;
     //   margin-left: 300px;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
       gap: 20px;
       
       .user-card {
@@ -81,8 +82,7 @@
         }
   
         .user-details {
-          margin-top: 10px;
-          height: 8rem;
+          padding: 5px;
   
           .user-name {
             font-weight: bold;
@@ -96,9 +96,14 @@
             margin-top: 5px;
             text-align: left;
           }
+
+          .user-specialty{
+            text-align: right;
+            font-size: 0.85rem;
+            margin: 10% 0;
+          }
   
           .user-links {
-            margin-top: 35%;
   
             a {
               margin-right: 10px;

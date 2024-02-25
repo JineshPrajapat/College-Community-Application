@@ -11,6 +11,7 @@ import shashank from '../assets/reviews/shashank.jpg'
 import laksh from '../assets/reviews/laksh.png';
 import yuvraj from '../assets/reviews/Yuvraj.png'
 import background from '../assets/background.png';
+import user from '../assets/icons/user.png'
 
 export default {
     email,
@@ -25,7 +26,8 @@ export default {
     youtube,
     linkedin,
     twitter,
-    background
+    background,
+    user
 };
 
 // export default images
