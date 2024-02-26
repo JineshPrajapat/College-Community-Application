@@ -14,7 +14,11 @@ import background from '../assets/background.png';
 import user from '../assets/icons/user.png'
 import userlogo from '../assets/icons/userlogo.png'
 import cover from '../assets/cover.jpg';
-
+import landingImg1 from '../assets/stock/landingImg1.jpg'
+import landingImg2 from '../assets/stock/landingImg2.jpg'
+import landingImg3 from '../assets/stock/landingImg3.jpeg'
+import landingImg4 from '../assets/stock/landingImg4.jpeg'
+import landingImg5 from '../assets/stock/landingImg5.jpg'
 export default {
     email,
     password,
@@ -31,7 +35,12 @@ export default {
     background,
     user,
     userlogo,
-    cover
+    cover,
+    landingImg1,
+    landingImg2,
+    landingImg3,
+    landingImg4,
+    landingImg5
 };
 
 // export default images

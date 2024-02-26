@@ -18,8 +18,7 @@ import UserProfile from "./Components/UserProfile/UserProfile";
 import Landing from "./Components/Landing/Landing";
 import NavBar from "./Components/NavBar/NavBar";
 import { Route, Routes } from 'react-router-dom';
-import Home from "./Components/Home/Home.jsx";
-import 'bootstrap/dist/css/bootstrap.css'
+import CoverPage from "./Components/CoverPage/CoverPage";
 import SignUp from "./Components/SignUp/SignUp";
 import Login from "./Components/SignIn/SignIn";
 import ForgetPassword from "./Components/ForgetPassword/ForgetPassword";
@@ -34,7 +33,7 @@ function App() {
         <h1>CareerPrepHub</h1>
         <NavBar />
       </header> */}
-      <Home/>
+      <CoverPage/>
       <Routes >
         <Route path="/" element={<Landing/>} />
         <Route path="Users" element={<Users />} />
@@ -44,8 +43,8 @@ function App() {
         <Route path="Discuss/*" element={<Discuss />} />
         <Route path="PlacementStats" element={<Placement />} />
         <Route path="UserProfile/*" element={<UserProfile />} />
-        <Route path="Signup" element={<SignUp/>} />
-        <Route path="Login" element={<Login/>} />
+        <Route path="Signup/*" element={<SignUp/>} />
+        <Route path="Login/*" element={<Login/>} />
         <Route path="ForgetPassword" element={<ForgetPassword/>} />
       </Routes>
 
