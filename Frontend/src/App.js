@@ -25,6 +25,7 @@ import ForgetPassword from "./Components/ForgetPassword/ForgetPassword";
 import UpdateProfileSettings from "./Components/UserProfile/UpdateProfileSettings/UpdateProfileSettings";
 import UserProfileSettings from "./Components/UserProfile/UserProfileSettings/UserProfileSettings";
 import Footer from "./Components/Footer/Footer";
+import Header from "./Components/Header/Header";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <h1>CareerPrepHub</h1>
         <NavBar />
       </header> */}
+      <Header/>
       <CoverPage/>
       <Routes >
         <Route path="/" element={<Landing/>} />

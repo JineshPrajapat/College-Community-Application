@@ -4,7 +4,7 @@ import './Landing.scss';
 function Landing() {
 
     return (
-        <div className="home">
+        <div className="landing">
             <div className="analytics fade-in">
                 <div className="info-card slide-left">
                     <h3>Users</h3>
