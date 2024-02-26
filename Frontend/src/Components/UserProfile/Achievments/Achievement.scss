@@ -1,0 +1,132 @@
+.achievement-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  transition: 0.5s all ease-in;
+
+  .add-achievement {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border: 5px solid rgb(126, 124, 124);
+    border-radius: 15%;
+    margin-bottom: 50px;
+    transition: 0.5s all ease-in;
+    i {
+      font-size: 40px;
+      color: rgb(126, 124, 124);
+      transition: 0.5s all ease-in;
+    }
+
+    &:hover {
+      background-color: rgb(126, 124, 124);
+      i {
+        color: white;
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  .images-section {
+    width: 100%;
+    margin-top: 20px;
+
+    .images {
+      display: flex;
+      gap: 10px;
+
+      .image {
+        position: relative;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 25%;
+        height: 270px;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        embed {
+          width: 100%;
+          height: auto;
+          overflow: hidden;
+        }
+
+        .caption {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          background-color: rgba(0, 0, 0, 0.7);
+          color: #fff;
+          padding: 5px;
+          text-align: center;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); 
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .modal-content {
+      background-color: white;
+      max-height: 60%;
+      overflow: hidden;
+      overflow-y: auto;
+      width: 50%;
+      padding: 50px;
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+    }
+
+    .expanded-details {
+      margin-top: 20px;
+      text-align: left;
+    }
+}
+
+.achievements-info{
+  border-radius: 50%;
+  object-fit: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  gap: 15px;
+
+  img{
+      object-fit: cover;
+      width: 80%;
+      height:auto;
+      
+  }
+  .info{
+      display: flex;
+      align-items: center;
+      color: brown;
+  }
+}

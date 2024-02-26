@@ -1,0 +1,51 @@
+.notes-content-container {
+    
+    .notes-container {
+        margin: 20px auto;
+        width: 80%;
+        text-align: center;
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .dropdowns {
+            margin-bottom: 20px;
+
+            select {
+                padding: 8px;
+                margin-right: 10px;
+            }
+        }
+
+        .notes-list {
+            h2 {
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+
+            .topics-content {
+                list-style-type: none;
+                padding: 0;
+                display: flex;
+                flex-wrap: wrap;
+                row-gap: 10px;
+                column-gap: 50px;
+                
+                li {
+                    margin-bottom: 10px;
+
+                    .note-link {
+                        color: #007bff;
+                        text-decoration: none;
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

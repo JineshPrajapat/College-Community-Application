@@ -1,0 +1,99 @@
+.user-update-settings {
+    // max-width: 600px;
+    // // margin: 0 auto;
+    // padding-bottom: 20px;
+    margin-top: 0;
+    padding: 90px 4%;
+
+    h2 {
+        text-align: center;
+    }
+
+    form {
+        height: fit-content;
+        display: grid;
+        grid: 100px / auto auto;
+        column-gap: 8%;
+        align-items: center;
+        padding: 50px 40px 50px 40px;
+        background: rgba(255, 255, 255, 0.6);
+        box-shadow: 0px 9px 29px #c6c2c2;
+        border-radius: 11px;
+        font-family: "Inter", sans-serif;
+
+
+        .update-box{
+            // display: flex;
+            // flex-direction: column;
+
+            .input_container {
+                width: 100%;
+                height: fit-content;
+                display: flex;
+                // flex-direction: column;
+                flex-wrap: wrap;
+                gap: 5px;
+    
+                .input_label {
+                    margin-top: 15px;
+                    font-size: 0.75rem;
+                    text-align: left;
+                    color: #340926;
+                    font-weight: 600;
+                }
+                
+                 input[type="file"],
+                .input_field {
+                    width: 100%;
+                    height: 40px;
+                    padding: 0 0 0 20px;
+                    border-radius: 5px;
+                    outline: none;
+                    border: 1px solid#9e9e9e;
+                    background-color: white;
+                    filter: drop-shadow(0px 1px 0px #efefef) drop-shadow(0px 1px 0.5px rgba(239, 239, 239, 0.5));
+                    transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+    
+                    &:focus {
+                        border: 1px solid transparent;
+                        box-shadow: 0px 0px 0px 2px #242424;
+                        background-color: transparent;
+                    }
+                }
+            }
+
+            button {
+                display: flex;
+                float: right;
+                margin-top: 10px;
+                padding: 0.5rem 1rem;
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 1rem;
+                transition: background-color 0.3s ease-in-out;
+          
+                &:hover {
+                  background-color: #0056b3;
+                }
+              }
+        }
+        
+
+        
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .user-settings {
+        max-width: 400px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .user-settings {
+        max-width: 300px;
+    }
+}

@@ -1,9 +1,22 @@
 import React, { useState } from "react";
+<<<<<<< HEAD
 // import '@fortawesome/fontawesome-free/css/all.css';
+=======
+import baseURL from "../../api/api";
+import fetchData from "../../FetchData/FetchData";
+import '@fortawesome/fontawesome-free/css/all.css';
+>>>>>>> aa4615fbd98a8c03e31ab015f5deb3e9a424b55f
 import { images } from "../../constants";
+import { Routes, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import './Discuss.scss';
 import SingleComment from "./SingleComment/SingleComment";
+<<<<<<< HEAD
 // import AddQuery from "./AddQuery/AddQuery";
+=======
+import AddQuery from "./AddQuery/AddQuery";
+import Contact from "../UserProfile/Contact/Contact";
+>>>>>>> aa4615fbd98a8c03e31ab015f5deb3e9a424b55f
 
 const discussionTopic = [
     {
@@ -15,14 +28,14 @@ const discussionTopic = [
     },
     {
         Url: images.garima,
-        title: "You may not find ISO file.",
+        title: "Equal tree partion.",
         info: "Just got out of my first onsite at Meta and I feel so disappointed in myself. I got 3 medium and 1 easy, all fb tagged but the easy one was low in frequency. I did the 3 medium ones perfectly, including the follow ups, but I screwed up the easy one. Badly.",
         upvotes: 24,
         views: 305
     },
     {
         Url: images.garima,
-        title: "You may not find ISO file.",
+        title: "Finding issues in installing node module",
         info: "Just got out of my first onsite at Meta and I feel so disappointed in myself. I got 3 medium and 1 easy, all fb tagged but the easy one was low in frequency. I did the 3 medium ones perfectly, including the follow ups, but I screwed up the easy one. Badly.",
         upvotes: 24,
         views: 305
@@ -93,11 +106,36 @@ const discussionTopic = [
 
 function Discuss() {
 
+    // // fetching data
+    // const [discussionTopic, setDiscussionTopic] =useState([]);
+    // useState(() => {
+    //     fetchData(`${baseURL}/discuss`, setDiscussionTopic);
+    // },[]);
+
     const [expandedIndex, setExpandedIndex] = useState(null);
 
     const handleCommentClick = (index) => {
         setExpandedIndex(index === expandedIndex ? null : index);
     };
+
+    // filtering search input
+    const [searchQuery, setSearchQuery] = useState('');
+    const [filteredTopics, setFilteredTopics] = useState(discussionTopic);
+
+    const handleSearchInputChange = (event) => {
+        setSearchQuery(event.target.value);
+        filterTopics(event.target.value);
+    }
+
+    const filterTopics = (query) => {
+        const filtered = discussionTopic.filter(topic =>
+            topic.title.toLowerCase().includes(query.toLowerCase())
+        );
+        setFilteredTopics(filtered);
+    }
+    // filtering task completed
+
+
 
     return (
 
@@ -115,21 +153,28 @@ function Discuss() {
                                 <input className="input"
                                     type="text"
                                     placeholder="Search topics or comments"
-                                    value=""
+                                    value={searchQuery}
+                                    onChange={handleSearchInputChange}
                                 />
                             </span>
-                            <button className="subheader-search-button">
+                            <Link to="./addQuery" className="subheader-search-button">
                                 <div className="btn-content-container">
                                     <span className="btn-content">New</span>
                                     <i className="fa-light fa-plus"></i>
                                 </div>
-                            </button>
+                            </Link>
                         </div>
                     </div>
+                    <Routes>
+                        <Route path="addQuery" element={<AddQuery />} />
+                    </Routes>
+                    {/* <Outlet/> */}
                     <div className="topic-list-container">
                         <div className="topic-list-content">
                             <div>
-                                {discussionTopic.map((discussion, index) => (
+                                {filteredTopics.length === 0 ? (
+                                    <p>No topics found</p>
+                                ) : (filteredTopics.map((discussion, index) => (
                                     <div className="topic-item-container">
                                         <div className="topic-item">
                                             <a href=""><img src={discussion.Url} alt=""></img></a>
@@ -155,6 +200,7 @@ function Discuss() {
                                             </div>
                                         </div>
                                     </div>
+                                )
                                 ))}
 
                                 {expandedIndex !== null && (
