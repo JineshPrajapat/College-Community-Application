@@ -19,14 +19,16 @@ import Landing from "./Components/Landing/Landing";
 import NavBar from "./Components/NavBar/NavBar";
 import { Route, Routes } from 'react-router-dom';
 import Home from "./Components/Home/Home";
+import 'bootstrap/dist/css/bootstrap.css'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         <h1>CareerPrepHub</h1>
         <NavBar />
-      </header>
+      </header> */}
+      <Home/>
       <Routes >
         <Route path="/" element={<Landing/>} />
         <Route path="users" element={<Users />} />
@@ -53,7 +55,7 @@ function App() {
       {/* <PlacementsForm/> */}
       {/* <Notes/> */}
       {/* <UserProfile/> */}
-      <Home></Home>
+      
     </div>
   );
 }

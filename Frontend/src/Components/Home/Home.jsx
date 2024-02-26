@@ -1,10 +1,9 @@
 import React from 'react';
 import './Home.css';
 
-import { Link } from 'react-router-dom';
-// import Container from 'react-bootstrap/Container';
 
-// import Navbar from 'react-bootstrap/Navbar';
+import { Link } from 'react-router-dom';
+
 
 
 function Home() {
@@ -25,6 +24,7 @@ function Home() {
                 </div>
             </div>
         </header>
+
 
      </div>   
   )
