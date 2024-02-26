@@ -13,6 +13,7 @@ import yuvraj from '../assets/reviews/Yuvraj.png'
 import background from '../assets/background.png';
 import user from '../assets/icons/user.png'
 import userlogo from '../assets/icons/userlogo.png'
+import cover from '../assets/cover.jpg';
 
 export default {
     email,
@@ -29,7 +30,8 @@ export default {
     twitter,
     background,
     user,
-    userlogo
+    userlogo,
+    cover
 };
 
 // export default images

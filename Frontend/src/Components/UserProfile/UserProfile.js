@@ -11,23 +11,33 @@ import Achievement from './Achievments/Achievement';
 import UserProfileSettings from './UserProfileSettings/UserProfileSettings';
 import UpdateProfileSettings from './UpdateProfileSettings/UpdateProfileSettings';
 
+const user = {
+    coverImage: "",
+    userImg:images.jinesh,
+    userName:'Jinesh Prajapat',
+    position:"C++ Devloper",
+    bio:"As a passionate learner and student of Artificial Intelligence and Data Science from India, I possess a strong command of C++, SQL, and knew web development, along with a burgeoning expertise in AI/ML."
+  }
+
+
 function UserProfile() {
   
   return (
     <div className="top-cover">
       <div className="profile-box">
         {/* profile landing */}
-        <div className="cover-in" style={{ backgroundImage: `url(${images.background})` }}>
+        <div className="cover-in" style={{ backgroundImage: `url(${user.coverImage ? user.coverImage :images.cover})` }}>
           <div className="cover-row">
             <div className="user-img">
-              <img src={images.jinesh} alt={'Jinesh Prajapat'} />
+              <img src={`${user.userImg ? user.userImg :images.userlogo}`} alt={'Jinesh Prajapat'} />
             </div>
             <div className="user-bio">
-              <h2>Jinesh Prajapat / C++ Developer</h2>
-              <p>As a passionate learner and student of Artificial Intelligence and Data Science from India, I possess a strong command of C++, SQL, and  knew web development, along with a burgeoning expertise in AI/ML.</p>
+              <h2>{user.userName} / {user.position}</h2>
+              <p>{user.bio}</p>
             </div>
           </div>
         </div>
+
         {/* nav-bar */}
         <div className="nav-tabs">
           <ul className="tab-list">

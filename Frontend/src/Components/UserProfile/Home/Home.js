@@ -2,7 +2,29 @@ import React from 'react';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './Home.scss';
 
+
+
 const Home = () => {
+
+  const userProfile ={
+    hobbies:['Writing', 'Cycling', 'Badminton', 'Movies', 'Coding', 'Travel'],
+    skills:['c++', 'Python', 'SQL', 'React', 'Machine Learning', 'Relational Databases', 'IOT'],
+    resumeLink:"",
+    Links:['https://github.com/JineshPrajapat', 'https://in.linkedin.com/in/jinesh-prajapat', ],
+    currentstatus:"Student",
+    state:"Rajasthan",
+    experience:"Fresher",
+    languages:['English', 'Hindi']
+  
+  }
+
+  const hobbiesList = userProfile.hobbies.map((hobby)=>{
+    return <li>{hobby}</li>;
+  })
+  const skillList = userProfile.skills.map((skill) => {
+    return <li>{skill}</li>;
+  });
+
   return (
     <div className="tab-pane">
       <div className="row-division">
@@ -11,12 +33,7 @@ const Home = () => {
           <div className="hobbies-container">
             <h4 className="title">Hobbies</h4>
             <ul className="hobbies-list">
-              <li>Writing</li>
-              <li>Cycling</li>
-              <li>Badminton</li>
-              <li>Movies</li>
-              <li>Coding</li>
-              <li>Travel</li>
+              {hobbiesList}
             </ul>
           </div>
           <div className="reference-container">
@@ -32,13 +49,7 @@ const Home = () => {
           <div className="skills-container">
             <h3 className="title">Skills</h3>
             <ul className="skills-list">
-              <li>C++</li>
-              <li>Python</li>
-              <li>SQL</li>
-              <li>React</li>
-              <li>Machine Learning</li>
-              <li>Relational Databases</li>
-              <li>IOT</li>
+              {skillList}
             </ul>
           </div>
 
@@ -49,7 +60,7 @@ const Home = () => {
                   <a href=""><i className='fas fa-paper-plane' /> Hire me</a>
                 </li>
                 <li>
-                  <a href=""><i className='fas fa-cloud-download-alt' /> Download Resume</a>
+                  <a href={userProfile.resumeLink}><i className='fas fa-cloud-download-alt' /> Download Resume</a>
                 </li>
               </ul>
               <ul className="social-link">
@@ -79,11 +90,11 @@ const Home = () => {
                 <tbody>
                   <tr>
                     <th>Position</th>
-                    <td>Student</td>
+                    <td>{userProfile.currentstatus}</td>
                   </tr>
                   <tr>
                     <th>State</th>
-                    <td>Rajasthan</td>
+                    <td>{userProfile.state}</td>
                   </tr>
                 </tbody>
               </table>
@@ -91,11 +102,11 @@ const Home = () => {
                 <tbody>
                   <tr>
                     <th>Experiance</th>
-                    <td>Fresher</td>
+                    <td>{userProfile.experience}</td>
                   </tr>
                   <tr>
                     <th>Languages</th>
-                    <td>Hindi, English</td>
+                    <td>{userProfile.languages}</td>
                   </tr>
                 </tbody>
               </table>
