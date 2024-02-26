@@ -62,7 +62,7 @@ function UserProfile() {
             <Route path="Contact" element={<Contact/>} />
             <Route path="Profile" element={<Profile/>} />
             <Route path="Resume" element={<Resume/>} />
-            <Route path="Achievement" element={<Achievement/>} />
+            <Route path="Achievement/*" element={<Achievement/>} />
             <Route path="Setting" element = {<UserProfileSettings/>}/>
             <Route path="Update" element = {<UpdateProfileSettings/>}/>
           </Routes>

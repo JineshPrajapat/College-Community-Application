@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import FlashMessage from "../FlashMessage/FlashMessage";
 import './SignUp.scss'
@@ -24,7 +24,6 @@ function SignUp() {
 
     const handleFormSubmit = async (event) =>{
         event.preventDefault();
-
         axios.post("http://localhost:3000/SignUp",{
             name: formValue.name,
             email: formValue.email,
@@ -36,6 +35,9 @@ function SignUp() {
                 if(response.status === 200){
                     //  successful registration flash message
                     setFlashMessage({type: 'success', message:'Registred Successfull'});
+                    // window.location.href = 'http://localhost:3001/Login';
+                    return <Navigate to="/UserProfileSetting" />;
+
                 }
             })
             .catch(error =>{
@@ -67,7 +69,7 @@ function SignUp() {
 
             <form className='form_container' onSubmit={handleFormSubmit}>
                 <div className='logo_container'>
-                    <img src={images.jinesh} alt='Khaao' />
+                    <img src={images.jinesh} alt='' />
                 </div>
                 <div className='title_container'>
                     <p className='title'>Get Started by Registering an Account</p>
@@ -76,7 +78,7 @@ function SignUp() {
                 <br />
                 <div className='input_container'>
                     <label className='input_label' htmlFor='user_field'>Username</label>
-                    <img className='icon' src={images.userlogo} viewBox='0 0 24 24'></img>
+                    <img className='icon' src={images.userlogo} alt='' viewBox='0 0 24 24'></img>
                     <input
                         className='input_field'
                         placeholder='Username'
@@ -90,7 +92,7 @@ function SignUp() {
                 </div>
                 <div className='input_container'>
                     <label className='input_label' htmlFor='email_field'>Email</label>
-                    <img className='icon' src={images.email} viewBox='0 0 24 24'></img>
+                    <img className='icon' src={images.email} alt='' viewBox='0 0 24 24'></img>
                     <input 
                         className='input_field' 
                         placeholder='name@mail.com' 
@@ -105,7 +107,7 @@ function SignUp() {
                 </div>
                 <div className='input_container'>
                     <label className='input_label' htmlFor='password_field'>Password</label>
-                    <img className='icon' src={images.password} viewBox='0 0 24 24'></img>
+                    <img className='icon' src={images.password} alt='' viewBox='0 0 24 24'></img>
                     <input 
                         className='input_field' 
                         placeholder='Password' 

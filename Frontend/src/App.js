@@ -22,6 +22,7 @@ import SignUp from "./Components/SignUp/SignUp";
 import Login from "./Components/SignIn/SignIn";
 import ForgetPassword from "./Components/ForgetPassword/ForgetPassword";
 import UpdateProfileSettings from "./Components/UserProfile/UpdateProfileSettings/UpdateProfileSettings";
+import UserProfileSettings from "./Components/UserProfile/UserProfileSettings/UserProfileSettings";
 
 function App() {
   return (

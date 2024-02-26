@@ -10,7 +10,7 @@ const UpdateProfileSettings = () => {
     bio: '',
     position: '',
     experience: '',
-    // state: '',
+    state: '',
     skills: [],
     hobbies: [],
     references: [],
