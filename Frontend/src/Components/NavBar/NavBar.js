@@ -10,25 +10,28 @@ const NavBar = () => {
             <Link to="/" >Home</Link>
           </li>
           <li>
-            <Link to="users">Users</Link>
+            <Link to="Users">Users</Link>
           </li>
           <li>
-            <Link to="questions">Questions</Link>
+            <Link to="Questions">Questions</Link>
           </li>
           <li>
-            <Link to="opportunity">Opportunity</Link>
+            <Link to="Opportunity">Opportunity</Link>
           </li>
           <li>
-            <Link to="experience">Experience</Link>
+            <Link to="Experience">Experience</Link>
           </li>
           <li>
-            <Link to="discuss">Discuss</Link>
+            <Link to="Discuss">Discuss</Link>
           </li>
           <li>
-            <Link to="placementStats">Placement Statistics</Link>
+            <Link to="PlacementStats">Placement Statistics</Link>
           </li>
           <li>
-            <Link to="userProfile">User Profile</Link>
+            <Link to="UserProfile">User Profile</Link>
+          </li>
+          <li>
+            <Link to="SignUp">SignUP</Link>
           </li>
         </ul>
       </nav>

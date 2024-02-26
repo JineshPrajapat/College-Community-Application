@@ -12,6 +12,7 @@ import laksh from '../assets/reviews/laksh.png';
 import yuvraj from '../assets/reviews/Yuvraj.png'
 import background from '../assets/background.png';
 import user from '../assets/icons/user.png'
+import userlogo from '../assets/icons/userlogo.png'
 
 export default {
     email,
@@ -27,7 +28,8 @@ export default {
     linkedin,
     twitter,
     background,
-    user
+    user,
+    userlogo
 };
 
 // export default images

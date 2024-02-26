@@ -9,19 +9,11 @@ const UserProfileSettings = () => {
 
   const [formValue, setformValue] = useState({
     name: '',
-    bio: '',
+    gender: '',
     branch: '',
     position: '',
-    experience: '',
     state: '',
-    hobbies: [],
-    references: [],
-    skills: [],
-    socialMedia: [],
-    languages: [],
-    photo: null,
-    coverPhoto: null,
-    pdf: null,
+    studentID: null
   });
 
   const handleChange = (event) => {
@@ -45,14 +37,11 @@ const UserProfileSettings = () => {
 
     const formData = new FormData();
     formData.append('name', formValue.name);
-    formData.append('bio', formValue.bio);
+    formData.append('gender', formValue.gender)
     formData.append('branch', formValue.branch);
     formData.append('position', formValue.position);
-    formData.append('experience', formValue.experience);
     formData.append('state', formValue.state);
-    formData.append('photo', formValue.photo);
-    formData.append('coverPhoto', formValue.coverPhoto);
-    formData.append('resume', formValue.resume);
+    formData.append('studentID', formValue.studentID);
 
     try {
       const response = await axios.post("http://localhost:3000/userProfile/setting", formData, {
@@ -66,7 +55,8 @@ const UserProfileSettings = () => {
         window.location.href = 'http://localhost:3001/userProfile';
         setFlashMessage({ type: 'success', message: 'Update Successful' });
       }
-    } catch (error) {
+    }
+    catch (error) {
       console.error('Error:', error);
       if (error.response) {
         if (error.response.status === 400) {
@@ -81,10 +71,10 @@ const UserProfileSettings = () => {
 
   return (
     <div className="user-settings">
-      <h2>User Settings</h2>
+      {/* <h2>User Settings</h2> */}
       <form onSubmit={handleFormSubmit}>
         <div className='input_container'>
-          <label className='input_label' htmlFor='user_field'>Name</label>
+          <label className='input_label' htmlFor='user_field'>Name*</label>
           <input
             className='input_field'
             placeholder='Full Name'
@@ -96,22 +86,39 @@ const UserProfileSettings = () => {
             required
           />
         </div>
+
         <div className='input_container'>
-          <label className='input_label' htmlFor='bio_field'>About yourselves</label>
-          <textarea
-            className='input_field'
-            placeholder='Bio'
-            title='Input title'
-            name='bio'
-            type='text'
-            id='bio_field'
-            value={formValue.bio}
-            onChange={handleChange}
-            required
-          />
+          <label className='input_label '>Gender*</label><br />
+          <div className="radio-button">
+            <div className="radio">
+              <input
+                type='radio'
+                id='male'
+                name='gender'
+                value='Male'
+                checked={formValue.gender === 'Male'}
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor='male'>Male</label>
+            </div>
+            <div className="radio">
+              <input
+                type='radio'
+                id='female'
+                name='gender'
+                value='Female'
+                checked={formValue.gender === 'Female'}
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor='female'>Female</label>
+            </div>
+          </div>
         </div>
+
         <div className='input_container'>
-          <label className='input_label' htmlFor='branch_field'>Branch</label>
+          <label className='input_label' htmlFor='branch_field'>Branch*</label>
           <input
             className='input_field'
             placeholder='Branch'
@@ -124,8 +131,9 @@ const UserProfileSettings = () => {
             required
           />
         </div>
+
         <div className='input_container'>
-          <label className='input_label' htmlFor='position_field'>Position</label>
+          <label className='input_label' htmlFor='position_field'>Position*</label>
           <input
             className='input_field'
             placeholder='Student/junior developer'
@@ -138,22 +146,9 @@ const UserProfileSettings = () => {
             required
           />
         </div>
+
         <div className='input_container'>
-          <label className='input_label' htmlFor='experience_field'>Experience</label>
-          <input
-            className='input_field'
-            placeholder='Experience'
-            title='Input title'
-            name='experience'
-            type='text'
-            id='experience_field'
-            value={formValue.experience}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className='input_container'>
-          <label className='input_label' htmlFor='state_field'>State</label>
+          <label className='input_label' htmlFor='state_field'>State*</label>
           <input
             className='input_field'
             placeholder='State'
@@ -168,70 +163,21 @@ const UserProfileSettings = () => {
         </div>
 
         <div className='input_container'>
-          <label className='input_label' htmlFor='userPhoto_field'>Profile Photo</label>
+          <label className='input_label' htmlFor='studentID_field'>Student ID*</label>
           <input
             className='input_field'
             placeholder='User Photo'
             title='Input title'
-            name='userPhoto'
+            name='studentID'
             type='file'
-            id='userPhoto_field'
+            id='studentID_field'
             accept="image/*"
             onChange={handleFileChange}
-          // required
-          />
-        </div>
-        <div className='input_container'>
-          <label className='input_label' htmlFor='coverPhoto_field'>Cover Photo</label>
-          <input
-            className='input_field'
-            placeholder='coverPhoto'
-            title='Input title'
-            name='coverPhoto'
-            type='file'
-            id='coverPhoto_field'
-            accept="image/*"
-            onChange={handleFileChange}
-          // required
-          />
-        </div>
-        <div className='input_container'>
-          <label className='input_label' htmlFor='resume_field'>Resume</label>
-          <input
-            className='input_field'
-            // placeholder=''
-            title='Input title'
-            name='resume'
-            type='file'
-            id='resume_field'
-            accept=".pdf"
-            onChange={handleFileChange}
-          // required
+            required
           />
         </div>
 
-        {/* Dynamic input fields */}
-        {/* {['skills', 'hobbies', 'references', 'languages', 'socialMedia'].map((field) => (
-          <div key={field}>
-            <input
-              type={field === 'socialMedia' ? 'url' : 'text'}
-              name={field}
-              placeholder={field.charAt(0).toUpperCase() + field.slice(1)} // Capitalize first letter
-              value={formData[field]}
-              onChange={(e) => handleChange(e, field)}
-            /> */}
-        {/* Display added items */}
-        {/* {formData[field].map((item, index) => (
-              <div key={`${field}-${index}`}>
-                {item}
-                <button type="button" onClick={() => handleRemoveItem(index, field)}>Delete</button>
-              </div>
-            ))}
-            <button type="button" onClick={() => handleAddItem(field)}>Add {field.slice(0, -1)}</button>
-          </div>
-        ))} */}
-
-        <button type="submit">Update</button>
+        <button type="submit">Save</button>
       </form>
 
       {/* flash component */}

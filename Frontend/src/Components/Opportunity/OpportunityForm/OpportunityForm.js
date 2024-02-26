@@ -1,23 +1,29 @@
 import React, { useState } from "react";
-import MyCKeditor from "../MyCKEditor/MyCKEditor";
 import axios from "axios";
-import "./QuestionForm.scss";
-import ConfirmationDialog from "../ConfirmationDialog/ConfirmationDialog";
-import FlashMessage from "../FlashMessage/FlashMessage";
+import { useNavigate } from "react-router-dom";
+import { images } from "../../../constants";
+import "./OpportunityForm.scss";
+import ConfirmationDialog from "../../ConfirmationDialog/ConfirmationDialog";
+import FlashMessage from "../../FlashMessage/FlashMessage";
 
-function Reservation() {
+function OpportunityForm() {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [flashMessage, setFlashMessage] = useState(false);
 
   const [formValue, setformValue] = useState({
+    profile: "",
     company: "",
     branch: "",
     link: "",
-    year: "",
-    title: "",
-    difficulty: "",
-    questionDescription: "",
+    experienceRequired: "",
+    deadline: "",
+    positionType: "",
   });
+
+  const navigate = useNavigate();
+  const handleCancel = () => {
+    navigate(-1);                   // Navigate back to previous page
+  };
 
   const handleChange = (event) => {
     setformValue({
@@ -27,7 +33,7 @@ function Reservation() {
   };
 
   const handleDescriptionChange = (questionDescription) => {
-    console.log(questionDescription);
+    // console.log(questionDescription);
     setformValue((prevState) => ({
       ...prevState,
       questionDescription: questionDescription,
@@ -46,10 +52,10 @@ function Reservation() {
           company: formValue.company,
           branch: formValue.branch,
           link: formValue.link,
-          year: formValue.year,
-          title: formValue.title,
-          difficulty: formValue.difficulty,
-          questionDescription: formValue.questionDescription,
+          deadline: formValue.deadline,
+          profile: formValue.profile,
+          positionType:formValue.positionType,
+          experienceRequired: formValue.experienceRequired,
         })
         .then((response) => {
           console.log("Response:", response);
@@ -79,20 +85,28 @@ function Reservation() {
 
   return (
     <div
-      className={`question-body ${showConfirmation ? "show-confirmation" : ""}`}
-    >
-      <div className="question-heading">
-        <h2>Want to contribute?</h2>
+      className={`opportunity-body ${ showConfirmation ? "show-confirmation" : ""}`}>
+      <div className="opportunity-heading">
+        <h2>Share Opportunities among friends</h2>
         <p>
-          "Questions asked in interviews are like stepping stones to success;
-          each one offers an opportunity to refine your understanding and
-          sharpen your skills. Embrace them as valuable lessons, for they not
-          only prepare you for the interview but also for the journey ahead."
+        Unleash potential together by sharing diverse opportunities including jobs, internships, full-time, and part-time positions. Empower friends to pursue their dreams and aspirations.
         </p>
       </div>
-      <div className="question-form-container">
+      <div className="opportunity-form-container">
         {/* <img src={images.garima} alt="Dal-makhani" /> */}
-        <form id="question-form" onSubmit={handleFormSubmit}>
+        <form id="opportunity-form" onSubmit={handleFormSubmit}>
+          <label htmlFor="profile" aria-required="true">
+            Profile:
+            <input
+              type="text"
+              placeholder="profile"
+              id="profile"
+              name="profile"
+              value={formValue.profile}
+              onChange={handleChange}
+              required
+            />
+          </label>
           <label htmlFor="company" aria-required="true">
             Company:
             <input
@@ -128,69 +142,61 @@ function Reservation() {
               <option value="other">Other</option>
             </select>
           </label>
-          {/* <label htmlFor="year">Year:
-                        <input
-                            type="date"
-                            id="year"
-                            name="year"
-                            aria-hidden="true"
-                            value={formValue.Year}
-                            onChange={handleChange}
-                            required
-                        />
-                    </label> */}
-          <label htmlFor="title" aria-required="true">
-            Question Title:
+          <label htmlFor="positionType:">
+            Position Type:
+            <select
+              id="positionType"
+              name="positionType"
+              value={formValue.positionType}
+              onChange={handleChange}
+            >
+              <option value="job">Job</option>
+              <option value="IFt">Internship: Full-time</option>
+              <option value="IPT">Internship: Part-time</option>
+            </select>
+          </label>
+          <label htmlFor="experienceRequired" aria-required="true">
+            Years of experience:
             <input
               type="text"
-              placeholder="Title"
-              id="title"
-              name="title"
-              value={formValue.title}
+              placeholder="NA / 2year"
+              id="experienceRequired"
+              name="experienceRequired"
+              value={formValue.experienceRequired}
               onChange={handleChange}
               required
             />
           </label>
-          <label htmlFor="difficulty">
-            Difficulty:
-            <select
-              id="difficulty"
-              name="difficulty"
-              value={formValue.difficulty}
-              onChange={handleChange}
-            >
-              <option value="easy">Easy</option>
-              <option value="medium">Medium</option>
-              <option value="hard">Hard</option>
-            </select>
-          </label>
-          <label htmlFor="questionDescription">
-            Question Description:
-            {/* <textarea
-                            type="text"
-                            placeholder="Write questions here"
-                            id="questionDescription"
-                            name="questionDescription"
-                            value={formValue.questionDescription}
-                            onChange={handleChange}
-                        /> */}
-            <MyCKeditor onDescriptionChange={handleDescriptionChange} />
-          </label>
           <label htmlFor="link">
-            Question Link:
+            Link For Apply:
             <input
               type="text"
-              placeholder="Any link if availabel for this question"
+              placeholder="https://www.abc.com"
               id="link"
               name="link"
               value={formValue.phone_number}
               onChange={handleChange}
             />
           </label>
+          <label htmlFor="deadline">
+            Aplication Deadline:
+            <input
+              type="date"
+              id="deadline"
+              name="deadline"
+              aria-hidden="true"
+              value={formValue.deadline}
+              onChange={handleChange}
+              required
+            />
+          </label>
 
-          <button className="question-btn" type="submit">
-            Submit Question
-          </button>
+          <div className="btn-post" >
+            <button className="opportunity-btn" type="submit">
+              Submit
+            </button>
+            <div className="close" onClick={handleCancel}>Cancel</div>
+          </div>
         </form>
 
         {/* confirmation component */}
@@ -213,4 +219,4 @@ function Reservation() {
   );
 }
 
-export default Reservation;
+export default OpportunityForm;

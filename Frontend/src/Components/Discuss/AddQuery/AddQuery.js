@@ -89,8 +89,8 @@ function AddQuery() {
                             required
                         />
 
-                        <div className="btn-post" onClick={handleCancel}>
-                            <div className="close" >Cancel</div>
+                        <div className="btn-post" >
+                            <div className="close" onClick={handleCancel}>Cancel</div>
                             <button type="submit">
                                 <i class="fa-solid fa-paper-plane" />
                             </button>

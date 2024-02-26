@@ -1,14 +1,21 @@
 import React, { useState } from "react";
-import MyCKeditor from "../MyCKEditor/MyCKEditor";
+import MyCKeditor from "../../MyCKEditor/MyCKEditor";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { images } from "../../constants";
+import { images } from "../../../constants";
 import "./ExperienceForm.scss";
-import ConfirmationDialog from "../ConfirmationDialog/ConfirmationDialog";
-import FlashMessage from "../FlashMessage/FlashMessage";
+import ConfirmationDialog from "../../ConfirmationDialog/ConfirmationDialog";
+import FlashMessage from "../../FlashMessage/FlashMessage";
 
 function ExperienceForm() {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [flashMessage, setFlashMessage] = useState(false);
+
+
+  const navigate = useNavigate();
+  const handleCancel = () => {
+    navigate(-1);                   // Navigate back to previous page
+  };
 
   const [formValue, setformValue] = useState({
     experienceDescription: "",
@@ -94,7 +101,7 @@ function ExperienceForm() {
         <form id="experience-form" onSubmit={handleFormSubmit}>
 
           <label htmlFor="title" aria-required="true">
-            Question Title:
+            Experience Title:
             <input
               type="text"
               placeholder="Title"
@@ -110,9 +117,13 @@ function ExperienceForm() {
             <MyCKeditor onDescriptionChange={handleDescriptionChange} />
           </label>
 
-          <button className="experience-btn" type="submit">
-            Submit
-          </button>
+          <div className="btn-post" >
+            <button className="experience-btn" type="submit">
+              Submit
+            </button>
+            <div className="close" onClick={handleCancel}>Cancel</div>
+          </div>
+
         </form>
 
         {/* confirmation component */}

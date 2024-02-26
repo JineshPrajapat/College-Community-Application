@@ -2,15 +2,19 @@
     max-width: 600px;
     margin: 0 auto;
     padding-bottom: 20px;
+    margin-top: 100px;
+    height: 90vh;
 
     h2 {
         text-align: center;
     }
 
     form {
-        display: flex;
-        flex-wrap: wrap;
-        margin: 10px auto;
+        padding: 50px 40px 50px 40px;
+        background: rgba(255, 255, 255, 0.6);
+        box-shadow: 0px 9px 29px #c6c2c2;
+        border-radius: 11px;
+        font-family: "Inter", sans-serif;
 
         .input_container {
             width: 100%;
@@ -22,10 +26,15 @@
 
             .input_label {
                 margin-top: 15px;
-                font-size: 0.75rem;
+                font-size: 0.95rem;
                 text-align: left;
                 color: #340926;
                 font-weight: 600;
+            }
+
+            .radio-button{
+                display: flex;
+                justify-content: space-around;
             }
 
             .input_field {
@@ -63,6 +72,10 @@
             }
           }
     }
+}
+
+br {
+    display: none;
 }
 
 @media screen and (max-width: 768px) {

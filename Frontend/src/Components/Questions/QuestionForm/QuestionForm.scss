@@ -6,26 +6,25 @@ $button-bg-color: black;
 $button-hover-bg-color: wheat;
 $button-hover-text-color: black;
 
-.question-body{
-
+.question-body {
   .question-heading {
     text-align: center;
     justify-content: center;
     padding: 80px 35px 70px;
     background-color: #340926;
-  
+
     h2 {
       font-style: oblique;
       color: white;
       font-weight: bold;
       font-family: "Times New Roman", Times, serif;
       align-items: center;
-  
+
       @media screen and (min-width: 800px) {
         font-size: 50px;
       }
     }
-  
+
     p {
       color: white;
       font-family: "Times New Roman", Times, serif;
@@ -39,7 +38,7 @@ $button-hover-text-color: black;
       padding-top: 100px;
     }
   }
-  
+
   .question-form-container {
     margin: 0 auto;
     max-width: 900px;
@@ -50,38 +49,38 @@ $button-hover-text-color: black;
     align-items: flex-start;
     // border: 1px solid #ccc;
     padding: 30px;
-  
+
     &:hover {
       // box-shadow: 0px 0px 4px 4px #{$reserve-hover-bg-color};
       // background-color: #{$reserve-bg-color};
       // color: #{$reserve-hover-text-color};
       font-style: oblique;
     }
-  
+
     img {
       width: 400px;
       height: auto;
       margin-right: 20px;
       box-shadow: 0px 0px 5px 5px white;
-  
+
       &:hover {
         transform: scale(1.1);
       }
-  
+
       @media (max-width: 768px) {
         width: 100%;
         align-items: center;
         margin: 0 auto;
       }
     }
-  
+
     form {
       margin-top: 40px;
       width: 90%;
       margin-bottom: 70px;
       // display: flex;
       flex-direction: column;
-  
+
       label {
         text-align: left;
         display: flex;
@@ -93,7 +92,7 @@ $button-hover-text-color: black;
         color: #787777;
         margin-top: 30px;
         margin-bottom: 10px;
-  
+
         #company,
         #year,
         #branch,
@@ -105,7 +104,27 @@ $button-hover-text-color: black;
           border-radius: 4px;
         }
       }
-  
+
+      .btn-post {
+        display: flex;
+        justify-content: space-between;
+
+        .close {
+          border: 2px solid rgb(179, 179, 179);
+          border-radius: 3px;
+          padding: 6px;
+          align-items: center;
+          background-color: none;
+          transition: all 0.5s ease-in;
+          cursor: pointer;
+
+          &:hover {
+            background-color: rgb(179, 179, 179);
+            font-weight: 450;
+          }
+        }
+      }
+
       .question-btn {
         background-color: #{$button-bg-color};
         color: white;
@@ -113,11 +132,9 @@ $button-hover-text-color: black;
         text-transform: uppercase;
         outline: auto 2px;
         height: 48px;
-        margin-top: 50px;
-        margin-bottom: 30px;
         font-weight: bolder;
         cursor: pointer;
-      
+
         &:hover {
           background-color: #{$button-hover-bg-color};
           color: #{$reserve-hover-bg-color};
@@ -125,12 +142,12 @@ $button-hover-text-color: black;
         }
       }
     }
-  
+
     @media (max-width: 768px) {
       display: flex;
       flex-direction: column;
     }
-  } 
+  }
 }
 
 // .question-title {
@@ -154,10 +171,6 @@ $button-hover-text-color: black;
   }
 }
 
-
-
-
-
 .question-body {
   &.show-confirmation {
     .confirmation-popup {
@@ -166,8 +179,7 @@ $button-hover-text-color: black;
   }
 }
 
-
 // text-editor of ckeditor
-.ck-content{
+.ck-content {
   height: 35vh;
 }

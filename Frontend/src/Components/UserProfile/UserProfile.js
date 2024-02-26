@@ -9,6 +9,7 @@ import Profile from './Profile/Profile';
 import Resume from './Resume/Resume';
 import Achievement from './Achievments/Achievement';
 import UserProfileSettings from './UserProfileSettings/UserProfileSettings';
+import UpdateProfileSettings from './UpdateProfileSettings/UpdateProfileSettings';
 
 function UserProfile() {
   
@@ -46,7 +47,10 @@ function UserProfile() {
               <Link to="./Contact" className="nav-link" id="contact-tab" activeClassName="active">Contact</Link>
             </li>
             <li className="nav-item">
-              <Link to="./setting" className="nav-link" id="contact-tab" activeClassName="active">Setting</Link>
+              <Link to="./Setting" className="nav-link" id="contact-tab" activeClassName="active">Setting</Link>
+            </li>
+            <li className="nav-item">
+              <Link to="./Update" className="nav-link" id="contact-tab" activeClassName="active">Update</Link>
             </li>
           </ul>
         </div>
@@ -58,8 +62,9 @@ function UserProfile() {
             <Route path="Contact" element={<Contact/>} />
             <Route path="Profile" element={<Profile/>} />
             <Route path="Resume" element={<Resume/>} />
-            <Route path="Achievement" element={<Achievement/>} />
-            <Route path="setting" element = {<UserProfileSettings/>}/>
+            <Route path="Achievement/*" element={<Achievement/>} />
+            <Route path="Setting" element = {<UserProfileSettings/>}/>
+            <Route path="Update" element = {<UpdateProfileSettings/>}/>
           </Routes>
           {/* <Contact/> */}
         </div>
