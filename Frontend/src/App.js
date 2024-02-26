@@ -14,10 +14,12 @@ import Placement from "./Components/Placements/Placement";
 import PlacementsForm from "./Administration/PlacementForm/PlacementForm";
 import Notes from "./Components/Notes/Notes";
 import UserProfile from "./Components/UserProfile/UserProfile";
-import Home from "./Components/UserProfile/Home/Home";
+// import Home from "./Components/UserProfile/Home/Home";
 import Landing from "./Components/Landing/Landing";
 import NavBar from "./Components/NavBar/NavBar";
 import { Route, Routes } from 'react-router-dom';
+import Home from "./Components/Home/Home.jsx";
+import 'bootstrap/dist/css/bootstrap.css'
 import SignUp from "./Components/SignUp/SignUp";
 import Login from "./Components/SignIn/SignIn";
 import ForgetPassword from "./Components/ForgetPassword/ForgetPassword";
@@ -27,10 +29,11 @@ import UserProfileSettings from "./Components/UserProfile/UserProfileSettings/Us
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         <h1>CareerPrepHub</h1>
         <NavBar />
-      </header>
+      </header> */}
+      <Home/>
       <Routes >
         <Route path="/" element={<Landing/>} />
         <Route path="Users" element={<Users />} />
@@ -61,6 +64,7 @@ function App() {
       {/* <PlacementsForm/> */}
       {/* <Notes/> */}
       {/* <UserProfile/> */}
+      
     </div>
   );
 }
