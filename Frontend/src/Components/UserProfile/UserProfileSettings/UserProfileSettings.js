@@ -14,6 +14,7 @@ const UserProfileSettings = () => {
     position: '',
     experience: '',
     state: '',
+    gender: '',
     hobbies: [],
     references: [],
     skills: [],
@@ -113,6 +114,20 @@ const UserProfileSettings = () => {
             required
           />
         </div>
+        <div className='input_container'>
+          <label className='input_label' htmlFor='branch_field'>Gender</label>
+          <input
+            className='input_field'
+            placeholder='Male/Female'
+            title='Input title'
+            name='gender'
+            type='text'
+            id='gender_field'
+            value={formValue.gender}
+            onChange={handleChange}
+            required
+          />
+          </div>
         <div className='input_container'>
           <label className='input_label' htmlFor='branch_field'>Branch</label>
           <input

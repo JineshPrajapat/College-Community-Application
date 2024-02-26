@@ -21,6 +21,7 @@ import { Route, Routes } from 'react-router-dom';
 import SignUp from "./Components/SignUp/SignUp";
 import Login from "./Components/SignIn/SignIn";
 import ForgetPassword from "./Components/ForgetPassword/ForgetPassword";
+import UpdateProfileSettings from "./Components/UserProfile/UpdateProfileSettings/UpdateProfileSettings";
 
 function App() {
   return (
@@ -42,6 +43,8 @@ function App() {
         <Route path="Login" element={<Login/>} />
         <Route path="ForgetPassword" element={<ForgetPassword/>} />
       </Routes>
+
+      <UpdateProfileSettings/>
 
       {/* <Question/>/ */}
       {/* <Users/> */}
