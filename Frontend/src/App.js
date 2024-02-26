@@ -14,7 +14,7 @@ import Placement from "./Components/Placements/Placement";
 import PlacementsForm from "./Administration/PlacementForm/PlacementForm";
 import Notes from "./Components/Notes/Notes";
 import UserProfile from "./Components/UserProfile/UserProfile";
-// import Home from "./Components/UserProfile/Home/Home";
+import Home from "./Components/UserProfile/Home/Home";
 import Landing from "./Components/Landing/Landing";
 import NavBar from "./Components/NavBar/NavBar";
 import { Route, Routes } from 'react-router-dom';
@@ -54,7 +54,7 @@ function App() {
 
       {/* <Question/>/ */}
       {/* <Users/> */}
-      <ImageCarousel/>
+      {/* <ImageCarousel/> */}
       {/* <Opportunity/> */}
       {/* <Experience/> */}
       {/* <QuestionForm /> */}

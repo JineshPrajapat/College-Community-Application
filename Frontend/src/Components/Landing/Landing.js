@@ -1,9 +1,11 @@
 import React from "react";
 import './Landing.scss';
+import ImageCarousel from "../ImageCarousel/ImageCarousel";
 
 function Landing() {
 
     return (
+        <>
         <div className="landing">
             <div className="analytics fade-in">
                 <div className="info-card slide-left">
@@ -44,6 +46,8 @@ function Landing() {
             </div> */}
             </div>
         </div>
+        <ImageCarousel/>
+        </>
     )
 };
 

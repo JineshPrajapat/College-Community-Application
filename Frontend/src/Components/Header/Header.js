@@ -18,7 +18,7 @@ function Header() {
 
       return (
             <>
-                  {/* <!-- heading ----main boox of heading-----heading --> */}
+                  {/* <!-- heading ----main box of heading-----heading --> */}
                   <header className="header-content">
                         <div className="header-content__heading">
                               {/* <div className="col-lg-8"> */}
@@ -35,7 +35,6 @@ function Header() {
                               <li><Link to="/Questions">Questions</Link></li>
                               <li><Link to="/Opportunity">Opportunity</Link></li>
                               <li><Link to="/Experience">Experience</Link></li>
-                              <li><Link to="/Questions">Questions</Link></li>
                               <li><Link to="/Discuss">Discuss</Link></li>
                               <li><Link to="/PlacementStats">PlacementStats</Link></li>
                         </div>

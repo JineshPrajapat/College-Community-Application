@@ -54,7 +54,7 @@ function Footer() {
             <hr></hr>
             
             <ul className="app_footer-hr">
-                <li><a href="mailto:mail@srijanacademy.com">mail@careerprephub.com</a></li>
+                <li><a href="mailto:mail@careerprephub.com">mail@careerprephub.com</a></li>
                 <li><a href="#">Privacy Policy</a></li>
                 <li><a href="#">Terms of Services</a></li>
             </ul>
