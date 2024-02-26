@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import axios from "axios";
 import './AddQuery.scss'
-import '@fortawesome/fontawesome-free/css/all.css';
+// import '@fortawesome/fontawesome-free/css/all.css';
 import MyCKeditor from "../../MyCKEditor/MyCKEditor";
 import FlashMessage from "../../FlashMessage/FlashMessage";
 import ConfirmationDialog from "../../ConfirmationDialog/ConfirmationDialog";

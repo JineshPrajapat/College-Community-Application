@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import '@fortawesome/fontawesome-free/css/all.css';
+// import '@fortawesome/fontawesome-free/css/all.css';
 import { images } from "../../constants";
 import './Discuss.scss';
 import SingleComment from "./SingleComment/SingleComment";
-import AddQuery from "./AddQuery/AddQuery";
+// import AddQuery from "./AddQuery/AddQuery";
 
 const discussionTopic = [
     {

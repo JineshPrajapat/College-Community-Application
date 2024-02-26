@@ -8,19 +8,19 @@ const profileSchema = new mongoose.Schema({
     contactNumber:{
         type:Number,
         required:true,
-        trim:true
+        // trim:true
     },
-    linkedinURL:{
-        type:URL,
+    linkedinUrl:{
+        type:String,
         required:true
     },
     about:{
         type:String,
-        trim:true
+        // trim:true
     },
     location:{
         type:String,
-        trim:true
+        // trim:true
     }
 });
 

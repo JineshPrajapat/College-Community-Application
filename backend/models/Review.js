@@ -13,11 +13,8 @@ const reviewSchema = new mongoose.Schema({
     experienceDescription:{
         types:String,
         required:true
-    },
-    rating:{
-        type:Number,
-        required:true
     }
+    
 });
 
 module.exports = mongoose.model("Review", reviewSchema);

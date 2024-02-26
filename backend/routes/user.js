@@ -1,32 +1,46 @@
-const express =require("express");
-const router=express.Router();
+const express = require("express");
+const {
+  registerUser,
+  loginUser,
+  logout,
+  forgotPassword,
+  resetPassword,
+  getUserDetails,
+  updatePassword,
+  updateProfile,
+  getAllUser,
+  getSingleUser,
+  updateUserRole,
+  deleteUser,
+} = require("../Controller/userController");
+// const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
 
-const {login,signup}=require("../Controller/Auth");
-const {auth, isStudent, isAdmin} =require("../middleware/auth");
+const router = express.Router();
 
-router.post("/login",login);
-router.post("/signup",signup);
- 
-// protected routes
+router.route("/register").post(registerUser);
 
-router.get("/test",auth, (req,res) =>{
-    res.json({
-        success:true,
-        message:'Welcome to test route'
-    })
-})
+router.route("/login").post(loginUser);
 
-router.get("/student", auth, isStudent, (req,res) => {
-    res.json({
-        success:true,
-        message:'Welcome to student route'
-    })
-})
+// router.route("/password/forgot").post(forgotPassword);
 
-router.get("/admin", auth, isAdmin, (req,res) =>{
-    res.json({
-        success:true,
-        message:'Welcome to Admin route'
-    })
-})
-module.exports=router;
+// router.route("/password/reset/:token").put(resetPassword);
+
+// router.route("/logout").get(logout);
+
+// router.route("/me").get(isAuthenticatedUser, getUserDetails);
+
+// router.route("/password/update").put(isAuthenticatedUser, updatePassword);
+
+// router.route("/me/update").put(isAuthenticatedUser, updateProfile);
+
+// router
+//   .route("/admin/users")
+//   .get(isAuthenticatedUser, authorizeRoles("admin"), getAllUser);
+
+// router
+//   .route("/admin/user/:id")
+//   .get(isAuthenticatedUser, authorizeRoles("admin"), getSingleUser)
+//   .put(isAuthenticatedUser, authorizeRoles("admin"), updateUserRole)
+//   .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteUser);
+
+module.exports = router;

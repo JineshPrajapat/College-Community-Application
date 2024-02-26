@@ -2,7 +2,7 @@ const mongoose =require("mongoose");
 
 const questionSchema = new mongoose.Schema({
     user:{
-        type:mongoose.Schema.Types.ObjectId,
+        type:String,
         required:true,
         ref:"User",
     },
@@ -16,11 +16,11 @@ const questionSchema = new mongoose.Schema({
         enum:["Easy", "Medium", "Hard"]
     },
     company:{
-        type:mongoose.Types.ObjectId,
+        type:String,
         ref:"Company"
     },
     branch:{
-        type:mongoose.Types.ObjectId,
+        type:String,
         ref:"Courses"
     }
 });
