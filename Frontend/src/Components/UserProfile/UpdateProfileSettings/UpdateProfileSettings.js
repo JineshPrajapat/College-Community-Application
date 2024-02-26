@@ -7,13 +7,10 @@ const UpdateProfileSettings = () => {
   const [flashMessage, setFlashMessage] = useState(false);
 
   const [formValue, setFormValue] = useState({
-    name: '',
     bio: '',
-    gender: '',
-    branch: '',
     position: '',
     experience: '',
-    state: '',
+    // state: '',
     skills: [],
     hobbies: [],
     references: [],

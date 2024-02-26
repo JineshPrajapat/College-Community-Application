@@ -1,0 +1,59 @@
+.question-table-container{
+    overflow-x: auto;
+    .question-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      margin-bottom: 20px;
+  
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;    // This adds ... the ellipsis for overflowed text
+        max-width: 200px;
+  
+        a{
+          color: #007bff;
+          &:hover{
+            color:#0000EE;
+          }
+        }
+      }
+  
+      th{
+        text-align: center;
+      }
+  
+      th {
+        background-color: rgb(1, 27, 62);
+        color: white;
+      }
+  
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+  
+      .question-description{
+        cursor: pointer;
+  
+        &:hover{
+          color:#f50909;
+        }
+      }
+  
+      .expanded-description {
+        padding: 10px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-top: none;
+        white-space: wrap;
+        box-shadow: 1px 1px 13px 8px #495057;
+        transition:2s ease-out ;
+        
+      }
+    }
+  }

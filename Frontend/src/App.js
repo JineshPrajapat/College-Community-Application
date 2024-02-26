@@ -5,9 +5,9 @@ import Users from "./Components/Users/Users";
 import ImageCarousel from "./Components/ImageCarousel/ImageCarousel";
 import Opportunity from "./Components/Opportunity/Opportunity";
 import Experience from "./Components/Experience/Experience";
-import QuestionForm from "./Components/QuestionForm/QuestionForm";
-import ExperienceForm from "./Components/ExperienceForm/ExperienceForm";
-import OpportunityForm from "./Components/OpportunityForm/OpportunityForm";
+import QuestionForm from "./Components/Questions/QuestionForm/QuestionForm";
+import ExperienceForm from "./Components/Experience/ExperienceForm/ExperienceForm";
+import OpportunityForm from "./Components/Opportunity/OpportunityForm/OpportunityForm";
 import Discuss from "./Components/Discuss/Discuss";
 import AddQuery from "./Components/Discuss/AddQuery/AddQuery";
 import Placement from "./Components/Placements/Placement";
@@ -33,9 +33,9 @@ function App() {
       <Routes >
         <Route path="/" element={<Landing/>} />
         <Route path="Users" element={<Users />} />
-        <Route path="Questions" element={<Question />} />
-        <Route path="Opportunity" element={<Opportunity />} />
-        <Route path="Experience" element={<Experience />} />
+        <Route path="Questions/*" element={<Question />} />
+        <Route path="Opportunity/*" element={<Opportunity />} />
+        <Route path="Experience/*" element={<Experience />} />
         <Route path="Discuss/*" element={<Discuss />} />
         <Route path="PlacementStats" element={<Placement />} />
         <Route path="UserProfile/*" element={<UserProfile />} />
@@ -44,7 +44,7 @@ function App() {
         <Route path="ForgetPassword" element={<ForgetPassword/>} />
       </Routes>
 
-      <UpdateProfileSettings/>
+      {/* <UpdateProfileSettings/> */}
 
       {/* <Question/>/ */}
       {/* <Users/> */}
