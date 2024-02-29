@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './QuestionsDetails.scss';
-import baseURL from '../../../api/api';
 import fetchData from '../../../FetchData/FetchData';
 
 const questions = [
@@ -25,13 +24,17 @@ function QuestionDetails(){
 
     // // fetching data
     // const [questions, setQuestions] =useState([]);
-    // useState(()=>{
-    //     fetchData(`${baseURL}/questions`, setQuestions);
-    // },[]);
+    // // useState(()=>{
+    // //     fetchData(`http://localhost:4000/api/v1/questions`, setQuestions);
+    // // },[]);
+
+
+    console.log(questions);
 
     const MAX_WORDS = 10;               // Maximum words before truncation
 
     const [expandedQuestion, setExpandedQuestion] = useState(null);
+
 
     const toggleQuestionExpansion = (index) => {
         setExpandedQuestion(expandedQuestion === index ? null : index);

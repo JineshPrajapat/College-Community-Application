@@ -8,11 +8,13 @@ import { images } from '../../constants'
 function SignUp() {
 
     const [flashMessage, setFlashMessage] = useState(null);
+    const [taskID, setTaskId ] =useState("");
 
     const [formValue, setformValue] = useState({
         name: '',
         email:'',
-        password:''
+        password:'',
+        confirmedPassword:""
     });
 
     const handleChange = (event) =>{
@@ -22,20 +24,33 @@ function SignUp() {
         });
     }
 
+    // const sendOTP = async () =>{
+    //     // event.preventDefault();
+    //     console.log("otp sent");
+    //     axios.post("http://localhost:4000/api/v1/user/sendOTP", {
+    //         email:formValue.email
+    //     });
+
+
+    // }
+
     const handleFormSubmit = async (event) =>{
         event.preventDefault();
-        axios.post("http://localhost:3000/SignUp",{
+        axios.post("http://localhost:4000/api/v1/user/signup",{
             name: formValue.name,
             email: formValue.email,
             password: formValue.password,
+            confirmedPassword: formValue.confirmedPassword
         })
             .then(response => {
                 console.log("Response: ", response);
 
                 if(response.status === 200){
+
+                    setTaskId(response.data.user._id);
                     //  successful registration flash message
                     setFlashMessage({type: 'success', message:'Registred Successfull'});
-                    // window.location.href = 'http://localhost:3001/Login';
+                    window.location.href = `http://localhost:3000/UserDetail`;
                     return <Navigate to="/UserProfileSetting" />;
 
                 }
@@ -46,7 +61,10 @@ function SignUp() {
                         // handle already registered
                         console.error('Already registered');
                         setFlashMessage({type:'error', message:'Already registered'});
-                        window.location.href = 'http://localhost:3001/Login';
+                        window.location.href = 'http://localhost:3000/login';
+                    }
+                    else if(error.response.status === 403){
+                        setFlashMessage({type:'error', message:'All fields required'});
                     }
                     else {
                         //handle other error
@@ -120,17 +138,32 @@ function SignUp() {
                         required 
                     />
                 </div>
-                <button title='Sign In' type='submit' className='sign-in_btn'><span>Sign In</span></button>
+                <div className='input_container'>
+                    <label className='input_label' htmlFor='confirmedPassword_field'>Confirmed Password</label>
+                    <img className='icon' src={images.password} alt='' viewBox='0 0 24 24'></img>
+                    <input 
+                        className='input_field' 
+                        placeholder='Password' 
+                        title='Input title' 
+                        name='confirmedPassword' 
+                        type='confirmedPassword' 
+                        id='confirmedPassword_field' 
+                        value={formValue.confirmedPassword}
+                        onChange={handleChange}
+                        required 
+                    />
+                </div>
+                <button title='Sign In' type='submit' className='sign-in_btn' ><span>Sign Up</span></button>
                 <div className='separartor'>
                     {/* <hr className='line'/> */}
-                    <span>Or</span>
+                    {/* <span>Or</span> */}
                     {/* <hr className='line'/> */}
                 </div>
-                <button title='Sign In' type='submit' className='sign-in_ggl'><span>Sign In with Google</span></button>
+                {/* <button title='Sign In' type='submit' className='sign-in_ggl'><span>Sign In with Google</span></button>
                 <button title='Sign In' type='submit' className='sign-in_apl'>
                     <svg height={20} width={16} xmlns='http;//www.w3.org/2000/svg' xmlnsXlink='http://www.w3.org/1999/xlink' preserveAspectRatio='xMidYmid' viewBox='0 0 256 315'></svg>
                     <span>Sign In with Apple</span>
-                </button>
+                </button> */}
                 <div className="new_to_account">
                     <h4 >Already on careerPrepHub?<Link to="/Login">Log in</Link></h4>
                 </div>

@@ -5,10 +5,13 @@ import { Link } from 'react-router-dom';
 import SearchingForm from '../SearchingForm/SearchingForm';
 import QuestionDetails from './QuestionDetails/QuestionDetails';
 import QuestionForm from './QuestionForm/QuestionForm';
+import Header from '../Header/Header';
 
 const Question = () => {
 
     return (
+        <>
+        <Header/>
         < div className="question">
             <h1>Placement Questions</h1>
 
@@ -21,7 +24,7 @@ const Question = () => {
                 <Route path="/" element={<QuestionDetails />} />
                 <Route path="AddQuestions" element={<QuestionForm />} />
             </Routes>
-        </div>
+        </div></>
     );
 };
 

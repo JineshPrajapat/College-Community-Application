@@ -25,7 +25,7 @@ const Contact = () => {
   const handleFormSubmit = async (event) =>{
     event.preventDefault();
 
-    axios.post("http://localhost:3000/userProfile/contact",{
+    axios.post("http://localhost:4000/api/v1/userProfile/contact",{
         name: formValue.name,
         phone_number: formValue.phone_number,
         email: formValue.email,

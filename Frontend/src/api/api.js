@@ -1,3 +1,3 @@
-const baseURL = "https://www.careerprephub";
+const baseURL = "http://localhost:8000";
 
 export default baseURL;

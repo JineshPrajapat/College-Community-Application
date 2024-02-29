@@ -49,7 +49,7 @@ function QuestionForm() {
   const handleConfirmation = (isConfirmed) => {
     if (isConfirmed) {
       axios
-        .post("http://localhost:3001/Questions", {
+        .post("http://localhost:4000/api/v1/questions/addQuestions", {
           company: formValue.company,
           branch: formValue.branch,
           link: formValue.link,
@@ -67,6 +67,7 @@ function QuestionForm() {
               message:
                 "We recieved your questions, will be update in 2 working days. Happy to see you soon!",
             });
+            navigate('/Questions');
           }
         })
         .catch((error) => {
@@ -137,11 +138,12 @@ function QuestionForm() {
           </label>
           <label htmlFor="year">Year:
             <input
-              type="date"
+              type="number"
               id="year"
               name="year"
+              min="1900" max="2099" step="1"
               aria-hidden="true"
-              value={formValue.Year}
+              value={formValue.year}
               onChange={handleChange}
               required
             />

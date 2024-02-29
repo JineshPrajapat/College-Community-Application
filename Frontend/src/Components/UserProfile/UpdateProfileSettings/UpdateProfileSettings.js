@@ -39,7 +39,7 @@ const UpdateProfileSettings = () => {
 
   const handleUpdate = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/userProfile/setting", formValue, {
+      const response = await axios.post("http://localhost:4000/api/v1/userProfile/setting", formValue, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

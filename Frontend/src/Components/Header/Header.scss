@@ -1,20 +1,32 @@
 .header-content{
-    position: fixed;
+    // position: fixed;
+    // top: 0;
+    // right:0;
+    // left:0;
+    // z-index: 100;
+    // width: 100%;
+    // background: #550c3e;
+    // text-align: center;
+    // align-items: center;
+    // box-shadow: 0 .5rem 1.5rem rgb(46, 46, 46);
     top: 0;
-    right:0;
-    left:0;
+    right: 0;
+    left: 0;
     z-index: 100;
     width: 100%;
     background: #550c3e;
     text-align: center;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    box-shadow: 0 .5rem 1.5rem rgb(46, 46, 46);
+    box-shadow: 0 0.5rem 1.5rem rgb(46, 46, 46);
 
     &__heading{
-        background-color: black;
+        background: #550c3e;
         align-items: center;
         text-align: center;
         height: 25%;
+        
 
         &__logo{
             text-align: left;
@@ -32,7 +44,7 @@
             a{
                 text-decoration: none;
                 font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-                font-size: 20px;
+                font-size: 2rem;
                 color: white;
                 font-weight:bold;
                 // text-transform: uppercase;

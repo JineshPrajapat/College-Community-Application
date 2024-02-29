@@ -28,7 +28,7 @@ function Login() {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
-        axios.post("http://localhost:3000/Login", {
+        axios.post("http://localhost:4000/api/v1/user/login", {
             email: formValue.email,
             password: formValue.password,
         })
@@ -38,9 +38,9 @@ function Login() {
                 if (response.status === 200) {
                     
                     setFlashMessage({ type: 'success', message: 'Login successful.' });
-                    // window.location.href = 'http://localhost:3001';
+                    // window.location.href = 'http://localhost:3000';
                     // login authenticated to protected area
-                    navigate('/Home')
+                    navigate('/careerprephub')
                     // hiding register login from header
                 }
             })
@@ -50,13 +50,13 @@ function Login() {
                         // Handle user not found
                         console.error('User not found');
                         setFlashMessage({ type: 'error', message: 'User not found' });
-                        window.location.href = 'http://localhost:3001/Login';
+                        window.location.href = 'http://localhost:3000/Login';
 
                     } else if (error.response.status === 401) {
                         // Handle authentication failure
                         console.error('Authentication failed');
                         setFlashMessage({ type: 'error', message: 'Authentication failed' });
-                        window.location.href = 'http://localhost:3001/Login';
+                        window.location.href = 'http://localhost:3000/Login';
 
                     } else {
                         // Handle other errors
@@ -65,6 +65,7 @@ function Login() {
                 } else {
                     // Handle network or request errors
                     console.error('Network or request error:', error);
+                    setFlashMessage({ type: 'error', message: 'Server Error' });
                 }
             });
     }

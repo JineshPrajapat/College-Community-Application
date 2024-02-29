@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import fetchData from '../../FetchData/FetchData';
 import baseURL from '../../api/api';
 import './Placement.scss';
+import Header from '../Header/Header';
 
 const Placement = () => {
     const placementsData = [
@@ -69,6 +70,8 @@ const Placement = () => {
     });
 
     return (
+        <>
+        <Header/>
         <div className="placements-page">
             <h1>College Placements</h1>
             <div className="dropdown-container">
@@ -123,7 +126,7 @@ const Placement = () => {
                     ))}
                 </tbody>
             </table>
-        </div>
+        </div></>
     );
 };
 

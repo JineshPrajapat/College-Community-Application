@@ -93,3 +93,11 @@
 .ck-content{
   height: 30vh;
 }
+
+.experience-body {
+  &.show-confirmation {
+      .confirmation-popup {
+          opacity: 1;
+      }
+  }
+}

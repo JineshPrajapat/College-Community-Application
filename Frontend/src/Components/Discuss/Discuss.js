@@ -1,22 +1,16 @@
 import React, { useState } from "react";
-<<<<<<< HEAD
-// import '@fortawesome/fontawesome-free/css/all.css';
-=======
 import baseURL from "../../api/api";
 import fetchData from "../../FetchData/FetchData";
 import '@fortawesome/fontawesome-free/css/all.css';
->>>>>>> aa4615fbd98a8c03e31ab015f5deb3e9a424b55f
 import { images } from "../../constants";
 import { Routes, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 import './Discuss.scss';
 import SingleComment from "./SingleComment/SingleComment";
-<<<<<<< HEAD
-// import AddQuery from "./AddQuery/AddQuery";
-=======
 import AddQuery from "./AddQuery/AddQuery";
 import Contact from "../UserProfile/Contact/Contact";
->>>>>>> aa4615fbd98a8c03e31ab015f5deb3e9a424b55f
+import Header from "../Header/Header";
+
 
 const discussionTopic = [
     {
@@ -138,8 +132,9 @@ function Discuss() {
 
 
     return (
-
-        <div className="main-conatiner">
+<>
+<Header/>
+<div className="main-conatiner">
             <div className="left-panel">
                 <div className="full-wrapper">
                     <div className="header">
@@ -214,10 +209,12 @@ function Discuss() {
                     </div>
                 </div>
             </div>
-            <div className="right-panel">
+            {/* <div className="right-panel">
 
-            </div>
+            </div> */}
         </div>
+</>
+
     );
 };
 

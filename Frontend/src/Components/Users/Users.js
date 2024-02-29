@@ -4,6 +4,8 @@ import fetchData from '../../FetchData/FetchData';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './Users.scss';
 import { images } from '../../constants'
+import Header from '../Header/Header';
+import { Link } from 'react-router-dom';
 // Sample user data
 const usersData = [
     {
@@ -294,7 +296,10 @@ const Users = () => {
         setFilter({ ...filter, [key]: value });
     };
 
+
     return (
+        <>
+        <Header/>
         <div className="user-list">
             {/* Filter options */}
             <div className="filter-section">
@@ -379,8 +384,10 @@ const Users = () => {
             <div className="user-cards">
                 {filteredUsers.length === 0 ? (
                     <p>Data is loading...</p>
-                ) : (filteredUsers.map(user => (
-                    <div className="user-card" key={user.id}>
+                ) : (filteredUsers.map(user => (<Link to = "/UserProfile/*">
+                    <div className="user-card" key={user.id}
+                       >
+
                         <div className="user-photo">
                             <img src={`${user.photo ? user.photo :images.user}`} alt={user.name} />
                             <div className="passing-year">{user.passingYear}</div>
@@ -402,11 +409,12 @@ const Users = () => {
                                 </a>
                             </div>
                         </div>
-                    </div>
+                    </div></Link>
                 )
                 ))}
             </div>
-        </div>
+        </div></>
+        
     );
 };
 

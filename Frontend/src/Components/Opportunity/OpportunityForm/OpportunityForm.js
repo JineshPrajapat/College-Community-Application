@@ -14,9 +14,9 @@ function OpportunityForm() {
     profile: "",
     company: "",
     branch: "",
-    link: "",
-    experienceRequired: "",
-    deadline: "",
+    opportunityLink: "",
+    yearOfExperience: "",
+    applicationDeadline: "",
     positionType: "",
   });
 
@@ -48,24 +48,26 @@ function OpportunityForm() {
   const handleConfirmation = (isConfirmed) => {
     if (isConfirmed) {
       axios
-        .post("http://localhost:3001/Questions", {
+        .post("http://localhost:4000/api/v1/opportunity/addOpportunity", {
           company: formValue.company,
           branch: formValue.branch,
-          link: formValue.link,
-          deadline: formValue.deadline,
+          opportunityLink: formValue.opportunityLink,
+          applicationDeadline: formValue.applicationDeadline,
           profile: formValue.profile,
           positionType:formValue.positionType,
-          experienceRequired: formValue.experienceRequired,
+          yearOfExperience: formValue.yearOfExperience,
         })
         .then((response) => {
           console.log("Response:", response);
 
           if (response.status === 200) {
+
             setFlashMessage({
               type: "success",
               message:
                 "We recieved your questions, will be update in 2 working days. Happy to see you soon!",
             });
+            navigate('/Opportunity');
           }
         })
         .catch((error) => {
@@ -155,37 +157,37 @@ function OpportunityForm() {
               <option value="IPT">Internship: Part-time</option>
             </select>
           </label>
-          <label htmlFor="experienceRequired" aria-required="true">
+          <label htmlFor="yearOfExperience" aria-required="true">
             Years of experience:
             <input
               type="text"
               placeholder="NA / 2year"
-              id="experienceRequired"
-              name="experienceRequired"
-              value={formValue.experienceRequired}
+              id="yearOfExperience"
+              name="yearOfExperience"
+              value={formValue.yearOfExperience}
               onChange={handleChange}
               required
             />
           </label>
-          <label htmlFor="link">
+          <label htmlFor="opportunityLink">
             Link For Apply:
             <input
               type="text"
               placeholder="https://www.abc.com"
-              id="link"
-              name="link"
-              value={formValue.phone_number}
+              id="opportunityLink"
+              name="opportunityLink"
+              value={formValue.opportunityLink}
               onChange={handleChange}
             />
           </label>
-          <label htmlFor="deadline">
+          <label htmlFor="applicationDeadline">
             Aplication Deadline:
             <input
               type="date"
-              id="deadline"
-              name="deadline"
+              id="applicationDeadline"
+              name="applicationDeadline"
               aria-hidden="true"
-              value={formValue.deadline}
+              value={formValue.applicationDeadline}
               onChange={handleChange}
               required
             />

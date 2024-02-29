@@ -15,7 +15,39 @@ const opportunity = [
         lastDate: '23-12-2024'
     },
     {
-        jobRole: 'ML Engineer',
+        jobRole: 'Full Stack Devloper',
+        company: 'Microsoft',
+        branch: 'CSE/AI',
+        Url: 'https://www.ctae.ac.in',
+        eligibility: 'Exp. 3',
+        lastDate: '23-12-2024'
+    },
+    {
+        jobRole: 'Auto Mobile',
+        company: 'Microsoft',
+        branch: 'CSE/AI',
+        Url: 'https://www.ctae.ac.in',
+        eligibility: 'Exp. 3',
+        lastDate: '23-12-2024'
+    },
+    {
+        jobRole: 'C++ Developer',
+        company: 'Microsoft',
+        branch: 'CSE/AI',
+        Url: 'https://www.ctae.ac.in',
+        eligibility: 'Exp. 3',
+        lastDate: '23-12-2024'
+    },
+    {
+        jobRole: 'Research Intern',
+        company: 'Microsoft',
+        branch: 'CSE/AI',
+        Url: 'https://www.ctae.ac.in',
+        eligibility: 'Exp. 3',
+        lastDate: '23-12-2024'
+    },
+    {
+        jobRole: 'Aeronauitcal Engineering',
         company: 'Microsoft',
         branch: 'CSE/AI',
         Url: 'https://www.ctae.ac.in',
@@ -47,39 +79,7 @@ const opportunity = [
         lastDate: '23-12-2024'
     },
     {
-        jobRole: 'ML Engineer',
-        company: 'Microsoft',
-        branch: 'CSE/AI',
-        Url: 'https://www.ctae.ac.in',
-        eligibility: 'Exp. 3',
-        lastDate: '23-12-2024'
-    },
-    {
-        jobRole: 'ML Engineer',
-        company: 'Microsoft',
-        branch: 'CSE/AI',
-        Url: 'https://www.ctae.ac.in',
-        eligibility: 'Exp. 3',
-        lastDate: '23-12-2024'
-    },
-    {
-        jobRole: 'ML Engineer',
-        company: 'Microsoft',
-        branch: 'CSE/AI',
-        Url: 'https://www.ctae.ac.in',
-        eligibility: 'Exp. 3',
-        lastDate: '23-12-2024'
-    },
-    {
-        jobRole: 'ML Engineer',
-        company: 'Microsoft',
-        branch: 'CSE/AI',
-        Url: 'https://www.ctae.ac.in',
-        eligibility: 'Exp. 3',
-        lastDate: '23-12-2024'
-    },
-    {
-        jobRole: 'ML Engineer',
+        jobRole: 'C++ Developer',
         company: 'Microsoft',
         branch: 'CSE/AI',
         Url: 'https://www.ctae.ac.in',

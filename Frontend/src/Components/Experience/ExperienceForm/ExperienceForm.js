@@ -19,7 +19,7 @@ function ExperienceForm() {
 
   const [formValue, setformValue] = useState({
     experienceDescription: "",
-    title: "",
+    experienceexperienceTitle: "",
   });
 
   const handleChange = (event) => {
@@ -45,7 +45,7 @@ function ExperienceForm() {
   const handleConfirmation = (isConfirmed) => {
     if (isConfirmed) {
       axios
-        .post("http://localhost:3000/Questions", {
+        .post("http://localhost:4000/api/v1/experience/addExperience", {
           link: formValue.link,
           experienceDescription: formValue.experienceDescription,
         })
@@ -58,6 +58,7 @@ function ExperienceForm() {
               message:
                 "We recieved your questions, will be update in 2 working days. Happy to see you soon!",
             });
+            navigate("/Experience")
           }
         })
         .catch((error) => {
@@ -100,14 +101,14 @@ function ExperienceForm() {
         {/* <img src={images.garima} alt="Dal-makhani" /> */}
         <form id="experience-form" onSubmit={handleFormSubmit}>
 
-          <label htmlFor="title" aria-required="true">
+          <label htmlFor="experienceTitle" aria-required="true">
             Experience Title:
             <input
               type="text"
               placeholder="Title"
-              id="title"
-              name="title"
-              value={formValue.title}
+              id="experienceTitle"
+              name="experienceTitle"
+              value={formValue.experienceTitle}
               onChange={handleChange}
               required
             />

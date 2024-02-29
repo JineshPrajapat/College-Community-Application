@@ -9,11 +9,14 @@ import ExperienceDetails from './ExperienceDetails/ExperienceDetails';
 import { Routes, Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import ExperienceForm from './ExperienceForm/ExperienceForm';
+import Header from '../Header/Header';
 
 const Experience = () => {
 
     return (
 
+        <>
+        <Header/>
         <div className='experience'>
             <h1>Interview Experience</h1>
             <div className="head-tabs">
@@ -25,7 +28,7 @@ const Experience = () => {
                 <Route path="/" element={<ExperienceDetails />} />
                 <Route path="AddExperience" element={<ExperienceForm />} />
             </Routes>
-        </div>
+        </div></>
 
     );
 };

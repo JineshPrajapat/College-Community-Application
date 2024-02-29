@@ -64,21 +64,21 @@ const Home = () => {
                 </li>
               </ul>
               <ul className="social-link">
-                <li>
+                {/* <li>
                   <a href="#"><i className="fab fa-facebook-f" /></a>
-                </li>
-                <li>
+                </li> */}
+                {/* <li>
                   <a href="#"><i className="fab fa-twitter" /></a>
+                </li> */}
+                <li>
+                  <a href="https://www.linkedin.com/in/jinesh-prajapat"><i className="fab fa-linkedin-in" /></a>
                 </li>
                 <li>
-                  <a href="#"><i className="fab fa-linkedin-in" /></a>
+                  <a href="https://github.com/JineshPrajapat"><i class="fa-brands fa-github" /></a>
                 </li>
-                <li>
-                  <a href="#"><i class="fa-brands fa-github" /></a>
-                </li>
-                <li className='youtube'>
+                {/* <li className='youtube'>
                   <a href="#"><i className="fab fa-youtube" /></a>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>

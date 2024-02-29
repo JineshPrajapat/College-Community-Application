@@ -7,9 +7,12 @@ import { images } from '../../constants'
 import SearchingForm from '../SearchingForm/SearchingForm';
 import OpportunityDetails from './OpportunityDetails/OpportunityDetails';
 import OpportunityForm from './OpportunityForm/OpportunityForm';
+import Header from '../Header/Header';
 
 const Opportunity = () => {
     return (
+        <>
+        <Header/>
         <div className='opportunity'>
             <h1>Oppotunity</h1>
 
@@ -39,7 +42,7 @@ const Opportunity = () => {
                 ))}
 
             </div> */}
-        </div>
+        </div></>
 
     );
 };

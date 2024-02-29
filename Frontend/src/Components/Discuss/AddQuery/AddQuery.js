@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import './AddQuery.scss'
@@ -13,11 +13,11 @@ function AddQuery() {
     const [flashMessage, setFlashMessage] = useState(false);
 
     const [formValue, setformValue] = useState({
-        title: "",
-        post: ""
+        discussTitle: "",
+        discussDescription: ""
     });
 
-    const navigate = useNavigate();     
+    const navigate = useNavigate();
     const handleCancel = () => {
         navigate(-1);                   // Navigate back to previous page
     };
@@ -29,24 +29,24 @@ function AddQuery() {
         });
     };
 
-    const handleDescriptionChange = (post) => {
-        console.log(post);
+    const handleDescriptionChange = (discussDescription) => {
+        console.log(discussDescription);
         setformValue((prevState) => ({
             ...prevState,
-            post: post,
+            discussDescription: discussDescription,
         }));
     };
 
     const handleFormSubmit = (event) => {
-        event.preventdefault();
+        event.preventDefault();
         setShowConfirmation(true);
     }
 
     const handleConfirmation = (isConfirmed) => {
         if (isConfirmed) {
-            axios.post("http://careerprehub/discuss/post", {
-                title: formValue.title,
-                post: formValue.post
+            axios.post("http://localhost:4000/api/v1/discuss/addDiscuss", {
+                discussTitle: formValue.discussTitle,
+                discussDescription: formValue.discussDescription
             })
                 .then((response) => {
                     console.log("Response:", response);
@@ -54,8 +54,10 @@ function AddQuery() {
                     if (response.status === 200) {
                         setFlashMessage({
                             type: "sucess",
-                            message: "Post added successfully!"
+                            message: "Query added successfully!"
                         });
+
+                        navigate("/Discuss");
                     }
                 })
                 .catch((error) => {
@@ -82,9 +84,9 @@ function AddQuery() {
                         <input className="input-title"
                             type="text"
                             placeholder="Enter your title"
-                            id="title"
-                            name="title"
-                            value={formValue.title}
+                            id="discussTitle"
+                            name="discussTitle"
+                            value={formValue.discussTitle}
                             onChange={handleChange}
                             required
                         />
@@ -98,6 +100,40 @@ function AddQuery() {
                     </div>
                     <MyCKeditor onDescriptionChange={handleDescriptionChange} />
                 </form>
+
+
+                {/* <div>
+                    {formValue.length === 0 ? (
+                        <p>No topics found</p>
+                    ) : (formValue.map((discussion, index) => (
+                        <div className="topic-item-container">
+                            <div className="topic-item">
+                                <a href=""><img src={discussion.Url} alt=""></img></a>
+                                <div className="topic-title" >
+                                    <div className="item-header" >
+                                        {discussion.title}
+                                    </div>
+                                    <div className="topic-info">
+                                        {discussion.info}
+                                    </div>
+                                </div>
+                                <div className="upvote-view-container">
+                                    <div className="upvotes">
+                                        <i class="fa-solid fa-circle-up"></i>
+                                        <div className="no-of-upvotes">
+                                            {discussion.upvotes}
+                                        </div>
+                                    </div>
+                                    <div className="views">
+                                        <i class="fa-solid fa-eye"></i>
+                                        <div className="no-of-views">{discussion.views}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                    ))}
+                </div> */}
 
                 {/* confirmation component */}
                 {showConfirmation && (
@@ -114,9 +150,11 @@ function AddQuery() {
                         message={flashMessage.message}
                     />
                 )}
+
             </div>
         </div>
     );
 };
 
 export default AddQuery;
+
