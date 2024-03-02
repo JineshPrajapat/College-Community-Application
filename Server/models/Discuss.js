@@ -11,9 +11,9 @@ const discussSchema = new mongoose.Schema({
         require: true,
     },
 
-    user:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"User"
+    userDiscussId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Profile",
     },
 
     upvotes:[{

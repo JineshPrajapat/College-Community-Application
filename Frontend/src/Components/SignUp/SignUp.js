@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate,useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import FlashMessage from "../FlashMessage/FlashMessage";
 import './SignUp.scss'
@@ -8,7 +8,7 @@ import { images } from '../../constants'
 function SignUp() {
 
     const [flashMessage, setFlashMessage] = useState(null);
-    const [taskID, setTaskId ] =useState("");
+    const navigate = useNavigate();
 
     const [formValue, setformValue] = useState({
         name: '',
@@ -46,12 +46,10 @@ function SignUp() {
                 console.log("Response: ", response);
 
                 if(response.status === 200){
-
-                    setTaskId(response.data.user._id);
                     //  successful registration flash message
                     setFlashMessage({type: 'success', message:'Registred Successfull'});
-                    window.location.href = `http://localhost:3000/UserDetail`;
-                    return <Navigate to="/UserProfileSetting" />;
+                    navigate('/UserDetail');
+                    // return <Navigate to="/UserProfileSetting" />;
 
                 }
             })

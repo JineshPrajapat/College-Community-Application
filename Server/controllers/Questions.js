@@ -14,15 +14,13 @@ exports.sendQuestions = async (req, res) => {
 
         } =req.body;
 
-        // getting user_id
-        // const id = req.user.userQuestionId;
-        // || !id  
-
-        // console.log(id);
-
         console.log(req.body);
 
-        if ((!company || !branch  || !year || !questionTitle || !difficulty ||!questionDescription)) {     
+        // Getting user ID from authenticated request
+        const userId = req.user.id;
+        
+        if ((!userId || !company || !branch  || !year || !questionTitle || !difficulty ||!questionDescription)) {     
+            console.log("no user id found",userId);
             return res.status(400).json({
                 success: false,
                 message: "All fields are required.",
@@ -30,6 +28,7 @@ exports.sendQuestions = async (req, res) => {
         }
 
         const questionDetails = await Questions.create({
+            userQuestionId: userId,
             company:company,
             branch:branch,
             year:year,
@@ -62,7 +61,6 @@ exports.sendQuestions = async (req, res) => {
 exports.getQuestions = async(req, res)=>{
     try{
         const question = await Questions.find();
-
         if(!question)
         {
             return res.status(404).json({
@@ -70,9 +68,9 @@ exports.getQuestions = async(req, res)=>{
                 message: "No questions found",
             });
         }
-        return  res.status(404).json({
-            success: true,
-            message: "Questions Found successfully",
+        return  res.status(200).json({
+            // success: true,
+            // message: "Questions Found successfully",
             question: question,
         })
     }

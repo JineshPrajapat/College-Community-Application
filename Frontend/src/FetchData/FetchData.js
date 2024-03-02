@@ -1,34 +1,29 @@
-// import axios from 'axios';
 
-// const fetchData = async (url, setterFunction) => {
-//   try {
-//     const response = await axios.get(url);
-//     const jsonData = response.data;
-//     setterFunction(jsonData);
-//   } catch (err) {
-//     console.error(err.message);
-//   }
-// };
-
-// export default fetchData;
-
-
-import axios from 'axios';
-
-const fetchData = async (url, setterFunction) => {
+export function fetchData(url, setData) {
+  // Assuming you have stored the authentication token in localStorage
   try {
-    // Assuming you have stored the authentication token in localStorage
-    const authToken = localStorage.getItem('authToken');
-    const response = await axios.get(url, {
-      headers: {
-        Authorization: `Bearer ${authToken}`
-      }
-    });
-    const jsonData = response.data;
-    setterFunction(jsonData);
-  } catch (err) {
-    console.error(err.message);
-  }
-};
+    const token = localStorage.getItem('token');
+    console.log("fetching token", token);
 
-export default fetchData;
+    fetch(url, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setData(data);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  }
+  catch (err) {
+    console.error("Unable to get api");
+  }
+}

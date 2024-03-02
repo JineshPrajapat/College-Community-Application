@@ -9,7 +9,7 @@ exports.sendExperiences = async (req, res) => {
         } =req.body;
 
         // getting user_id
-        // const id = req.user.id;
+        const UserId = req.user.id;
 
         if (( !experienceDescription )) {
             return res.status(400).json({
@@ -19,6 +19,7 @@ exports.sendExperiences = async (req, res) => {
         }
 
         const experienceDetails = await Experience.create({
+            userExperienceId:UserId,
             experienceTitle: experienceTitle,
             experienceDescription: experienceDescription,
         });

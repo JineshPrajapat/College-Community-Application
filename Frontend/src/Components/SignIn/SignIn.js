@@ -36,12 +36,11 @@ function Login() {
                 console.log("Response:", response);
 
                 if (response.status === 200) {
-                    
+                    const token = response.data.token;                      // Extract token from response
+                    localStorage.setItem('token', token);                   // Store token in local storage
+                    console.log(token);
                     setFlashMessage({ type: 'success', message: 'Login successful.' });
-                    // window.location.href = 'http://localhost:3000';
-                    // login authenticated to protected area
                     navigate('/careerprephub')
-                    // hiding register login from header
                 }
             })
             .catch(error => {

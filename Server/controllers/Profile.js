@@ -17,100 +17,77 @@ exports.updateProfile = async (req, res) => {
             branchName,
             enrollmentNumber,
             state,
+            college,
             position,
-            // about="",
-            // experience="",
-            // skills="",
-            // hobbies="",
-            // links="",
-            // languages=""
+            about="",
+            experience="",
+            skills="",
+            hobbies="",
+            links="",
+            languages=""
          } = req.body;
 
          console.log(req.body);
 
+         const userId = req.user.id;
+
         //  storing images
-        //  const studentId = req.files.studentId;
-        //  const coverImage = req.files.coverImage;
-        //  const profileImage = req.files.profileImage;
-
-        // get userId
-        // const id = req.user.id;
-        // console.log(id);
-        // const user = await User.findById(id)
-        // const accountType = user.accountType;
-
+         const studentId = req.files.studentId;
+         const coverImage = req.files.coverImage;
+         const profileImage = req.files.profileImage;
+        
         // validation
-        if ((!fullName || !gender || !branchName || !enrollmentNumber || !state || !position)) {
+        if ((!userId ||!fullName || !gender || !branchName || !enrollmentNumber || !state || !position)) {
             return res.status(400).json({
                 success: false,
                 message: "All fields are required.",
             });
         }
 
-        const profileDetails = await Profile.create({
-            fullName: fullName,
-            gender: gender,
-            branchName:branchName,
-            enrollmentNumber:enrollmentNumber,
-            state:state,
-            position:position,
+        // spliting image name and filtering
+        const folderName = process.env.FOLDER_NAME;
+        const supportedTypes = ['jpg', 'jpeg', 'png'];
 
-        });
-
-        return res.status(200).json({
-            success: true,
-            message: "Profile updated successfully.",
-            profileDetails,
-        });
-
-        // const userDetails = await User.findById(id);
-        // console.log(userDetails);
-
-        // const folderName = process.env.FOLDER_NAME;
-        // const supportedTypes = ['jpg', 'jpeg', 'png'];
-        // const studentIdfileType = studentId.name.split(".")[1].toLowerCase();
+        const studentIdfileType = studentId.name.split(".")[1].toLowerCase();
         // const coverImagefileType = coverImage.name.split(".")[1].toLowerCase();
         // const profileImagefileType = profileImage.name.split(".")[1].toLowerCase();
 
-        // if (!isFileTypeSupported(studentIdfileType, supportedTypes) || !isFileTypeSupported(coverImagefileType, supportedTypes) || !isFileTypeSupported(profileImagefileType, supportedTypes)) {
-        //     return res.status(400).json({
-        //         success: false,
-        //         message: "File type not Supperted",
-        //     });
-        // }
+        if (!isFileTypeSupported(studentIdfileType, supportedTypes) ) {
+            return res.status(400).json({
+                success: false,
+                message: "File type not Supperted",
+            });
+        }
 
         // storing url from cloudinary
-        // const studentIdresponse = await uploadImageToCloudinary(studentId, folderName);
+        const studentIdresponse = await uploadImageToCloudinary(studentId, folderName);
         // const coverImageresponse = await uploadImageToCloudinary(coverImage, folderName);
         // const profileImageresponse = await uploadImageToCloudinary(profileImage, folderName);
 
-            // const profileId = userDetails.additionalDetails;  
-
-            // const profileDetails = await Profile.findById(profileId);
-            // profileDetails.fullName = fullName;
-            // profileDetails.gender = gender;
-            // profileDetails.branchName = branchName;
-            // profileDetails.enrollmentNumber = enrollmentNumber;
-            // profileDetails.position = position;
-            // profileDetails.state =state;
-        // profileDetails.studentId =studentIdresponse.secure_url;
-
-        // profileDetails.about = about;
-        // profileDetails.experience = experience;
-        // profileDetails.skills = skills;
-        // profileDetails.hobbies = hobbies;
-        // profileDetails.links = links;
-        // profileDetails.languages = languages;
-        // profileDetails.coverImage = coverImageresponse.secure_url;
-        // profileDetails.profileImage = profileImageresponse.secure_url;
-
-    
-
+            const profileDetails = await Profile.create({
+                userProfileId:userId,
+                fullName:fullName,
+                gender: gender,
+                branchName : branchName,
+                enrollmentNumber : enrollmentNumber,
+                position : position,
+                state : state,
+                college:college,
+                studentId:studentIdresponse.secure_url,
+                about:about,
+                experience:experience,
+                skills:skills,
+                hobbies:hobbies,
+                links:links,
+                languages:languages,
+                // coverImage:coverImageresponse.secure_url,
+                // profileImage:profileImageresponse.secure_url  
+            });
+            
         return res.status(200).json({
             success: true,
             message: "Profile updated successfully.",
             profileDetails,
-            userDetails,
         });
 
     } catch (err) {

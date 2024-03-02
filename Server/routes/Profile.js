@@ -14,7 +14,5 @@ router.post("/updateProfile", auth, updateProfile);
 router.get("/getUserDetails", auth, getUserDetails);
 router.put("/updateDisplayPicture", auth, updateDisplayPicture);
 
-router.post("/updateProfile", auth, updateProfile);
-router.put("/updateProfile", updateProfile);
 
 module.exports = router;

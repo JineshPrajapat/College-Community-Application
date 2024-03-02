@@ -19,7 +19,7 @@ function ExperienceForm() {
 
   const [formValue, setformValue] = useState({
     experienceDescription: "",
-    experienceexperienceTitle: "",
+    experienceTitle: "",
   });
 
   const handleChange = (event) => {
@@ -44,10 +44,19 @@ function ExperienceForm() {
 
   const handleConfirmation = (isConfirmed) => {
     if (isConfirmed) {
-      axios
+
+      const token = localStorage.getItem('token');
+      console.log("frontend token",token);
+
+      if(token){
+        axios
         .post("http://localhost:4000/api/v1/experience/addExperience", {
-          link: formValue.link,
+          experienceTitle: formValue.experienceTitle,
           experienceDescription: formValue.experienceDescription,
+        },{
+          headers:{
+            Authorization: `Bearer ${token}`            // Include token in Authorization header
+          }
         })
         .then((response) => {
           console.log("Response:", response);
@@ -59,6 +68,7 @@ function ExperienceForm() {
                 "We recieved your questions, will be update in 2 working days. Happy to see you soon!",
             });
             navigate("/Experience")
+            
           }
         })
         .catch((error) => {
@@ -72,6 +82,13 @@ function ExperienceForm() {
             console.error("Network or request error");
           }
         });
+      }
+      else{
+        setFlashMessage({
+          type: "error",
+          message: "Token not generated",
+        });
+      }
     }
     setShowConfirmation(false);
   };

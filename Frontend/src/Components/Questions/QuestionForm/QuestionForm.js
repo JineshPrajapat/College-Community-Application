@@ -48,6 +48,10 @@ function QuestionForm() {
 
   const handleConfirmation = (isConfirmed) => {
     if (isConfirmed) {
+      // Retrieve token from localStorage
+      const token = localStorage.getItem('token');
+      console.log("frontend token",token);
+      
       axios
         .post("http://localhost:4000/api/v1/questions/addQuestions", {
           company: formValue.company,
@@ -57,6 +61,10 @@ function QuestionForm() {
           title: formValue.title,
           difficulty: formValue.difficulty,
           questionDescription: formValue.questionDescription,
+        },{
+          headers:{
+            Authorization: `Bearer ${token}`            // Include token in Authorization header
+          }
         })
         .then((response) => {
           console.log("Response:", response);

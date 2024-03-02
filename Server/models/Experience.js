@@ -11,7 +11,7 @@ const experienceSchema = new mongoose.Schema({
         require: true,
     },
 
-    user:{
+    userExperienceId:{
         type: mongoose.Schema.Types.ObjectId,
         ref:"User"
     },

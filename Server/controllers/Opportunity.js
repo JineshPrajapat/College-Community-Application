@@ -14,9 +14,9 @@ exports.sendOpportunity = async (req, res) => {
         } =req.body;
 
         // getting user_id
-        // const id = req.user.id;
+        const UserId = req.user.id;
 
-        if (( !profile || !company || !branch || !positionType || !yearOfExperience || !opportunityLink || !applicationDeadline )) {
+        if (( !UserId || !profile || !company || !branch || !positionType || !yearOfExperience || !opportunityLink || !applicationDeadline )) {
             return res.status(400).json({
                 success: false,
                 message: "All fields are required.",
@@ -24,6 +24,7 @@ exports.sendOpportunity = async (req, res) => {
         }
 
         const oppportunityDetails = await Opportunity.create({
+            userOppotunityId:UserId,
             profile: profile,
             company: company,
             branch: branch,
@@ -61,9 +62,9 @@ exports.getOpportunity = async(req, res) =>{
                 message: "No opportunity found",
             });
         }
-        return  res.status(404).json({
-            success: true,
-            message: "Opportunity Found successfully",
+        return  res.status(200).json({
+            // success: true,
+            // message: "Opportunity Found successfully",
             opportunity: opportunity,
         })
     }

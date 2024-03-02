@@ -21,6 +21,11 @@ const profileSchema = new mongoose.Schema({
         require: true,
     },
 
+    college: {
+        type: String,
+        require: true,
+    },
+
     position: {
         type: String,
         require: true,
@@ -31,10 +36,10 @@ const profileSchema = new mongoose.Schema({
         require: true,
     },
 
-    // studentId: {
-    //     type: String,
-    //     default: `https://api.dicebear.com/7.x/fun-emoji/svg?radius=50`,
-    // },
+    studentId: {
+        type: String,
+        default: `https://api.dicebear.com/7.x/fun-emoji/svg?radius=50`,
+    },
     
     about:{
         type: String,
@@ -64,7 +69,6 @@ const profileSchema = new mongoose.Schema({
             type:String
     }],
 
-
     coverImage: {
         type: String,
         default: `https://api.dicebear.com/7.x/fun-emoji/svg?radius=50`,
@@ -74,7 +78,7 @@ const profileSchema = new mongoose.Schema({
         default: `https://api.dicebear.com/7.x/fun-emoji/svg?radius=50`,
     },
     
-    user:{
+    userProfileId:{
         type: mongoose.Schema.Types.ObjectId,
         ref:"User"
     },

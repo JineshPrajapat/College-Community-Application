@@ -4,11 +4,11 @@ const questionSchema = new mongoose.Schema({
 
     company: {
         type: String,
-        require: true,
+        required: true,
     },
     branch: {
         type: String,
-        require: true,
+        required: true,
     },
 
     year:{
@@ -18,17 +18,17 @@ const questionSchema = new mongoose.Schema({
 
     questionTitle:{
         type:String,
-        require:true
+        required:true
     },
 
     difficulty:{
         type:String,
-        require: true
+        required: true
     },
 
     questionDescription:{
         type:String,
-        require: true
+        required: true
     },
 
     questionLink:{

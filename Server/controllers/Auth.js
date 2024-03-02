@@ -192,9 +192,12 @@ exports.login = async (req, res) => {
             const token = jwt.sign(payload, process.env.JWT_SECRET, {
                 expiresIn: "2h",
             });
+
+
+            const options = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000);
+
             user.token = token;
             user.password = undefined;
-            const options = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000);
 
             // create cookie and send respond
             res.cookie("token", token, options).status(200).json({

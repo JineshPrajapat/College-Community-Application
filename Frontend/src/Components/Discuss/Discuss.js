@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import baseURL from "../../api/api";
-import fetchData from "../../FetchData/FetchData";
 import '@fortawesome/fontawesome-free/css/all.css';
 import { images } from "../../constants";
 import { Routes, Route } from "react-router-dom";
@@ -10,89 +9,90 @@ import SingleComment from "./SingleComment/SingleComment";
 import AddQuery from "./AddQuery/AddQuery";
 import Contact from "../UserProfile/Contact/Contact";
 import Header from "../Header/Header";
+import { fetchData } from '../../FetchData/FetchData';
 
 
 const discussionTopic = [
     {
         Url: images.garima,
-        title: "You may not find ISO file.",
-        info: "Just got out of my first onsite at Meta and I feel so disappointed in myself. I got 3 medium and 1 easy, all fb tagged but the easy one was low in frequency. I did the 3 medium ones perfectly, including the follow ups, but I screwed up the easy one. Badly.2. find well balanced valid string input = (fdfsdf(dfgdf(hjk)) op = (dfgdf(hjk)) , because it has balanced paranthesis so max string is (dfgdf(hjk)) HLD : how do you update distributed database without central coordinator, example : 4 device in 4 rooms , all collect tempreture , need to update collected tempreture to all other devices( good interviewer Hai) LLD: design a Data Structure that , given top N element from current array , stream = [1,4,5,9,3] N= 2 out= [9,5] , there can be multiple queries , and stream is continously incresing in size , you cant use built in Data structure., i created linked list , with node * stored in map to direct access so use binary seach when adding element.",
+        discussTitle: "You may not find ISO file.",
+        discussDescription: "Just got out of my first onsite at Meta and I feel so disappointed in myself. I got 3 medium and 1 easy, all fb tagged but the easy one was low in frequency. I did the 3 medium ones perfectly, including the follow ups, but I screwed up the easy one. Badly.2. find well balanced valid string input = (fdfsdf(dfgdf(hjk)) op = (dfgdf(hjk)) , because it has balanced paranthesis so max string is (dfgdf(hjk)) HLD : how do you update distributed database without central coordinator, example : 4 device in 4 rooms , all collect tempreture , need to update collected tempreture to all other devices( good interviewer Hai) LLD: design a Data Structure that , given top N element from current array , stream = [1,4,5,9,3] N= 2 out= [9,5] , there can be multiple queries , and stream is continously incresing in size , you cant use built in Data structure., i created linked list , with node * stored in map to direct access so use binary seach when adding element.",
         upvotes: 24,
         views: 305
     },
     {
         Url: images.garima,
-        title: "Equal tree partion.",
-        info: "Just got out of my first onsite at Meta and I feel so disappointed in myself. I got 3 medium and 1 easy, all fb tagged but the easy one was low in frequency. I did the 3 medium ones perfectly, including the follow ups, but I screwed up the easy one. Badly.",
+        discussTitle: "Equal tree partion.",
+        discussDescription: "Just got out of my first onsite at Meta and I feel so disappointed in myself. I got 3 medium and 1 easy, all fb tagged but the easy one was low in frequency. I did the 3 medium ones perfectly, including the follow ups, but I screwed up the easy one. Badly.",
         upvotes: 24,
         views: 305
     },
     {
         Url: images.garima,
-        title: "Finding issues in installing node module",
-        info: "Just got out of my first onsite at Meta and I feel so disappointed in myself. I got 3 medium and 1 easy, all fb tagged but the easy one was low in frequency. I did the 3 medium ones perfectly, including the follow ups, but I screwed up the easy one. Badly.",
+        discussTitle: "Finding issues in installing node module",
+        discussDescription: "Just got out of my first onsite at Meta and I feel so disappointed in myself. I got 3 medium and 1 easy, all fb tagged but the easy one was low in frequency. I did the 3 medium ones perfectly, including the follow ups, but I screwed up the easy one. Badly.",
         upvotes: 24,
         views: 305
     },
     {
         Url: images.garima,
-        title: "You may not find ISO file.",
-        info: "Just got out of my first onsite at Meta and I feel so disappointed in myself. I got 3 medium and 1 easy, all fb tagged but the easy one was low in frequency. I did the 3 medium ones perfectly, including the follow ups, but I screwed up the easy one. Badly.",
+        discussTitle: "You may not find ISO file.",
+        discussDescription: "Just got out of my first onsite at Meta and I feel so disappointed in myself. I got 3 medium and 1 easy, all fb tagged but the easy one was low in frequency. I did the 3 medium ones perfectly, including the follow ups, but I screwed up the easy one. Badly.",
         upvotes: 24,
         views: 305
     },
     {
         Url: images.garima,
-        title: "You may not find ISO file.",
-        info: "Just got out of my first onsite at Meta and I feel so disappointed in myself. I got 3 medium and 1 easy, all fb tagged but the easy one was low in frequency. I did the 3 medium ones perfectly, including the follow ups, but I screwed up the easy one. Badly.",
+        discussTitle: "You may not find ISO file.",
+        discussDescription: "Just got out of my first onsite at Meta and I feel so disappointed in myself. I got 3 medium and 1 easy, all fb tagged but the easy one was low in frequency. I did the 3 medium ones perfectly, including the follow ups, but I screwed up the easy one. Badly.",
         upvotes: 24,
         views: 305
     },
     {
         Url: images.garima,
-        title: "You may not find ISO file.",
-        info: "Just got out of my first onsite at Meta and I feel so disappointed in myself. I got 3 medium and 1 easy, all fb tagged but the easy one was low in frequency. I did the 3 medium ones perfectly, including the follow ups, but I screwed up the easy one. Badly.",
+        discussTitle: "You may not find ISO file.",
+        discussDescription: "Just got out of my first onsite at Meta and I feel so disappointed in myself. I got 3 medium and 1 easy, all fb tagged but the easy one was low in frequency. I did the 3 medium ones perfectly, including the follow ups, but I screwed up the easy one. Badly.",
         upvotes: 24,
         views: 305
     },
     {
         Url: images.garima,
-        title: "You may not find ISO file.",
-        info: "Just got out of my first onsite at Meta and I feel so disappointed in myself. I got 3 medium and 1 easy, all fb tagged but the easy one was low in frequency. I did the 3 medium ones perfectly, including the follow ups, but I screwed up the easy one. Badly.",
+        discussTitle: "You may not find ISO file.",
+        discussDescription: "Just got out of my first onsite at Meta and I feel so disappointed in myself. I got 3 medium and 1 easy, all fb tagged but the easy one was low in frequency. I did the 3 medium ones perfectly, including the follow ups, but I screwed up the easy one. Badly.",
         upvotes: 24,
         views: 305
     },
     {
         Url: images.garima,
-        title: "You may not find ISO file.",
-        info: "Just got out of my first onsite at Meta and I feel so disappointed in myself. I got 3 medium and 1 easy, all fb tagged but the easy one was low in frequency. I did the 3 medium ones perfectly, including the follow ups, but I screwed up the easy one. Badly.",
+        discussTitle: "You may not find ISO file.",
+        discussDescription: "Just got out of my first onsite at Meta and I feel so disappointed in myself. I got 3 medium and 1 easy, all fb tagged but the easy one was low in frequency. I did the 3 medium ones perfectly, including the follow ups, but I screwed up the easy one. Badly.",
         upvotes: 24,
         views: 305
     },
     {
         Url: images.garima,
-        title: "You may not find ISO file.",
-        info: "Just got out of my first onsite at Meta and I feel so disappointed in myself. I got 3 medium and 1 easy, all fb tagged but the easy one was low in frequency. I did the 3 medium ones perfectly, including the follow ups, but I screwed up the easy one. Badly.",
+        discussTitle: "You may not find ISO file.",
+        discussDescription: "Just got out of my first onsite at Meta and I feel so disappointed in myself. I got 3 medium and 1 easy, all fb tagged but the easy one was low in frequency. I did the 3 medium ones perfectly, including the follow ups, but I screwed up the easy one. Badly.",
         upvotes: 24,
         views: 305
     }, {
         Url: images.garima,
-        title: "You may not find ISO file.",
-        info: "Just got out of my first onsite at Meta and I feel so disappointed in myself. I got 3 medium and 1 easy, all fb tagged but the easy one was low in frequency. I did the 3 medium ones perfectly, including the follow ups, but I screwed up the easy one. Badly.",
+        discussTitle: "You may not find ISO file.",
+        discussDescription: "Just got out of my first onsite at Meta and I feel so disappointed in myself. I got 3 medium and 1 easy, all fb tagged but the easy one was low in frequency. I did the 3 medium ones perfectly, including the follow ups, but I screwed up the easy one. Badly.",
         upvotes: 24,
         views: 305
     },
     {
         Url: images.garima,
-        title: "You may not find ISO file.",
-        info: "Just got out of my first onsite at Meta and I feel so disappointed in myself. I got 3 medium and 1 easy, all fb tagged but the easy one was low in frequency. I did the 3 medium ones perfectly, including the follow ups, but I screwed up the easy one. Badly.",
+        discussTitle: "You may not find ISO file.",
+        discussDescription: "Just got out of my first onsite at Meta and I feel so disappointed in myself. I got 3 medium and 1 easy, all fb tagged but the easy one was low in frequency. I did the 3 medium ones perfectly, including the follow ups, but I screwed up the easy one. Badly.",
         upvotes: 0,
         views: 305
     },
     {
         Url: images.garima,
-        title: "You may not find ISO file.",
-        info: "Just got out of my first onsite at Meta and I feel so disappointed in myself. I got 3 medium and 1 easy, all fb tagged but the easy one was low in frequency. I did the 3 medium ones perfectly, including the follow ups, but I screwed up the easy one. Badly.",
+        discussTitle: "You may not find ISO file.",
+        discussDescription: "Just got out of my first onsite at Meta and I feel so disappointed in myself. I got 3 medium and 1 easy, all fb tagged but the easy one was low in frequency. I did the 3 medium ones perfectly, including the follow ups, but I screwed up the easy one. Badly.",
         upvotes: 24,
         views: 305
     },
@@ -100,11 +100,13 @@ const discussionTopic = [
 
 function Discuss() {
 
-    // // fetching data
+    // fetching data
     // const [discussionTopic, setDiscussionTopic] =useState([]);
     // useState(() => {
-    //     fetchData(`${baseURL}/discuss`, setDiscussionTopic);
+    //     fetchData(`http://localhost:4000/api/v1/discuss`, setDiscussionTopic);
     // },[]);
+
+    console.log("discuss", discussionTopic);
 
     const [expandedIndex, setExpandedIndex] = useState(null);
 
@@ -123,11 +125,12 @@ function Discuss() {
 
     const filterTopics = (query) => {
         const filtered = discussionTopic.filter(topic =>
-            topic.title.toLowerCase().includes(query.toLowerCase())
+            topic.discussTitle.toLowerCase().includes(query.toLowerCase())
         );
         setFilteredTopics(filtered);
     }
     // filtering task completed
+    console.log("filtere", filteredTopics);
 
 
 
@@ -175,10 +178,10 @@ function Discuss() {
                                             <a href=""><img src={discussion.Url} alt=""></img></a>
                                             <div className="topic-title" onClick={() => handleCommentClick(index)}>
                                                 <div className="item-header" >
-                                                    {discussion.title}
+                                                    {discussion.discussTitle}
                                                 </div>
                                                 <div className="topic-info">
-                                                    {discussion.info}
+                                                    {discussion.discussDescription}
                                                 </div>
                                             </div>
                                             <div className="upvote-view-container">

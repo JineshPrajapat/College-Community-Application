@@ -6,10 +6,6 @@ const {
 
 
 router.get("/", auth, getOpportunity);
-// router.post("/addOpportunity", auth, sendOpportunity)
-
-
-router.post("/addOpportunity", sendOpportunity)
-
+router.post("/addOpportunity", auth, sendOpportunity)
 
 module.exports = router;

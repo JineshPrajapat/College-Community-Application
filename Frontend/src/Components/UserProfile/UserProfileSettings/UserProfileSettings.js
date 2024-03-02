@@ -15,7 +15,8 @@ const UserProfileSettings = () => {
     enrollmentNumber: "",
     position: '',
     state: '',
-    // studentId: null
+    college: '',
+    studentId: null
   });
 
   const handleChange = (event) => {
@@ -25,122 +26,137 @@ const UserProfileSettings = () => {
     });
   }
 
-  // const handleFileChange = (e) => {
-  //   const { name, files } = e.target;
-  //   setformValue({
-  //     ...formValue,
-  //     [name]: files[0],
-  //   });
-  // };
+  const handleFileChange = (e) => {
+    const { name, files } = e.target;
+    setformValue({
+      ...formValue,
+      [name]: files[0], name,
+    });
+  };
+
+  const navigate = useNavigate();
 
   // posting data
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    const token = localStorage.getItem("token");
+    console.log("profile created token", token);
+
+    const formData = new FormData();
+    formData.append('fullName', formValue.fullName);
+    formData.append('gender', formValue.gender)
+    formData.append('state', formValue.state);
+    formData.append('college', formValue.college);
+    formData.append('branchName', formValue.branchName);
+    formData.append('enrollmentNumber', formValue.enrollmentNumber);
+    formData.append('position', formValue.position);
+    formData.append('studentId', formValue.studentId);
+
+
+    try {
+      axios.post("http://localhost:4000/api/v1/profile/updateProfile", formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`            // Include token in Authorization header
+          }
+        })
+        .then(response => {
+          console.log("Response: ", response);
+
+          if (response.status === 200) {
+            console.log("Response in 200: ", response);
+            setFlashMessage({ type: 'success', message: 'Profile updated' });
+            navigate("/careerprephub");
+            // window.location.href = 'http://localhost:3000/careerprephub';
+            // return <Navigate to="/UserProfileSetting" />;
+
+          }
+        })
+        .catch(error => {
+          if (error.response) {
+            if (error.response.status === 400) {
+              // handle already registered
+              console.error('Already registered');
+              setFlashMessage({ type: 'error', message: 'Profile not updated, try again' });
+              window.location.href = 'http://localhost:3000/UserDetail';
+            }
+            else if (error.response.status === 403) {
+              setFlashMessage({ type: 'error', message: 'All fields required' });
+            }
+            else {
+              //handle other error
+              console.error('Error:', error);
+
+            }
+          } else {
+            // handle network or request error
+            console.error('Network or request error:', error);
+          }
+        })
+    }
+    catch (error) {
+      console.error('Network or request error:', error);
+    }
+  }
+
   // const handleFormSubmit = async (event) => {
   //   event.preventDefault();
 
-  //   // const formData = new FormData();
-  //   // formData.append('fullName', formValue.fullName);
-  //   // formData.append('gender', formValue.gender)
-  //   // formData.append('branchName', formValue.branchName);
-  //   // formData.append('position', formValue.position);
-  //   // formData.append('state', formValue.state);
-  //   // // formData.append('studentId', formValue.studentId);
-  //   // formData.append('enrollmentNumber', formValue.enrollmentNumber);
+  //   // Retrieve token from localStorage
+  //   const token = localStorage.getItem('token');
+  //   console.log("frontend token",token);
 
-  //   // try {
-  //      axios.post("http://localhost:4000/api/v1/profile/updateProfile", {
-  //       fullName: formValue.fullName,
-  //       gender: formValue.gender,
-  //       branchName: formValue.branchName,
-  //       enrollmentNumber: formValue.enrollmentNumber,
-  //       position: formValue.position,
-  //       state: formValue.state
+  //   axios.post("http://localhost:4000/api/v1/profile/updateProfile", {
+  //     fullName: formValue.fullName,
+  //     gender: formValue.gender,
+  //     branchName: formValue.branchName,
+  //     enrollmentNumber: formValue.enrollmentNumber,
+  //     position: formValue.position,
+  //     state: formValue.state,
+  //     college:formValue.college
+  //   },{
+  //     headers:{
+  //       Authorization: `Bearer ${token}`
+  //     }
+  //   })
+  //     .then(response => {
+  //       console.log("Response: ", response);
 
+  //       if (response.status === 200) {
+  //         console.log("Response in 200: ", response);
+  //         // successful registration flash message
+  //         setFlashMessage({ type: 'success', message: 'Profile updated' });
+  //         navigate("/careerprephub");
+  //       }
   //     })
-  //       .then(response => {
-  //         console.log("Response: ", response);
-
-  //         if (response.status === 200) {
-  //           console.log("Response in 200: ", response);
-  //           //  successful registration flash message
-  //           setFlashMessage({ type: 'success', message: 'Profile updated' });
-  //           window.location.href = 'http://localhost:3000';
-  //           // return <Navigate to="/UserProfileSetting" />;
-
+  //     .catch(error => {
+  //       if (error.response) {
+  //         if (error.response.status === 400) {
+  //           // handle already registered
+  //           console.error('Already registered');
+  //           setFlashMessage({ type: 'error', message: 'Profile not updated, try again' });
+  //           window.location.href = 'http://localhost:3000/UserDetail';
   //         }
-  //       })
-  //       .catch(error => {
-  //         if (error.response) {
-  //           if (error.response.status === 400) {
-  //             // handle already registered
-  //             console.error('Already registered');
-  //             setFlashMessage({ type: 'error', message: 'Profile not updated, try again' });
-  //             window.location.href = 'http://localhost:3000/UserDetail';
-  //           }
-  //           else if (error.response.status === 403) {
-  //             setFlashMessage({ type: 'error', message: 'All fields required' });
-  //           }
-  //           else {
-  //             //handle other error
-  //             console.error('Error:', error);
-
-  //           }
-  //         } else {
-  //           // handle network or request error
-  //           console.error('Network or request error:', error);
+  //         else if (error.response.status === 403) {
+  //           setFlashMessage({ type: 'error', message: 'All fields required' });
   //         }
-  //       })
+  //         else if (error.response.status === 404) {
+  //           // handle Not Found error
+  //           console.error('Resource not found');
+  //           setFlashMessage({ type: 'error', message: 'Resource not found' });
+  //         }
+  //         else {
+  //           // handle other errors
+  //           console.error('Error:', error);
+  //         }
+  //       } else {
+  //         // handle network or request error
+  //         console.error('Network or request error:', error);
+  //       }
+  //     })
   // }
-  
-  const navigate = useNavigate();
 
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-  
-    axios.put("http://localhost:4000/api/v1/profile/updateProfile", {
-      fullName: formValue.fullName,
-      gender: formValue.gender,
-      branchName: formValue.branchName,
-      enrollmentNumber: formValue.enrollmentNumber,
-      position: formValue.position,
-      state: formValue.state
-    })
-      .then(response => {
-        console.log("Response: ", response);
-  
-        if (response.status === 200) {
-          console.log("Response in 200: ", response);
-          // successful registration flash message
-          setFlashMessage({ type: 'success', message: 'Profile updated' });
-          navigate("/careerprephub");
-        }
-      })
-      .catch(error => {
-        if (error.response) {
-          if (error.response.status === 400) {
-            // handle already registered
-            console.error('Already registered');
-            setFlashMessage({ type: 'error', message: 'Profile not updated, try again' });
-            window.location.href = 'http://localhost:3000/UserDetail';
-          }
-          else if (error.response.status === 403) {
-            setFlashMessage({ type: 'error', message: 'All fields required' });
-          }
-          else if (error.response.status === 404) {
-            // handle Not Found error
-            console.error('Resource not found');
-            setFlashMessage({ type: 'error', message: 'Resource not found' });
-          }
-          else {
-            // handle other errors
-            console.error('Error:', error);
-          }
-        } else {
-          // handle network or request error
-          console.error('Network or request error:', error);
-        }
-      })
-  }
-  
   return (
     <div className="user-settings">
       {/* <h2>User Settings</h2> */}
@@ -224,6 +240,20 @@ const UserProfileSettings = () => {
             className='input_field'
             placeholder='College Name'
             title='Input title'
+            name='college'
+            type='text'
+            id='college_field'
+            value={formValue.college}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className='input_container'>
+          <label className='input_label' htmlFor='position_field'>Position*</label>
+          <input
+            className='input_field'
+            placeholder='Position'
+            title='Input title'
             name='position'
             type='text'
             id='position_field'
@@ -248,7 +278,7 @@ const UserProfileSettings = () => {
           />
         </div>
 
-        {/* <div className='input_container'>
+        <div className='input_container'>
           <label className='input_label' htmlFor='studentId_field'>Student ID*</label>
           <input
             className='input_field'
@@ -261,7 +291,7 @@ const UserProfileSettings = () => {
             onChange={handleFileChange}
             required
           />
-        </div> */}
+        </div>
 
         <button type="submit">Save</button>
       </form>
@@ -272,5 +302,6 @@ const UserProfileSettings = () => {
     </div>
   );
 };
+
 
 export default UserProfileSettings;

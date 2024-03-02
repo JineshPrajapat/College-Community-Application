@@ -6,12 +6,12 @@ const {
 
 
 router.get("/", auth, getExperiences);
-// router.post("/addExperience", auth, sendExperiences)
+router.post("/addExperience", auth, sendExperiences)
 
 
 
 // router.get("/", getExperiences);
-router.post("/addExperience", sendExperiences)
+// router.post("/addExperience", sendExperiences)
 
 
 module.exports = router;

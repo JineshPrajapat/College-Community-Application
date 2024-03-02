@@ -47,7 +47,14 @@ function OpportunityForm() {
 
   const handleConfirmation = (isConfirmed) => {
     if (isConfirmed) {
-      axios
+
+      // Retrieve token from localStorage
+      const token = localStorage.getItem('token');
+      console.log("frontend token",token);
+
+      if(token){
+        console.log(formValue)
+        axios
         .post("http://localhost:4000/api/v1/opportunity/addOpportunity", {
           company: formValue.company,
           branch: formValue.branch,
@@ -56,16 +63,20 @@ function OpportunityForm() {
           profile: formValue.profile,
           positionType:formValue.positionType,
           yearOfExperience: formValue.yearOfExperience,
+        },{
+          headers:{
+            Authorization: `Bearer ${token}`            // Include token in Authorization header
+          }
         })
         .then((response) => {
           console.log("Response:", response);
 
           if (response.status === 200) {
-
+            
             setFlashMessage({
               type: "success",
               message:
-                "We recieved your questions, will be update in 2 working days. Happy to see you soon!",
+                "We recieved your opportunity, Thanks for your help. Happy to see you soon!",
             });
             navigate('/Opportunity');
           }
@@ -75,12 +86,19 @@ function OpportunityForm() {
             console.error("Error:", error);
             setFlashMessage({
               type: "error",
-              message: "Reservation failed, try again!",
+              message: "Opportunity updation failed, try again!",
             });
           } else {
             console.error("Network or request error");
           }
         });
+      }
+      else{
+        setFlashMessage({
+          type: "error",
+          message: "Not Authorized",
+        });
+      }
     }
     setShowConfirmation(false);
   };
@@ -129,6 +147,7 @@ function OpportunityForm() {
               value={formValue.branch}
               onChange={handleChange}
             >
+              <option value="" disabled selected>Select Branch</option>
               <option value="cse">Computer Science Engineering</option>
               <option value="ai&Da">
                 Artificial Intelligence and Data Science
@@ -152,7 +171,8 @@ function OpportunityForm() {
               value={formValue.positionType}
               onChange={handleChange}
             >
-              <option value="job">Job</option>
+              <option value="" disabled selected>Select Position</option>
+              <option defaultChecked value="job">Job</option>
               <option value="IFt">Internship: Full-time</option>
               <option value="IPT">Internship: Part-time</option>
             </select>

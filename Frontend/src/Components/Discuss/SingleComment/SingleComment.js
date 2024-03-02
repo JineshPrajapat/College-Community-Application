@@ -42,7 +42,7 @@ function SingleComment({ index, discussion, setExpandedIndex }) {
 
     const handleFormSubmit = (event) => {
         if (event) {
-            axios.post("https://careerprephub/Discuss/comments/response", {
+            axios.post("http://localhost:4000/api/v1/Discuss/comments/response", {
                 commentsResponse: formValue.commentResponse
             })
                 .then((response) => {
@@ -80,11 +80,11 @@ function SingleComment({ index, discussion, setExpandedIndex }) {
                         <div className='Profile'>
                             <img src={discussion.Url} alt={discussion.name}>{discussion.user}</img>
                             <div className='info'>
-                                <div>{discussion.title}</div>
+                                <div>{discussion.discussTitle}</div>
                             </div>
                         </div>
                         <div className='comment-details'>
-                            {discussion.info}
+                            {discussion.discussDescription}
                         </div>
                     </div>
                     <div className="comment-box-container">

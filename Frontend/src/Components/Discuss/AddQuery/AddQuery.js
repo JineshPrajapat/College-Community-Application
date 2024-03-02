@@ -44,10 +44,17 @@ function AddQuery() {
 
     const handleConfirmation = (isConfirmed) => {
         if (isConfirmed) {
-            axios.post("http://localhost:4000/api/v1/discuss/addDiscuss", {
+            const token = localStorage.getItem('token');
+            console.log("addquery token",token);
+            if(token){
+                axios.post("http://localhost:4000/api/v1/discuss/addDiscuss", {
                 discussTitle: formValue.discussTitle,
                 discussDescription: formValue.discussDescription
-            })
+            },{
+                headers:{
+                  Authorization: `Bearer ${token}`            // Include token in Authorization header
+                }
+              })
                 .then((response) => {
                     console.log("Response:", response);
 
@@ -72,6 +79,7 @@ function AddQuery() {
                         console.error("Network or request error");
                     }
                 });
+            }
         }
         setShowConfirmation(false);
     };

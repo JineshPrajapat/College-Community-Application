@@ -10,9 +10,9 @@ exports.sendDiscuss = async (req, res) => {
         } =req.body;
 
         // getting user_id
-        // const id = req.user.id;
+        const userId = req.user.id;
 
-        if (( !discussTitle || !discussDescription )) {
+        if ((!userId || !discussTitle || !discussDescription )) {
             return res.status(400).json({
                 success: false,
                 message: "All fields are required.",
@@ -20,6 +20,7 @@ exports.sendDiscuss = async (req, res) => {
         }
 
         const discussDetails = await Discuss.create({
+            userDiscussId:userId,
             discussTitle: discussTitle,
             discussDescription: discussDescription,
         });
@@ -43,7 +44,7 @@ exports.sendDiscuss = async (req, res) => {
 
 exports.getDiscuss = async(req, res) =>{
     try{
-        const discuss = await Discuss.find().populate("user");
+        const discuss = await Discuss.find().populate("userDiscussId");
 
         if(!discuss)
         {
@@ -52,7 +53,7 @@ exports.getDiscuss = async(req, res) =>{
                 message: "No discuss found",
             });
         }
-        return  res.status(404).json({
+        return  res.status(200).json({
             success: true,
             message: "Discuss Found successfully",
             discuss: discuss,
@@ -77,9 +78,9 @@ exports.sendComment = async (req, res) => {
         } =req.body;
 
         // getting user_id
-        const id = req.user.id;
+        const UserId = req.user.id;
 
-        if (( !discussId || !body )) {
+        if (( !UserId || !discussId || !body )) {
             return res.status(400).json({
                 success: false,
                 message: "All fields are required.",
@@ -89,7 +90,7 @@ exports.sendComment = async (req, res) => {
         const discussDetails = await Comment.create({
             discussId: discussId,
             body: body,
-            userDetails:id
+            userDetails:UserId
         });
 
         return res.status(200).json({
