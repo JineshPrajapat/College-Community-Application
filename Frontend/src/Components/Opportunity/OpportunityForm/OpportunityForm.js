@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import baseURL from "../../../api/api";
 import { useNavigate } from "react-router-dom";
 import { images } from "../../../constants";
 import "./OpportunityForm.scss";
@@ -55,7 +56,7 @@ function OpportunityForm() {
       if(token){
         console.log(formValue)
         axios
-        .post("http://localhost:4000/api/v1/opportunity/addOpportunity", {
+        .post(`${baseURL}/opportunity/addOpportunity`, {
           company: formValue.company,
           branch: formValue.branch,
           opportunityLink: formValue.opportunityLink,

@@ -9,16 +9,12 @@ function isFileTypeSupported (type, supportedTypes){
 // update the additional details in the profile
 exports.updateProfile = async (req, res) => {
     try {
-
         // fetch data
         const { 
             fullName,
             gender,
-            branchName,
-            enrollmentNumber,
+            profession,
             state,
-            college,
-            position,
             about="",
             experience="",
             skills="",
@@ -29,15 +25,15 @@ exports.updateProfile = async (req, res) => {
 
          console.log(req.body);
 
-         const userId = req.user.id;
+        //  get userId
+        const userId = req.user.id;
 
         //  storing images
-         const studentId = req.files.studentId;
-         const coverImage = req.files.coverImage;
-         const profileImage = req.files.profileImage;
+        //  const coverImage = req.files.coverImage;
+        //  const profileImage = req.files.profileImage;
         
         // validation
-        if ((!userId ||!fullName || !gender || !branchName || !enrollmentNumber || !state || !position)) {
+        if ((!userId ||!fullName || !gender || !state || !profession)) {
             return res.status(400).json({
                 success: false,
                 message: "All fields are required.",
@@ -48,46 +44,44 @@ exports.updateProfile = async (req, res) => {
         const folderName = process.env.FOLDER_NAME;
         const supportedTypes = ['jpg', 'jpeg', 'png'];
 
-        const studentIdfileType = studentId.name.split(".")[1].toLowerCase();
         // const coverImagefileType = coverImage.name.split(".")[1].toLowerCase();
         // const profileImagefileType = profileImage.name.split(".")[1].toLowerCase();
 
-        if (!isFileTypeSupported(studentIdfileType, supportedTypes) ) {
-            return res.status(400).json({
-                success: false,
-                message: "File type not Supperted",
-            });
-        }
+                // if (!isFileTypeSupported(coverImagefileType, supportedTypes) ) {
+                //     return res.status(400).json({
+                //         success: false,
+                //         message: "File type not Supperted",
+                //     });
+                // }
 
         // storing url from cloudinary
-        const studentIdresponse = await uploadImageToCloudinary(studentId, folderName);
         // const coverImageresponse = await uploadImageToCloudinary(coverImage, folderName);
         // const profileImageresponse = await uploadImageToCloudinary(profileImage, folderName);
 
-            const profileDetails = await Profile.create({
-                userProfileId:userId,
-                fullName:fullName,
-                gender: gender,
-                branchName : branchName,
-                enrollmentNumber : enrollmentNumber,
-                position : position,
-                state : state,
-                college:college,
-                studentId:studentIdresponse.secure_url,
-                about:about,
-                experience:experience,
-                skills:skills,
-                hobbies:hobbies,
-                links:links,
-                languages:languages,
-                // coverImage:coverImageresponse.secure_url,
-                // profileImage:profileImageresponse.secure_url  
-            });
-            
+        // find profile id
+        const userDetails = await User.findById(userId);
+        const profileId = userDetails.profileDetails;
+        const profileDetail = await Profile.findById(profileId);
+
+        // updating profile
+        profileDetail.fullName = fullName;
+        profileDetail.gender = gender;
+        profileDetail.profession = profession;
+        profileDetail.state = state;
+        profileDetail.about = about;
+        profileDetail.experience = experience;
+        profileDetail.skills = skills;
+        profileDetail.hobbies = hobbies;
+        profileDetail.links = links;
+        profileDetail.languages = languages;
+
+        await profileDetail.save();
+
+
         return res.status(200).json({
             success: true,
             message: "Profile updated successfully.",
-            profileDetails,
+            profileDetail,
         });
 
     } catch (err) {
@@ -118,7 +112,7 @@ exports.deleteAccount = async (req, res) => {
         }
 
         // delete profile
-        await Profile.findByIdAndDelete({ _id: userDetails.additionalDetails });
+        await Profile.findByIdAndDelete({ _id: userDetails.profileDetails });
 
         // delete user
         await User.findByIdAndDelete({ _id: id });
@@ -146,7 +140,7 @@ exports.getUserDetails = async (req, res) => {
         // get id
         const id = req.user.id;
         // get user details
-        const userDetails = await User.findById(id).populate("additionalDetails").exec();
+        const userDetails = await User.findById(id).populate("profileDetails").exec();
 
         // validation
         if (!userDetails) {

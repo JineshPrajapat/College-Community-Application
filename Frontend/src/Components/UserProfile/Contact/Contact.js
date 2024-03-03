@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import baseURL from '../../../api/api';
 import FlashMessage from '../../FlashMessage/FlashMessage';
 import { images } from '../../../constants';
 import './Contact.scss';
@@ -25,7 +26,7 @@ const Contact = () => {
   const handleFormSubmit = async (event) =>{
     event.preventDefault();
 
-    axios.post("http://localhost:4000/api/v1/userProfile/contact",{
+    axios.post(`${baseURL}/userProfile/contact`,{
         name: formValue.name,
         phone_number: formValue.phone_number,
         email: formValue.email,

@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { auth, isLecturer } = require("../middleware/Auth");
+const { auth, isLecturer, isCollege } = require("../middleware/Auth");
 
 const { sendBroadCast, getBroadCast} = require("../controllers/broadcast");
 

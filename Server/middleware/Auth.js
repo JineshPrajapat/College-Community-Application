@@ -58,6 +58,7 @@ exports.auth = async (req, res, next) => {
             token = token.slice(7);
         }
 
+        // verify the token
         try {
             const decode = jwt.verify(token, process.env.JWT_SECRET);
             req.user = decode;
@@ -65,7 +66,7 @@ exports.auth = async (req, res, next) => {
         } catch (err) {
             return res.status(401).json({
                 success: false,
-                message: "Token not valid",
+                message: "Token is not valid",
             });
         }
     } catch (err) {
@@ -128,6 +129,27 @@ exports.isStudent = async (req, res, next) => {
     }
 }
 
+
+// isCollege
+exports.isCollege = async(req, res, next) => {
+    try{
+        if(req.user.college === "college name"){
+            next();
+        }
+        else{
+            return res.status(401).json({
+                success:false,
+                message:"This is the protected route for ctae college"
+            });
+        }
+
+    }catch (err) {
+        return res.status(500).json({
+            success: false,
+            message: "User role can't be verify the college",
+        });
+    }
+}
 
 // isInstructor
 exports.isLecturer = async (req, res, next) => {

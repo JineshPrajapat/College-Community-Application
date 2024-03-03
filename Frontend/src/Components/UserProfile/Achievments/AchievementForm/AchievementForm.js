@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import './AchievementForm.scss';
+import baseURL from '../../../../api/api';
 
 function AchievementForm() {
 
@@ -49,7 +50,7 @@ function AchievementForm() {
 
         // Post data to the server
         try {
-            const response = await axios.post('YOUR_SERVER_ENDPOINT', formData);
+            const response = await axios.post(`${baseURL}/achievement/addachievement`, formData);
             console.log('Data posted successfully!', response.data);
         } catch (error) {
             console.error('Error posting data to the server:', error.message);

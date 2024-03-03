@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import baseURL from "../../../api/api";
 import { images } from "../../../constants";
 import './SingleComment.scss';
 import FlashMessage from "../../FlashMessage/FlashMessage";
@@ -42,7 +43,7 @@ function SingleComment({ index, discussion, setExpandedIndex }) {
 
     const handleFormSubmit = (event) => {
         if (event) {
-            axios.post("http://localhost:4000/api/v1/Discuss/comments/response", {
+            axios.post(`${baseURL}/Discuss/comments/response`, {
                 commentsResponse: formValue.commentResponse
             })
                 .then((response) => {

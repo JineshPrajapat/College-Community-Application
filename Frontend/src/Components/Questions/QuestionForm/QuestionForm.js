@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import MyCKeditor from "../../MyCKEditor/MyCKEditor";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import baseURL from "../../../api/api";
 import "./QuestionForm.scss";
 import ConfirmationDialog from "../../ConfirmationDialog/ConfirmationDialog";
 import FlashMessage from "../../FlashMessage/FlashMessage";
@@ -53,7 +54,7 @@ function QuestionForm() {
       console.log("frontend token",token);
       
       axios
-        .post("http://localhost:4000/api/v1/questions/addQuestions", {
+        .post(`${baseURL}/questions/addQuestions`, {
           company: formValue.company,
           branch: formValue.branch,
           link: formValue.link,

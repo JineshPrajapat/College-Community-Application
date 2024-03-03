@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import baseURL from '../../../api/api';
 import FlashMessage from '../../FlashMessage/FlashMessage';
 import { useNavigate } from "react-router-dom";
 import './UserProfileSettings.scss';
@@ -55,7 +56,7 @@ const UserProfileSettings = () => {
 
 
     try {
-      axios.post("http://localhost:4000/api/v1/profile/updateProfile", formData,
+      axios.post(`${baseURL}/profile/updateProfile`, formData,
         {
           headers: {
             Authorization: `Bearer ${token}`            // Include token in Authorization header

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './QuestionsDetails.scss';
 import { fetchData } from '../../../FetchData/FetchData';
 import axios from 'axios';
+import baseURL from '../../../api/api';
 
 // const questions = [
 //     { questionNo: 1, branch: 'Computer Science', description: 'Given an array of size n, write a program to check if the given array is sorted in (ascending / Increasing / Non-decreasing) order or not. If the array is sorted then return True, Else return False.', link: 'https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/', difficulty: 'Medium', company: 'App Perfect', year: 2023 },
@@ -26,7 +27,7 @@ function QuestionDetails() {
     // fetching data
     const [questions, setQuestions] = useState([]);
     useState(()=>{
-        fetchData(`http://localhost:4000/api/v1/questions`, setQuestions);
+        fetchData(`${baseURL}/questions`, setQuestions);
     },[]);
 
 

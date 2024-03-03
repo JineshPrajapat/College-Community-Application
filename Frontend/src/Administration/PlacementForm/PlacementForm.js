@@ -3,6 +3,7 @@ import axios from 'axios';
 import ConfirmationDialog from '../../Components/ConfirmationDialog/ConfirmationDialog';
 import FlashMessage from '../../Components/FlashMessage/FlashMessage';
 import './PlacementForm.scss';
+import baseURL from '../../api/api';
 
 const PlacementsForm = () => {
 
@@ -32,7 +33,7 @@ const PlacementsForm = () => {
     const handleConfirmation = (isConfirmed) => {
         if (isConfirmed) {
             axios
-                .post("http://localhost:3001/Admin/placementform", {
+                .post(`${baseURL}/Admin/placementform`, {
                     year:formValue.year,
                     branch: formValue.branch,
                     company: formValue.company,

@@ -8,6 +8,12 @@ const {
     sendOTP } = require("../controllers/Auth");
 const {resetPasswordToken, resetPassword } = require("../controllers/resetPassword");
 
+
+// ***********************************************************************************************************************************************
+//                                         Authentication routes
+// ***********************************************************************************************************************************************
+
+
 // routes for user login
 router.post("/login", login);
 
@@ -24,6 +30,6 @@ router.post("/changepassword", auth, changePassword);
 router.post("/reset-password-token", resetPasswordToken);
 
 // route for ressetting user's password after verification
-router.post("/reset-password", resetPassword);
+router.put("/reset-password", resetPassword);
 
 module.exports = router;

@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import axios from "axios";
+import baseURL from "../../api/api";
 import { Link, useNavigate } from 'react-router-dom';
 import '../SignUp/SignUp.scss';
 import FlashMessage from "../FlashMessage/FlashMessage";
 import { images } from '../../constants';
+import ForgetPassword from '../ForgetPassword/ForgetPassword';
 
 
 function Login() {
 
     const navigate = useNavigate();                                //initialize useNavigate
     const [flashMessage, setFlashMessage] = useState(null);
+    const [showForgetPassword, setShowForgetPassword] = useState(false);
 
     const [formValue, setformValue] = React.useState({
         email: '',
@@ -25,10 +28,14 @@ function Login() {
         });
     }
 
+    const handleFormChange = (event) => {
+        setShowForgetPassword(true);
+    }
+
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
-        axios.post("http://localhost:4000/api/v1/user/login", {
+        axios.post(`${baseURL}/user/login`, {
             email: formValue.email,
             password: formValue.password,
         })
@@ -75,49 +82,57 @@ function Login() {
             {flashMessage &&
                 <FlashMessage type={flashMessage.type} message={flashMessage.message} />}
 
-            <form className="form_container" id="login-form" onSubmit={handleFormSubmit}>
-                <div className="logo_container">
-                    <img src={images.jinesh} alt="Khaao"></img>
-                </div>
-                <div className="title_container">
-                    <p className="title">Login to your Account</p>
-                    <span className="subtitle">Welcome back, just sigin and enjoy the experience</span>
-                </div>
-                <br />
-                <div className="input_container">
-                    <label className="input_label" htmlFor="email_field">Email</label>
-                    <img className="icon" src={images.email} viewBox='0 0 24 24'></img>
-                    <input
-                        className="input_field"
-                        placeholder="name@gmail.com"
-                        name="email"
-                        type="text"
-                        id="email_field"
-                        value={formValue.email}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div className="input_container">
-                    <label className="input_label" htmlFor="password_field">Password</label>
-                    <img className="icon" src={images.password} viewBox='0 0 24 24'></img>
-                    <input
-                        className="input_field"
-                        placeholder="Password"
-                        name="password"
-                        type="password"
-                        id="password_field"
-                        value={formValue.password}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <Link to="/ForgetPassword" className="forget_password" href="#">Forgot password?</Link>
-                <button title='Sign In' type='submit' className='sign-in_btn'><span>Log In</span></button>
-                <div className="new_to_account">
-                    <h4 >New to CareerPerpHub?<Link to="/Signup">Create Account</Link></h4>
-                </div>
-            </form>
+            {!showForgetPassword ? (
+                <form className="form_container" id="login-form" onSubmit={handleFormSubmit}>
+                    <div className="logo_container">
+                        <img src={images.jinesh} alt="Khaao"></img>
+                    </div>
+                    <div className="title_container">
+                        <p className="title">Login to your Account</p>
+                        <span className="subtitle">Welcome back, just sigin and enjoy the experience</span>
+                    </div>
+                    <br />
+                    <div className="input_container">
+                        <label className="input_label" htmlFor="email_field">Email</label>
+                        <img className="icon" src={images.email} viewBox='0 0 24 24'></img>
+                        <input
+                            className="input_field"
+                            placeholder="name@gmail.com"
+                            name="email"
+                            type="text"
+                            id="email_field"
+                            value={formValue.email}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div className="input_container">
+                        <label className="input_label" htmlFor="password_field">Password</label>
+                        <img className="icon" src={images.password} viewBox='0 0 24 24'></img>
+                        <input
+                            className="input_field"
+                            placeholder="Password"
+                            name="password"
+                            type="password"
+                            id="password_field"
+                            value={formValue.password}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    {/* <Link to="/ForgetPassword" className="forget_password" href="#">Forgot password?</Link> */}
+                    <div className="forget_password" onClick={handleFormChange}>Forget Password</div>
+                    <button title='Sign In' type='submit' className='sign-in_btn'><span>Log In</span></button>
+                    <div className="new_to_account">
+                        <h4 >New to CareerPerpHub?<Link to="/Signup">Create Account</Link></h4>
+                    </div>
+                </form>
+            ) : (
+                <ForgetPassword />
+            )}
+
+
+
         </div>
     );
 }

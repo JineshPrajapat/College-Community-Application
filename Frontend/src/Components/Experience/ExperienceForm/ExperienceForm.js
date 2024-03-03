@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import MyCKeditor from "../../MyCKEditor/MyCKEditor";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import baseURL from "../../../api/api";
 import { images } from "../../../constants";
 import "./ExperienceForm.scss";
 import ConfirmationDialog from "../../ConfirmationDialog/ConfirmationDialog";
@@ -50,7 +51,7 @@ function ExperienceForm() {
 
       if(token){
         axios
-        .post("http://localhost:4000/api/v1/experience/addExperience", {
+        .post(`${baseURL}/experience/addExperience`, {
           experienceTitle: formValue.experienceTitle,
           experienceDescription: formValue.experienceDescription,
         },{

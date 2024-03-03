@@ -12,6 +12,7 @@ const questionsRoutes = require("./routes/Questions");
 const experienceRoutes = require("./routes/Experiences");
 const opportunityRoutes = require("./routes/Opportunity")
 const discussRoutes = require("./routes/Discuss");
+const submitInfoRoutes =  require("./routes/SubmitInformation");
 
 
 const searchRoutes = require("./routes/Search");
@@ -43,12 +44,15 @@ cloudinaryConnect();
 // "app.use(cors(*));"
 app.use(cors());
 app.use("/api/v1/user", userRoutes);
+app.use("/api/v1/userinfo", submitInfoRoutes);
 app.use("/api/v1/admin", adminRoutes);
 app.use("/api/v1/profile", profileRoutes);         //profile update after signup
 app.use("/api/v1/questions", questionsRoutes);
 app.use("/api/v1/experience", experienceRoutes);
 app.use("/api/v1/opportunity", opportunityRoutes);
 app.use("/api/v1/discuss", discussRoutes);
+
+
 
 
 

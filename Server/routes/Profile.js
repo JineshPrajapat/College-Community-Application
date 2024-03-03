@@ -8,7 +8,7 @@ const {
     updateDisplayPicture } = require("../controllers/Profile");
 
 router.delete("/deleteProfile", auth, deleteAccount);
-router.post("/updateProfile", auth, updateProfile);
+router.put("/updateProfile", auth, updateProfile);
 
 
 router.get("/getUserDetails", auth, getUserDetails);

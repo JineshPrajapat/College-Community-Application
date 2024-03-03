@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import baseURL from '../../../api/api';
 import FlashMessage from '../../FlashMessage/FlashMessage';
 import './UpdateProfileSettings.scss';
 
@@ -39,7 +40,7 @@ const UpdateProfileSettings = () => {
 
   const handleUpdate = async () => {
     try {
-      const response = await axios.post("http://localhost:4000/api/v1/userProfile/setting", formValue, {
+      const response = await axios.post(`${baseURL}/userProfile/setting`, formValue, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

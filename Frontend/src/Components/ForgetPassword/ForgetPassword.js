@@ -2,39 +2,55 @@
 
 import React, { useState } from 'react';
 import './ForgetPassword.scss'; // Import the SCSS file for styling
+import { responsivePropType } from 'react-bootstrap/esm/createUtilityClasses';
+import axios from 'axios';
+import baseURL from '../../api/api';
+import { Link } from 'react-router-dom';
 
 function ForgetPassword() {
   const [email, setEmail] = useState('');
-  const [verificationSent, setVerificationSent] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
   const [verificationCode, setVerificationCode] = useState('');
-  const [resetPassword, setResetPassword] = useState(false);
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [passwordResetSuccessful, setPasswordResetSuccessful] = useState(false);
+  const [verificationSent, setverificationSent] = useState(false);
 
-  const handleSendVerification = () => {
-    // Code to send verification email
-    // You can implement this part using an API call or a mock function
-    // Upon successful sending of verification email, setVerificationSent(true)
-    setVerificationSent(true);
-  };
 
-  const handleVerifyCode = () => {
-    // Code to verify the verification code
-    // You can implement this part using an API call or a mock function
-    // Upon successful verification, setResetPassword(true)
-    setResetPassword(true);
-  };
-
-  const handleResetPassword = () => {
-    // Code to reset password
-    // You can implement this part using an API call or a mock function
-    // Upon successful password reset, setPasswordResetSuccessful(true)
-    setPasswordResetSuccessful(true);
+  const handleSendVerification = (event) => {
+    axios.post(`${baseURL}/user/reset-password-token`,{
+      email:email
+    })
+      .then(response =>{
+        console.log("forget pass reponse", response);
+        if(response.status === 200){
+          // on successful otp sent 
+          setEmailSent(true);
+          setverificationSent(true);
+        }
+      })
+      .catch(error => {
+        if (error.response) {
+          if (error.response.status === 401) {
+              // handle already registered
+              console.error('Email not found');
+              // setFlashMessage({ type: 'error', message: 'Email not have registerd' });
+              // window.location.href = 'http://localhost:3000/login';
+          }
+          else if (error.response.status === 403) {
+              console.log("All fields required");
+              // setFlashMessage({ type: 'error', message: 'All fields required' });
+          }
+          else {
+              //handle other error
+              console.error('Error:', error);
+          }
+      } else {
+          // handle network or request error
+          console.error('Network or request error:', error);
+      }
+      }) 
   };
 
   return (
-    <div className="forget-password-container">
+    <div className="forget-password-container form_container">
       {!verificationSent && (
         <div className="forget-password-step">
           <h2>Forget Password</h2>
@@ -48,44 +64,15 @@ function ForgetPassword() {
           <button className="send-verification-btn" onClick={handleSendVerification}>Send Verification</button>
         </div>
       )}
-      {verificationSent && !resetPassword && (
+      {emailSent && (
         <div className="forget-password-step">
-          <h2>Verify Email</h2>
-          <p>A verification code has been sent to your email.</p>
-          <label>Verification Code:</label>
-          <input
-            type="text"
-            value={verificationCode}
-            onChange={(e) => setVerificationCode(e.target.value)}
-            required
-          />
-          <button className="verify-code-btn" onClick={handleVerifyCode}>Verify</button>
-        </div>
-      )}
-      {resetPassword && !passwordResetSuccessful && (
-        <div className="forget-password-step">
-          <h2>Reset Password</h2>
-          <label>New Password:</label>
-          <input
-            type="password"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-            required
-          />
-          <label>Confirm Password:</label>
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-          <button className="reset-password-btn" onClick={handleResetPassword}>Reset Password</button>
-        </div>
-      )}
-      {passwordResetSuccessful && (
-        <div className="forget-password-step">
-          <h2>Password Reset Successful</h2>
-          <p>Your password has been successfully reset.</p>
+          <h2>Check Email</h2>
+          <p>A reset password link has been sent to {email}.</p>
+          <div>
+                <Link to= "/login" className='text-blue-500 hover:underline transition-colors duration-300'>
+                    Back to login
+                </Link>
+            </div>
         </div>
       )}
     </div>

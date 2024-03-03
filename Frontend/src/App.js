@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { Routes, Route} from "react-router-dom";
+import { Routes, Route,OpenRoute } from "react-router-dom";
 import Question from "./Components/Questions/Questions";
 import Users from "./Components/Users/Users";
 import ImageCarousel from "./Components/ImageCarousel/ImageCarousel";
@@ -27,53 +27,57 @@ import Footer from "./Components/Footer/Footer";
 import Header from "./Components/Header/Header";
 import CoverPage from "./Components/CoverPage/CoverPage";
 import Subscribe from "./Components/Subscribe/Subscribe";
+import MultiForm from "./Components/FormPages/MultiForm/MultiForm";
+import { UpdatePassword } from "./Components/UpdatePassword/UpdatePassword";
 
-import {motion}  from 'framer-motion';
+import { motion } from 'framer-motion';
 
 
 
 function App() {
   return (
-      <div className="App">
-        {/* <Header/> */}
-        <Routes >
-          <Route path="/" element={<CoverPage/>} />
-          <Route path="/careerprephub" element={<Landing/>} />
-          <Route path="Users" element={<Users />} />
-          <Route path="Questions/*" element={<Question />} />
-          <Route path="Opportunity/*" element={<Opportunity />} />
-          <Route path="Experience/*" element={<Experience />} />
-          <Route path="Discuss/*" element={<Discuss />} />
-          <Route path="PlacementStats" element={<Placement />} />
-          <Route path="UserProfile/*" element={<UserProfile />} />
-          <Route path ="profile*" element={<Home/>} />
-          <Route path="Signup/*" element={<SignUp/>} />
-          <Route path="Login/*" element={<Login/>} />
-          <Route path="ForgetPassword" element={<ForgetPassword/>} />
-          <Route path="UserDetail" element={<UserProfileSettings/>} />
-        </Routes>
+    <div className="App">
+      {/* <Header/> */}
+      <MultiForm />
+      <Routes >
+        <Route path="/" element={<CoverPage />} />
+        <Route path="/careerprephub" element={<Landing />} />
+        <Route path="Users" element={<Users />} />
+        <Route path="Questions/*" element={<Question />} />
+        <Route path="Opportunity/*" element={<Opportunity />} />
+        <Route path="Experience/*" element={<Experience />} />
+        <Route path="Discuss/*" element={<Discuss />} />
+        <Route path="PlacementStats" element={<Placement />} />
+        <Route path="UserProfile/*" element={<UserProfile />} />
+        <Route path="profile*" element={<Home />} />
+        <Route path="Signup/*" element={<SignUp />} />
+        <Route path="Login/*" element={<Login />} />
+        <Route path="ForgetPassword" element={<ForgetPassword />} />
+        <Route path="UserDetail" element={<UserProfileSettings />} />
+        <Route path="update-password/:id" element={<UpdatePassword />} />
+      </Routes>
 
-        {/* <UpdateProfileSettings/> */}
+      {/* <UpdateProfileSettings/> */}
 
-        {/* <Question/>/ */}
-        {/* <Users/> */}
-        {/* <ImageCarousel/> */}
-        {/* <Opportunity/> */}
-        {/* <Experience/> */}
-        {/* <QuestionForm /> */}
-        {/* <ExperienceForm/> */}
-        {/* <OpportunityForm/> */}
-        {/* <Discuss/> */}
-        {/* <AddQuery/> */}
-        {/* <Placement/> */}
-        {/* <PlacementsForm/> */}
-        {/* <Notes/> */}
-        {/* <UserProfile/> */}
-        <Subscribe/>
-        <Footer/>
-        
+      {/* <Question/>/ */}
+      {/* <Users/> */}
+      {/* <ImageCarousel/> */}
+      {/* <Opportunity/> */}
+      {/* <Experience/> */}
+      {/* <QuestionForm /> */}
+      {/* <ExperienceForm/> */}
+      {/* <OpportunityForm/> */}
+      {/* <Discuss/> */}
+      {/* <AddQuery/> */}
+      {/* <Placement/> */}
+      {/* <PlacementsForm/> */}
+      {/* <Notes/> */}
+      {/* <UserProfile/> */}
+      <Subscribe />
+      <Footer />
 
-      </div>
+
+    </div>
   );
 }
 

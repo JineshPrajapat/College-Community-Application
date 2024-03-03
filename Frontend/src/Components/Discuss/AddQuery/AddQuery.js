@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import baseURL from "../../../api/api";
 import './AddQuery.scss'
 // import '@fortawesome/fontawesome-free/css/all.css';
 import MyCKeditor from "../../MyCKEditor/MyCKEditor";
@@ -47,7 +48,7 @@ function AddQuery() {
             const token = localStorage.getItem('token');
             console.log("addquery token",token);
             if(token){
-                axios.post("http://localhost:4000/api/v1/discuss/addDiscuss", {
+                axios.post(`${baseURL}/discuss/addDiscuss`, {
                 discussTitle: formValue.discussTitle,
                 discussDescription: formValue.discussDescription
             },{

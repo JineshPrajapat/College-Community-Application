@@ -11,22 +11,7 @@ const profileSchema = new mongoose.Schema({
         require: true,
     },
 
-    branchName: {
-        type: String,
-        require :true,
-    },
-
-    enrollmentNumber: {
-        type: String,
-        require: true,
-    },
-
-    college: {
-        type: String,
-        require: true,
-    },
-
-    position: {
+    profession: {
         type: String,
         require: true,
     },
@@ -36,11 +21,6 @@ const profileSchema = new mongoose.Schema({
         require: true,
     },
 
-    studentId: {
-        type: String,
-        default: `https://api.dicebear.com/7.x/fun-emoji/svg?radius=50`,
-    },
-    
     about:{
         type: String,
         trim: true,
@@ -69,11 +49,12 @@ const profileSchema = new mongoose.Schema({
             type:String
     }],
 
-    coverImage: {
+    profileImage: {
         type: String,
         default: `https://api.dicebear.com/7.x/fun-emoji/svg?radius=50`,
     },
-    profileImage: {
+
+    coverImage: {
         type: String,
         default: `https://api.dicebear.com/7.x/fun-emoji/svg?radius=50`,
     },

@@ -1,6 +1,6 @@
 const User = require("../models/User");
 const mailSender = require("../utils/mailSender");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const { resetPassword } = require("../mails/resetPassword");
 
 // resetPasswordToken
@@ -17,7 +17,7 @@ exports.resetPasswordToken = async (req, res) => {
                 message: "Your email is not registered with us."
             });
         }
-        const name = user.firstName;
+        const name = user.fullname;
         // generate token
         const token = crypto.randomUUID();
 
@@ -40,7 +40,7 @@ exports.resetPasswordToken = async (req, res) => {
         return res.json({
             success: true,
             message: "Email sent successfully,  please check email and change password.",
-            updatedDetails:updatedDetails,
+            updatedDetails: updatedDetails,
         });
 
     } catch (err) {
@@ -58,10 +58,10 @@ exports.resetPassword = async (req, res) => {
 
         // fetch the data
         const { password, confirmPassword, token } = req.body;
-
+        console.log(req.body);
         // validation
-        if (password !== confirmPassword) {
-            return res.json({
+        if (req.body.password[0] !== req.body.confirmPassword[0]) {
+            return res.status(401).json({
                 success: false,
                 message: "Password don't match.",
             });
@@ -69,10 +69,11 @@ exports.resetPassword = async (req, res) => {
 
         // get user details from DB using the token
         const userDetails = await User.findOne({ token: token });
+        console.log("userDetails", userDetails);
 
         // if no entry found - invalid token
         if (!userDetails) {
-            return res.json({
+            return res.status(404).json({
                 success: false,
                 message: "Token is invalid",
             });
@@ -80,21 +81,34 @@ exports.resetPassword = async (req, res) => {
 
         // check token expiration time
         if (userDetails.resetPasswordExpires < Date.now()) {
-            return res.json({
+            return res.status(402).json({
                 success: false,
                 message: "Token is expired. Plaease regenerate your token.",
             });
         }
 
+        // Extract the string from the array
+        const newPassword = req.body.password[0];      
+        console.log(newPassword);
+        
         // hash password
-        const hashedPassword = await bcrypt.hash(password, 10);
+        const hashedPassword = await  bcrypt.hash(newPassword, 10);
+        console.log("hashedPassword",hashedPassword)
 
         // update the password
-        await User.findOneAndUpdate(
-            { token: token },
+        const updatedUser = await User.findOneAndUpdate(
+            { token },
             { password: hashedPassword },
-            { new: true },
+            { new: true }
         );
+
+        console.log("updatedUser", updatedUser);
+        if (!updatedUser) {
+            return res.status(500).json({
+                success: false,
+                message: "Failed to update password.",
+            });
+        }
 
         // return reponse
         return res.status(200).json({
@@ -110,3 +124,4 @@ exports.resetPassword = async (req, res) => {
         });
     }
 }
+

@@ -93,7 +93,7 @@ function OpportunityDetails() {
     // fetching data
     const [opportunityList, setOpportunityList] =useState([]);
     useState(()=>{
-        fetchData(`http://localhost:4000/api/v1/opportunity`, setOpportunityList);
+        fetchData(`${baseURL}/opportunity`, setOpportunityList);
     },[]);
     
 

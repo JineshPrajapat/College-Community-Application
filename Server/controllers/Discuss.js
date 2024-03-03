@@ -44,7 +44,7 @@ exports.sendDiscuss = async (req, res) => {
 
 exports.getDiscuss = async(req, res) =>{
     try{
-        const discuss = await Discuss.find().populate("userDiscussId");
+        const discuss = await Discuss.find().populate("userDiscussId").exec();
 
         if(!discuss)
         {
