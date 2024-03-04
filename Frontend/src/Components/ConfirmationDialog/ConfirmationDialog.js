@@ -3,7 +3,7 @@ import './ConfirmationDialog.scss';
 
 const ConfirmationDialog = ({ message, onConfirm }) => {
     return (
-        <div className="overlay" onClick={() => onConfirm(false)}>
+        <div className="overlays" onClick={() => onConfirm(false)}>
 
             <div className="confirmation-popup">
                 <h3>{message}</h3>

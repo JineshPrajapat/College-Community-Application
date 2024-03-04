@@ -12,12 +12,12 @@ const UserProfileSettings = () => {
   const [formValue, setformValue] = useState({
     fullName: '',
     gender: '',
-    branchName: '',
-    enrollmentNumber: "",
-    position: '',
+    about: '',
+    // enrollmentNumber: "",
+    profession: '',
     state: '',
-    college: '',
-    studentId: null
+    // college: '',
+    // studentId: null
   });
 
   const handleChange = (event) => {
@@ -48,11 +48,11 @@ const UserProfileSettings = () => {
     formData.append('fullName', formValue.fullName);
     formData.append('gender', formValue.gender)
     formData.append('state', formValue.state);
-    formData.append('college', formValue.college);
-    formData.append('branchName', formValue.branchName);
-    formData.append('enrollmentNumber', formValue.enrollmentNumber);
-    formData.append('position', formValue.position);
-    formData.append('studentId', formValue.studentId);
+    formData.append('about', formValue.about);
+    // formData.append('branchName', formValue.branchName);
+    // formData.append('enrollmentNumber', formValue.enrollmentNumber);
+    formData.append('profession', formValue.profession);
+    // formData.append('studentId', formValue.studentId);
 
 
     try {
@@ -207,20 +207,20 @@ const UserProfileSettings = () => {
         </div>
 
         <div className='input_container'>
-          <label className='input_label' htmlFor='branch_field'>Branch*</label>
+          <label className='input_label' htmlFor='branch_field'>Profession*</label>
           <input
             className='input_field'
             placeholder='Branch'
             title='Input title'
-            name='branchName'
+            name='profession'
             type='text'
-            id='branch_field'
-            value={formValue.branchName}
+            id='profession_field'
+            value={formValue.profession}
             onChange={handleChange}
             required
           />
         </div>
-        <div className='input_container'>
+        {/* <div className='input_container'>
           <label className='input_label' htmlFor='enrollement_field'>Enrollement Number*</label>
           <input
             className='input_field'
@@ -234,7 +234,6 @@ const UserProfileSettings = () => {
             required
           />
         </div>
-
         <div className='input_container'>
           <label className='input_label' htmlFor='position_field'>College Name*</label>
           <input
@@ -248,21 +247,7 @@ const UserProfileSettings = () => {
             onChange={handleChange}
             required
           />
-        </div>
-        <div className='input_container'>
-          <label className='input_label' htmlFor='position_field'>Position*</label>
-          <input
-            className='input_field'
-            placeholder='Position'
-            title='Input title'
-            name='position'
-            type='text'
-            id='position_field'
-            value={formValue.position}
-            onChange={handleChange}
-            required
-          />
-        </div>
+        </div> */}
 
         <div className='input_container'>
           <label className='input_label' htmlFor='state_field'>State*</label>
@@ -280,16 +265,16 @@ const UserProfileSettings = () => {
         </div>
 
         <div className='input_container'>
-          <label className='input_label' htmlFor='studentId_field'>Student ID*</label>
-          <input
+          <label className='input_label' htmlFor='studentId_field'>Bio</label>
+          <textarea
             className='input_field'
-            placeholder='User Photo'
+            placeholder='Bio'
             title='Input title'
-            name='studentId'
-            type='file'
-            id='studentId_field'
-            accept="image/*"
-            onChange={handleFileChange}
+            name='about'
+            type='text'
+            id='about_field'
+            value={formValue.about}
+            onChange={handleChange}
             required
           />
         </div>

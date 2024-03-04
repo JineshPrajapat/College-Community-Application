@@ -2,6 +2,11 @@ const mongoose = require("mongoose");
 
 const discussSchema = new mongoose.Schema({
 
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+    },
+
     discussTitle:{
         type:String,
         require: true
@@ -11,10 +16,11 @@ const discussSchema = new mongoose.Schema({
         require: true,
     },
 
-    userDiscussId: {
+    // reference to comment
+    comments: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Profile",
-    },
+        ref: "Comment"
+    }],
 
     upvotes:[{
         type:mongoose.Schema.Types.ObjectId,

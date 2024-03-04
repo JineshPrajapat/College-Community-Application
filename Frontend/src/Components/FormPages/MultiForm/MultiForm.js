@@ -115,23 +115,23 @@ function MultiForm() {
                             Professional
                         </button>
                     </div>
-                    <form className="form" onSubmit={handleSubmit}>
+                    <form  onSubmit={handleSubmit}>
                         {formType === 'college' && (
                             <>
-                                <select name="collegeName" className="h-96" >
+                                <select name="collegeName" className="h-96" required>
                                     <option value="" disabled  >Select College</option>
                                     <option value="College of Technology And Engineering, Udaipur">College of Technology And Engineering, Udaipur</option>
 
                                 </select>
-                                <input type="text" name="collegeAddress" placeholder="College Address" />
-                                <select name="courseName">
+                                {/* <input type="text" name="collegeAddress" placeholder="College Address" /> */}
+                                <select name="courseName" required>
                                     <option value="" disabled>Select Course</option>
                                     <option value="Btech">Btech</option>
                                     <option value="Mtech">Mtech</option>
                                     <option value="Phd">Phd</option>
                                     {/* Add more options as needed */}
                                 </select>
-                                <select name="branchName">
+                                <select name="branchName" required>
                                     <option value="" disabled>Select Branch</option>
                                     <option value="Artificial Intelligence and Data Science">Artificial Intelligence and Data Science</option>
                                     <option value="Computer ScienceComputer Science">Computer Science</option>
@@ -143,13 +143,11 @@ function MultiForm() {
                                     <option value="Agriculture Engineering">Agriculture Engineering</option>
                                     {/* Add more options as needed */}
                                 </select>
-                                {/* <input type="text" name="branchName" placeholder="Field Name" /> */}
                                 <input type="text" name="year" placeholder="PassOut Year" required/>
                                 <input type="text" name="enrollmentNumber" placeholder="Enrollment Number" required/>
-                                <lebel>Student Id
+                                <lebel className=''>Student Id
                                     <input type="file" name="studentId" accept="image/*,.pdf" placeholder="Student ID" required />
                                 </lebel>
-                                {/* <input type="file" name="studentImage" accept="image/*,.pdf" /> */}
                             </>
                         )}
                         {formType === 'professional' && (

@@ -2,14 +2,14 @@ const express = require("express");
 const router = express.Router();
 const { auth } = require("../middleware/Auth");
 const {
-    getDiscuss, sendDiscuss,getComment, sendComment} = require("../controllers/Discuss");
+    getDiscuss, sendDiscuss,getComment,getCommentsByDiscussionId, sendComment} = require("../controllers/Discuss");
 
 
 router.get("/", auth, getDiscuss);
 router.post("/addDiscuss", auth, sendDiscuss);
 
-router.get("/comment" , auth, getComment);
-router.get("/addComment" ,auth,  sendComment);
+router.get("/:discussionId/comment" , auth, getCommentsByDiscussionId);
+router.post("/addComment" ,auth,  sendComment);
 
 
 

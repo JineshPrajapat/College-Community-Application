@@ -196,7 +196,9 @@ exports.login = async (req, res) => {
                 email: user.email,
                 id: user._id,
                 accountType: user.accountType,
-                // college:user.college
+                profileImage:user.profileImage,
+                fullName: user.profileDetails.fullName,
+                profession:user.profileDetails.profession
             };
 
             const token = jwt.sign(payload, process.env.JWT_SECRET, {

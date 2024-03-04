@@ -51,6 +51,11 @@ const userSchema = new mongoose.Schema({
         ref: 'EnrollmentNumber' 
     },
 
+    profileImage: {
+        type: String,
+        default: `https://api.dicebear.com/7.x/fun-emoji/svg?radius=50`,
+    },
+    
     otp:{
         type:String,
     },

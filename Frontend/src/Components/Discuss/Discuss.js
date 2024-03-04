@@ -106,7 +106,7 @@ function Discuss() {
         fetchData(`${baseURL}/discuss`, setDiscussionTopic);
     },[]);
 
-    console.log("discuss", discussionTopic);
+    console.log("discuss", discussionTopic.discuss);
 
     const [expandedIndex, setExpandedIndex] = useState(null);
 
@@ -116,7 +116,7 @@ function Discuss() {
 
     // filtering search input
     const [searchQuery, setSearchQuery] = useState('');
-    const [filteredTopics, setFilteredTopics] = useState(discussionTopic);
+    const [filteredTopics, setFilteredTopics] = useState([]);
 
     const handleSearchInputChange = (event) => {
         setSearchQuery(event.target.value);
@@ -124,13 +124,13 @@ function Discuss() {
     }
 
     const filterTopics = (query) => {
-        const filtered = discussionTopic.filter(topic =>
+        const filtered = discussionTopic.discuss.filter(topic =>
             topic.discussTitle.toLowerCase().includes(query.toLowerCase())
         );
         setFilteredTopics(filtered);
     }
     // filtering task completed
-    console.log("filtere", filteredTopics);
+    // console.log("filtere", filteredTopics);
 
 
 
@@ -170,18 +170,19 @@ function Discuss() {
                     <div className="topic-list-container">
                         <div className="topic-list-content">
                             <div>
-                                {filteredTopics.length === 0 ? (
+                                {discussionTopic.length === 0 ? (
                                     <p>No topics found</p>
-                                ) : (filteredTopics.map((discussion, index) => (
+                                ) : (discussionTopic.discuss.map((discussion, index) => (
                                     <div className="topic-item-container">
                                         <div className="topic-item">
-                                            <a href=""><img src={discussion.Url} alt=""></img></a>
+                                            <a href=""><img src={discussion.userId.profileImage} alt=""></img></a>
                                             <div className="topic-title" onClick={() => handleCommentClick(index)}>
                                                 <div className="item-header" >
                                                     {discussion.discussTitle}
                                                 </div>
                                                 <div className="topic-info">
                                                     {discussion.discussDescription}
+                                                    {/* <div dangerouslySetInnerHTML={{ __html: discussion.discussDescription }} /> */}
                                                 </div>
                                             </div>
                                             <div className="upvote-view-container">
@@ -204,7 +205,7 @@ function Discuss() {
                                 {expandedIndex !== null && (
                                     <SingleComment
                                         index={expandedIndex}
-                                        discussion={discussionTopic[expandedIndex]}
+                                        discussion={discussionTopic.discuss[expandedIndex]}
                                         setExpandedIndex={setExpandedIndex} />
                                 )}
                             </div>

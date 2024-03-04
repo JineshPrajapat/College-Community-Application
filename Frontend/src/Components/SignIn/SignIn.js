@@ -43,9 +43,20 @@ function Login() {
                 console.log("Response:", response);
 
                 if (response.status === 200) {
-                    const token = response.data.token;                      // Extract token from response
-                    localStorage.setItem('token', token);                   // Store token in local storage
+                    const token = response.data.token;    
+                    // const userId = response.data.user._id;
+                    const userName = response.data.user.profileDetails.fullName; 
+                    const avatarUrl = response.data.user.profileDetails.profileImage;
+                    const userProfession = response.data.user.profileDetails.profession;                 // Extract token from response
+                    // localStorage.setItem('userId', userId);
+                    localStorage.setItem('token', token);      
+                    localStorage.setItem('userName', userName);              // Store token in local storage
+                    localStorage.setItem('avatarUrl', avatarUrl); 
+                    localStorage.setItem('userProfession', userProfession); 
+                    
+                    // localStorage.setItem('userId', userId);                  
                     console.log(token);
+                    // console.log("userId", userId);
                     setFlashMessage({ type: 'success', message: 'Login successful.' });
                     navigate('/careerprephub')
                 }

@@ -29,6 +29,7 @@ import CoverPage from "./Components/CoverPage/CoverPage";
 import Subscribe from "./Components/Subscribe/Subscribe";
 import MultiForm from "./Components/FormPages/MultiForm/MultiForm";
 import { UpdatePassword } from "./Components/UpdatePassword/UpdatePassword";
+import Comment from "../src/Components/Comment Sections/Comment";
 
 import { motion } from 'framer-motion';
 
@@ -38,7 +39,8 @@ function App() {
   return (
     <div className="App">
       {/* <Header/> */}
-      <MultiForm />
+      {/* <MultiForm /> */}
+      {/* <Comment/> */}
       <Routes >
         <Route path="/" element={<CoverPage />} />
         <Route path="/careerprephub" element={<Landing />} />

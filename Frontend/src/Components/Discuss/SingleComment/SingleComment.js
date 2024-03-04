@@ -4,31 +4,34 @@ import baseURL from "../../../api/api";
 import { images } from "../../../constants";
 import './SingleComment.scss';
 import FlashMessage from "../../FlashMessage/FlashMessage";
+import Comment from "../../Comment Sections/Comment";
 
-const reactions = [
-    {
-        Url: images.garima,
-        name: "Garima Ahari",
-        description: "Find well balanced valid string input = (fdfsdf(dfgdf(hjk)) op = (dfgdf(hjk)) , because it has balanced paranthesis so max string is (dfgdf(hjk)) how did u solve this",
-        lastupdated: "5 hours ago"
-    },
-    {
-        Url: images.garima,
-        name: "Garima Ahari",
-        description: "Design a Data Structure that , given top N element from current array , stream = [1,4,5,9,3] N= 2 out= [9,5] , there can be multiple queries , and stream is continously incresing in size , you cant use built in Data structure., i created linked list , with node * stored in map to direct access so use binary seach when adding element.",
-        lastupdated: "5 hours ago"
-    },
-    {
-        Url: images.garima,
-        name: "Garima Ahari",
-        description: "My feedback : except HLD, all other were good , in HLD i did not suggest to use checksum to check data validity. insteead i suggested to use some consensus algo , which is good but not efficiant as checksum.",
-        lastupdated: "5 hours ago"
-    },
+// const reactions = [
+//     {
+//         Url: images.garima,
+//         name: "Garima Ahari",
+//         description: "Find well balanced valid string input = (fdfsdf(dfgdf(hjk)) op = (dfgdf(hjk)) , because it has balanced paranthesis so max string is (dfgdf(hjk)) how did u solve this",
+//         lastupdated: "5 hours ago"
+//     },
+//     {
+//         Url: images.garima,
+//         name: "Garima Ahari",
+//         description: "Design a Data Structure that , given top N element from current array , stream = [1,4,5,9,3] N= 2 out= [9,5] , there can be multiple queries , and stream is continously incresing in size , you cant use built in Data structure., i created linked list , with node * stored in map to direct access so use binary seach when adding element.",
+//         lastupdated: "5 hours ago"
+//     },
+//     {
+//         Url: images.garima,
+//         name: "Garima Ahari",
+//         description: "My feedback : except HLD, all other were good , in HLD i did not suggest to use checksum to check data validity. insteead i suggested to use some consensus algo , which is good but not efficiant as checksum.",
+//         lastupdated: "5 hours ago"
+//     },
 
-]
+// ]
 function SingleComment({ index, discussion, setExpandedIndex }) {
 
     const [flashMessage, setFlashMessage] = useState(false);
+
+    console.log(discussion);
 
     const [formValue, setformValue] = useState({
         commentResponse: ""
@@ -79,16 +82,22 @@ function SingleComment({ index, discussion, setExpandedIndex }) {
                             <i class="fa fa-times" aria-hidden="true"></i>
                         </span>
                         <div className='Profile'>
-                            <img src={discussion.Url} alt={discussion.name}>{discussion.user}</img>
-                            <div className='info'>
+                            <a href="#"><img src={discussion.userId.profileImage} alt={discussion.userId.username}></img>{discussion.userId.username}</a>
+                            <div>{discussion.userId.username}</div>
+                            
+                        </div>
+                        <div className='info'>
                                 <div>{discussion.discussTitle}</div>
                             </div>
-                        </div>
                         <div className='comment-details'>
-                            {discussion.discussDescription}
+                            <div dangerouslySetInnerHTML={{ __html: discussion.discussDescription }} />
                         </div>
                     </div>
-                    <div className="comment-box-container">
+
+
+                    <Comment discussionId={discussion._id}/>
+
+                    {/* <div className="comment-box-container">
                         <div className="comments-sections">
                             <div className="comments-section-heading">
                                 Comments:
@@ -117,7 +126,7 @@ function SingleComment({ index, discussion, setExpandedIndex }) {
                                 ))}
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
                 
                 

@@ -49,10 +49,10 @@ const profileSchema = new mongoose.Schema({
             type:String
     }],
 
-    profileImage: {
-        type: String,
-        default: `https://api.dicebear.com/7.x/fun-emoji/svg?radius=50`,
-    },
+    // profileImage: {
+    //     type: String,
+    //     default: `https://api.dicebear.com/7.x/fun-emoji/svg?radius=50`,
+    // },
 
     coverImage: {
         type: String,
