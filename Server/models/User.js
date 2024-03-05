@@ -27,23 +27,44 @@ const userSchema = new mongoose.Schema({
         ref: 'Profile' 
     },
 
+
     // Reference to College
     college: {                                              
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'College' 
+        type: String 
     }, 
 
     // Reference to Course
     selectedCourse: { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Course' 
+        type: String
     }, 
 
     // Reference to Field
     selectedBranch: { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Branch' 
+        type: String 
     }, 
+
+    passOutYear:{
+        type: String
+    },
+
+
+    // // Reference to College
+    // college: {                                              
+    //     type: mongoose.Schema.Types.ObjectId, 
+    //     ref: 'College' 
+    // }, 
+
+    // // Reference to Course
+    // selectedCourse: { 
+    //     type: mongoose.Schema.Types.ObjectId, 
+    //     ref: 'Course' 
+    // }, 
+
+    // // Reference to Field
+    // selectedBranch: { 
+    //     type: mongoose.Schema.Types.ObjectId, 
+    //     ref: 'Branch' 
+    // }, 
 
     // Embedding enrollment information
     enrollmentInfo:{                                              

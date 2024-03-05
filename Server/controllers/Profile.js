@@ -6,7 +6,7 @@ require("dotenv").config();
 function isFileTypeSupported (type, supportedTypes){
     return supportedTypes.includes(type)
 }
-// update the additional details in the profile
+// update the profile after signup
 exports.updateProfile = async (req, res) => {
     try {
         // fetch data
@@ -15,18 +15,19 @@ exports.updateProfile = async (req, res) => {
             gender,
             profession,
             state,
-            about="",
-            experience="",
-            skills="",
-            hobbies="",
-            links="",
-            languages=""
+            // about="",
+            // experience="",
+            // skills="",
+            // hobbies="",
+            // links="",
+            // languages=""
          } = req.body;
 
          console.log(req.body);
 
         //  get userId
         const userId = req.user.id;
+        console.log("userId", userId);
 
         //  storing images
         //  const coverImage = req.files.coverImage;
@@ -34,6 +35,7 @@ exports.updateProfile = async (req, res) => {
         
         // validation
         if ((!userId ||!fullName || !gender || !state || !profession)) {
+            console.log(userId,fullName,gender, state, profession );
             return res.status(400).json({
                 success: false,
                 message: "All fields are required.",
@@ -68,12 +70,12 @@ exports.updateProfile = async (req, res) => {
         profileDetail.gender = gender;
         profileDetail.profession = profession;
         profileDetail.state = state;
-        profileDetail.about = about;
-        profileDetail.experience = experience;
-        profileDetail.skills = skills;
-        profileDetail.hobbies = hobbies;
-        profileDetail.links = links;
-        profileDetail.languages = languages;
+        // profileDetail.about = about;
+        // profileDetail.experience = experience;
+        // profileDetail.skills = skills;
+        // profileDetail.hobbies = hobbies;
+        // profileDetail.links = links;
+        // profileDetail.languages = languages;
 
         await profileDetail.save();
 
@@ -93,6 +95,75 @@ exports.updateProfile = async (req, res) => {
         });
     }
 };
+
+
+// updateAdditionalProfile
+exports.updateAdditionalProfile = async (req, res) =>{
+    try{
+
+        const UserId = req.user.id;
+
+        // check if user exist or not
+        const user= await User.findById(UserId);
+        console.log("user",user);
+        if(!user)
+        {
+            return res.status(404).json({
+                success:false,
+                message:"User not found"
+            });
+        }
+
+        const {
+            about="",
+            position="",
+            experience="",
+            skills="",
+            hobbies="",
+            languages="",
+            linkedin="",
+            github="",
+            twitter="",
+            youtube=""
+        } = req.body;
+
+
+        const profileId = user.profileDetails;
+        let profile = await Profile.findById(profileId);
+        
+        // if profile exist then only
+        if(profile)
+        {
+            profile.about = about;
+            profile.position = position;
+            profile.experience = experience;
+            profile.skills = skills.split(',');
+            profile.languages = languages.split(',');
+            profile.hobbies = hobbies.split(',');
+            profile.links = [
+                {type: 'LinkedIn', url: linkedin},
+                {type: 'GitHub', url: github},
+                {type: 'Twitter', url: twitter},
+                {type: 'YouTube', url: youtube}
+            ];
+        }
+
+        console.log("profile", profile);
+
+        await profile.save();
+
+        return res.status(200).json({
+            success: true,
+            message: "Addidtional Profile details updated successfully!.",
+            profile,
+        });
+
+    }
+    catch (error) {
+        console.error('Error updating additional profile details:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+}
 
 // delete account
 exports.deleteAccount = async (req, res) => {

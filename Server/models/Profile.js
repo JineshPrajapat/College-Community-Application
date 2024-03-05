@@ -25,6 +25,12 @@ const profileSchema = new mongoose.Schema({
         type: String,
         trim: true,
     },
+
+    position:{
+        type:String,
+        trim:true
+    },
+    
     experience:{
         type:String,
     },
@@ -39,10 +45,24 @@ const profileSchema = new mongoose.Schema({
           type:String  
     }],
 
-    links:[
+    links: [
         {
-            type:String
-    }],
+            type: {
+                type: String,
+                enum: ["LinkedIn", "GitHub", "Twitter", "YouTube"],
+                required: true
+            },
+            url: {
+                type: String,
+                required: true
+            }
+        }
+    ],
+
+    // links:[
+    //     {
+    //         type:String
+    // }],
 
     languages:[
         {

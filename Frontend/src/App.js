@@ -39,7 +39,7 @@ function App() {
   return (
     <div className="App">
       {/* <Header/> */}
-      {/* <MultiForm /> */}
+      <MultiForm />
       {/* <Comment/> */}
       <Routes >
         <Route path="/" element={<CoverPage />} />
