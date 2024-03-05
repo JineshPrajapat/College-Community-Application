@@ -6,8 +6,8 @@ import baseURL from '../../../../api/api';
 
 function AchievementForm() {
 
-    const [formData, setFormData] = useState({
-        images: [],
+    const [formValue, setFormValue] = useState({
+        achievement: null,
         heading: '',
         description: ''
     });
@@ -17,26 +17,34 @@ function AchievementForm() {
         navigate(-1);                   // Navigate back to previous page
     };
 
+    // const handleFileChange = (e) => {
+    //     e.preventDefault();
+    //     const files = Array.from(e.target.files);
+
+    //     const newImages = files.map(file => ({
+    //         src: URL.createObjectURL(file),
+    //         heading: formData.heading,
+    //         description: formData.description,
+    //         type: file.type.startsWith('image/') ? 'image' : 'pdf'
+    //     }));
+
+    //     setFormData(prevState => ({
+    //         ...prevState,
+    //         images: [...prevState.images, ...newImages]
+    //     }));
+    // };
+
     const handleFileChange = (e) => {
-        e.preventDefault();
-        const files = Array.from(e.target.files);
-
-        const newImages = files.map(file => ({
-            src: URL.createObjectURL(file),
-            heading: formData.heading,
-            description: formData.description,
-            type: file.type.startsWith('image/') ? 'image' : 'pdf'
-        }));
-
-        setFormData(prevState => ({
-            ...prevState,
-            images: [...prevState.images, ...newImages]
-        }));
+        const { name, files } = e.target;
+        setFormValue({
+            ...formValue,
+            [name]: files[0], name,
+        });
     };
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFormData(prevState => ({
+        setFormValue(prevState => ({
             ...prevState,
             [name]: value
         }));
@@ -45,13 +53,45 @@ function AchievementForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        const token = localStorage.getItem("token");
+
         // Display formData before posting
-        console.log('FormData:', formData);
+        console.log('FormValue:', formValue);
+
+        const formData = new FormData();
+        formData.append('achievement', formValue.achievement);
+        formData.append('heading', formValue.heading);
+        formData.append('description', formValue.description);
 
         // Post data to the server
         try {
-            const response = await axios.post(`${baseURL}/achievement/addachievement`, formData);
-            console.log('Data posted successfully!', response.data);
+            await axios.post(`${baseURL}/achievement/addAchivement`, formData,
+            {
+                headers:{
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            .then((response) => {
+                if(response.status === 200)
+                {
+                    console.log("Achievement Added successfully");
+                    console.log("response", response);
+                    alert("achivement updated successfully");
+                    navigate(-1);
+                }
+            })
+            .catch(error =>{
+                if(error.response.status === 400)
+                {
+                    console.log("All fields required");
+                }
+                else if(error.response.status === 403)
+                {
+                    console.log("User not found");
+                }
+            })
+
+            // console.log('Data posted successfully!', response.data);
         } catch (error) {
             console.error('Error posting data to the server:', error.message);
         }
@@ -64,7 +104,7 @@ function AchievementForm() {
                     type="text"
                     placeholder="Enter heading"
                     name="heading"
-                    value={formData.heading}
+                    value={formValue.heading}
                     onChange={handleInputChange}
                     required
                 />
@@ -72,12 +112,12 @@ function AchievementForm() {
                     type="text"
                     placeholder="Description"
                     name="description"
-                    value={formData.description}
+                    value={formValue.description}
                     onChange={handleInputChange}
                 />
                 <input
                     type="file"
-                    name="file"
+                    name="achievement"
                     accept="image/*,.pdf"
                     multiple
                     onChange={handleFileChange}
@@ -89,8 +129,8 @@ function AchievementForm() {
                 </div>
             </form>
 
-            <div className="images">
-                {formData.images.map((image, index) => (
+            {/* <div className="images">
+                {formValue.achievement.map((image, index) => (
                     <div key={index} className="image">
                         {image.type === 'image' ? (
                             <img src={image.src} alt={image.heading} />
@@ -103,7 +143,7 @@ function AchievementForm() {
                         </div>
                     </div>
                 ))}
-            </div>
+            </div> */}
         </div>
     );
 };

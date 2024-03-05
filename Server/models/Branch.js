@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const BranchSchema = new mongoose.Schema({
     name: {
         type: String,
-        enum: ["Computer Science","Artificial Intelligence and Data Science", "Electrical Engineering","ECE", "AG", "MG"],
+        enum: ["Computer Science Engineering", "Artificial Intelligence and Data Science Engineering",  "Electrical Engineering", "Electronics and Communication Engineering", "Mining Engineering", "Mechanical Engineering","Civil Engineering", "Agriculture Engineering" ],
         
     },
     enrollmentNumber:[

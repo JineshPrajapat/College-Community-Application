@@ -83,6 +83,7 @@
   
         .user-details {
           padding: 5px;
+          text-decoration: none;
   
           .user-name {
             font-weight: bold;
@@ -104,6 +105,13 @@
           }
   
           .user-links {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+
+            li{
+              list-style: none;
+            }
   
             a {
               margin-right: 10px;
@@ -118,4 +126,9 @@
       }
     }
   }
+
+
+Link{
+  text-decoration: none;
+}
   

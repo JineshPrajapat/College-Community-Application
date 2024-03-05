@@ -6,7 +6,7 @@ import baseURL from '../../../api/api';
 export const PersionalDetails = ({ handleFormSubmit }) => {
 
     const [formValue, setFormValue] = useState({
-        fullname: '',
+        fullName: '',
         gender: '',
         profession: '',
         state: "",
@@ -36,12 +36,12 @@ export const PersionalDetails = ({ handleFormSubmit }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Handle form submission logic here
-        // console.log(formValue)
-
+        console.log(formValue)
+        console.log("fullname", formValue);
         const token = localStorage.getItem('token');
         console.log("PersonDetails token", token)
         axios.put(`${baseURL}/profile/updateProfile`, {
-            fullname: formValue.fullname,
+            fullName: formValue.fullName,
             gender: formValue.gender,
             profession: formValue.profession,
             state: formValue.state
@@ -83,10 +83,10 @@ export const PersionalDetails = ({ handleFormSubmit }) => {
 
                 <input
                     type="text"
-                    name="fullname"
+                    name="fullName"
                     placeholder="Full Name"
                     id='fullname_field'
-                    value={formValue.username}
+                    value={formValue.fullName}
                     onChange={handleChange}
                 />
 

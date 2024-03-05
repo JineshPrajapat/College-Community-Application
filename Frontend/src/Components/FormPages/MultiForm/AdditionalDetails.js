@@ -160,7 +160,7 @@ export const AdditionalDetails = () => {
                 <input
                     type="text"
                     placeholder="YouTube"
-                    name="youTube"
+                    name="youtube"
                     id='youTube_field'
                     value={formValue.youtube}
                     onChange={handleChange} />

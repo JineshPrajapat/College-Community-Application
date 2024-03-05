@@ -4,24 +4,24 @@ import './Home.scss';
 
 
 
-const Home = () => {
+const Home = ({ userData }) => {
 
-  const userProfile ={
-    hobbies:['Writing', 'Cycling', 'Badminton', 'Movies', 'Coding', 'Travel'],
-    skills:['c++', 'Python', 'SQL', 'React', 'Machine Learning', 'Relational Databases', 'IOT'],
-    resumeLink:"",
-    Links:['https://github.com/JineshPrajapat', 'https://in.linkedin.com/in/jinesh-prajapat', ],
-    currentstatus:"Student",
-    state:"Rajasthan",
-    experience:"Fresher",
-    languages:['English', 'Hindi']
-  
-  }
+  // const userProfile ={
+  //   hobbies:['Writing', 'Cycling', 'Badminton', 'Movies', 'Coding', 'Travel'],
+  //   skills:['c++', 'Python', 'SQL', 'React', 'Machine Learning', 'Relational Databases', 'IOT'],
+  //   resumeLink:"",
+  //   Links:['https://github.com/JineshPrajapat', 'https://in.linkedin.com/in/jinesh-prajapat', ],
+  //   currentstatus:"Student",
+  //   state:"Rajasthan",
+  //   experience:"Fresher",
+  //   languages:['English', 'Hindi']
 
-  const hobbiesList = userProfile.hobbies.map((hobby)=>{
+  // }
+
+  const hobbiesList = userData?.Data?.profileDetails?.hobbies?.map((hobby) => {
     return <li>{hobby}</li>;
   })
-  const skillList = userProfile.skills.map((skill) => {
+  const skillList = userData?.Data?.profileDetails?.skills?.map((skill) => {
     return <li>{skill}</li>;
   });
 
@@ -60,25 +60,32 @@ const Home = () => {
                   <a href=""><i className='fas fa-paper-plane' /> Hire me</a>
                 </li>
                 <li>
-                  <a href={userProfile.resumeLink}><i className='fas fa-cloud-download-alt' /> Download Resume</a>
+                  <a href={userData?.Data?.profileDetails?.resumeLink}><i className='fas fa-cloud-download-alt' /> Download Resume</a>
                 </li>
               </ul>
               <ul className="social-link">
-                {/* <li>
-                  <a href="#"><i className="fab fa-facebook-f" /></a>
-                </li> */}
-                {/* <li>
-                  <a href="#"><i className="fab fa-twitter" /></a>
-                </li> */}
-                <li>
-                  <a href="https://www.linkedin.com/in/jinesh-prajapat"><i className="fab fa-linkedin-in" /></a>
-                </li>
-                <li>
-                  <a href="https://github.com/JineshPrajapat"><i class="fa-brands fa-github" /></a>
-                </li>
-                {/* <li className='youtube'>
-                  <a href="#"><i className="fab fa-youtube" /></a>
-                </li> */}
+
+                {userData?.Data?.profileDetails?.links?.map((link, index) => (
+                  <li key={index}>
+                    {link.type === "LinkedIn" && (
+                      <a href={link.url}><i className="fab fa-linkedin-in" /></a>
+                    )}
+
+                    {link.type === "GitHub" && (
+                      <a href={link.url}><i className="fa-brands fa-github" /></a>
+                    )}
+
+                    {link.type === "Twitter" && (
+                      <a href={link.url}><i className="fab fa-twitter" /></a>
+                    )}
+
+                    {link.type === "YouTube" && (
+                      <a href={link.url}><i className="fab fa-youtube" /></a>
+                    )}
+
+                  </li>
+                ))}
+
               </ul>
             </div>
           </div>
@@ -90,11 +97,11 @@ const Home = () => {
                 <tbody>
                   <tr>
                     <th>Position</th>
-                    <td>{userProfile.currentstatus}</td>
+                    <td>{userData?.Data?.profileDetails?.currentstatus}</td>
                   </tr>
                   <tr>
                     <th>State</th>
-                    <td>{userProfile.state}</td>
+                    <td>{userData?.Data?.profileDetails?.state}</td>
                   </tr>
                 </tbody>
               </table>
@@ -102,11 +109,11 @@ const Home = () => {
                 <tbody>
                   <tr>
                     <th>Experiance</th>
-                    <td>{userProfile.experience}</td>
+                    <td>{userData?.Data?.profileDetails?.experience}</td>
                   </tr>
                   <tr>
                     <th>Languages</th>
-                    <td>{userProfile.languages}</td>
+                    <td>{userData?.Data?.profileDetails?.languages}</td>
                   </tr>
                 </tbody>
               </table>

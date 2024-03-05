@@ -113,28 +113,30 @@ export const EducationalDetails = ({ handleFormSubmit }) => {
                         <select
                             name="collegeName"
                             className="h-96"
-                            onChange={handleInputChange}
+                            value={formValue.collegeName}
+                            onChange={handleChange}
                             required
                         >
                             <option value="" disabled  >Select College</option>
-                            <option value="College of Technology And Engineering, Udaipur">College of Technology And Engineering, Udaipur</option>
+                            <option value="College of Technology And Engineering">College of Technology And Engineering, Udaipur</option>
 
                         </select>
                         {/* <input type="text" name="collegeAddress" placeholder="College Address" /> */}
                         <select
                             name="courseName"
-                            onChange={handleInputChange}
+                            value={formValue.courseName}
+                            onChange={handleChange}
                             required
                         >
                             <option value="" disabled>Select Course</option>
                             <option value="Btech">Btech</option>
                             <option value="Mtech">Mtech</option>
                             <option value="Phd">Phd</option>
-                            {/* Add more options as needed */}
                         </select>
                         <select
                             name="branchName"
-                            onChange={handleInputChange}
+                            value={formValue.branchName}
+                            onChange={handleChange}
                             required
                         >
                             <option value="" disabled>Select Branch</option>
@@ -146,7 +148,6 @@ export const EducationalDetails = ({ handleFormSubmit }) => {
                             <option value="Mechanical Engineering">Mechanical Engineering</option>
                             <option value="Civil Engineering">Civil Engineering</option>
                             <option value="Agriculture Engineering">Agriculture Engineering</option>
-                            {/* Add more options as needed */}
                         </select>
                         <input
                             type="text"

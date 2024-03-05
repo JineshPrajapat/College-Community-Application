@@ -1,28 +1,40 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import baseURL from '../../../api/api';
+import { fetchData } from '../../../FetchData/FetchData';
 import { Link, Route, Routes } from 'react-router-dom';
 import './Achievement.scss';
 import { images } from '../../../constants';
 import AchievementForm from './AchievementForm/AchievementForm';
 
-const postData = [
-  {
-    src: images.background,
-    heading: "Leetcode",
-    description: "Some everyday experiences that can increase someone's vulnerability to developing mental health difficulties are"
-  },
-  {
-    src: images.background,
-    heading: "Leetcode",
-    description: "Some everyday experiences that can increase someone's vulnerability to developing mental health difficulties are"
-  }
-];
+// const achievementData = [
+//   {
+//     achievement: images.background,
+//     heading: "Leetcode",
+//     description: "Some everyday experiences that can increase someone's vulnerability to developing mental health difficulties are"
+//   },
+//   {
+//     achievement: images.background,
+//     heading: "Leetcode",
+//     description: "Some everyday experiences that can increase someone's vulnerability to developing mental health difficulties are"
+//   }
+// ];
 
 const Achievement = () => {
+
+  const [achievementData, setAchievementData] = useState([]);
+
+  useEffect(() => {
+    fetchData(`http://localhost:5000/api/v1/achievement`, setAchievementData)
+  }, []);
+
+  console.log("Achievement", achievementData);
 
   const [expandedIndex, setExpandedIndex] = useState(null);
   const handleCardClick = (index) => {
     setExpandedIndex(index === expandedIndex ? null : index);
   };
+
+  // console.log("aaaaa", achievementData);
 
 
   return (
@@ -40,15 +52,15 @@ const Achievement = () => {
 
         {/* displaying loaded data */}
         <div className="images">
-          {postData.map((image, index) => (
+          {achievementData.achievement && achievementData.achievement.map((image, index) => (
             <div className={`image ${index === expandedIndex ? 'expanded' : ''}`}
               key={index}
               onClick={() => handleCardClick(index)}
             >
               {image.type === 'image' ? (
-                <img src={image.src} alt={image.heading} />
+                <img src={image.achievement} alt={image.heading} />
               ) : (
-                <embed src={image.src} width="100%" height="auto" />
+                <embed src={image.achievement} width="100%" height="auto" />
               )}
               <div className="caption">
                 <h3>{image.heading}</h3>
@@ -64,13 +76,13 @@ const Achievement = () => {
                   <i class="fa fa-times" aria-hidden="true"></i>
                 </span>
                 <div className='achievements-info'>
-                  <img src={postData[expandedIndex].src} alt={''}>{postData[expandedIndex].user}</img>
+                  <img src={achievementData.achievement[expandedIndex].achievement} alt={''}></img>
                   <div className='info'>
-                    <div>{postData[expandedIndex].heading}</div>
+                    <div>{achievementData.achievement[expandedIndex].heading}</div>
                   </div>
                 </div>
                 <div className='expanded-details'>
-                  {postData[expandedIndex].description}
+                  {achievementData.achievement[expandedIndex].description}
                 </div>
               </div>
             </div>

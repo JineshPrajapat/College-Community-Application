@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const CourseSchema = new mongoose.Schema({
     name: {
         type: String,
-        enum: ["Btech","Mtech", "PHD"],
+        enum: ["Btech","Mtech", "Phd"],
         
     },
     branch:[

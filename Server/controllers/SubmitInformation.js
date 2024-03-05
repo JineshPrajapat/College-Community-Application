@@ -1,6 +1,7 @@
 const express = require("express");
 const { uploadImageToCloudinary } = require("../utils/imageUploader");
 const User = require("../models/User");
+const Profile = require("../models/Profile");
 const College = require("../models/College");
 const Course = require("../models/Course");
 const Branch = require("../models/Branch");
@@ -140,7 +141,7 @@ exports.submitInfo = async (req, res) => {
         // find user by id
         const user = await User.findById(userId);
 
-        if (!User) {
+        if (!user) {
             return res.stauts(404).json({
                 sucess: false,
                 message: "User not found"
@@ -213,3 +214,30 @@ exports.submitInfo = async (req, res) => {
     }
 
 };
+
+exports.getUserData= async(req,res) =>{
+    try{
+        const UserId =  req.user.id;
+
+        const Data = await User.findById(UserId).populate("profileDetails").exec();
+
+        console.log("data:", Data)
+
+        if(!Data){
+            return res.status(400).json({
+                success:false,
+                message:"No data found!",
+            })
+        }
+
+        return res.status(200).json({
+            // success:true,
+            // message:"Data found Successfully",
+            Data,
+        })
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+}

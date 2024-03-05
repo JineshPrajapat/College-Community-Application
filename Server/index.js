@@ -14,6 +14,7 @@ const opportunityRoutes = require("./routes/Opportunity")
 const discussRoutes = require("./routes/Discuss");
 const submitInfoRoutes =  require("./routes/SubmitInformation");
 const allUserRoutes = require("./routes/AllUsers");
+const achievementRoutes = require("./routes/Achievement");
 
 
 
@@ -54,6 +55,7 @@ app.use("/api/v1/experience", experienceRoutes);
 app.use("/api/v1/opportunity", opportunityRoutes);
 app.use("/api/v1/discuss", discussRoutes);
 app.use("/api/v1/allusers", allUserRoutes);
+app.use("/api/v1/achievement", achievementRoutes);
 
 
 
