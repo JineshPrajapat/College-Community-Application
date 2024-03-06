@@ -23,8 +23,8 @@ function Header() {
                         <div className="header-content__heading">
                               {/* <div className="col-lg-8"> */}
                               <div className="header-content__heading__logo">
-                                    <img src={images.logob} alt="logo" id="logoimg" />
-                                    <a href="./index.html">CareerPrepHub</a>
+                                    <img src={images.logo12} alt="logo" id="logoimg" />
+                                    <a href="/">CareerPrepHub</a>
                                     <a href="javascript:void(0);" className='icon' onClick={navbarToggle} ><i className='fa fa-bars' /></a>
                               </div>
                               {/* </div> */}

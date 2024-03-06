@@ -43,7 +43,16 @@ function App() {
 
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { isLoggedIn } = useAuth();
-  // const { isSignedUp } = useSignUp();
+  const { isSignedUp } = useSignUp();
+
+  // function PrivateRoute() {
+  //   const { isSignedUp } = useSignUp();
+  //   console.log("isSignedUp", isSignedUp)
+  
+  //   // If isSignedUp is true, render the MultiForm component
+  //   // Otherwise, render the UnauthorizedAccess component
+  //   return !isSignedUp ? <MultiForm /> : <UnauthorizedAccess />;
+  // }
 
 
   return (
@@ -57,7 +66,10 @@ function App() {
           <Route path="Login/*" element={<Login />} />
           <Route path="*" element={<UnauthorizedAccess />} />
           {/* <Route path="/UserForm" element={<MultiForm />} /> */}
-
+          {/* <Route path="/UserForm" element={<PrivateRoute />} /> */}
+          {isSignedUp ? (
+            <Route path="/UserForm" element={<MultiForm />} />
+          ) : (<Route path="*" element={<UnauthorizedAccess />} />)}
         </Routes>
 
       ) : (

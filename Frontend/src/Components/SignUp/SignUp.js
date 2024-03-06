@@ -10,7 +10,7 @@ import { images } from '../../constants'
 
 function SignUp() {
 
-    // const { setIsSignedUp } = useSignUp();
+    const { setIsSignedUp } = useSignUp();
     
     const [flashMessage, setFlashMessage] = useState(null);
     const navigate = useNavigate();
@@ -87,7 +87,9 @@ function SignUp() {
                 if (response.status === 200) {
                     //  successful registration flash message
                     setFlashMessage({ type: 'success', message: 'Registred Successfull' });
-                    // setIsSignedUp(true);
+                    setIsSignedUp(true);
+                    // navigate("/discuss");
+                    navigate("/UserForm");
                 }
             })
             .catch(error => {
@@ -96,7 +98,7 @@ function SignUp() {
                         // handle already registered
                         console.error('Already registered');
                         setFlashMessage({ type: 'error', message: 'Already registered' });
-                        window.location.href = 'http://localhost:3000/login';
+                        // window.location.href = 'http://localhost:3000/login';
                     }
                     else if (error.response.status === 403) {
                         setFlashMessage({ type: 'error', message: 'All fields required' });
@@ -231,10 +233,9 @@ function SignUp() {
                 )}
             </>
             <Link to="/UserForm">hello</Link>
-            <Routes>
-                {/* <Route path="/" element={<ParentComponent />}/> */}
+            {/* <Routes>
                 <Route path="/UserForm" element={<MultiForm />} />
-            </Routes>
+            </Routes> */}
         </div>
     );
 }

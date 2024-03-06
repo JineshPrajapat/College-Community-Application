@@ -112,7 +112,6 @@ export const EducationalDetails = ({ handleFormSubmit }) => {
                     <>
                         <select
                             name="collegeName"
-                            className="h-96"
                             value={formValue.collegeName}
                             onChange={handleChange}
                             required
