@@ -97,7 +97,7 @@ const Home = ({ userData }) => {
                 <tbody>
                   <tr>
                     <th>Position</th>
-                    <td>{userData?.Data?.profileDetails?.currentstatus}</td>
+                    <td>{userData?.Data?.profileDetails?.position}</td>
                   </tr>
                   <tr>
                     <th>State</th>

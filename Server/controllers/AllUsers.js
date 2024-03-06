@@ -14,7 +14,7 @@ exports.getAllUsers = async (req, res) =>{
         // extracting allusers having college = collegeName
         const allUsersWithProfiles = await User.find({ college: collegeName }).populate('profileDetails');
         if(!allUsersWithProfiles)
-        {
+        { 
             return res.status(404).json({
                 success:false,
                 message:"No user found!"
@@ -24,7 +24,7 @@ exports.getAllUsers = async (req, res) =>{
         return res.status(200).json({
             success:true,
             message:"All users found Successfully",
-            allUsersWithProfiles: allUsersWithProfiles
+            allUsersWithProfiles,
         })
     }
     catch(err){

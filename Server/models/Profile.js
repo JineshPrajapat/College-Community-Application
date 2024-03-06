@@ -76,7 +76,7 @@ const profileSchema = new mongoose.Schema({
 
     coverImage: {
         type: String,
-        default: `https://api.dicebear.com/7.x/fun-emoji/svg?radius=50`,
+        default: `https://cdn.wallpapersafari.com/98/2/mNQZRI.jpg`,
     },
     
     userProfileId:{

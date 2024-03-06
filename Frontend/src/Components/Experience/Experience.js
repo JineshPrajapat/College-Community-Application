@@ -16,7 +16,6 @@ const Experience = () => {
     return (
 
         <>
-        <Header/>
         <div className='experience'>
             <h1>Interview Experience</h1>
             <div className="head-tabs">

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import LogOutButton from '../LogOutButton/LogOutButton';
 import '@fortawesome/fontawesome-free/css/all.css';
 import { images } from '../../constants';
 import './Header.scss';
@@ -37,7 +38,7 @@ function Header() {
                               <li><Link to="/Discuss">Discuss</Link></li>
                               <li><Link to="/PlacementStats">PlacementStats</Link></li>
                               <li><Link to="/UserProfile/*">Profile</Link></li>
-                              <li><Link to="/careerprephub"/></li>
+                              <li><LogOutButton/></li>
                               
                         </div>
                   </header>

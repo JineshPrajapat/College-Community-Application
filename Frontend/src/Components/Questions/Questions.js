@@ -11,7 +11,6 @@ const Question = () => {
 
     return (
         <>
-        <Header/>
         < div className="question">
             <h1>Placement Questions</h1>
 

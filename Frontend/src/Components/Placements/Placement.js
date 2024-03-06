@@ -71,7 +71,6 @@ const Placement = () => {
 
     return (
         <>
-        <Header/>
         <div className="placements-page">
             <h1>College Placements</h1>
             <div className="dropdown-container">

@@ -101,10 +101,10 @@ import { fetchData } from '../../FetchData/FetchData';
 function Discuss() {
 
     // fetching data
-    const [discussionTopic, setDiscussionTopic] =useState([]);
+    const [discussionTopic, setDiscussionTopic] = useState([]);
     useState(() => {
         fetchData(`${baseURL}/discuss`, setDiscussionTopic);
-    },[]);
+    }, []);
 
     console.log("discuss", discussionTopic.discuss);
 
@@ -135,89 +135,88 @@ function Discuss() {
 
 
     return (
-<>
-<Header/>
-<div className="main-conatiner">
-            <div className="left-panel">
-                <div className="full-wrapper">
-                    <div className="header">
-                        <div className="subheader">
-                            <div className="subheader-left">
-                                <label>Hot</label>
-                                <label>Newest to Oldest</label>
-                                <label>Most Votes</label>
-                            </div>
-                            <span className="subheader-search-input">
-                                <input className="input"
-                                    type="text"
-                                    placeholder="Search topics or comments"
-                                    value={searchQuery}
-                                    onChange={handleSearchInputChange}
-                                />
-                            </span>
-                            <Link to="./addQuery" className="subheader-search-button">
-                                <div className="btn-content-container">
-                                    <span className="btn-content">New</span>
-                                    <i className="fa-light fa-plus"></i>
+        <>
+            <div className="main-conatiner">
+                <div className="left-panel">
+                    <div className="full-wrapper">
+                        <div className="header">
+                            <div className="subheader">
+                                <div className="subheader-left">
+                                    <label>Hot</label>
+                                    <label>Newest to Oldest</label>
+                                    <label>Most Votes</label>
                                 </div>
-                            </Link>
+                                <span className="subheader-search-input">
+                                    <input className="input"
+                                        type="text"
+                                        placeholder="Search topics or comments"
+                                        value={searchQuery}
+                                        onChange={handleSearchInputChange}
+                                    />
+                                </span>
+                                <Link to="./addQuery" className="subheader-search-button">
+                                    <div className="btn-content-container">
+                                        <span className="btn-content">New</span>
+                                        <i className="fa-light fa-plus"></i>
+                                    </div>
+                                </Link>
+                            </div>
                         </div>
-                    </div>
-                    <Routes>
-                        <Route path="addQuery" element={<AddQuery />} />
-                    </Routes>
-                    {/* <Outlet/> */}
-                    <div className="topic-list-container">
-                        <div className="topic-list-content">
-                            <div>
-                                {discussionTopic.length === 0 ? (
-                                    <p>No topics found</p>
-                                ) : (discussionTopic.discuss.map((discussion, index) => (
-                                    <div className="topic-item-container">
-                                        <div className="topic-item">
-                                            <a href=""><img src={discussion.userId.profileImage} alt=""></img></a>
-                                            <div className="topic-title" onClick={() => handleCommentClick(index)}>
-                                                <div className="item-header" >
-                                                    {discussion.discussTitle}
-                                                </div>
-                                                <div className="topic-info">
-                                                    {discussion.discussDescription}
-                                                    {/* <div dangerouslySetInnerHTML={{ __html: discussion.discussDescription }} /> */}
-                                                </div>
-                                            </div>
-                                            <div className="upvote-view-container">
-                                                <div className="upvotes">
-                                                    <i class="fa-solid fa-circle-up"></i>
-                                                    <div className="no-of-upvotes">
-                                                        {discussion.upvotes}
+                        <Routes>
+                            <Route path="addQuery" element={<AddQuery />} />
+                        </Routes>
+                        {/* <Outlet/> */}
+                        <div className="topic-list-container">
+                            <div className="topic-list-content">
+                                <div>
+                                    {discussionTopic.length === 0 ? (
+                                        <p>No topics found</p>
+                                    ) : (discussionTopic.discuss.map((discussion, index) => (
+                                        <div className="topic-item-container">
+                                            <div className="topic-item">
+                                                <a href=""><img src={discussion.userId.profileImage} alt=""></img></a>
+                                                <div className="topic-title" onClick={() => handleCommentClick(index)}>
+                                                    <div className="item-header" >
+                                                        {discussion.discussTitle}
+                                                    </div>
+                                                    <div className="topic-info">
+                                                        {discussion.discussDescription}
+                                                        {/* <div dangerouslySetInnerHTML={{ __html: discussion.discussDescription }} /> */}
                                                     </div>
                                                 </div>
-                                                <div className="views">
-                                                    <i class="fa-solid fa-eye"></i>
-                                                    <div className="no-of-views">{discussion.views}</div>
+                                                <div className="upvote-view-container">
+                                                    <div className="upvotes">
+                                                        <i class="fa-solid fa-circle-up"></i>
+                                                        <div className="no-of-upvotes">
+                                                            {discussion.upvotes}
+                                                        </div>
+                                                    </div>
+                                                    <div className="views">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                        <div className="no-of-views">{discussion.views}</div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                )
-                                ))}
+                                    )
+                                    ))}
 
-                                {expandedIndex !== null && (
-                                    <SingleComment
-                                        index={expandedIndex}
-                                        discussion={discussionTopic.discuss[expandedIndex]}
-                                        setExpandedIndex={setExpandedIndex} />
-                                )}
+                                    {expandedIndex !== null && (
+                                        <SingleComment
+                                            index={expandedIndex}
+                                            discussion={discussionTopic.discuss[expandedIndex]}
+                                            setExpandedIndex={setExpandedIndex} />
+                                    )}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            {/* <div className="right-panel">
+                {/* <div className="right-panel">
 
             </div> */}
-        </div>
-</>
+            </div>
+        </>
 
     );
 };

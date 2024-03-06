@@ -10,7 +10,7 @@ function Landing() {
 
     return (
         <>
-            <Header />
+            {/* <Header /> */}
             <div className="landing">
                 <div className="analytics fade-in">
                     <div className="info-card slide-left">

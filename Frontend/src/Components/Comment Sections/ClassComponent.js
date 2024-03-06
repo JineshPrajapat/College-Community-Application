@@ -158,18 +158,19 @@ class ClassComponent extends PureComponent {
   render() {
 
     const { discussionId } = this.props;
-
+    const avatarUrl = localStorage.getItem('avatarUrl');
+    const userName = localStorage.getItem('userName')
 
     return (
       <div style={{ width: '100%' }}>
         <CommentSection
           currentUser={{
             currentUserId: "userId",
-            currentUserImg: "avatarUrl",
+            currentUserImg: avatarUrl,
             // 'https://ui-avatars.com/api/name=Riya&background=random',
             currentUserProfile:
               'https://www.linkedin.com/in/riy-nei-8879631a9/',
-            currentUserFullName: "userName"
+            currentUserFullName: userName
           }}
           commentData={this.state.commentData}
           onSubmitAction={(data) => this.onSubmitAction(data, discussionId)}

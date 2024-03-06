@@ -12,7 +12,6 @@ import Header from '../Header/Header';
 const Opportunity = () => {
     return (
         <>
-        <Header/>
         <div className='opportunity'>
             <h1>Oppotunity</h1>
 

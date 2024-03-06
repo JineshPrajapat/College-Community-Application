@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import baseURL from "../../api/api";
+import { useAuth } from "../../AuthProvider/AuthProvider";
 import { Link, useNavigate } from 'react-router-dom';
 import '../SignUp/SignUp.scss';
 import FlashMessage from "../FlashMessage/FlashMessage";
@@ -11,6 +12,7 @@ import ForgetPassword from '../ForgetPassword/ForgetPassword';
 function Login() {
 
     const navigate = useNavigate();                                //initialize useNavigate
+    const {setIsLoggedIn} = useAuth();
     const [flashMessage, setFlashMessage] = useState(null);
     const [showForgetPassword, setShowForgetPassword] = useState(false);
 
@@ -45,9 +47,9 @@ function Login() {
                 if (response.status === 200) {
                     const token = response.data.token;    
                     // const userId = response.data.user._id;
-                    const userName = response.data.user.profileDetails.fullName; 
-                    const avatarUrl = response.data.user.profileDetails.profileImage;
-                    const userProfession = response.data.user.profileDetails.profession;                 // Extract token from response
+                    const userName = response.data.user.username; 
+                    const avatarUrl = response.data.user.profileImage;
+                    const userProfession = response.data.user.profileDetails.profession;  
                     // localStorage.setItem('userId', userId);
                     localStorage.setItem('token', token);      
                     localStorage.setItem('userName', userName);              // Store token in local storage
@@ -58,7 +60,8 @@ function Login() {
                     console.log(token);
                     // console.log("userId", userId);
                     setFlashMessage({ type: 'success', message: 'Login successful.' });
-                    navigate('/careerprephub')
+                    setIsLoggedIn(true);
+                    navigate('/')
                 }
             })
             .catch(error => {

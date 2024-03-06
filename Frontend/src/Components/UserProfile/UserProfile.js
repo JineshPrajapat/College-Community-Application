@@ -47,7 +47,6 @@ function UserProfile() {
   return (
 
     <>
-      <Header />
       <div className="top-cover">
         <div className="profile-box">
           {/* profile landing */}
@@ -80,9 +79,9 @@ function UserProfile() {
           {/* nav-bar */}
           <div className="nav-tabs">
             <ul className="tab-list">
-              {/* <li className="nav-item" >
-              <Link exact to="/" className="nav-link" id="home-tab" activeClassName="active">Home</Link>
-            </li> */}
+              <li className="nav-item" >
+              <Link to="./" className="nav-link" id="home-tab" activeClassName="active">Home</Link>
+            </li>
               {/* <li className="nav-item">
               <Link to="./Profile" className="nav-link" id="profile-tab" activeClassName="active">Profile</Link>
             </li> */}
@@ -108,14 +107,13 @@ function UserProfile() {
           <div className="tab-content">
             {/* <Home/> */}
             <Routes>
-              {/* <Route path="/" element={<Home/>} /> */}
+              <Route path="/*" element={<Home userData={userData} />} />
               <Route path="Contact" element={<Contact />} />
-
               <Route path="Achievement/*" element={<Achievement />} />
-              <Route path="Setting" element={<UserProfileSettings />} />
+              {/* <Route path="Setting" element={<UserProfileSettings />} /> */}
               <Route path="Update" element={<UpdateProfileSettings />} />
             </Routes>
-            <Home userData={userData} />
+            {/* <Home userData={userData} /> */}
 
             {/* <Route path="Profile" element={<Profile/>} /> */}
             {/* <Route path="Resume" element={<Resume/>} /> */}

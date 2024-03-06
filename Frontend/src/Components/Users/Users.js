@@ -258,7 +258,7 @@ const Users = () => {
     // fetching data
     const [usersData, setUsersData] = useState([]);
     useState(() => {
-        fetchData(`${baseURL}/userinfo`, setUsersData);
+        fetchData(`${baseURL}/allusers`, setUsersData);
     }, []);
 
     console.log("usersData", usersData);
@@ -301,7 +301,6 @@ const Users = () => {
 
     return (
         <>
-            <Header />
             <div className="user-list">
                 {/* Filter options */}
                 {/* <div className="filter-section">
@@ -383,8 +382,8 @@ const Users = () => {
 
                 {/* User cards */}
                 <div className="user-cards">
-                    {usersData && Array.isArray(usersData.Data) ? (
-                        usersData?.Data?.map(user => (
+                    {usersData && Array.isArray(usersData.allUsersWithProfiles) ? (
+                        usersData?.allUsersWithProfiles?.map(user => (
                         <Link to="/UserProfile/*">        
                             <div className="user-card" key={user?.id}
                             >
