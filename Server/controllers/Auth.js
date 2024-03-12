@@ -154,33 +154,33 @@ exports.signUp = async (req, res) => {
             profileImage: `https://api.dicebear.com/5.x/initials/svg?seed=${username}`,
         });
 
-        // // creating token 
-        // const token = jwt.sign(payload, process.env.JWT_SECRET, {
-        //     expiresIn: "2h",
-        // });
+        // creating token 
+        const payload = {
+            email: user.email,
+            id: user._id,
+            accountType: user.accountType,
+            profileImage:user.profileImage,
+        };
 
-        // user.token = token;
-        // user.password = undefined;
-
-        // const options = {
-        //     expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
-        //     httpOnly:true,
-        // };
-
-        // return successfull repsonse with token
-        return res.status(200).json({
-            success: true, 
-            message: "User is registered Successfully.",
-        
-            user,
+        const token = jwt.sign(payload, process.env.JWT_SECRET, {
+            expiresIn: "2h",
         });
 
-        // // return successfull response
-        // return res.status(200).json({
-        //     success: true,
-        //     user,
-        //     token,
-        // });
+        user.token = token;
+        user.password = undefined;
+
+        const options = {
+            expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+            httpOnly:true,
+        };
+
+        // create cookie and send respond
+        res.cookie("token", token, options).status(200).json({
+            success: true, 
+            token,
+            user,
+            message: "User is registered Successfully.",
+        });
 
     } catch (err) {
         console.log(err);

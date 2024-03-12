@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './Notes.scss'; // Import your SCSS file
 
+import Header from '../Header/Header';
+
 const Notes = () => {
     const [selectedBranch, setSelectedBranch] = useState('');
     const [selectedSubject, setSelectedSubject] = useState('');
@@ -66,6 +68,8 @@ const Notes = () => {
                     </div>
                 )}
             </div>
+                            
+
         </div>
 
     );

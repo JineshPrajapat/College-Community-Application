@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const CollegeSchema = new mongoose.Schema({
     name: {
         type: String,
-        enum: ["College of Technology And Engineering", " ", " "],
+        enum: ["College of Technology And Engineering"],
         default:"College of Technology And Engineering",
         
     },

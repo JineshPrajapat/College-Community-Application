@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Navigate,Routes, Route, useNavigate } from 'react-router-dom';
+import { Link,Routes, Route, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import baseURL from '../../api/api';
 import { useSignUp } from '../../AuthProvider/SignUpProvider';
@@ -87,8 +87,10 @@ function SignUp() {
                 if (response.status === 200) {
                     //  successful registration flash message
                     setFlashMessage({ type: 'success', message: 'Registred Successfull' });
+                    const token = response.data.token;
+                    localStorage.setItem('token', token); 
+                    console.log("signup",token);
                     setIsSignedUp(true);
-                    // navigate("/discuss");
                     navigate("/UserForm");
                 }
             })

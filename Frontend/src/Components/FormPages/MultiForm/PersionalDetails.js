@@ -56,7 +56,7 @@ export const PersionalDetails = ({ handleFormSubmit }) => {
                 {
                     console.log("Personal Details updated Succesfully");
                     // call handle formsubmit function to call other form
-                    //  handleFromSubmit();
+                    handleFormSubmit();
                     
                 }
             })
@@ -69,9 +69,6 @@ export const PersionalDetails = ({ handleFormSubmit }) => {
                     console.log("Unable to update profile");
                 }
             })
-
-        handleFormSubmit();                         // Call the function passed from the parent
-        console.log('Form submitted!');
 
     };
 

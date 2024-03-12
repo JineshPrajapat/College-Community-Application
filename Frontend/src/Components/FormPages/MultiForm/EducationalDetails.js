@@ -43,7 +43,7 @@ export const EducationalDetails = ({ handleFormSubmit }) => {
         e.preventDefault();
 
         const token = localStorage.getItem("token");
-
+        console.log("token", token);
         const formData = new FormData();
         formData.append('collegeName', formValue.collegeName);
         formData.append('courseName', formValue.courseName);
@@ -64,7 +64,7 @@ export const EducationalDetails = ({ handleFormSubmit }) => {
                     if (response.status === 200) {
                         console.log("Information submitted successfully");
                         // call handleFormsubmit to call next form on successful submition
-                        // handleFormSubmit();    
+                        handleFormSubmit();    
                     }
                 })
                 .catch(error => {
@@ -88,11 +88,6 @@ export const EducationalDetails = ({ handleFormSubmit }) => {
         catch (error) {
             console.error('Network or request error:', error);
         }
-
-
-        console.log('Form submitted!');
-        handleFormSubmit();                         // Call the function passed from the parent
-
     };
 
     return (

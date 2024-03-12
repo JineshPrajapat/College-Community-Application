@@ -1,10 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
+import {useNavigate} from 'react-router-dom';
 
 import axios from 'axios';
 import baseURL from '../../../api/api';
 
 export const AdditionalDetails = () => {
+
+    const navigate = useNavigate();
 
     const [formValue, setFormValue] = useState({
         about: '',
@@ -67,6 +70,8 @@ export const AdditionalDetails = () => {
 
                     if (response.status === 200) {
                         console.log("Additional Details Updated Successfully!");
+                        navigate('/Login');
+                        
                     }
                 })
                 .catch(error => {
@@ -100,7 +105,13 @@ export const AdditionalDetails = () => {
                     accept='.jpg, .jpeg, .png'
                     onChange={handleFileChange} />
 
-                <textarea name='about' placeholder='about' />
+                <textarea 
+                    name='about' 
+                    placeholder='about' 
+                    id='about_field'
+                    value={formValue.about}
+                    onChange={handleChange}
+                />
                 <input
                     type='text'
                     placeholder='Position'

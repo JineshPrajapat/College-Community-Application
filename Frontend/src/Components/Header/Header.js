@@ -30,7 +30,6 @@ function Header() {
                               {/* </div> */}
                         </div>
                         <div className="header-content__navbar" id='navbar'>
-                              {/* <li><Link to="/">Home</Link></li> */}
                               <li><Link to="/Users">Users</Link></li>
                               <li><Link to="/Questions">Questions</Link></li>
                               <li><Link to="/Opportunity">Opportunity</Link></li>
@@ -39,9 +38,37 @@ function Header() {
                               <li><Link to="/PlacementStats">PlacementStats</Link></li>
                               <li><Link to="/UserProfile/*">Profile</Link></li>
                               <li><LogOutButton/></li>
-                              
                         </div>
+
+                        {/* <div className=' bg-white'>
+                              <div className=' pt-2 flex '>
+                                    <div className=''>
+                                          <div className=''><i className='fa fa-bars' /></div>
+                                          <div className=' text-xs'>Home</div>
+                                    </div>
+                                    <div className=''>
+                                          <div className=''><i className='fa fa-bars' /></div>
+                                          <div className=' text-xs'>Questions</div>
+                                    </div>
+                                    <div className=''>
+                                          <div className=''><i className='fa fa-bars' /></div>
+                                          <div className=' text-xs'>Network</div>
+                                    </div>
+                                    <div className=''>
+                                          <div className=''><i className='fa fa-bars' /></div>
+                                          <div className=' text-xs'>Discuss</div>
+                                    </div>
+                                    <div className=''>
+                                          <div className=''><i className='fa fa-bars' /></div>
+                                          <div className='text-xs'>More</div>
+                                    </div>
+                              </div>
+                        </div> */}
                   </header>
+
+                  {/* <header>
+
+                  </header> */}
             </>
       )
 }

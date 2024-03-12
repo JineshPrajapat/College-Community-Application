@@ -45,28 +45,15 @@ function App() {
   const { isLoggedIn } = useAuth();
   const { isSignedUp } = useSignUp();
 
-  // function PrivateRoute() {
-  //   const { isSignedUp } = useSignUp();
-  //   console.log("isSignedUp", isSignedUp)
-  
-  //   // If isSignedUp is true, render the MultiForm component
-  //   // Otherwise, render the UnauthorizedAccess component
-  //   return !isSignedUp ? <MultiForm /> : <UnauthorizedAccess />;
-  // }
-
-
   return (
     <div className="App">
 
-      {/* <AuthProvider> */}
       {!isLoggedIn ? (
         <Routes >
           <Route path="/" element={<CoverPage />} />
           <Route path="Signup/*" element={<SignUp />} />
           <Route path="Login/*" element={<Login />} />
           <Route path="*" element={<UnauthorizedAccess />} />
-          {/* <Route path="/UserForm" element={<MultiForm />} /> */}
-          {/* <Route path="/UserForm" element={<PrivateRoute />} /> */}
           {isSignedUp ? (
             <Route path="/UserForm" element={<MultiForm />} />
           ) : (<Route path="*" element={<UnauthorizedAccess />} />)}
@@ -94,9 +81,7 @@ function App() {
         </>
 
       )}
-
-      {/* </AuthProvider> */}
-
+      
     </div>
   );
 }
