@@ -27,7 +27,9 @@ import ForgetPassword from "./Components/ForgetPassword/ForgetPassword";
 import UpdateProfileSettings from "./Components/UserProfile/UpdateProfileSettings/UpdateProfileSettings";
 import UserProfileSettings from "./Components/UserProfile/UserProfileSettings/UserProfileSettings";
 import Footer from "./Components/Footer/Footer";
-import Header from "./Components/Header/Header";
+import { Header } from "./Components/Header/Header";
+import { SlideIn } from "./Components/SlideIn/SlideIn";
+import FloatingButton from "./Components/FloatingButton/FloatingButton"
 import CoverPage from "./Components/CoverPage/CoverPage";
 import Subscribe from "./Components/Subscribe/Subscribe";
 import MultiForm from "./Components/FormPages/MultiForm/MultiForm";
@@ -62,26 +64,35 @@ function App() {
       ) : (
         <>
           <Header />
-          <Routes >
-            <Route path="/" element={<Landing />} />
-            <Route path="Users" element={<Users />} />
-            <Route path="Questions/*" element={<Question />} />
-            <Route path="Opportunity/*" element={<Opportunity />} />
-            <Route path="Experience/*" element={<Experience />} />
-            <Route path="Discuss/*" element={<Discuss />} />
-            <Route path="PlacementStats" element={<Placement />} />
-            <Route path="UserProfile/*" element={<UserProfile />} />
-            {/* <Route path="profile*" element={<Home />} /> */}
-            <Route path="ForgetPassword" element={<ForgetPassword />} />
-            {/* <Route path="UserDetail" element={<UserProfileSettings />} /> */}
-            <Route path="update-password/:id" element={<UpdatePassword />} />
-          </Routes>
-          <Subscribe />
-          <Footer />
+          <div className="flex flex-row gap-3">
+            <NavBar />
+            <div className=" pt-12 sm:pt-16 sm:pl-16 min-h-screen w-full  bg=blue-100">
+              <FloatingButton />
+              <Routes >
+                <Route path="/" element={<Landing />} />
+                <Route path="Users" element={<Users />} />
+                <Route path="Questions/*" element={<Question />} />
+                <Route path="Opportunity/*" element={<Opportunity />} />
+                <Route path="Experience/*" element={<Experience />} />
+                <Route path="Discuss/*" element={<Discuss />} />
+                <Route path="Discuss/addQuery" element={<AddQuery />} />          {/* new added line fo addQuery */}
+
+                <Route path="PlacementStats" element={<Placement />} />
+                <Route path="UserProfile/*" element={<UserProfile />} />
+                {/* <Route path="profile*" element={<Home />} /> */}
+                <Route path="/SlideIn" element={<SlideIn />} />
+                <Route path="ForgetPassword" element={<ForgetPassword />} />
+                {/* <Route path="UserDetail" element={<UserProfileSettings />} /> */}
+                <Route path="update-password/:id" element={<UpdatePassword />} />
+              </Routes>
+            </div>
+          </div>
+          {/* <Subscribe /> */}
+          {/* <Footer /> */}
         </>
 
       )}
-      
+
     </div>
   );
 }

@@ -12,12 +12,12 @@ const Question = () => {
     return (
         <>
         < div className="question">
-            <h1>Placement Questions</h1>
+            <h1 className='fixed pb-2'>Placement Questions</h1>
 
-            <div className="head-tabs">
+            {/* <div className="head-tabs">
                 <SearchingForm />
                 <Link to="./AddQuestions" className='addquestions' >Add Questions</Link>
-            </div>
+            </div> */}
 
             <Routes>
                 <Route path="/" element={<QuestionDetails />} />

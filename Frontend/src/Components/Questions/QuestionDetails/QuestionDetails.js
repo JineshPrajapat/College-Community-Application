@@ -45,7 +45,7 @@ function QuestionDetails() {
     };
 
     return (
-        <div className="question-table-container">
+        <div className="question-table-container pb-4">
             <table className="question-table">
                 <thead>
                     <tr>

@@ -25,6 +25,11 @@ const Home = ({ userData }) => {
     return <li>{skill}</li>;
   });
 
+  const languagesList  = userData?.Data?.profileDetails?.languages.map((language) =>{
+    return <li>{language}</li>
+  })
+
+
   return (
     <div className="tab-pane">
       <div className="row-division">
@@ -113,7 +118,8 @@ const Home = ({ userData }) => {
                   </tr>
                   <tr>
                     <th>Languages</th>
-                    <td>{userData?.Data?.profileDetails?.languages}</td>
+                    {/* <td>{userData?.Data?.profileDetails?.languages}</td> */}
+                    <td><ul className=' flex gap-2'>{languagesList}</ul></td>
                   </tr>
                 </tbody>
               </table>

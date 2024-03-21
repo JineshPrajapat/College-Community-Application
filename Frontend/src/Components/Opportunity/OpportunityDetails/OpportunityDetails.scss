@@ -4,12 +4,11 @@
     justify-content: space-around;
     margin-bottom: 2rem;
     margin-top: 2rem;
-    row-gap: 12px;
-    column-gap: 2px;
+    // row-gap: 12px;
+    column-gap: 5px;
 
     .opportunity-card{
-        width: 240px;
-        background-color: #f4f4f4;
+        width: max-content;
         text-align: center;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         border-radius: 8px;
@@ -25,7 +24,8 @@
             font-size: 24px;
             font-weight: bold;
             // margin-bottom: 10px;
-            height:200px;
+            background: #0073ff;
+            color: white;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -34,14 +34,32 @@
             border-right: 1px solid #23dfb0;
             border-top-right-radius: 8px;
             border-top-left-radius: 8px;
+
+            @media screen  and (max-width:390px){
+                font-size: 14px;
+                padding-top: 13px;
+                padding-bottom: 13px;
+                padding-bottom: 13px;
+                background: #0073ff;
+                color: white;
+            }
+
+            @media screen  and (min-width:390px){
+                height: 200px;
+            }
         }
     
         .details{
-            // margin-top: 5px;
+            margin-top: 4px;
+            width:348px;
             text-align: left;
-            padding: 2rem;
-            background: linear-gradient(180deg, #23dfd0, transparent);
+            padding: 1rem 2rem;
+            background: linear-gradient(180deg, #ffffff, transparent);
+            transition: all 0.3s ease-in;
 
+            &:hover{
+                margin-top: 0;
+            }
             div{
                 font-weight: bold;
             }

@@ -22,6 +22,9 @@ import landingImg5 from '../assets/stock/landingImg5.jpg'
 // import logo from '../assets/stock/logo.png';
 import logob from '../assets/stock/logob.png';
 import logo12 from '../assets/logo12.png';
+import mainLogo1 from '../assets/logo/mainLogo1.png';
+import mainLogo2 from '../assets/logo/mainLogo2.png';
+import mainLogo3 from '../assets/logo/mainLogo3.png';
 export default {
     email,
     password,
@@ -46,7 +49,10 @@ export default {
     landingImg5,
     // logo,
     logob,
-    logo12
+    logo12,
+    mainLogo1,
+    mainLogo2,
+    mainLogo3
 };
 
 // export default images

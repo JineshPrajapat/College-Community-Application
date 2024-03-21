@@ -16,8 +16,8 @@ const Opportunity = () => {
             <h1>Oppotunity</h1>
 
             <div className="head-tabs">
-                <SearchingForm />
-                <Link to="./AddOpportunity" className='addopportunity' >Add Opportunity</Link>
+                {/* <SearchingForm /> */}
+                {/* <Link to="./AddOpportunity" className='addopportunity' >Add Opportunity</Link> */}
             </div>
 
             <Routes>

@@ -12,6 +12,10 @@
 
     .comment-block {
         // height: 100vh;
+        width: 80%;
+        @media screen and (max-width:600px) {
+            width: 100%;
+        }
         .comments {
             background-color: white;
             max-height: 100%;
@@ -19,9 +23,13 @@
             overflow: hidden;
             overflow-y: auto;
             width: 100%;
-            padding: 50px;
+            padding: 30px;
             border-radius: 8px;
             position: relative;
+
+            @media screen and (max-width: 600px) {
+                padding: 1rem 0.7rem;
+            }
 
             .comment-content {
                 .close {
@@ -32,32 +40,50 @@
                 }
 
                 .Profile {
-                    border-radius: 50%;
-                    object-fit: cover;
                     display: flex;
                     align-items: center;
                     padding: 5px;
                     gap: 15px;
+                    padding-bottom: 2rem;
+                    // border-bottom: 1px solid rgb(233, 230, 230);
+
+                    a {
+                        width: 80px;
+                        height: 80px;
+
+                        @media screen and (max-width: 600px) {
+                            width: 50px;
+                            height: 50px;
+                        }
+                    }
 
                     img {
                         border-radius: 50%;
                         object-fit: cover;
-                        width: 100px;
-                        height: 100px;
+                        width: 100%;
+                        height: 100%;
                     }
-                    .info {
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-start;
-                        color: brown;
-                        padding-right: 50px;
+                }
+
+                .info {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    color: rgb(0, 0, 0);
+                    font-size: 18px;
+                    margin-top: 2rem;
+                    // padding-right: 50px;
+
+                    @media screen and (max-width: 600px) {
+                        font-size: 14px;
+                        font-weight: 600;
                     }
                 }
 
                 .comment-details {
-                    margin-top: 20px;
+                    // margin-top: 20px;
                     text-align: left;
-                    font-size: 20px;
+                    font-size: 12px;
                     color: #3e525b;
                 }
             }
@@ -78,7 +104,7 @@
                         text-align: left;
                         background-color: rgb(229 229 229 / 28%);
                     }
-                
+
                     .comment-form {
                         margin: 30px;
                         position: relative;
@@ -96,21 +122,21 @@
                             height: 5vh;
                             border: none;
                             position: absolute;
-                            bottom: 9px; 
-                            right: 0; 
+                            bottom: 9px;
+                            right: 0;
                             background: linear-gradient(215deg, #09acf7, #33464f);
                             color: #fafafa;
                             cursor: pointer;
                         }
                     }
 
-                    .reactions-container{
+                    .reactions-container {
                         margin-top: 20px;
 
-                        .reactions{
+                        .reactions {
                             margin-bottom: 15px;
 
-                            .profile-info{
+                            .profile-info {
                                 border-radius: 50%;
                                 object-fit: cover;
                                 display: flex;
@@ -126,14 +152,14 @@
                                 }
 
                                 .username,
-                                .last-updated{
+                                .last-updated {
                                     font-size: 1rem;
                                     font-weight: 400;
                                     color: #858d91;
                                 }
                             }
 
-                            .reaction-description{
+                            .reaction-description {
                                 font-size: 1.1rem;
                                 font-weight: 450;
                                 color: #3e525b;
@@ -144,6 +170,47 @@
                     }
                 }
             }
+        }
+    }
+}
+
+// classComponent scss
+
+.example-div {
+    .example-row {
+        div {
+            .overlay {
+                padding: 0;
+
+                .comment-title {
+                    font-size: 1rem;
+                    background: #f4f4f4;
+                    // border-bottom: 1px solid lightgrey;
+                    border-top: 1px solid lightgrey;
+                }
+            }
+
+            div{
+                .form{
+                    padding: 16px;
+
+                    .userImg{
+                        a{
+                            .imgdefault{
+                                width: 38px;
+                                height: auto;
+                                border-radius: 50%;
+                            }
+                        }
+                    }
+
+                    .postBtn{
+                        padding: 5px 10px ;
+                    }
+                }
+            }
+
+
         }
     }
 }

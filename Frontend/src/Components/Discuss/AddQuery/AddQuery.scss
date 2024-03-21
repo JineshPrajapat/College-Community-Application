@@ -19,6 +19,12 @@
                     padding: 4px;
                     border-radius: 4px;
                     border: 2px solid rgb(168, 167, 167);
+
+                    @media screen and (max-width:600px) {
+                        height: 38px;
+                        font-size: 14px;
+                        width: 55%;
+                    }
                 }
 
                 .btn-post {

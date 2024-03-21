@@ -141,7 +141,7 @@ function Discuss() {
                     <div className="full-wrapper">
                         <div className="header">
                             <div className="subheader">
-                                <div className="subheader-left">
+                                <div className="subheader-left whitespace-nowrap">
                                     <label>Hot</label>
                                     <label>Newest to Oldest</label>
                                     <label>Most Votes</label>
@@ -163,7 +163,7 @@ function Discuss() {
                             </div>
                         </div>
                         <Routes>
-                            <Route path="addQuery" element={<AddQuery />} />
+                            {/* <Route path="addQuery" element={<AddQuery />} /> */}
                         </Routes>
                         {/* <Outlet/> */}
                         <div className="topic-list-container">
@@ -174,26 +174,26 @@ function Discuss() {
                                     ) : (discussionTopic.discuss.map((discussion, index) => (
                                         <div className="topic-item-container">
                                             <div className="topic-item">
-                                                <a href=""><img src={discussion.userId.profileImage} alt=""></img></a>
+                                                <a href=""><img src={discussion.userId.profileImage} alt="" /></a>
                                                 <div className="topic-title" onClick={() => handleCommentClick(index)}>
                                                     <div className="item-header" >
                                                         {discussion.discussTitle}
                                                     </div>
                                                     <div className="topic-info">
-                                                        {discussion.discussDescription}
-                                                        {/* <div dangerouslySetInnerHTML={{ __html: discussion.discussDescription }} /> */}
+                                                        {/* {discussion.discussDescription} */}
+                                                        <div className=" text-left" dangerouslySetInnerHTML={{ __html: discussion.discussDescription.slice(0, 40) + '...' }} />
                                                     </div>
                                                 </div>
                                                 <div className="upvote-view-container">
                                                     <div className="upvotes">
                                                         <i class="fa-solid fa-circle-up"></i>
                                                         <div className="no-of-upvotes">
-                                                            {discussion.upvotes}
+                                                            {discussion?.upvotes}12k
                                                         </div>
                                                     </div>
                                                     <div className="views">
                                                         <i class="fa-solid fa-eye"></i>
-                                                        <div className="no-of-views">{discussion.views}</div>
+                                                        <div className="no-of-views">{discussion.views}80k</div>
                                                     </div>
                                                 </div>
                                             </div>

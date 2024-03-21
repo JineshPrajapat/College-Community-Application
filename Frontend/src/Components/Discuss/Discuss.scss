@@ -4,7 +4,12 @@
     margin-right: auto;
     margin-left: auto;
     display: flex;
-    background-color: #f1f1f1;;
+    background-color: #f1f1f1;
+    height: 100vh;
+
+    @media screen and (max-width: 600px) {
+        padding: 0;
+    }
 
     .left-panel {
         min-height: 600px;
@@ -18,16 +23,24 @@
         flex: 1;
         min-width: 0px;
 
+        @media screen and (max-width: 600px) {
+            padding: 0;
+        }
+
         .header {
-            border-bottom: 1px solid #eeeeee;
+            border-bottom: 2px solid #eeeeee;
 
             .subheader {
                 background: #fafafa;
-                padding: 0 20px;
+                // padding: 0 20px;
                 height: 40px;
                 align-items: center;
                 display: flex;
                 justify-content: space-between;
+
+                @media screen and (max-width: 600px) {
+                    padding: 0 5px;
+                }
 
                 .subheader-left {
                     display: flex;
@@ -46,15 +59,23 @@
                         transition: all 0.18s ease-in-out 0s;
                         outline: 0px;
                         padding: 0px 12px;
+
+                        @media screen and (max-width: 600px) {
+                            // padding-right: 10px;
+                            padding-left: 0;
+                        }
                     }
+
+                    
                 }
-                .subheader-search-input{
+
+                .subheader-search-input {
                     width: 175px;
                     margin-right: 5px;
                     display: inline-block;
                     position: relative;
 
-                    .input{
+                    .input {
                         padding: 4.3px 8px;
                         font-size: 12px;
                         width: 100%;
@@ -67,75 +88,92 @@
                         transition: 0.4s all;
                     }
                 }
-                .subheader-search-button{
+                .subheader-search-button {
                     background: linear-gradient(215deg, #09acf7, #33464f);
                     color: #fafafa;
                     border-radius: 2px;
                     border: 0;
                     text-decoration: none;
                     cursor: pointer;
-                    .btn-content-container{
+                    .btn-content-container {
                         display: flex;
                         justify-content: center;
                         align-items: center;
                         padding: 3px;
 
-                        i{
+                        @media screen and (max-width: 600px) {
+                            font-size: 12px;
+                        }
+
+                        i {
                             width: 14px;
                             height: 14px;
                             display: flex;
                             align-items: center;
                             fill: currentColor;
+                            padding-left: 2px;
                         }
                     }
                 }
             }
         }
 
-        .topic-list-container{
+        .topic-list-container {
             display: flex;
-            flex: 1 0 auto; 
+            flex: 1 0 auto;
             flex-direction: column;
 
-            .topic-list-content{
-                position:relative;
+            .topic-list-content {
+                position: relative;
 
-                div{
+                div {
                     box-sizing: border-box;
 
-                    .topic-item-container{
+                    .topic-item-container {
                         border-bottom: 1px solid #eeeeee;
 
-                        &:hover{
+                        &:hover {
                             background-color: #eef0f0;
                         }
 
-                        .topic-item{
+                        .topic-item {
                             display: flex;
                             flex-direction: row;
                             height: 80px;
                             align-items: center;
                             justify-content: flex-start;
 
-                            a{
+                            a {
                                 color: #9e9e9e;
                                 font-size: 12px;
+                                width: 40px;
+                                height: 40px;
+                                margin-left: 15px;
+                                margin-right: 20px;
 
-                                img{
-                                    width: 40px;
-                                    height: 40px;
+                                img {
+                                    width: 100%;
+                                    height: 100%;
                                     border-radius: 50%;
-                                    margin-left: 15px;
-                                    margin-right: 20px;
+                                }
+
+                                @media screen and (max-width: 600px) {
+                                    width: 20px;
+                                    height: 20px;
+                                    margin-right: 15px;
                                 }
                             }
 
-                            .topic-title{
+                            @media screen and (max-width: 600px) {
+                                height: 55px;
+                            }
+
+                            .topic-title {
                                 flex: 1;
                                 min-width: 0;
                                 cursor: pointer;
 
-                                .item-header{
+                                .item-header {
                                     display: flex;
                                     align-items: center;
                                     margin-bottom: 4px;
@@ -143,11 +181,11 @@
 
                                     @media screen and (max-width: 600px) {
                                         font-size: 11px;
-                                      }
-                                    
+                                        margin-bottom: 0;
+                                    }
                                 }
 
-                                .topic-info{
+                                .topic-info {
                                     color: #9e9e9e;
                                     font-size: 12px;
                                     white-space: nowrap;
@@ -156,16 +194,16 @@
                                 }
                             }
 
-                            .upvote-view-container{
+                            .upvote-view-container {
                                 display: flex;
 
                                 .upvotes,
-                                .views{
+                                .views {
                                     margin-left: 20px;
                                     display: flex;
                                     align-items: center;
 
-                                    i{
+                                    i {
                                         color: #bdbaba;
                                         width: 18px;
                                         height: 18px;
@@ -174,9 +212,25 @@
                                     }
 
                                     .no-of-upvotes,
-                                    .no-of-views{
+                                    .no-of-views {
                                         color: #455a64;
                                         width: 70px;
+                                    }
+
+                                    @media screen and (max-width: 600px) {
+                                        display: block;
+                                        margin-left: 0;
+
+                                        i {
+                                            margin-right: 0px;
+                                        }
+
+                                        .no-of-upvotes,
+                                        .no-of-views {
+                                            color: #455a64;
+                                            width: 40px;
+                                            font-size: 0.5rem;
+                                        }
                                     }
                                 }
                             }

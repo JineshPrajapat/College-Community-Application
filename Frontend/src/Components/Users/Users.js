@@ -6,6 +6,8 @@ import './Users.scss';
 import { images } from '../../constants'
 import Header from '../Header/Header';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+
 // Sample user data
 // const usersData = [
 //     {
@@ -383,44 +385,47 @@ const Users = () => {
                 {/* User cards */}
                 <div className="user-cards">
                     {usersData && Array.isArray(usersData.allUsersWithProfiles) ? (
-                        usersData?.allUsersWithProfiles?.map(user => (
-                        <Link to="/UserProfile/*">        
-                            <div className="user-card" key={user?.id}
-                            >
+                        usersData?.allUsersWithProfiles?.map((user, index) => (
+                            <Link to="/UserProfile/*">
+                                <motion.div className="user-card" key={user?.id}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ duration: 0.5, delay: 0.5*index }}
+                                >
 
-                                <div className="user-profileImage">
-                                    <img src={`${user?.profileImage ? user?.profileImage : images.user}`} alt={user?.profileDetails.fullName} />
-                                    <div className="passing-year">{user.passOutYear}</div>
-                                </div>
+                                    <div className="user-photo">
+                                        <img src={`${user?.profileImage ? user?.profileImage : images.user}`} alt={user?.profileDetails.fullName} />
+                                        <div className="passing-year">{user.passOutYear}</div>
+                                    </div>
 
-                                <div className="user-details">
-                                    <div className="user-name">{user?.profileDetails?.fullName}</div>
-                                    <div className="user-branch">{user?.selectedBranch}</div>
-                                    <div className="user-specialty">{user?.profileDetails?.position}</div>
-                                    <div className="user-links">
+                                    <div className="user-details">
+                                        <div className="user-name">{user?.profileDetails?.fullName}</div>
+                                        <div className="user-branch">{user?.selectedBranch}</div>
+                                        <div className="user-specialty">{user?.profileDetails?.position}</div>
+                                        <div className="user-links">
 
-                                        {user?.profileDetails?.links?.map((link, index) => (
-                                            <li key={index}>
-                                                {link.type === "LinkedIn" && (
-                                                    <a href={link.url}><i className="fab fa-linkedin-in" /></a>
-                                                )}
+                                            {user?.profileDetails?.links?.map((link, index) => (
+                                                <li key={index}>
+                                                    {link.type === "LinkedIn" && (
+                                                        <a href={link.url}><i className="fab fa-linkedin-in" /></a>
+                                                    )}
 
-                                                {link.type === "GitHub" && (
-                                                    <a href={link.url}><i className="fa-brands fa-github" /></a>
-                                                )}
+                                                    {link.type === "GitHub" && (
+                                                        <a href={link.url}><i className="fa-brands fa-github" /></a>
+                                                    )}
 
-                                                {link.type === "Twitter" && (
-                                                    <a href={link.url}><i className="fab fa-twitter" /></a>
-                                                )}
+                                                    {link.type === "Twitter" && (
+                                                        <a href={link.url}><i className="fab fa-twitter" /></a>
+                                                    )}
 
-                                                {link.type === "YouTube" && (
-                                                    <a href={link.url}><i className="fab fa-youtube" /></a>
-                                                )}
+                                                    {link.type === "YouTube" && (
+                                                        <a href={link.url}><i className="fab fa-youtube" /></a>
+                                                    )}
 
-                                            </li>
-                                        ))}
+                                                </li>
+                                            ))}
 
-                                        {/* <a href={user.linkedin} target="_blank" rel="noopener noreferrer">
+                                            {/* <a href={user.linkedin} target="_blank" rel="noopener noreferrer">
                                     <i className="fab fa-linkedin"></i>
                                 </a>
                                 <a href={user.github} target="_blank" rel="noopener noreferrer">
@@ -429,10 +434,10 @@ const Users = () => {
                                 <a href={user.twitter} target="_blank" rel="noopener noreferrer">
                                     <i className="fab fa-twitter"></i>
                                 </a> */}
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </Link>
+                                </motion.div>
+                            </Link>
                         ))
                     ) : usersData?.Data ? (
                         <Link to="/UserProfile/*" className='no-underline '>
@@ -484,7 +489,7 @@ const Users = () => {
                                 </div>
                             </div>
                         </Link>
-                    ):(
+                    ) : (
                         <p>No data available</p>
                     )}
                 </div>

@@ -24,16 +24,17 @@
         font-weight: 900;
 
         @media screen and (max-width: 768px){
-            font-size: 2rem;
+            font-size: 2.3rem;
         }
       }
 
       p{
-        font-size: 2.2rem;
+        font-size: 2rem;
       }
 
       @media screen and (max-width: 768px){
         flex-wrap: wrap;
+        padding: 10%;
     }
     }
   
@@ -58,7 +59,7 @@
                 content: "";
                 left:0;
                 top:0;
-                z-index: 99;
+                z-index: 19;
                 height:100%;
                 width: 150px;
                 background-image: linear-gradient(90deg, #173433, transparent);
@@ -69,7 +70,7 @@
                 content: "";
                 right:0;
                 top:0;
-                z-index: 99;
+                z-index: 19;
                 height:100%;
                 width: 150px;
                 background-image: linear-gradient(-90deg, #173433, transparent);
@@ -141,6 +142,8 @@
       justify-content: space-between;
       text-align: left;
       align-items: center;
+
+      
       
       h2{
         text-transform: uppercase;
@@ -149,6 +152,17 @@
       }
       p{
         font-size: 1.3rem;
+      }
+
+      @media screen and (max-width:390px) {
+        display: flex;
+        flex-direction: column;
+        padding: 10%;
+        gap:1rem;
+
+        h2{
+          font-size: 2rem;
+        }
       }
     }
   }

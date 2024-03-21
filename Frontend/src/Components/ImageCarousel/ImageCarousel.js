@@ -64,7 +64,7 @@ const ImageCarousel = () => {
                 <div className="cover">
                     <div className="carousel-item">
                         {imagesData.map((item, index) => (
-                            <div className={`item ${selectedImageIndex === index ? 'active' : ''}`} key={index}>
+                            <div className={`item z-10 ${selectedImageIndex === index ? 'active' : ''}`} key={index}>
                                 <img src={item.src} alt={item.info} />
                                 {/* <p className="info">{item.info}</p> */}
                             </div>

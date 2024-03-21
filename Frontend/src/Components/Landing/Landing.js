@@ -37,18 +37,6 @@ function Landing() {
                         <h3>Placement Statistics</h3>
                         <p>Know history of placement of Ctae</p>
                     </div>
-                    {/* <div className="info-card slide-left">
-                <h3>Total Revenue</h3>
-                <p>₹{totalRevenue}</p>
-            </div>
-            <div className="info-card slide-right">
-                <h3>Average Order Value</h3>
-                <p>₹{avgOrderValue.toFixed(2)}</p>
-            </div>
-            <div className="info-card zoom-in">
-                <h3>Busiest Day</h3>
-                <p>{busiestDay}</p>
-            </div> */}
                 </div>
             </div>
             <ImageCarousel />

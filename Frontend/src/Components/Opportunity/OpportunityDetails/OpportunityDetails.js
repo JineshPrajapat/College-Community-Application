@@ -4,6 +4,7 @@ import { fetchData } from '../../../FetchData/FetchData';
 import '@fortawesome/fontawesome-free/css/all.css';
 import { images } from '../../../constants'
 import './OpportunityDetails.scss';
+import { motion } from 'framer-motion';
 
 // const opportunity = [
 //     {
@@ -91,27 +92,37 @@ import './OpportunityDetails.scss';
 function OpportunityDetails() {
 
     // fetching data
-    const [opportunityList, setOpportunityList] =useState([]);
-    useState(()=>{
+    const [opportunityList, setOpportunityList] = useState([]);
+    useState(() => {
         fetchData(`${baseURL}/opportunity`, setOpportunityList);
-    },[]);
-    
+    }, []);
 
-    // console.log("opportunity", opportunityList.opportunity);
+
+    console.log("opportunity", opportunityList.opportunity);
 
     return (
-        <div className='Cards'>
+        <div className='Cards px-3 pb-3'>
             {opportunityList.opportunity && opportunityList.opportunity.map((opportunity, index) => (
-                <div className='opportunity-card' key={index}>
-                    <div className='job-role'>{opportunity.positionType}</div>
-                    <div className='details'>
-                        <div>{opportunity.company}</div>
-                        <div>{opportunity.branch}</div>
-                        <div>Eligibility:{opportunity.yearOfExperience}</div>
-                        <a href={opportunity.opportunityLink}>Apply Here</a>
-                        <div>Deadline:{opportunity.applicationDeadline}</div>
-                    </div>
-                </div>
+                <motion.div className='opportunity-card font-mono' key={index}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.5 * index }}
+                >
+                    <div className='job-role'>{opportunity.profile}</div>
+                    <motion.div className='details'
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1}}
+                        transition={{ duration: 0.8, delay: 0.5 * index }}
+                    >
+                        <div className='flex justify-between'>
+                            <div>{opportunity.company} </div>
+                            <div>{opportunity.branch} / {opportunity.positionType}</div>
+                        </div>
+                        <div>Eligibility : {opportunity.yearOfExperience}</div>
+                        <a className='' href={opportunity.opportunityLink}>Apply Here</a>
+                        <div>Deadline : {opportunity.applicationDeadline}</div>
+                    </motion.div>
+                </motion.div>
             ))}
 
         </div>

@@ -10,7 +10,7 @@ const Comment = (props) => {
   return (
     <div className='example-div'>
       {/* <div className='head-title'>Demo Examples</div> */}
-      <hr style={{ borderTop: '1px solid', width: '100%' }} />
+      {/* <hr style={{ borderTop: '1px solid', width: '100%' }} /> */}
       <div className='example-row'>
         {/* <DefaultComponent /> */}
         <ClassComponent discussionId={discussionId}/>

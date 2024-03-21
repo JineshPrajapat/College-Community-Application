@@ -33,46 +33,46 @@ function SingleComment({ index, discussion, setExpandedIndex }) {
 
     console.log(discussion);
 
-    const [formValue, setformValue] = useState({
-        commentResponse: ""
-    });
+    // const [formValue, setformValue] = useState({
+    //     commentResponse: ""
+    // });
 
-    const handleChange = (event) => {
-        setformValue({
-            ...formValue,
-            [event.target.name]: event.target.value,
-        });
-    };
+    // const handleChange = (event) => {
+    //     setformValue({
+    //         ...formValue,
+    //         [event.target.name]: event.target.value,
+    //     });
+    // };
 
-    const handleFormSubmit = (event) => {
-        if (event) {
-            axios.post(`${baseURL}/Discuss/comments/response`, {
-                commentsResponse: formValue.commentResponse
-            })
-                .then((response) => {
-                    console.log("Response:", response);
+    // const handleFormSubmit = (event) => {
+    //     if (event) {
+    //         axios.post(`${baseURL}/Discuss/comments/response`, {
+    //             commentsResponse: formValue.commentResponse
+    //         })
+    //             .then((response) => {
+    //                 console.log("Response:", response);
 
-                    if (response.status === 200) {
-                        setFlashMessage({
-                            type: "success",
-                            message: "Response added successfully!"
-                        });
-                    }
-                })
-                .catch((error) => {
-                    if (error.response) {
-                        console.error("Error:", error);
-                        setFlashMessage({
-                            type: "error",
-                            message: "Failed, try again!",
-                        });
-                    }
-                    else {
-                        console.error("Network or request error");
-                    }
-                });
-        }
-    }
+    //                 if (response.status === 200) {
+    //                     setFlashMessage({
+    //                         type: "success",
+    //                         message: "Response added successfully!"
+    //                     });
+    //                 }
+    //             })
+    //             .catch((error) => {
+    //                 if (error.response) {
+    //                     console.error("Error:", error);
+    //                     setFlashMessage({
+    //                         type: "error",
+    //                         message: "Failed, try again!",
+    //                     });
+    //                 }
+    //                 else {
+    //                     console.error("Network or request error");
+    //                 }
+    //             });
+    //     }
+    // }
     return (
         <div className="discuss-form-container">
             <div className="comment-block">
@@ -82,20 +82,20 @@ function SingleComment({ index, discussion, setExpandedIndex }) {
                             <i class="fa fa-times" aria-hidden="true"></i>
                         </span>
                         <div className='Profile'>
-                            <a href="#"><img src={discussion.userId.profileImage} alt={discussion.userId.username}></img>{discussion.userId.username}</a>
-                            <div>{discussion.userId.username}</div>
-                            
+                            <a href="#"><img src={discussion.userId.profileImage} alt={discussion.userId.username}></img></a>
+                            <div className="">{discussion.userId.username}</div>
+
                         </div>
                         <div className='info'>
-                                <div>{discussion.discussTitle}</div>
-                            </div>
+                            <div>{discussion.discussTitle}</div>
+                        </div>
                         <div className='comment-details'>
                             <div dangerouslySetInnerHTML={{ __html: discussion.discussDescription }} />
                         </div>
                     </div>
 
 
-                    <Comment discussionId={discussion._id}/>
+                    <Comment discussionId={discussion._id} />
 
                     {/* <div className="comment-box-container">
                         <div className="comments-sections">
@@ -128,8 +128,8 @@ function SingleComment({ index, discussion, setExpandedIndex }) {
                         </div>
                     </div> */}
                 </div>
-                
-                
+
+
                 {/* flash component */}
                 {flashMessage && (
                     <FlashMessage

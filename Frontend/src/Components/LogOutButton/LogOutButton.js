@@ -15,7 +15,7 @@ function LogOutButton() {
   };
 
   return (
-    <button onClick={handleLogout} className=' bg-white p-1 '>Logout</button>
+    <button onClick={handleLogout} className=' '>Logout</button>
   );
 }
 

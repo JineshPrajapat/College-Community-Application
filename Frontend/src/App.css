@@ -1,6 +1,8 @@
 .App {
   text-align: center;
   transition: 0.5s all ease-in;
+  background-color: rgb(224, 239, 255);
+  /* background-color: rgb(230, 245, 230); */
 }
 
 .App-logo {

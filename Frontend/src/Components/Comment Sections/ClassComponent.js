@@ -167,7 +167,6 @@ class ClassComponent extends PureComponent {
           currentUser={{
             currentUserId: "userId",
             currentUserImg: avatarUrl,
-            // 'https://ui-avatars.com/api/name=Riya&background=random',
             currentUserProfile:
               'https://www.linkedin.com/in/riy-nei-8879631a9/',
             currentUserFullName: userName
