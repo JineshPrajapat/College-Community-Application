@@ -48,13 +48,18 @@ function Login() {
                     const token = response.data.token;    
                     // const userId = response.data.user._id;
                     const userName = response.data.user.username; 
+                    const fullName = response.data.user.profileDetails.fullName;
                     const avatarUrl = response.data.user.profileImage;
                     const userProfession = response.data.user.profileDetails.profession;  
+                    const email = response.data.user.email;
+                    
                     // localStorage.setItem('userId', userId);
                     localStorage.setItem('token', token);      
                     localStorage.setItem('userName', userName);              // Store token in local storage
+                    localStorage.setItem('fullName', fullName);
                     localStorage.setItem('avatarUrl', avatarUrl); 
                     localStorage.setItem('userProfession', userProfession); 
+                    localStorage.setItem('email', email);
                     
                     // localStorage.setItem('userId', userId);                  
                     console.log(token);

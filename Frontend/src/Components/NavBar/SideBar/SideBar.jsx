@@ -1,7 +1,7 @@
 import { IonIcon } from '@ionic/react';
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { analyticsSharp, homeOutline, chatbubbleOutline, bookOutline, briefcaseOutline, arrowForward, shieldOutline, shieldSharp, personOutline, thumbsUpOutline, bookmarkOutline } from "ionicons/icons";
+import { analyticsSharp, homeOutline,chatboxEllipsesOutline, chatbubbleOutline, bookOutline, briefcaseOutline, arrowForward, shieldOutline, shieldSharp, personOutline, thumbsUpOutline, bookmarkOutline } from "ionicons/icons";
 
 export const SideBar = () => {
 
@@ -11,8 +11,8 @@ export const SideBar = () => {
         { name: "Questions", icon: bookOutline, path: "/Questions" },
         { name: "Discuss", icon: chatbubbleOutline, path: "/Discuss" },
         { name: "Jobs", icon: briefcaseOutline, path: "/Opportunity" },
-        { name: "Expericences", icon: shieldOutline, path: "/Experience" },
-        { name: "Saved", icon: bookmarkOutline, path: "/Bookmarked" },
+        { name: "Expericences", icon: chatboxEllipsesOutline, path: "/Experience" },
+        { name: "Saved", icon: bookmarkOutline, path: "/Notes" },
         { name: "Community", icon: thumbsUpOutline, path: "/Community" },
         { name: "Placement Statistics", icon: analyticsSharp, path: "/PlacementStats" },
     ]
@@ -32,12 +32,12 @@ export const SideBar = () => {
         <div className=''>
             <div className='sidebar px-6 py-6 h-full bg-white rounded-xl fixed top-12 sm:top-16 left-0 z-50 '>
                 <div className='sidebar-header  relative '>
-                    <a className='logo-wrapper flex gap-3 '>
+                    {/* <a className='logo-wrapper flex gap-3 '>
                         <div className=" text-[32px] " >
                             <IonIcon icon={shieldSharp} className='' />
                         </div>
-                        {/* <h2 className={`${isToggle === 0 ?"hidden" : ""}`}>LOGO</h2> */}
-                    </a>
+                        <h2 className={`${isToggle === 0 ?"hidden" : ""}`}>LOGO</h2>
+                    </a> */}
                     <button
                         className='toggle-btn cursor-pointer absolute top-2 right-[-35px]  w-7 h-7 rounded-full bg-black text-white flex items-center justify-center'
                         onClick={() => handleToggleBtn(isToggle)}

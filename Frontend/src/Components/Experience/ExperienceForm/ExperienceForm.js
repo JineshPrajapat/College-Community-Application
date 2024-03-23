@@ -47,44 +47,44 @@ function ExperienceForm() {
     if (isConfirmed) {
 
       const token = localStorage.getItem('token');
-      console.log("frontend token",token);
+      console.log("frontend token", token);
 
-      if(token){
+      if (token) {
         axios
-        .post(`${baseURL}/experience/addExperience`, {
-          experienceTitle: formValue.experienceTitle,
-          experienceDescription: formValue.experienceDescription,
-        },{
-          headers:{
-            Authorization: `Bearer ${token}`            // Include token in Authorization header
-          }
-        })
-        .then((response) => {
-          console.log("Response:", response);
+          .post(`${baseURL}/experience/addExperience`, {
+            experienceTitle: formValue.experienceTitle,
+            experienceDescription: formValue.experienceDescription,
+          }, {
+            headers: {
+              Authorization: `Bearer ${token}`            // Include token in Authorization header
+            }
+          })
+          .then((response) => {
+            console.log("Response:", response);
 
-          if (response.status === 200) {
-            setFlashMessage({
-              type: "success",
-              message:
-                "We recieved your questions, will be update in 2 working days. Happy to see you soon!",
-            });
-            navigate("/Experience")
-            
-          }
-        })
-        .catch((error) => {
-          if (error.response) {
-            console.error("Error:", error);
-            setFlashMessage({
-              type: "error",
-              message: "Reservation failed, try again!",
-            });
-          } else {
-            console.error("Network or request error");
-          }
-        });
+            if (response.status === 200) {
+              setFlashMessage({
+                type: "success",
+                message:
+                  "We recieved your questions, will be update in 2 working days. Happy to see you soon!",
+              });
+              navigate("/Experience")
+
+            }
+          })
+          .catch((error) => {
+            if (error.response) {
+              console.error("Error:", error);
+              setFlashMessage({
+                type: "error",
+                message: "Reservation failed, try again!",
+              });
+            } else {
+              console.error("Network or request error");
+            }
+          });
       }
-      else{
+      else {
         setFlashMessage({
           type: "error",
           message: "Token not generated",
@@ -100,25 +100,29 @@ function ExperienceForm() {
     >
       <div className="experience-heading">
         <h2> Uniting Experiences for Growth</h2>
-        <p>
-          "Transform your interview jitters into success stories, inspiring
-          others to navigate their career paths with confidence and resilience."
-        </p>
-        <p>
-          Contribute your invaluable insights on placement preparation and job
-          experiences, enriching our community with practical wisdom and
-          collective learning.
-        </p>
-        <p>
-          Together, let's cultivate a supportive environment where shared
-          experiences propel us all towards professional growth and foster
-          lasting connections.
-        </p>
+        <div className="sub-points">
+          <p>
+            "Transform your interview jitters into success stories, inspiring
+            others to navigate their career paths with confidence and resilience."
+          </p>
+          <p>
+            "Contribute your invaluable insights on placement preparation and job
+            experiences, enriching our community with practical wisdom and
+            collective learning."
+          </p>
+          <p>
+            "Together, let's cultivate a supportive environment where shared
+            experiences propel us all towards professional growth and foster
+            lasting connections."
+          </p>
+        </div>
       </div>
       <div className="experience-form-container">
         {/* <img src={images.garima} alt="Dal-makhani" /> */}
         <form id="experience-form" onSubmit={handleFormSubmit}>
-
+        <div className="pb-4">
+            <strong >Add Your Experience</strong>
+          </div>
           <label htmlFor="experienceTitle" aria-required="true">
             Experience Title:
             <input
@@ -131,9 +135,9 @@ function ExperienceForm() {
               required
             />
           </label>
-          <label htmlFor="experienceDescription">
+          <label htmlFor="experienceDescription" >
             Share your Experience/Review:
-            <MyCKeditor onDescriptionChange={handleDescriptionChange} />
+            <MyCKeditor className="pb-3"  onDescriptionChange={handleDescriptionChange} />
           </label>
 
           <div className="btn-post" >

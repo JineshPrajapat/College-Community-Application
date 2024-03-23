@@ -91,4 +91,7 @@
 // text-editor for ckeditor
 .ck-content{
     height: 60vh;
+    @media screen and (max-width:600px) {
+        height:30vh;
+    }
 }

@@ -53,7 +53,7 @@ exports.sendOpportunity = async (req, res) => {
 
 exports.getOpportunity = async(req, res) =>{
     try{
-        const opportunity = await Opportunity.find();
+        const opportunity = await Opportunity.find().sort({ createdAt: -1 });
 
         if(!opportunity)
         {

@@ -32,6 +32,8 @@ export const SlideIn = ({isSlideInToggle, setIsSildeInToggle}) => {
         setIsSildeInToggle(!isSlideInToggle);
     }
 
+    const userName= localStorage.getItem("userName");
+    const avatarUrl = localStorage.getItem("avatarUrl");
 
     return (
 
@@ -42,10 +44,10 @@ export const SlideIn = ({isSlideInToggle, setIsSildeInToggle}) => {
                     <div className='user-info border-b-2 border-grey-600'>
                         <div className='w-16 h-16  rounded-full '>
                             <NavLink to="/" className='profile  '>
-                                <img src={images.jinesh} className=' w-full h-full rounded-full' alt='' />
+                                <img src={avatarUrl ? avatarUrl : images.userlogo} className=' w-full h-full rounded-full' alt='' />
                             </NavLink>
                         </div>
-                        <div className=' text-left font-serif pt-2 px-2'>Jinesh Prajapat</div>
+                        <div className=' text-left font-serif pt-2 px-2'>{userName ? userName : "" }</div>
                     </div>
 
                     <ul className='flex flex-col relative items-start pt-0 h-full'>

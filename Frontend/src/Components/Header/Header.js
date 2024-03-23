@@ -88,6 +88,11 @@ import { SlideIn } from '../SlideIn/SlideIn';
 
 export const Header = () => {
 
+    const userName= localStorage.getItem("userName");
+    const fullName = localStorage.getItem("fullName");
+    const avatarUrl = localStorage.getItem("avatarUrl");
+    const email = localStorage.getItem("email");
+
     // slidein controls
     const [isSlideInToggle, setIsSildeInToggle] = useState(false);
 
@@ -109,10 +114,11 @@ export const Header = () => {
         }
     };
 
-
+    
+    const profilePath = `/${userName}`;
     // profile controls
     const ProfileMenufirst = [
-        { name: "My Profile", icon: personOutline, path: "/UserProfile" },
+        { name: "My Profile", icon: personOutline, path: profilePath },
         { name: "Setting", icon: settingsOutline, path: "/Setting" },
         // { name: "Dark Mode", icon: settingsOutline, path: "/darrkmode" },
     ]
@@ -141,6 +147,8 @@ export const Header = () => {
         }
     };
 
+    
+
     return (
         <div>
             <header className='max-h-12 sm:max-h-20 w-full bg-white border-b-2 fixed top-0 left-0 z-50'>
@@ -167,10 +175,10 @@ export const Header = () => {
                             <IonIcon icon={options} className=' w-full h- text-gray-500  ' alt='' />
                         </div>
 
-                        <div className='cursor-pointer w-8 h-8 sm:w-12 sm:h-12 rounded-full border-2 border-blue-100 relative'
+                        <div className='cursor-pointer w-8 h-8 sm:w-11 sm:h-11   rounded-full  relative'
                             onClick={() => handleProfileClick(isProfileBar)}
                         >
-                            <img src={images.jinesh} className=' w-full h-full rounded-full' alt='' />
+                            <img src={avatarUrl ? avatarUrl : images.userlogo} className=' w-full h-full rounded-full' alt='' />
                         </div>
 
                         
@@ -195,8 +203,8 @@ export const Header = () => {
                 <div ref={profileRef} className='flex flex-col fixed shadow-md w-[254px] sm:w-[295px] top-12 right-4 sm:top-20 sm:right-6 z-50   '>
                     <div className=' pt-3 pb-4 w-[254px] sm:w-[295px] absolute bg-white rounded-lg shadow-2xl shadow-black '>
                         <div className=' px-4 pb-3 text-left font-sans'>
-                            <div className='text-[16px] sm:text-2xl '>Jinesh Prajapat</div>
-                            <div className=' text-xs  sm:text-[16px] '>prajapatjinesh585@gmail.com</div>
+                            <div className='text-[16px] sm:text-2xl '>{fullName ? fullName : "" }</div>
+                            <div className=' text-xs  sm:text-[16px] '>{email ? email : ""}</div>
                         </div>
                         <hr className=' m-0' />
                         <ul className='px-3 sm:py-4  '>

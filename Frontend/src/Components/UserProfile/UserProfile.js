@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import './UserProfile.scss';
 import { images } from '../../constants';
 import { Routes, Route } from 'react-router-dom';
 import { fetchData } from '../../FetchData/FetchData';
 import baseURL from '../../api/api';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Home from './Home/Home';
 import Contact from './Contact/Contact';
 import Profile from './Profile/Profile';
@@ -13,6 +13,7 @@ import Achievement from './Achievments/Achievement';
 import UserProfileSettings from './UserProfileSettings/UserProfileSettings';
 import UpdateProfileSettings from './UpdateProfileSettings/UpdateProfileSettings';
 import Header from '../Header/Header';
+
 // import Home from './Home/Home'
 // const userData = {
 //     coverImage: "",
@@ -35,11 +36,23 @@ import Header from '../Header/Header';
 
 function UserProfile() {
 
-  const [userData, setUserData] = useState([]);
+  const [userInfo, setUserInfo] = useState([]);
 
+  // extracting username from link
+  const { userName } = useParams();
   useEffect(() => {
-    fetchData(`${baseURL}/userinfo`, setUserData);
-  }, []);
+    // fetchData(`${baseURL}/userinfo`, setUserData);
+    fetchData(`${baseURL}/allusers/${userName}`, setUserInfo);
+  }, [userName]);
+
+  const userData = useMemo(() => userInfo, [userInfo]);
+
+
+  const currentUserName = localStorage.getItem("userName");
+  console.log(currentUserName);
+  const isOwnProfile = () => {
+    return userData.Data && userData?.Data?.username === currentUserName;
+  }
 
   console.log("Data;", userData);
 
@@ -80,8 +93,8 @@ function UserProfile() {
           <div className="nav-tabs">
             <ul className="tab-list">
               <li className="nav-item" >
-              <Link to="./" className="nav-link" id="home-tab" activeClassName="active">Home</Link>
-            </li>
+                <Link to="./" className="nav-link" id="home-tab" activeClassName="active">Home</Link>
+              </li>
               {/* <li className="nav-item">
               <Link to="./Profile" className="nav-link" id="profile-tab" activeClassName="active">Profile</Link>
             </li> */}
@@ -97,9 +110,13 @@ function UserProfile() {
               {/* <li className="nav-item">
               <Link to="./Setting" className="nav-link" id="contact-tab" activeClassName="active">Setting</Link>
             </li> */}
-              <li className="nav-item">
-                <Link to="./Update" className="nav-link" id="contact-tab" activeClassName="active">Update</Link>
-              </li>
+              {isOwnProfile() &&
+                <li className="nav-item">
+                  <Link to="./Update" className="nav-link" id="contact-tab" activeClassName="active">Update</Link>
+                </li>
+              }
+
+
             </ul>
           </div>
 
@@ -111,9 +128,11 @@ function UserProfile() {
               <Route path="Contact" element={<Contact />} />
               <Route path="Achievement/*" element={<Achievement />} />
               {/* <Route path="Setting" element={<UserProfileSettings />} /> */}
-              <Route path="Update" element={<UpdateProfileSettings />} />
+
+              {isOwnProfile() &&
+                <Route path="Update" element={<UpdateProfileSettings />} />
+              }
             </Routes>
-            {/* <Home userData={userData} /> */}
 
             {/* <Route path="Profile" element={<Profile/>} /> */}
             {/* <Route path="Resume" element={<Resume/>} /> */}

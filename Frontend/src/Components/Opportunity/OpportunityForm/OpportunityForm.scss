@@ -1,36 +1,61 @@
 .opportunity-body {
-    background-color: #f0f0f0;
+    background-color: #fffdfd;
+    // background-image: linear-gradient(171.8deg, rgb(5, 111, 146) 13.5%, rgb(6, 57, 84) 78.6%);
+
     padding: 20px;
     border-radius: 8px;
     transition: all 0.3s ease;
     margin: 0;
     padding: 50px;
 
+    @media screen and (max-width: 600px) {
+        padding: 20px;
+        padding-bottom: 120px;
+    }
+
     .opportunity-heading {
-        margin-bottom: 20px;
+        margin-bottom: 50px;
 
         h2 {
             font-size: 28px;
             color: #333;
+            margin-bottom: 1rem;
         }
 
         p {
             font-size: 20px;
             color: #666;
             line-height: 1.5;
+            text-align: justify;
+            color: white;
+            background-image: linear-gradient(171.8deg, rgb(5, 111, 146) 13.5%, rgb(6, 57, 84) 78.6%);
+            box-shadow: 0px 1px 2px 2px;
+            padding: 15px;
+            border-radius: 5px;
+
+            @media screen and (max-width: 600px) {
+            }
         }
     }
 
     .opportunity-form-container {
         max-width: 900px;
+
         margin: 0 auto;
+        border-radius: 5px;
+        box-shadow: 0px 3px 7px 5px rgb(215, 213, 213);
+        padding:20px;
+        padding-top: 20px;
+        background: white;
         form {
+
             label {
                 display: block;
                 text-align: left;
                 margin-bottom: 18px;
                 font-size: 1.1rem;
                 color: #333;
+                
 
                 input[type="text"],
                 input[type="date"],
@@ -43,22 +68,38 @@
                     font-size: 16px;
                     color: #666;
 
+                    option {
+                        background: white;
+                    }
+
                     &:focus {
                         outline: none;
                         border-color: #007bff;
                         box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
                     }
 
-                    ::placeholder{
+                    ::placeholder {
                         color: #a8a8a8;
+                    }
+                }
+
+                @media screen and (max-width: 600px) {
+                    font-size: 0.8rem;
+                    color: #4f4e4e;
+                    font-weight: 600;
+
+                    input[type="text"],
+                    input[type="date"],
+                    select {
+                        font-size: 14px;
                     }
                 }
             }
 
-            .btn-post{
+            .btn-post {
                 display: flex;
                 justify-content: space-between;
-                
+
                 .close {
                     border: 2px solid rgb(179, 179, 179);
                     border-radius: 3px;
@@ -67,13 +108,16 @@
                     background-color: none;
                     transition: all 0.5s ease-in;
                     cursor: pointer;
+                    display: none;
 
-                    &:hover{
-                        background-color:rgb(179, 179, 179);
+                    &:hover {
+                        background-color: rgb(179, 179, 179);
                         font-weight: 450;
                     }
+
+                    
                 }
-                
+
                 button.opportunity-btn {
                     display: inline-block;
                     padding: 10px 20px;
@@ -82,15 +126,15 @@
                     background-color: #007bff;
                     color: #fff;
                     font-size: 16px;
+                    font-weight: bolder;
                     cursor: pointer;
                     transition: background-color 0.3s ease;
-    
+
                     &:hover {
                         background-color: #0056b3;
                     }
                 }
             }
-            
         }
     }
 }

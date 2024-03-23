@@ -11,7 +11,7 @@ exports.getAllUsers = async (req, res) =>{
         console.log(collegeName);
 
         // extracting allusers having college = collegeName
-        const allUsersWithProfiles = await User.find({ college: collegeName }).populate('profileDetails');
+        const allUsersWithProfiles = await User.find({ college: collegeName }).populate('profileDetails').sort({ createdAt: -1 });
         if(!allUsersWithProfiles)
         { 
             return res.status(404).json({
@@ -33,6 +33,41 @@ exports.getAllUsers = async (req, res) =>{
             message:"Unable to fetch Users",
             err: err.message,
         })
+    }
+}
+
+
+// getting particular profile details
+exports.getEachUserDetailsById  = async (req, res) =>{
+    try{
+
+        // getting userId
+        const {userName} =  req.params;
+        console.log(userName);
+        // exctracting user profile details
+        const Data = await User.findOne({username: userName}).populate("profileDetails").exec();
+        console.log(Data);
+
+        if(!Data){
+            return res.status(404).json({
+                success:false,
+                message:"User not found."
+            });
+        }
+
+        return res.status(200).json({
+            // success: true,
+            // message: "Fetched User details successfully",
+            Data
+        })
+        
+    }catch(err){
+        console.log(err);
+        return res.status(500).json({
+            success:false,
+            message:"Unable to get user deatils",
+            error: err.message
+        });
     }
 }
 

@@ -63,9 +63,10 @@ exports.sendAchievement= async (req,res) =>{
 
 exports.getAchievement = async(req, res) =>{
     try{
-        const userId = req.user.id;
-        console.log(userId);
+        const { userName } =  req.params;
+        console.log("hello", userName);
 
+        const userId = await User.findOne({username:userName});
         const achievement = await Achievement.find({userId:userId});
         console.log(achievement);
 

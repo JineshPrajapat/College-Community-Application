@@ -51,50 +51,50 @@ function OpportunityForm() {
 
       // Retrieve token from localStorage
       const token = localStorage.getItem('token');
-      console.log("frontend token",token);
+      console.log("frontend token", token);
 
-      if(token){
+      if (token) {
         console.log(formValue)
         axios
-        .post(`${baseURL}/opportunity/addOpportunity`, {
-          company: formValue.company,
-          branch: formValue.branch,
-          opportunityLink: formValue.opportunityLink,
-          applicationDeadline: formValue.applicationDeadline,
-          profile: formValue.profile,
-          positionType:formValue.positionType,
-          yearOfExperience: formValue.yearOfExperience,
-        },{
-          headers:{
-            Authorization: `Bearer ${token}`            // Include token in Authorization header
-          }
-        })
-        .then((response) => {
-          console.log("Response:", response);
+          .post(`${baseURL}/opportunity/addOpportunity`, {
+            company: formValue.company,
+            branch: formValue.branch,
+            opportunityLink: formValue.opportunityLink,
+            applicationDeadline: formValue.applicationDeadline,
+            profile: formValue.profile,
+            positionType: formValue.positionType,
+            yearOfExperience: formValue.yearOfExperience,
+          }, {
+            headers: {
+              Authorization: `Bearer ${token}`            // Include token in Authorization header
+            }
+          })
+          .then((response) => {
+            console.log("Response:", response);
 
-          if (response.status === 200) {
-            
-            setFlashMessage({
-              type: "success",
-              message:
-                "We recieved your opportunity, Thanks for your help. Happy to see you soon!",
-            });
-            navigate('/Opportunity');
-          }
-        })
-        .catch((error) => {
-          if (error.response) {
-            console.error("Error:", error);
-            setFlashMessage({
-              type: "error",
-              message: "Opportunity updation failed, try again!",
-            });
-          } else {
-            console.error("Network or request error");
-          }
-        });
+            if (response.status === 200) {
+
+              setFlashMessage({
+                type: "success",
+                message:
+                  "We recieved your opportunity, Thanks for your help. Happy to see you soon!",
+              });
+              navigate('/Opportunity');
+            }
+          })
+          .catch((error) => {
+            if (error.response) {
+              console.error("Error:", error);
+              setFlashMessage({
+                type: "error",
+                message: "Opportunity updation failed, try again!",
+              });
+            } else {
+              console.error("Network or request error");
+            }
+          });
       }
-      else{
+      else {
         setFlashMessage({
           type: "error",
           message: "Not Authorized",
@@ -106,21 +106,24 @@ function OpportunityForm() {
 
   return (
     <div
-      className={`opportunity-body ${ showConfirmation ? "show-confirmation" : ""}`}>
+      className={`opportunity-body ${showConfirmation ? "show-confirmation" : ""}`}>
       <div className="opportunity-heading">
         <h2>Share Opportunities among friends</h2>
         <p>
-        Unleash potential together by sharing diverse opportunities including jobs, internships, full-time, and part-time positions. Empower friends to pursue their dreams and aspirations.
+          Unleash potential together by sharing diverse opportunities including jobs, internships, full-time, and part-time positions. Empower friends to pursue their dreams and aspirations.
         </p>
       </div>
       <div className="opportunity-form-container">
         {/* <img src={images.garima} alt="Dal-makhani" /> */}
         <form id="opportunity-form" onSubmit={handleFormSubmit}>
+          <div className="pb-4">
+            <strong >Add Oppotunity</strong>
+          </div>
           <label htmlFor="profile" aria-required="true">
             Profile:
             <input
               type="text"
-              placeholder="profile"
+              placeholder="Job Profile"
               id="profile"
               name="profile"
               value={formValue.profile}
@@ -132,7 +135,7 @@ function OpportunityForm() {
             Company:
             <input
               type="text"
-              placeholder="Enter company name"
+              placeholder="Company name"
               id="company"
               name="company"
               value={formValue.company}

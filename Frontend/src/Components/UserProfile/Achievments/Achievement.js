@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import baseURL from '../../../api/api';
 import { fetchData } from '../../../FetchData/FetchData';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes, useParams } from 'react-router-dom';
 import './Achievement.scss';
 import { images } from '../../../constants';
 import AchievementForm from './AchievementForm/AchievementForm';
@@ -21,13 +21,20 @@ import AchievementForm from './AchievementForm/AchievementForm';
 
 const Achievement = () => {
 
+  const { userName } = useParams();
   const [achievementData, setAchievementData] = useState([]);
 
   useEffect(() => {
-    fetchData(`http://localhost:5000/api/v1/achievement`, setAchievementData)
-  }, []);
+    fetchData(`http://localhost:5000/api/v1/achievement/${userName}`, setAchievementData)
+  }, [userName]);
 
   console.log("Achievement", achievementData);
+
+  const currentUserName = localStorage.getItem("userName");
+  console.log(currentUserName);
+  const isOwnProfile = () => {
+    return userName && userName === currentUserName;
+  }
 
   const [expandedIndex, setExpandedIndex] = useState(null);
   const handleCardClick = (index) => {
@@ -39,14 +46,18 @@ const Achievement = () => {
 
   return (
     <div className={`achievement-container `}>
-      <Link to="./addAchievment" className="add-achievement">
-        <div to="./addAchievment" className="add-container">
-          <i class="fa-solid fa-plus"></i>
-        </div>
-      </Link>
-      <Routes>
-        <Route path="addAchievment" element={<AchievementForm />} />
-      </Routes>
+      {isOwnProfile() &&
+        <>
+          <Link to="./addAchievment" className="add-achievement">
+            <div to="./addAchievment" className="add-container">
+              <i class="fa-solid fa-plus"></i>
+            </div>
+          </Link>
+          <Routes>
+            <Route path="addAchievment" element={<AchievementForm />} />
+          </Routes>
+        </>
+      }
 
       <div className="images-section">
 

@@ -10,6 +10,7 @@ import AddQuery from "./AddQuery/AddQuery";
 import Contact from "../UserProfile/Contact/Contact";
 import Header from "../Header/Header";
 import { fetchData } from '../../FetchData/FetchData';
+import { formatTimeAgo } from "../formatTimeAgo/formatTimeAgo";
 
 
 // const discussionTopic = [
@@ -174,14 +175,17 @@ function Discuss() {
                                     ) : (discussionTopic.discuss.map((discussion, index) => (
                                         <div className="topic-item-container">
                                             <div className="topic-item">
-                                                <a href=""><img src={discussion.userId.profileImage} alt="" /></a>
-                                                <div className="topic-title" onClick={() => handleCommentClick(index)}>
-                                                    <div className="item-header" >
-                                                        {discussion.discussTitle}
-                                                    </div>
-                                                    <div className="topic-info">
-                                                        {/* {discussion.discussDescription} */}
-                                                        <div className=" text-left" dangerouslySetInnerHTML={{ __html: discussion.discussDescription.slice(0, 40) + '...' }} />
+                                                <div className="left-side">
+                                                    <a href=""><img src={discussion.userId.profileImage} alt="" /></a>
+                                                    <div className="topic-title" onClick={() => handleCommentClick(index)}>
+                                                        <div className="item-header" >
+                                                            {discussion.discussTitle}
+                                                        </div>
+                                                        <div className="topic-info">
+                                                            {/* {discussion.discussDescription} */}
+                                                            <div className=" text-left" dangerouslySetInnerHTML={{ __html: discussion.discussDescription.slice(0, 39) + '...' }} />
+                                                        </div>
+                                                        <div className="text-left text-[8px] sm:text-xs text-gray-400 sm:pt-2">{formatTimeAgo(discussion.createdAt)}</div>
                                                     </div>
                                                 </div>
                                                 <div className="upvote-view-container">

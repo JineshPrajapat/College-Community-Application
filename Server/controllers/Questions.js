@@ -60,7 +60,7 @@ exports.sendQuestions = async (req, res) => {
 
 exports.getQuestions = async(req, res)=>{
     try{
-        const question = await Questions.find();
+        const question = await Questions.find().sort({ createdAt: -1 });
         if(!question)
         {
             return res.status(404).json({

@@ -36,9 +36,8 @@ import MultiForm from "./Components/FormPages/MultiForm/MultiForm";
 import { UpdatePassword } from "./Components/UpdatePassword/UpdatePassword";
 import Comment from "../src/Components/Comment Sections/Comment";
 import UnauthorizedAccess from "./Components/UnauthorizedAccess/UnauthorizedAccess";
-
+import Community from "./Components/Community/Community/Community";
 import { motion } from 'framer-motion';
-
 
 
 function App() {
@@ -53,6 +52,7 @@ function App() {
       {!isLoggedIn ? (
         <Routes >
           <Route path="/" element={<CoverPage />} />
+          <Route path=":userName/*" element={<UserProfile />} />
           <Route path="Signup/*" element={<SignUp />} />
           <Route path="Login/*" element={<Login />} />
           <Route path="*" element={<UnauthorizedAccess />} />
@@ -77,9 +77,10 @@ function App() {
                 <Route path="Discuss/*" element={<Discuss />} />
                 <Route path="Discuss/addQuery" element={<AddQuery />} />          {/* new added line fo addQuery */}
 
+                <Route path=":userName/*" element={<UserProfile />} />
+
                 <Route path="PlacementStats" element={<Placement />} />
-                <Route path="UserProfile/*" element={<UserProfile />} />
-                {/* <Route path="profile*" element={<Home />} /> */}
+                <Route path="Community" element={<Community />} />
                 <Route path="/SlideIn" element={<SlideIn />} />
                 <Route path="ForgetPassword" element={<ForgetPassword />} />
                 {/* <Route path="UserDetail" element={<UserProfileSettings />} /> */}

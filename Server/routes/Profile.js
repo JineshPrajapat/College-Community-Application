@@ -12,8 +12,10 @@ router.delete("/deleteProfile", auth, deleteAccount);
 
 router.put("/updateProfile", auth, updateProfile);
 router.put("/additionalDetails",auth,updateAdditionalProfile);
-
 router.get("/getUserDetails", auth, getUserDetails);
+
+
+
 router.put("/updateDisplayPicture", auth, updateDisplayPicture);
 router.delete("/deleteProfile", auth, deleteAccount);
 

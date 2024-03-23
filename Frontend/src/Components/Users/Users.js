@@ -5,7 +5,7 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import './Users.scss';
 import { images } from '../../constants'
 import Header from '../Header/Header';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 // Sample user data
@@ -386,11 +386,11 @@ const Users = () => {
                 <div className="user-cards">
                     {usersData && Array.isArray(usersData.allUsersWithProfiles) ? (
                         usersData?.allUsersWithProfiles?.map((user, index) => (
-                            <Link to="/UserProfile/*">
+                            <NavLink to="/UserProfile/*">
                                 <motion.div className="user-card" key={user?.id}
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
-                                    transition={{ duration: 0.5, delay: 0.5*index }}
+                                    transition={{ duration: 0.5, delay: 0.5 * index }}
                                 >
 
                                     <div className="user-photo">
@@ -435,9 +435,16 @@ const Users = () => {
                                     <i className="fab fa-twitter"></i>
                                 </a> */}
                                         </div>
+
+                                        <NavLink to={`/${user?.username}`} >
+                                            <div className='border-1 border-black rounded-full  '>
+                                                <p className='p-2 text-xs rounded-full duration-500 hover:bg-black hover:text-white hover:shadow-2xl' >View Profile</p>
+                                            </div>
+                                        </NavLink>
+
                                     </div>
                                 </motion.div>
-                            </Link>
+                            </NavLink>
                         ))
                     ) : usersData?.Data ? (
                         <Link to="/UserProfile/*" className='no-underline '>
@@ -485,6 +492,11 @@ const Users = () => {
                                 <a href={user.twitter} target="_blank" rel="noopener noreferrer">
                                     <i className="fab fa-twitter"></i>
                                 </a> */}
+                                        <NavLink to={`${usersData?.Data?.username}`} >
+                                            <div className='border-1 border-black rounded-full  '>
+                                                <p className='p-2 text-xs rounded-full duration-500 hover:bg-black hover:text-white hover:shadow-2xl' >View Profile</p>
+                                            </div>
+                                        </NavLink>
                                     </div>
                                 </div>
                             </div>

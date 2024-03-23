@@ -6,7 +6,7 @@ const {
         sendAchievement, 
         getAchievement      } = require("../controllers/Achievement");
 
-router.get("/", auth, getAchievement);
+router.get("/:userName", auth, getAchievement);
 router.post("/addAchivement", auth, sendAchievement);
 
 

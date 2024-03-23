@@ -1,103 +1,135 @@
 .experience-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    max-width: 800px;
-    margin: auto;
-  
-    .experience-heading {
-      text-align: center;
-      margin-bottom: 20px;
-  
-      h2 {
-        font-size: 24px;
-        color: #333;
-        margin-bottom: 10px;
-      }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+
+  @media screen and (max-width:600px){
+    padding-bottom: 5.5rem;
+  }
+
+  .experience-heading {
+    text-align: center;
+    margin-bottom: 20px;
+
+    h2 {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .sub-points {
       p {
+        border-radius: 8px;
+        background: aliceblue;
+        padding: 16px;
         font-size: 16px;
-        color: #666;
+        color: #505050;
         line-height: 1.5;
         margin-bottom: 10px;
-      }
-    }
-  
-    .experience-form-container {
-      width: 100%;
-  
-      form {
-        display: flex;
-        flex-direction: column;
-  
-        label {
-          text-align: left;
-          font-size: 1.20rem;
-          font-weight: 500;
-          color: #333;
-          margin-bottom: 15px;
-  
-          input[type="text"],
-          textarea {
-            width: 97%;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-bottom: 20px;
-          }
-        }
-  
-        .btn-post{
-          display: flex;
-          justify-content: space-between;
+        text-align: justify;
+        box-shadow: 0px 1px 2px rgb(193, 206, 246);
+
+        @media screen and (max-width: 600px) {
+          font-size: 16px;
           
-          .close {
-            border: 2px solid rgb(179, 179, 179);
-            border-radius: 3px;
-            padding: 6px;
-            align-items: center;
-            background-color: none;
-            transition: all 0.5s ease-in;
-            cursor: pointer;
-
-            &:hover{
-                background-color:rgb(179, 179, 179);
-                font-weight: 450;
-            }
         }
-
-          .experience-btn {
-            background-color: #007bff;
-            color: #fff;
-            width: max-content;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 18px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-    
-            &:hover {
-              background-color: #0056b3;
-            }
-          }
-        }
-        
       }
     }
   }
 
+  .experience-form-container {
+    width: 100%;
+    background-color: rgb(224, 239, 255);
+    border-radius: 5px;
+    box-shadow: 0px 3px 7px 5px rgb(163, 181, 202);
+    padding:20px;
+
+    form {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        text-align: left;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #333;
+        margin-bottom: 18px;
+
+        input[type="text"],
+        textarea {
+          width: 97%;
+          padding: 10px;
+          font-size: 16px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          margin-top: 5px;
+          // margin-bottom: 20px;
+        }
+
+        @media screen and (max-width: 600px) {
+          font-size: 0.9rem;
+          color: #4f4e4e;
+          font-weight: 600;
+
+          input[type="text"],
+          textarea {
+            font-size: 14px;
+          }
+        }
+      }
+
+      .btn-post {
+        display: flex;
+        justify-content: space-between;
+
+        .close {
+          border: 2px solid rgb(179, 179, 179);
+          border-radius: 3px;
+          padding: 6px;
+          display: flex;
+          align-items: center;
+          background-color: none;
+          transition: all 0.5s ease-in;
+          cursor: pointer;
+
+          &:hover {
+            background-color: rgb(179, 179, 179);
+            font-weight: 450;
+          }
+        }
+
+        .experience-btn {
+          background-color: #007bff;
+          color: #fff;
+          width: max-content;
+          padding: 12px 20px;
+          border: none;
+          border-radius: 5px;
+          font-size: 18px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+
+          &:hover {
+            background-color: #0056b3;
+          }
+        }
+      }
+    }
+  }
+}
+
 // text-editor for ckeditor
-.ck-content{
+.ck-content {
   height: 30vh;
 }
 
 .experience-body {
   &.show-confirmation {
-      .confirmation-popup {
-          opacity: 1;
-      }
+    .confirmation-popup {
+      opacity: 1;
+    }
   }
 }

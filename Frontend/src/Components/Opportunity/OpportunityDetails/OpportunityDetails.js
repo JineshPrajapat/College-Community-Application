@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import baseURL from '../../../api/api';
 import { fetchData } from '../../../FetchData/FetchData';
+import { formatTimeAgo } from '../../formatTimeAgo/formatTimeAgo';
 import '@fortawesome/fontawesome-free/css/all.css';
 import { images } from '../../../constants'
 import './OpportunityDetails.scss';
@@ -97,8 +98,15 @@ function OpportunityDetails() {
         fetchData(`${baseURL}/opportunity`, setOpportunityList);
     }, []);
 
-
     console.log("opportunity", opportunityList.opportunity);
+
+    const formatDate = (isoDate) => {
+        const date = new Date(isoDate);
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const year = date.getFullYear().toString();
+        return `${day}-${month}-${year}`;
+      };
 
     return (
         <div className='Cards px-3 pb-3'>
@@ -120,7 +128,8 @@ function OpportunityDetails() {
                         </div>
                         <div>Eligibility : {opportunity.yearOfExperience}</div>
                         <a className='' href={opportunity.opportunityLink}>Apply Here</a>
-                        <div>Deadline : {opportunity.applicationDeadline}</div>
+                        <div>Deadline : {formatDate(opportunity.applicationDeadline)}</div>
+                        <div className='text-right text-gray-400 text-xs sm:text-[16px]'>{formatTimeAgo(opportunity.createdAt)}</div>
                     </motion.div>
                 </motion.div>
             ))}

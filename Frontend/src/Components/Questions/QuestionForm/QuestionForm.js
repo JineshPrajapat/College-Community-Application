@@ -108,7 +108,6 @@ function QuestionForm() {
         </p>
       </div>
       <div className="question-form-container">
-        {/* <img src={images.garima} alt="Dal-makhani" /> */}
         <form id="question-form" onSubmit={handleFormSubmit}>
           <label htmlFor="company" aria-required="true">
             Company:

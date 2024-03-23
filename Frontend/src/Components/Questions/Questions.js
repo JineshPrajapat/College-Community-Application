@@ -12,7 +12,7 @@ const Question = () => {
     return (
         <>
         < div className="question">
-            <h1 className='fixed pb-2'>Placement Questions</h1>
+            <h1 className=' pb-2'>Placement Questions</h1>
 
             {/* <div className="head-tabs">
                 <SearchingForm />

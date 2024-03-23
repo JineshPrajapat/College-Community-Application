@@ -44,7 +44,11 @@ exports.sendDiscuss = async (req, res) => {
 
 exports.getDiscuss = async (req, res) => {
     try {
-        const discuss = await Discuss.find().populate("userId").populate("comments").exec();
+        const discuss = await Discuss.find()
+            .populate("userId")
+            .populate("comments")
+            .sort({ createdAt: -1 })
+            .exec();
         console.log("discuss", discuss);
 
         if (!discuss) {
