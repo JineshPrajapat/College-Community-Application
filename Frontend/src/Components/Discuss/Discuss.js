@@ -3,7 +3,7 @@ import baseURL from "../../api/api";
 import '@fortawesome/fontawesome-free/css/all.css';
 import { images } from "../../constants";
 import { Routes, Route } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import './Discuss.scss';
 import SingleComment from "./SingleComment/SingleComment";
 import AddQuery from "./AddQuery/AddQuery";
@@ -13,7 +13,7 @@ import { fetchData } from '../../FetchData/FetchData';
 import { formatTimeAgo } from "../formatTimeAgo/formatTimeAgo";
 
 
-// const discussionTopic = [
+// const discussionTopicData = [
 //     {
 //         Url: images.garima,
 //         discussTitle: "You may not find ISO file.",
@@ -102,38 +102,42 @@ import { formatTimeAgo } from "../formatTimeAgo/formatTimeAgo";
 function Discuss() {
 
     // fetching data
-    const [discussionTopic, setDiscussionTopic] = useState([]);
-    useState(() => {
-        fetchData(`${baseURL}/discuss`, setDiscussionTopic);
-    }, []);
-
-    console.log("discuss", discussionTopic.discuss);
-
+    const [discussionTopicData, setdiscussionTopicData] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [filteredTopics, setFilteredTopics] = useState([]);
     const [expandedIndex, setExpandedIndex] = useState(null);
 
-    const handleCommentClick = (index) => {
+    useState(() => {
+        fetchData(`${baseURL}/discuss`, setdiscussionTopicData);
+    }, []);
+    console.log("discuss", discussionTopicData.discuss);
+
+    const handleShowDiscussClick = (index) => {
         setExpandedIndex(index === expandedIndex ? null : index);
     };
 
     // filtering search input
-    const [searchQuery, setSearchQuery] = useState('');
-    const [filteredTopics, setFilteredTopics] = useState([]);
-
     const handleSearchInputChange = (event) => {
         setSearchQuery(event.target.value);
         filterTopics(event.target.value);
     }
 
     const filterTopics = (query) => {
-        const filtered = discussionTopic.discuss.filter(topic =>
-            topic.discussTitle.toLowerCase().includes(query.toLowerCase())
-        );
-        setFilteredTopics(filtered);
+        console.log("filteration");
+        if (query.trim() === '') {
+            setFilteredTopics([]);
+        } else {
+            // Filter discussions based on the query
+            const filtered = discussionTopicData.discuss.filter(topic =>
+                topic.discussTitle.toLowerCase().includes(query.toLowerCase())
+            );
+            setFilteredTopics(filtered);
+        }
+        // console.log("filtered topics",filteredTopics);
     }
-    // filtering task completed
-    // console.log("filtere", filteredTopics);
 
-
+    const discussionTopic = searchQuery.trim() === '' ? discussionTopicData.discuss : filteredTopics;
+    console.log("topicsto Display",discussionTopic);
 
     return (
         <>
@@ -170,14 +174,14 @@ function Discuss() {
                         <div className="topic-list-container">
                             <div className="topic-list-content">
                                 <div>
-                                    {discussionTopic.length === 0 ? (
+                                    {!discussionTopic ? (
                                         <p>No topics found</p>
-                                    ) : (discussionTopic.discuss.map((discussion, index) => (
+                                    ) : (discussionTopic.map((discussion, index) => (
                                         <div className="topic-item-container">
                                             <div className="topic-item">
                                                 <div className="left-side">
-                                                    <a href=""><img src={discussion.userId.profileImage} alt="" /></a>
-                                                    <div className="topic-title" onClick={() => handleCommentClick(index)}>
+                                                    <NavLink to={`/${discussion?.userId?.username}`}><img src={discussion?.userId?.profileImage} alt="" /></NavLink>
+                                                    <div className="topic-title" onClick={() => handleShowDiscussClick(index)}>
                                                         <div className="item-header" >
                                                             {discussion.discussTitle}
                                                         </div>
@@ -208,7 +212,7 @@ function Discuss() {
                                     {expandedIndex !== null && (
                                         <SingleComment
                                             index={expandedIndex}
-                                            discussion={discussionTopic.discuss[expandedIndex]}
+                                            discussion={discussionTopicData.discuss[expandedIndex]}
                                             setExpandedIndex={setExpandedIndex} />
                                     )}
                                 </div>

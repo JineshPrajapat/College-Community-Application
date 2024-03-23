@@ -49,13 +49,13 @@ function App() {
   return (
     <div className="App">
 
-      {!isLoggedIn ? (
+      {isLoggedIn ? (
         <Routes >
           <Route path="/" element={<CoverPage />} />
-          <Route path=":userName/*" element={<UserProfile />} />
           <Route path="Signup/*" element={<SignUp />} />
           <Route path="Login/*" element={<Login />} />
           <Route path="*" element={<UnauthorizedAccess />} />
+          {/* <Route path=":userName/*" element={<UserProfile />} /> */}
           {isSignedUp ? (
             <Route path="/UserForm" element={<MultiForm />} />
           ) : (<Route path="*" element={<UnauthorizedAccess />} />)}

@@ -131,6 +131,7 @@
 
                     .topic-item-container {
                         border-bottom: 1px solid #eeeeee;
+                        transition: all 0.5s;
 
                         &:hover {
                             background-color: #eef0f0;
