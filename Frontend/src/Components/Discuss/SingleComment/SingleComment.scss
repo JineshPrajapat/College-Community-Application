@@ -13,7 +13,7 @@
     .comment-block {
         // height: 100vh;
         width: 80%;
-        @media screen and (max-width:600px) {
+        @media screen and (max-width: 600px) {
             width: 100%;
         }
         .comments {
@@ -32,6 +32,8 @@
             }
 
             .comment-content {
+
+                width: 100%;
                 .close {
                     position: absolute;
                     top: 10px;
@@ -44,12 +46,12 @@
                     align-items: center;
                     padding: 5px;
                     gap: 15px;
-                    padding-bottom: 2rem;
+                    padding-bottom: 1rem;
                     // border-bottom: 1px solid rgb(233, 230, 230);
 
                     a {
-                        width: 80px;
-                        height: 80px;
+                        width: 30px;
+                        height: 30px;
 
                         @media screen and (max-width: 600px) {
                             width: 50px;
@@ -71,7 +73,10 @@
                     align-items: flex-start;
                     color: rgb(0, 0, 0);
                     font-size: 18px;
-                    margin-top: 2rem;
+                    border-bottom: 2px solid rgb(164, 163, 163);
+                    padding-bottom: 0.5rem;
+                    
+                    // margin-top: 2rem;
                     // padding-right: 50px;
 
                     @media screen and (max-width: 600px) {
@@ -190,13 +195,13 @@
                 }
             }
 
-            div{
-                .form{
+            div {
+                .form {
                     padding: 16px;
 
-                    .userImg{
-                        a{
-                            .imgdefault{
+                    .userImg {
+                        a {
+                            .imgdefault {
                                 width: 38px;
                                 height: auto;
                                 border-radius: 50%;
@@ -204,13 +209,11 @@
                         }
                     }
 
-                    .postBtn{
-                        padding: 5px 10px ;
+                    .postBtn {
+                        padding: 5px 10px;
                     }
                 }
             }
-
-
         }
     }
 }

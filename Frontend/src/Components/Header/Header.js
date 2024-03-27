@@ -157,7 +157,7 @@ export const Header = () => {
                         <div className='w-7 h-7 sm:w-9 sm:h-9 flex items-center'>
                             <img src={images.mainLogo1} alt="Logo" />
                         </div>
-                        <div className='font-sans text:xs sm:text-2xl pl-2 sm:pl-3'>CareerPrepHub</div>
+                        <div className='font-sans text:xs sm:text-2xl pl-2 sm:pl-3'>Let's Chat</div>
                     </NavLink>
 
                     <div className='right-side flex flex-row gap-1 sm:gap-4 items-center'>

@@ -249,7 +249,7 @@ import { motion } from 'framer-motion';
 const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        console.log(j);
+        console.log("shufflearray", j);
         [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
@@ -258,139 +258,153 @@ const shuffleArray = (array) => {
 const Users = () => {
 
     // fetching data
-    const [usersData, setUsersData] = useState([]);
-    useState(() => {
-        fetchData(`${baseURL}/allusers`, setUsersData);
+    const [allUsersData, setAllUsersData] = useState([]);
+
+    useEffect(() => {
+        fetchData(`${baseURL}/allusers`, setAllUsersData);
     }, []);
 
-    console.log("usersData", usersData);
+
+    console.log("usersData", allUsersData);
 
 
     // showing data in random order
-    // const [users, setUsers] = useState([]);
-
     useEffect(() => {
-        setUsersData(shuffleArray(usersData));
+        setAllUsersData(shuffleArray(allUsersData));
     }, []);
 
     const [filteredUsers, setFilteredUsers] = useState([]);
     const [filter, setFilter] = useState({
         year: '',
         branch: '',
-        // location: '',
         position: '',
         username: '',
     });
 
 
     // Filter users based on the filter object
-    // useEffect(() => {
-    //     const filteredData = usersData.filter(user => {
-    //         return (
-    //             (filter.year === '' || user.passOutYear === (+filter.year)) &&
-    //             (filter.branch === '' || user.branch === filter.branch) &&
-    //             (filter.position === '' || user.position === filter.position) &&
-    //             (filter.username === '' || user.name.toLowerCase().includes(filter.username.toLowerCase()))
-    //         );
-    //     });
-    //     setFilteredUsers(filteredData);
-    // }, [usersData, filter]);
+    useEffect(() => {
+        const filteredData = allUsersData?.allUsersWithProfiles?.
+            filter(user => {
+                return (
+                    (filter.year === '' || user.passOutYear === (filter.year)) &&
+                    (filter.branch === '' || user.selectedBranch === filter.branch) &&
+                    (filter.position === '' || user.profileDetails.position === filter.position) &&
+                    (filter.username === '' || user.username.toLowerCase().includes(filter.username.toLowerCase()))
+                );
+            });
+        setFilteredUsers(filteredData);
+    }, [allUsersData, filter]);
 
-    // const handleFilterChange = (key, value) => {
-    //     setFilter({ ...filter, [key]: value });
-    // };
+    const handleFilterChange = (key, value) => {
+        setFilter({ ...filter, [key]: value });
+    };
+
+    const usersData = (filter.branch === "" && !filter.username === "" && filter.year === "" && filter.position === "") ? allUsersData.allUsersWithProfiles : filteredUsers;
+    console.log("no filteration", usersData);
+
+    
 
 
     return (
         <>
             <div className="user-list">
                 {/* Filter options */}
-                {/* <div className="filter-section">
-                <h2>Filters</h2>
+                <div className="filter-section">
+                    <h2>Filters</h2>
 
-                <div className="filter-option">
-                    <label htmlFor="year">Name:</label>
-                    <input className="input"
-                        type="text"
-                        placeholder="Search by name"
-                        value={filter.username}
-                        onChange={e => handleFilterChange('username', e.target.value)}
-                    />
-                </div>
-                <div className="filter-option">
-                    <label htmlFor="year">Year:</label>
-                    <select
-                        id="year"
-                        value={filter.year}
-                        onChange={e => handleFilterChange('year', e.target.value)}
-                    >
-                        <option value="">All Year</option>
-                        {[...new Set(usersData.map(data => data.passOutYear))]                    //selecting unique year
-                            .sort((a, b) => b - a)                                            // sorting year
-                            .map(year => (
-                                <option key={year} value={year}>
-                                    {year}
-                                </option>
-                            ))}
-                    </select>
-                </div>
-                <div className="filter-option">
-                    <label htmlFor="branch">Branch:</label>
-                    <select
-                        id="branch"
-                        value={filter.branch}
-                        onChange={e => handleFilterChange('branch', e.target.value)}
-                    >
-                        <option value="">All Branch</option>
-                        <option value="CSE">Computer Science Engineering</option>
-                        <option value="DA">Artificial Intelligence & Data Science Engineering</option>
-                        <option value="ECE">Electronics & Communication Engineering</option>
-                        <option value="EE">Electrical Engineering</option>
-                        <option value="AG">Agriculture Engineering</option>
-                        <option value="MG">Mining Engineering</option>
-                        <option value="CE">Civil Engineering</option>
-                        <option value="ME">Mechanical Engineering</option>
+                    <div className="filter-option">
+                        <label htmlFor="year">Name:</label>
+                        <input className="input"
+                            type="text"
+                            placeholder="Search by name"
+                            value={filter.username}
+                            onChange={e => handleFilterChange('username', e.target.value)}
+                        />
+                    </div>
+                    <div className="filter-option">
+                        <label htmlFor="year">Year:</label>
+                        <select
+                            id="year"
+                            value={filter.year}
+                            onChange={e => handleFilterChange('year', e.target.value)}
+                        >
+                            <option value="">All Year</option>
+                            {allUsersData?.allUsersWithProfiles && (
+                                <>
+                                    {Array.from(new Set(allUsersData.allUsersWithProfiles.map(data => data.passOutYear)))
+                                        .sort((a, b) => b - a)
+                                        .map((year, index) => (
+                                            <option key={year} value={year}>
+                                                {year}
+                                            </option>
+                                        ))}
+                                </>
+                            )}
+                        </select>
+                    </div>
+                    <div className="filter-option">
+                        <label htmlFor="branch">Branch:</label>
+                        <select
+                            id="branch"
+                            value={filter.branch}
+                            onChange={e => handleFilterChange('branch', e.target.value)}
+                        >
+                            <option value="">All Year</option>
+                            {allUsersData?.allUsersWithProfiles && (
+                                <>
+                                    {Array.from(new Set(allUsersData.allUsersWithProfiles.map(data => data.selectedBranch)))
+                                        .map((branch, index) => (
+                                            <option key={branch} value={branch}>
+                                                {branch}
+                                            </option>
+                                        ))}
+                                </>
+                            )}
 
-                    </select>
+                            {/* <option value="">All Branch</option>
+                            <option value="CSE">Computer Science Engineering</option>
+                            <option value="DA">Artificial Intelligence & Data Science Engineering</option>
+                            <option value="ECE">Electronics & Communication Engineering</option>
+                            <option value="EE">Electrical Engineering</option>
+                            <option value="AG">Agriculture Engineering</option>
+                            <option value="MG">Mining Engineering</option>
+                            <option value="CE">Civil Engineering</option>
+                            <option value="ME">Mechanical Engineering</option> */}
+
+                        </select>
+                    </div>
+                    <div className="filter-option">
+                        <label htmlFor="position">Position:</label>
+                        <select
+                            id="position"
+                            value={filter.position}
+                            onChange={e => handleFilterChange('position', e.target.value)}
+                        >
+                            <option value="">All</option>
+                            {allUsersData?.allUsersWithProfiles && (
+                                <>
+                                    {Array.from(new Set(allUsersData.allUsersWithProfiles.map(data => data.profileDetails.position)))
+                                        .map((year, index) => (
+                                            <option key={year} value={year}>
+                                                {year}
+                                            </option>
+                                        ))}
+                                </>
+                            )}
+                        </select>
+                    </div>
                 </div>
-                <div className="filter-option">
-                    <label htmlFor="position">Position:</label>
-                    <select
-                        id="position"
-                        value={filter.position}
-                        onChange={e => handleFilterChange('position', e.target.value)}
-                    >
-                        <option value="">All</option>
-                        {[...new Set(usersData.map(data => data.position))]                    //selecting unique year
-                            .sort((a, b) => b - a)                                            // sorting year
-                            .map(position => (
-                                <option key={position} value={position}>
-                                    {position}
-                                </option>
-                            ))}
-                    </select>
-                </div>
-                <div className="filter-option">
-                    <label htmlFor="location">Location:</label>
-                    <input
-                        type="text"
-                        id="location"
-                        value={filter.location}
-                        onChange={e => handleFilterChange('location', e.target.value)}
-                    />
-                </div>
-                
-            </div> */}
 
                 {/* User cards */}
                 <div className="user-cards">
-                    {usersData && Array.isArray(usersData.allUsersWithProfiles) ? (
-                        usersData?.allUsersWithProfiles?.map((user, index) => (
+                    {usersData && Array.isArray(usersData) ? (
+                        usersData?.map((user, index) => (
                             <NavLink to="/UserProfile/*">
                                 <motion.div className="user-card" key={user?.id}
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
-                                    transition={{ duration: 0.5, delay: 0.5 * index }}
+                                    transition={{ duration: 0.5, delay: 0.2 }}
                                 >
 
                                     <div className="user-photo">

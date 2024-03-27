@@ -1,4 +1,6 @@
 const Post = require("../models/Post");
+const Discuss = require("../models/Discuss");
+const Experience = require("../models/Experience");
 const Comment = require("../models/Comment");
 const Like = require("../models/Like");
 const fs = require("fs")
@@ -35,6 +37,70 @@ exports.likePost = async (req, res) => {
         return res.status(500).json({
             success: false,
             message: err.message + "error while Liking",
+        });
+    }
+};
+
+exports.upvotePost = async (req, res) => {
+    try {
+        const { post, postType } = req.body;
+        const userId = req.user.id;
+
+        // Check if the like already exists for this user and post
+        const existingLike = await Like.findOne({
+            postType: postType,
+            "likes.post": post,
+            "likes.user": userId
+        });
+
+        if (existingLike) {
+            return res.status(400).json({
+                success: false,
+                message: "You have already upvoted this post"
+            });
+        }
+
+        // Create or update the like
+        let updatedLike = await Like.findOneAndUpdate(
+            { postType: postType },
+            {
+                $addToSet: {
+                    likes: { post: post, user: userId }
+                }
+            },
+            { upsert: true, new: true }
+        );
+
+        // storing crearted post userid in likes in respective discuss and experire 
+        let updatedPost;
+        if (postType === 'Experience') {
+            updatedPost = await Experience.findByIdAndUpdate(
+                post,
+                { $push: { upvotes: userId } },
+                { new: true }
+            ).populate('upvotes').exec();
+        }
+        else if (postType === 'Discuss') {
+            updatedPost = await Discuss.findByIdAndUpdate(
+                post,
+                { $push: { upvotes: userId } },
+                { new: true }
+            ).populate('upvotes').exec();
+        }
+        else {
+            throw new Error("Invalid Post type");
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: "Post liked successfully",
+            like: updatedPost
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({
+            success: false,
+            message: "Error while upvoting post"
         });
     }
 };

@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState,useMemo, useEffect } from "react";
 import axios from "axios";
+import { NavLink, useParams } from "react-router-dom";
 import baseURL from "../../../api/api";
 import { images } from "../../../constants";
 import './SingleComment.scss';
 import FlashMessage from "../../FlashMessage/FlashMessage";
 import Comment from "../../Comment Sections/Comment";
+import { fetchData } from "../../../FetchData/FetchData";
+import { formatTimeAgo } from "../../formatTimeAgo/formatTimeAgo";
 
 // const reactions = [
 //     {
@@ -31,7 +34,54 @@ function SingleComment({ index, discussion, setExpandedIndex }) {
 
     const [flashMessage, setFlashMessage] = useState(false);
 
+    const { discussId } = useParams();
+
     console.log(discussion);
+
+    // const upvotesCount = useMemo(() => {
+    //     return discussion?.upvotes.length || 0;
+    // }, [discussion]);
+
+    const handleUpvoteClick = async (id) => {
+        console.log("idid", id);
+
+        try {
+            const token = localStorage.getItem('token');
+            if (token) {
+                axios.post(`${baseURL}/post/upvotes`, {
+                    post: id,
+                    postType: "Discuss"
+                }, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+                    .then((response) => {
+                        console.log("Response", response);
+
+                        if (response.status === 200) {
+                            console.log("Discuss liked successfully");
+                            
+                        }
+                    })
+                    .catch((error) => {
+                        if(error.response.status === 400){
+                            console.log("You have already upvoted this post")
+                        }
+                        else if (error.message) {
+                            console.error("Error:", error);
+                        }
+                        else {
+                            console.error("Network or request error");
+                        }
+                    })
+            }
+        }
+        catch(error){
+            console.log("unsuccessful");
+        }
+
+    }
 
     // const [formValue, setformValue] = useState({
     //     commentResponse: ""
@@ -77,20 +127,43 @@ function SingleComment({ index, discussion, setExpandedIndex }) {
         <div className="discuss-form-container">
             <div className="comment-block">
                 <div className='comments'>
-                    <div className='comment-content'>
-                        <span className='close' onClick={() => setExpandedIndex(null)}>
-                            <i class="fa fa-times" aria-hidden="true"></i>
-                        </span>
-                        <div className='Profile'>
-                            <a href="#"><img src={discussion.userId.profileImage} alt={discussion.userId.username}></img></a>
-                            <div className="">{discussion.userId.username}</div>
+                    <div className='flex  '>
+                        <div className="left-sidebar pt-2 pr-3">
+                            <div className="upvote-view-container ">
+                                <div className="upvotes">
+                                    <i
+                                        className="fa-solid fa-circle-up p-2 bg-slate-200 text-slate-600 rounded-sm duration-500 cursor-pointer hover:bg-slate-300 hover:text-slate-800"
+                                        onClick={()=>handleUpvoteClick(discussion._id)}
+                                    />
+                                    <div className="no-of-upvotes">
+                                        {discussion?.upvotes.length}
+                                    </div>
+                                </div>
+                                {/* <div className="views">
+                                    <i class="fa-solid fa-eye"></i>
+                                    <div className="no-of-views">{discussion.views}80k</div>
+                                </div> */}
+                            </div>
+                        </div>
+                        
+                        <div className="comment-content">
+                            <span className='close' onClick={() => setExpandedIndex(null)}>
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </span>
 
-                        </div>
-                        <div className='info'>
-                            <div>{discussion.discussTitle}</div>
-                        </div>
-                        <div className='comment-details'>
-                            <div dangerouslySetInnerHTML={{ __html: discussion.discussDescription }} />
+                            <div className='info'>
+                                <div>{discussion.discussTitle}</div>
+                            </div>
+
+                            <div className='Profile'>
+                                <NavLink to={`/${discussion?.userId?.username}`}><img src={discussion.userId.profileImage} alt={discussion.userId.username}></img></NavLink>
+                                <div className="">{discussion.userId.username}</div>
+                                <div className="text-left text-[8px] sm:text-xs text-gray-400">{formatTimeAgo(discussion.createdAt)}</div>
+                            </div>
+                            
+                            <div className='comment-details'>
+                                <div dangerouslySetInnerHTML={{ __html: discussion.discussDescription }} />
+                            </div>
                         </div>
                     </div>
 

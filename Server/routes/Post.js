@@ -5,7 +5,8 @@ const {
     likePost,
     unlikePost,
     createComment,
-    savePost } = require("../controllers/like");
+    savePost, 
+    upvotePost} = require("../controllers/like");
 const {
     getPostPic,
     sendPostPic,
@@ -18,6 +19,8 @@ router.post("/comment", auth, createComment);
 router.post("/unlike", auth, unlikePost);
 router.post("/save", auth, savePost);
 router.post("/send", auth, sendPostPic);
+
+router.post("/upvotes", auth, upvotePost)
 // router.post("/send-video", videoUpload);
 
 module.exports = router;

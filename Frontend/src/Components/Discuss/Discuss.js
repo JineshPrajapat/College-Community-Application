@@ -139,6 +139,7 @@ function Discuss() {
     const discussionTopic = searchQuery.trim() === '' ? discussionTopicData.discuss : filteredTopics;
     console.log("topicsto Display",discussionTopic);
 
+
     return (
         <>
             <div className="main-conatiner">
@@ -182,21 +183,22 @@ function Discuss() {
                                                 <div className="left-side">
                                                     <NavLink to={`/${discussion?.userId?.username}`}><img src={discussion?.userId?.profileImage} alt="" /></NavLink>
                                                     <div className="topic-title" onClick={() => handleShowDiscussClick(index)}>
+                                                    {/* <NavLink to={`/Discuss/${discussion?._id}`} className="topic-title" > */}
                                                         <div className="item-header" >
                                                             {discussion.discussTitle}
                                                         </div>
                                                         <div className="topic-info">
                                                             {/* {discussion.discussDescription} */}
-                                                            <div className=" text-left" dangerouslySetInnerHTML={{ __html: discussion.discussDescription.slice(0, 39) + '...' }} />
+                                                            <div className=" text-left" dangerouslySetInnerHTML={{ __html: discussion.discussDescription.slice(0, 30) + '...' }} />
                                                         </div>
                                                         <div className="text-left text-[8px] sm:text-xs text-gray-400 sm:pt-2">{formatTimeAgo(discussion.createdAt)}</div>
                                                     </div>
                                                 </div>
                                                 <div className="upvote-view-container">
                                                     <div className="upvotes">
-                                                        <i class="fa-solid fa-circle-up"></i>
+                                                        <i class="fa-solid fa-circle-up" ></i>
                                                         <div className="no-of-upvotes">
-                                                            {discussion?.upvotes}12k
+                                                            {discussion?.upvotes.length}votes
                                                         </div>
                                                     </div>
                                                     <div className="views">
