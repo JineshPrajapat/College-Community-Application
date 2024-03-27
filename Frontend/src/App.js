@@ -39,6 +39,7 @@ import UnauthorizedAccess from "./Components/UnauthorizedAccess/UnauthorizedAcce
 import Community from "./Components/Community/Community/Community";
 import { motion } from 'framer-motion';
 import SingleComment from "./Components/Discuss/SingleComment/SingleComment";
+import { Chat } from "./Components/Chat/Chat";
 
 
 function App() {
@@ -49,7 +50,6 @@ function App() {
 
   return (
     <div className="App">
-
       {!isLoggedIn ? (
         <Routes >
           <Route path="/" element={<CoverPage />} />
@@ -77,6 +77,7 @@ function App() {
                 <Route path="Experience/*" element={<Experience />} />
                 <Route path="Discuss/*" element={<Discuss />} />
                 <Route path="Discuss/addQuery" element={<AddQuery />} />          {/* new added line fo addQuery */}
+                <Route path="Chat" element={<Chat/>}/>
 
                 <Route path=":userName/*" element={<UserProfile />} />
                 {/* <Route path="Discuss/:discussId" element={<SingleComment/>}/> */}
