@@ -1,6 +1,6 @@
-import React, { useState,useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import axios from "axios";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useParams, useNavigate } from "react-router-dom";
 import baseURL from "../../../api/api";
 import { images } from "../../../constants";
 import './SingleComment.scss';
@@ -30,18 +30,35 @@ import { formatTimeAgo } from "../../formatTimeAgo/formatTimeAgo";
 //     },
 
 // ]
-function SingleComment({ index, discussion, setExpandedIndex }) {
+function SingleComment() {
 
     const [flashMessage, setFlashMessage] = useState(false);
 
-    const { discussId } = useParams();
+    const [discussionTopic, setDiscussTopic] = useState({});
+    const { discussTitle } = useParams();
 
-    console.log(discussion);
+    useEffect(() => {
+        fetchData(`${baseURL}/discuss/${discussTitle}`, setDiscussTopic);
+    }, [discussTitle]);
+
+    // console.log("discusstitle", discussionTopic);
+    useEffect(() => {
+        if (discussionTopic.discuss && discussionTopic.discuss.length > 0) {
+            setDiscussTopic(discussionTopic.discuss[0]);
+        }
+    }, [discussionTopic]);
+
+    const discussion = useMemo(() => discussionTopic, [discussionTopic]);
+    console.log("memo discussion", discussion);
 
     // const upvotesCount = useMemo(() => {
     //     return discussion?.upvotes.length || 0;
     // }, [discussion]);
 
+    const navigate= useNavigate()
+    const handleClose = () =>{
+        navigate(-1);
+    }
     const handleUpvoteClick = async (id) => {
         console.log("idid", id);
 
@@ -61,11 +78,11 @@ function SingleComment({ index, discussion, setExpandedIndex }) {
 
                         if (response.status === 200) {
                             console.log("Discuss liked successfully");
-                            
+
                         }
                     })
                     .catch((error) => {
-                        if(error.response.status === 400){
+                        if (error.response.status === 400) {
                             console.log("You have already upvoted this post")
                         }
                         else if (error.message) {
@@ -77,10 +94,48 @@ function SingleComment({ index, discussion, setExpandedIndex }) {
                     })
             }
         }
-        catch(error){
+        catch (error) {
             console.log("unsuccessful");
         }
 
+    }
+
+    const handleBookMark = async(id)=>{
+        try {
+            const token = localStorage.getItem('token');
+            if (token) {
+                axios.post(`${baseURL}/bookmark/saved`, {
+                    postId: id,
+                    postType: "Discuss"
+                }, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+                    .then((response) => {
+                        console.log("Response", response);
+
+                        if (response.status === 200) {
+                            console.log("Discuss bookmarked successfully");
+
+                        }
+                    })
+                    .catch((error) => {
+                        if (error.response.status === 400) {
+                            console.log("You have already bookmarked this post")
+                        }
+                        else if (error.message) {
+                            console.error("Error:", error);
+                        }
+                        else {
+                            console.error("Network or request error");
+                        }
+                    })
+            }
+        }
+        catch (error) {
+            console.log("unsuccessful");
+        }
     }
 
     // const [formValue, setformValue] = useState({
@@ -133,42 +188,48 @@ function SingleComment({ index, discussion, setExpandedIndex }) {
                                 <div className="upvotes">
                                     <i
                                         className="fa-solid fa-circle-up p-2 bg-slate-200 text-slate-600 rounded-sm duration-500 cursor-pointer hover:bg-slate-300 hover:text-slate-800"
-                                        onClick={()=>handleUpvoteClick(discussion._id)}
+                                        onClick={() => handleUpvoteClick(discussion?._id)}
                                     />
                                     <div className="no-of-upvotes">
-                                        {discussion?.upvotes.length}
+                                        {discussion?.upvotes?.length}
                                     </div>
                                 </div>
                                 {/* <div className="views">
                                     <i class="fa-solid fa-eye"></i>
                                     <div className="no-of-views">{discussion.views}80k</div>
                                 </div> */}
+                                <div className="bookmark pt-5">
+                                    <i class="fa-solid fa-bookmark  p-2 bg-slate-200 text-slate-600 rounded-sm duration-500 cursor-pointer hover:bg-slate-300 hover:text-slate-800"
+                                    onClick={() => handleBookMark(discussion?._id)}
+                                    />
+                                </div>
                             </div>
                         </div>
-                        
+
                         <div className="comment-content">
-                            <span className='close' onClick={() => setExpandedIndex(null)}>
-                                <i class="fa fa-times" aria-hidden="true"></i>
+                            <span className='close bg-slate-200 font-bold p-2 rounded-md hover:bg-slate-500 hover:text-white' onClick={() => handleClose()}>
+                                Close
+                                {/* <i class="fa fa-times" aria-hidden="true"></i> */}
                             </span>
 
                             <div className='info'>
-                                <div>{discussion.discussTitle}</div>
+                                <div>{discussion?.discussTitle}</div>
                             </div>
 
                             <div className='Profile'>
-                                <NavLink to={`/${discussion?.userId?.username}`}><img src={discussion.userId.profileImage} alt={discussion.userId.username}></img></NavLink>
-                                <div className="">{discussion.userId.username}</div>
+                                <NavLink to={`/${discussion?.userId?.username}`}><img src={discussion?.userId?.profileImage} alt={discussion?.userId?.username}></img></NavLink>
+                                <div className="">{discussion?.userId?.username}</div>
                                 <div className="text-left text-[8px] sm:text-xs text-gray-400">{formatTimeAgo(discussion.createdAt)}</div>
                             </div>
-                            
+
                             <div className='comment-details'>
-                                <div dangerouslySetInnerHTML={{ __html: discussion.discussDescription }} />
+                                <div dangerouslySetInnerHTML={{ __html: discussion?.discussDescription }} />
                             </div>
                         </div>
                     </div>
 
 
-                    <Comment discussionId={discussion._id} />
+                    <Comment discussionId={discussion?._id} />
 
                     {/* <div className="comment-box-container">
                         <div className="comments-sections">

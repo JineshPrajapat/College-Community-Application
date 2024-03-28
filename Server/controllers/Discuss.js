@@ -73,6 +73,37 @@ exports.getDiscuss = async (req, res) => {
 };
 
 
+exports.getDiscussbyTitle = async (req, res) => {
+    try {
+        const {discussTitle} = req.params;
+        const discuss = await Discuss.find({discussTitle:discussTitle})
+            .populate("userId")
+            .populate("comments")
+            .sort({ createdAt: -1 })
+            .exec();
+        console.log("discuss", discuss);
+
+        if (!discuss) {
+            return res.status(404).json({
+                success: false,
+                message: "No discuss found",
+            });
+        }
+        return res.status(200).json({
+            // success: true,
+            // message: "Discuss Found successfully",
+            discuss: discuss,
+        })
+    }
+    catch (err) {
+        console.log(err);
+        return res.status(500).json({
+            success: false,
+            message: err.message + "error while fetching discuss",
+        });
+    }
+};
+
 // // below one is working for single comment
 exports.sendComment = async (req, res) => {
     try{
@@ -121,6 +152,7 @@ exports.sendComment = async (req, res) => {
         })
     }
 };
+
 
 exports.getComment = async (req, res) => {
     try {

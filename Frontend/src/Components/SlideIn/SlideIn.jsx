@@ -12,7 +12,7 @@ export const SlideIn = ({isSlideInToggle, setIsSildeInToggle}) => {
     const Menus = [
         {},
         { name: "View Profile", icon: person, path: "/UserProfile/*" },
-        { name: "Saved", icon: bookmark, path: "/Bookmarked" },
+        { name: "Saved", icon: bookmark, path: "/Bookmark" },
         { name: "Community", icon: thumbsUpSharp, path: "/Community" },
         { name: "Expericences", icon: shieldSharp, path: "/Experience" },
         { name: "Placement Statistics", icon: analyticsSharp, path: "/PlacementStats" },

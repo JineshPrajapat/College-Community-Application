@@ -12,7 +12,7 @@ export const SideBar = () => {
         { name: "Discuss", icon: chatbubbleOutline, path: "/Discuss" },
         { name: "Jobs", icon: briefcaseOutline, path: "/Opportunity" },
         { name: "Expericences", icon: chatboxEllipsesOutline, path: "/Experience" },
-        { name: "Saved", icon: bookmarkOutline, path: "/Notes" },
+        { name: "Saved", icon: bookmarkOutline, path: "/Bookmark" },
         { name: "Community", icon: thumbsUpOutline, path: "/Community" },
         { name: "Placement Statistics", icon: analyticsSharp, path: "/PlacementStats" },
     ]

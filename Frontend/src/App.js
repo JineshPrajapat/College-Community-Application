@@ -40,6 +40,7 @@ import Community from "./Components/Community/Community/Community";
 import { motion } from 'framer-motion';
 import SingleComment from "./Components/Discuss/SingleComment/SingleComment";
 import { Chat } from "./Components/Chat/Chat";
+import Bookmark from "./Components/BookMark/BookMark";
 
 
 function App() {
@@ -78,9 +79,10 @@ function App() {
                 <Route path="Discuss/*" element={<Discuss />} />
                 <Route path="Discuss/addQuery" element={<AddQuery />} />          {/* new added line fo addQuery */}
                 <Route path="Chat" element={<Chat/>}/>
+                <Route path="Bookmark/*" element={<Bookmark/>}/>
 
                 <Route path=":userName/*" element={<UserProfile />} />
-                {/* <Route path="Discuss/:discussId" element={<SingleComment/>}/> */}
+                <Route path="Discuss/:discussTitle" element={<SingleComment/>}/>
 
                 <Route path="PlacementStats" element={<Placement />} />
                 <Route path="Community" element={<Community />} />

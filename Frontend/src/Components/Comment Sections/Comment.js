@@ -7,6 +7,7 @@ import LogInComponent from './LogInComponent'
 
 const Comment = (props) => {
     const { discussionId } = props;
+    console.log("discussionId in comment", discussionId);
   return (
     <div className='example-div'>
       {/* <div className='head-title'>Demo Examples</div> */}
