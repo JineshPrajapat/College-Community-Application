@@ -4,11 +4,14 @@ import React, { useState } from 'react'
 import { Prev } from 'react-bootstrap/esm/PageItem';
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai"
 import { Link, useLocation } from 'react-router-dom';
+import FlashMessage from '../FlashMessage/FlashMessage';
 
 export const UpdatePassword = () => {
 
     const location = useLocation();
     const [showResetForm, setShowResetForm] = useState(false);
+    const [processing, setProcessing] = useState(false);
+    const [flashMessage, setFlashMessage] = useState(null);
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
     const [formData, setFormData] = useState({
@@ -27,6 +30,7 @@ export const UpdatePassword = () => {
 
     const handleOnSubmit = (e) => {
         e.preventDefault();
+        setProcessing(true);
         const token = location.pathname.split('/').at(-1);
         console.log("token", token)
         axios.put(`${baseURL}/user/reset-password`, {
@@ -42,7 +46,7 @@ export const UpdatePassword = () => {
                     setShowSuccessMessage(true);
                     setShowResetForm(false);
 
-                    // setFlashMessage({ type: 'success', message: 'Password Reset successful.' });
+                    setFlashMessage({ type: 'success', message: 'Password Reset successful.' });
                     // navigate('/careerprephub')
                 }
             })
@@ -50,29 +54,50 @@ export const UpdatePassword = () => {
                 if (error.response) {
                     if (error.response.status === 402) {
                         // Handle user not found
-                        console.error('Token is expired. Plaease regenerate your token');
-                        // setFlashMessage({ type: 'error', message: 'User not found' });
+                        console.error('Link is expired. Please regenerate your Link');
+                        setFlashMessage({ type: 'error', message: "Link is expired. Please regenerate your Link" });
                         // window.location.href = 'http://localhost:3000/Login';
 
-                    } else if (error.response.status === 404) {
+                    } else if (error.response.status === 401) {
+                        // Handle authentication failure
+                        console.error("Password don't match.");
+                        setFlashMessage({ type: 'error', message: "Password don't match." });
+                        // window.location.href = 'http://localhost:3000/Login';
+
+                    }
+                    else if (error.response.status === 404) {
                         // Handle authentication failure
                         console.error('User Not Found');
-                        // setFlashMessage({ type: 'error', message: 'Authentication failed' });
+                        setFlashMessage({ type: 'error', message: 'Authentication failed' });
+                        // window.location.href = 'http://localhost:3000/Login';
+
+                    }
+                    else if (error.response.status === 410) {
+                        // Handle authentication failure
+                        console.error('Failed to update password.');
+                        setFlashMessage({ type: 'error', message: 'Failed to update password, try again' });
                         // window.location.href = 'http://localhost:3000/Login';
 
                     }
                 } else {
                     // Handle network or request errors
                     console.error('Network or request error:', error);
-                    // setFlashMessage({ type: 'error', message: 'Server Error' });
+                    setFlashMessage({ type: 'error', message: 'Something went wrong while reseting the password.' });
                 }
+            })
+            .finally(() => {
+                setProcessing(false);
             });
-
     }
 
 
     return (
         <div className="max-w-md mx-auto h-full rounded-lg shadow-lg p-6">
+
+            {flashMessage &&
+                <FlashMessage type={flashMessage.type} message={flashMessage.message} />}
+
+
             {!showResetForm && (
                 <div className="reset-from-container">
                     <h1 className='text-3xl font-semibold mb-4'>Choose new Password</h1>
@@ -116,7 +141,13 @@ export const UpdatePassword = () => {
                                 </span>
                             </div>
                         </label>
-                        <button type='submit' className='w-full px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-600 transition-colors duration-300'>Reset Password</button>
+                        <button
+                            type='submit'
+                            className='w-full px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-600 transition-colors duration-300'
+                            disabled={processing}
+                        >
+                            {processing ? 'Processing...' : "Reset Password"} Reset Password
+                        </button>
                     </form>
                     <div>
                         <Link to="/login" className='text-blue-500 hover:underline transition-colors duration-300'>
@@ -131,7 +162,7 @@ export const UpdatePassword = () => {
                     <p class="text-lg font-semibold mb-4">Password reset successful!</p>
                     <p class="text-sm mb-4">Now login and enjoy the website.</p>
                     <Link to="/login" className='text-blue-500 hover:underline transition-colors duration-300'>
-                            Back to login
+                        Back to login
                     </Link>
                 </div>
             )}

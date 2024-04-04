@@ -72,7 +72,7 @@ const Home = ({ userData }) => {
 
                 {userData?.Data?.profileDetails?.links?.map((link, index) => (
                   <li key={index}>
-                    {link.type === "LinkedIn" && (
+                    {link.type === "LinkedIn"  && (
                       <a href={link.url}><i className="fab fa-linkedin-in" /></a>
                     )}
 

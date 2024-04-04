@@ -25,6 +25,13 @@ exports.sendDiscuss = async (req, res) => {
             discussDescription: discussDescription,
         });
 
+        if(!discussDetails){
+            return res.status(405).json({
+                success:false,
+                message:"Unable to Update query!"
+            })
+        }
+
         return res.status(200).json({
             success: true,
             message: "Discuss added successfully.",
@@ -103,6 +110,8 @@ exports.getDiscussbyTitle = async (req, res) => {
         });
     }
 };
+
+
 
 // // below one is working for single comment
 exports.sendComment = async (req, res) => {

@@ -12,7 +12,8 @@ import ForgetPassword from '../ForgetPassword/ForgetPassword';
 function Login() {
 
     const navigate = useNavigate();                                //initialize useNavigate
-    const {setIsLoggedIn} = useAuth();
+    const { setIsLoggedIn } = useAuth();
+    const [processing, setProcessing] = useState(false);
     const [flashMessage, setFlashMessage] = useState(null);
     const [showForgetPassword, setShowForgetPassword] = useState(false);
 
@@ -37,6 +38,7 @@ function Login() {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
+        setProcessing(true);
         axios.post(`${baseURL}/user/login`, {
             email: formValue.email,
             password: formValue.password,
@@ -45,22 +47,22 @@ function Login() {
                 console.log("Response:", response);
 
                 if (response.status === 200) {
-                    const token = response.data.token;    
+                    const token = response.data.token;
                     // const userId = response.data.user._id;
-                    const userName = response.data.user.username; 
+                    const userName = response.data.user.username;
                     const fullName = response.data.user.profileDetails.fullName;
                     const avatarUrl = response.data.user.profileImage;
-                    const userProfession = response.data.user.profileDetails.profession;  
+                    const userProfession = response.data.user.profileDetails.profession;
                     const email = response.data.user.email;
-                    
+
                     // localStorage.setItem('userId', userId);
-                    localStorage.setItem('token', token);      
+                    localStorage.setItem('token', token);
                     localStorage.setItem('userName', userName);              // Store token in local storage
                     localStorage.setItem('fullName', fullName);
-                    localStorage.setItem('avatarUrl', avatarUrl); 
-                    localStorage.setItem('userProfession', userProfession); 
+                    localStorage.setItem('avatarUrl', avatarUrl);
+                    localStorage.setItem('userProfession', userProfession);
                     localStorage.setItem('email', email);
-                    
+
                     // localStorage.setItem('userId', userId);                  
                     console.log(token);
                     // console.log("userId", userId);
@@ -79,10 +81,17 @@ function Login() {
 
                     } else if (error.response.status === 401) {
                         // Handle authentication failure
-                        console.error('Authentication failed');
-                        setFlashMessage({ type: 'error', message: 'Authentication failed' });
+                        console.error('User is not registered. Please signup first');
+                        setFlashMessage({ type: 'error', message: 'User is not registered. Please signup first' });
                         window.location.href = 'http://localhost:3000/Login';
 
+                    } else if (error.response.status === 403) {
+                        setFlashMessage({ type: 'error', message: 'All fields are required, please try again.' });
+
+
+                    } else if (error.response.status === 402) {
+                        setFlashMessage({ type: 'error', message: 'Incorrect password.' });
+                        window.location.href = 'http://localhost:3000/Login';
                     } else {
                         // Handle other errors
                         console.error('Error:', error.response);
@@ -92,6 +101,9 @@ function Login() {
                     console.error('Network or request error:', error);
                     setFlashMessage({ type: 'error', message: 'Server Error' });
                 }
+            })
+            .finally(() => {
+                setProcessing(false);       // Set loading back to false regardless of success or failure
             });
     }
 
@@ -140,8 +152,12 @@ function Login() {
                         />
                     </div>
                     {/* <Link to="/ForgetPassword" className="forget_password" href="#">Forgot password?</Link> */}
-                    <div className="forget_password" onClick={handleFormChange}>Forget Password</div>
-                    <button title='Sign In' type='submit' className='sign-in_btn'><span>Log In</span></button>
+                    <div className="forget_password cursor-pointer hover:text-red-600" onClick={handleFormChange}>Forget Password?</div>
+
+                    <button title='Sign In' type='submit' className={`sign-in_btn ${processing ? " bg-blue-200" : ""}`} disabled={processing}>
+                        <span>{processing ? 'Signing In...' : 'Sign In'}</span>
+                    </button>
+
                     <div className="new_to_account">
                         <h4 >New to CareerPerpHub?<Link to="/Signup">Create Account</Link></h4>
                     </div>

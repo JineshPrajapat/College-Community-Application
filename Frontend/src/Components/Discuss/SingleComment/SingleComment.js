@@ -33,7 +33,6 @@ import { formatTimeAgo } from "../../formatTimeAgo/formatTimeAgo";
 function SingleComment() {
 
     const [flashMessage, setFlashMessage] = useState(false);
-
     const [discussionTopic, setDiscussTopic] = useState({});
     const { discussTitle } = useParams();
 
@@ -78,12 +77,15 @@ function SingleComment() {
 
                         if (response.status === 200) {
                             console.log("Discuss liked successfully");
-
                         }
                     })
                     .catch((error) => {
                         if (error.response.status === 400) {
-                            console.log("You have already upvoted this post")
+                            console.log("You have already upvoted this post");
+                            setFlashMessage({
+                                type: "info",
+                                message: "You have already upvoted!"
+                            });
                         }
                         else if (error.message) {
                             console.error("Error:", error);
@@ -117,24 +119,33 @@ function SingleComment() {
 
                         if (response.status === 200) {
                             console.log("Discuss bookmarked successfully");
+                            setFlashMessage({
+                                type: "sucess",
+                                message: "Saved to BookMark!"
+                            });
 
                         }
                     })
                     .catch((error) => {
                         if (error.response.status === 400) {
                             console.log("You have already bookmarked this post")
-                        }
-                        else if (error.message) {
-                            console.error("Error:", error);
+                            setFlashMessage({type: "error", message: "Not saved, try again" });
+                        } if (error.response.status === 402) {
+                            console.log("You have already bookmarked this post");
+                            setFlashMessage({type: "info", message: "You have already bookmarked this post" });
                         }
                         else {
+                            console.error("Error:", error);
+
                             console.error("Network or request error");
+                            setFlashMessage({type: "error", message: "Network Error" });
                         }
                     })
             }
         }
         catch (error) {
             console.log("unsuccessful");
+            setFlashMessage({type: "error", message: "Not saved, try again" });
         }
     }
 

@@ -61,7 +61,7 @@ exports.saveBookmarkForUser = async (req, res) => {
                     existingPost.postId.push(postId);
                 }
                 else {
-                    return res.status(400).json({
+                    return res.status(402).json({
                         success: false,
                         message: `Post with ID ${postId} already saved in ${postType}`
                     });

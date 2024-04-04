@@ -172,21 +172,28 @@ exports.submitInfo = async (req, res) => {
             enrollmentNumber: enrollmentNumber,
             studentIdImage: studentIdresponse.secure_url,
             passoutYear: passoutYear,
+            userId: userId,
         });
 
         console.log(enrollmentDetails);
 
         // Associate EnrollmentNumber with Branch
-        branch.enrollmentNumber.push(enrollmentDetails._id);
-        await branch.save();
+        if (!branch.enrollmentNumber.includes(enrollmentDetails._id)) {
+            branch.enrollmentNumber.push(enrollmentDetails._id);
+            await branch.save();
+        }
 
         // Associate Branch with Course
-        course.branch.push(branch._id);
-        await course.save();
+        if (!course.branch.includes(branch._id)) {
+            course.branch.push(branch._id);
+            await course.save();
+        }
 
         // Associate Course with College
-        college.courses.push(course._id);
-        await college.save();
+        if (!college.courses.includes(course._id)) {
+            college.courses.push(course._id);
+            await college.save();
+        }
 
 
         user.college = college.name;
@@ -215,18 +222,18 @@ exports.submitInfo = async (req, res) => {
 
 };
 
-exports.getUserData= async(req,res) =>{
-    try{
-        const UserId =  req.user.id;
+exports.getUserData = async (req, res) => {
+    try {
+        const UserId = req.user.id;
 
         const Data = await User.findById(UserId).populate("profileDetails").exec();
 
         console.log("data:", Data)
 
-        if(!Data){
+        if (!Data) {
             return res.status(400).json({
-                success:false,
-                message:"No data found!",
+                success: false,
+                message: "No data found!",
             })
         }
 

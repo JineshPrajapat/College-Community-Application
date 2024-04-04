@@ -96,7 +96,6 @@ exports.updateProfile = async (req, res) => {
     }
 };
 
-
 // updateAdditionalProfile
 exports.updateAdditionalProfile = async (req, res) =>{
     try{
@@ -164,45 +163,6 @@ exports.updateAdditionalProfile = async (req, res) =>{
         res.status(500).json({ message: 'Internal server error' });
     }
 }
-
-// delete account
-exports.deleteAccount = async (req, res) => {
-    try {
-
-        // fetch id
-        const id = req.user.id;
-        console.log("id ->", id)
-        // validate
-        const userDetails = await User.findById(id);
-        console.log("userDetails ->", userDetails);
-        if (!userDetails) {
-            return res.status(404).json({
-                success: false,
-                message: "User not found.",
-            });
-        }
-
-        // delete profile
-        await Profile.findByIdAndDelete({ _id: userDetails.profileDetails });
-
-        // delete user
-        await User.findByIdAndDelete({ _id: id });
-
-        // return response
-        return res.status(200).json({
-            success: true,
-            message: "User Deleted successfully.",
-        });
-
-    } catch (err) {
-        console.log(err);
-        return res.status(500).json({
-            success: false,
-            message: "Unable to delete profile.",
-            error: err.message,
-        });
-    }
-};
 
 // get all details of user
 exports.getUserDetails = async (req, res) => {
@@ -277,3 +237,45 @@ exports.updateDisplayPicture = async (req, res) => {
         });
     }
 };
+
+
+
+
+// // delete account
+// exports.deleteAccount = async (req, res) => {
+//     try {
+
+//         // fetch id
+//         const id = req.user.id;
+//         console.log("id ->", id)
+//         // validate
+//         const userDetails = await User.findById(id);
+//         console.log("userDetails ->", userDetails);
+//         if (!userDetails) {
+//             return res.status(404).json({
+//                 success: false,
+//                 message: "User not found.",
+//             });
+//         }
+
+//         // delete profile
+//         await Profile.findByIdAndDelete({ _id: userDetails.profileDetails });
+
+//         // delete user
+//         await User.findByIdAndDelete({ _id: id });
+
+//         // return response
+//         return res.status(200).json({
+//             success: true,
+//             message: "User Deleted successfully.",
+//         });
+
+//     } catch (err) {
+//         console.log(err);
+//         return res.status(500).json({
+//             success: false,
+//             message: "Unable to delete profile.",
+//             error: err.message,
+//         });
+//     }
+// };

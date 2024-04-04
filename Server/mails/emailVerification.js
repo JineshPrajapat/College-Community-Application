@@ -64,7 +64,7 @@ exports.otpTemplate = (otp) => {
   <body>
     <div class="container">
       <a href=""
-        ><img class="logo" src="./logo.png" alt="CampusConnect Logo"
+        ><img class="logo" src="./mainLogo1.png" alt="CampusConnect Logo"
       /></a>
       <div class="message">OTP Verification Email</div>
       <div class="body">

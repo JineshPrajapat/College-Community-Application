@@ -7,18 +7,21 @@
   z-index: 9999; 
   .flash-message {
     position: absolute;
-    bottom:2%;
-    right:2%;
+    top:7%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width:max-content;
     max-width: 30%;
     font-size: 1rem;
-    padding: 10px 20px;
-    border-radius: 4px;
+    padding: 10px 30px;
+    border-radius: 14px;
     color: #fff;
     font-weight: bold;
     animation-duration: 0.3s;
     animation-fill-mode: both;
     z-index: 99;
+    display: flex;
+    align-items: center;
   
     &.success {
       background-color: #4caf50; /* Green color for success */
@@ -27,7 +30,13 @@
   
     &.error {
       background-color: #f44336; /* Red color for error */
-      box-shadow: 0px 6px 17px 3px rgb(181, 51, 34);
+      // box-shadow: 0px 6px 17px 3px rgb(181, 51, 34);
+      box-shadow: 0px 6px 17px 3px rgb(40, 15, 10);
+    }
+
+    &.info {
+      background-color: #099bb8; /* Blue color for info */
+      box-shadow: 0px 6px 17px 3px #67a7b3;
     }
   
     /* Animation */

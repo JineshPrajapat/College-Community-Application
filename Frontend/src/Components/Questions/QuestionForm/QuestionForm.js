@@ -74,7 +74,7 @@ function QuestionForm() {
             setFlashMessage({
               type: "success",
               message:
-                "We recieved your questions, will be update in 2 working days. Happy to see you soon!",
+                "We recieved your questions, Thanks for sharing. Happy to see you soon!",
             });
             navigate('/Questions');
           }
@@ -84,10 +84,14 @@ function QuestionForm() {
             console.error("Error:", error);
             setFlashMessage({
               type: "error",
-              message: "Reservation failed, try again!",
+              message: "Question updation failed, try again!",
             });
           } else {
             console.error("Network or request error");
+            setFlashMessage({
+              type: "error",
+              message: "Network error, try again!",
+            });
           }
         });
     }

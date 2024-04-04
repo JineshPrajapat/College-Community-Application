@@ -400,7 +400,7 @@ const Users = () => {
                 <div className="user-cards">
                     {usersData && Array.isArray(usersData) ? (
                         usersData?.map((user, index) => (
-                            <NavLink to="/UserProfile/*">
+                            <div >
                                 <motion.div className="user-card" key={user?.id}
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
@@ -420,19 +420,19 @@ const Users = () => {
 
                                             {user?.profileDetails?.links?.map((link, index) => (
                                                 <li key={index}>
-                                                    {link.type === "LinkedIn" && (
+                                                    {link.type === "LinkedIn" && link.url && (
                                                         <a href={link.url}><i className="fab fa-linkedin-in" /></a>
                                                     )}
 
-                                                    {link.type === "GitHub" && (
+                                                    {link.type === "GitHub" && link.url && (
                                                         <a href={link.url}><i className="fa-brands fa-github" /></a>
                                                     )}
 
-                                                    {link.type === "Twitter" && (
+                                                    {link.type === "Twitter" && link.url && (
                                                         <a href={link.url}><i className="fab fa-twitter" /></a>
                                                     )}
 
-                                                    {link.type === "YouTube" && (
+                                                    {link.type === "YouTube" && link.url && (
                                                         <a href={link.url}><i className="fab fa-youtube" /></a>
                                                     )}
 
@@ -458,10 +458,10 @@ const Users = () => {
 
                                     </div>
                                 </motion.div>
-                            </NavLink>
+                            </div>
                         ))
                     ) : usersData?.Data ? (
-                        <Link to="/UserProfile/*" className='no-underline '>
+                        // <Link to="/UserProfile/*" className='no-underline '>
                             <div className="user-card" key={usersData?.Data?.id}
                             >
 
@@ -478,19 +478,19 @@ const Users = () => {
 
                                         {usersData?.Data?.profileDetails?.links?.map((link, index) => (
                                             <li key={index}>
-                                                {link.type === "LinkedIn" && (
+                                                {link.type === "LinkedIn"   && (
                                                     <a href={link.url}><i className="fab fa-linkedin-in" /></a>
                                                 )}
 
-                                                {link.type === "GitHub" && (
+                                                {link.type === "GitHub" && link.url && (
                                                     <a href={link.url}><i className="fa-brands fa-github" /></a>
                                                 )}
 
-                                                {link.type === "Twitter" && (
+                                                {link.type === "Twitter" && link.url && (
                                                     <a href={link.url}><i className="fab fa-twitter" /></a>
                                                 )}
 
-                                                {link.type === "YouTube" && (
+                                                {link.type === "YouTube" && link.url && (
                                                     <a href={link.url}><i className="fab fa-youtube" /></a>
                                                 )}
 
@@ -514,7 +514,7 @@ const Users = () => {
                                     </div>
                                 </div>
                             </div>
-                        </Link>
+                        // {/* </Link> */}
                     ) : (
                         <p>No data available</p>
                     )}

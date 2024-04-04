@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import baseURL from "../../../api/api";
 import './AddQuery.scss'
-// import '@fortawesome/fontawesome-free/css/all.css';
 import MyCKeditor from "../../MyCKEditor/MyCKEditor";
 import FlashMessage from "../../FlashMessage/FlashMessage";
 import ConfirmationDialog from "../../ConfirmationDialog/ConfirmationDialog";
@@ -71,10 +70,20 @@ function AddQuery() {
                 .catch((error) => {
                     if (error.response) {
                         console.error("Error:", error);
-                        setFlashMessage({
-                            type: "error",
-                            message: "Post not addded, try again!"
-                        });
+                        if (error.response.status === 400) {
+                            console.error('All fields are required.');
+                            setFlashMessage({ type: 'error', message: 'All fields are required.' });    
+                        } else if(error.response.status === 405){
+                            setFlashMessage({
+                                type: "error",
+                                message: "Post not addded, try again!"
+                            });
+                        }
+                        else {
+                            // Handle other errors
+                            console.error('Error:', error.response);
+                        }
+                        
                     }
                     else {
                         console.error("Network or request error");

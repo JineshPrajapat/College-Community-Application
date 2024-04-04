@@ -39,7 +39,7 @@ const NavBar = () => {
   return (
     <>
       {isMobile ? (
-        <div className="bg-white max-h-[4.4rem] px-6 rounded-t-xl fixed bottom-0 z-50">
+        <div className="bg-white max-h-[4.4rem] px-6 rounded-t-xl fixed bottom-0 z-40">
           <ul className="flex relative pb-1">
             <span
               className={`bg-blue-500 duration-500 ${MobileMenus[active].dis} border-5 border-blue-50 h-16 w-16 absolute

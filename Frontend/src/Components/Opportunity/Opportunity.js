@@ -25,22 +25,6 @@ const Opportunity = () => {
                 <Route path="AddOpportunity" element={<OpportunityForm />} />
             </Routes>
 
-
-            {/* <div className='Cards'>
-                {opportunity.map((opportunity, index) => (
-                    <div className='opportunity-card' key={index}>
-                        <div className='job-role'>{opportunity.jobRole}</div>
-                        <div className='details'>
-                            <div>{opportunity.company}</div>
-                            <div>{opportunity.branch}</div>
-                            <div>Eligibility:{opportunity.eligibility}</div>
-                            <a href={opportunity.Url}>Apply Here</a>
-                            <div>Deadline:{opportunity.lastDate}</div>
-                        </div>
-                    </div>
-                ))}
-
-            </div> */}
         </div></>
 
     );

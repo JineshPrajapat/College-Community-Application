@@ -10,6 +10,12 @@ exports.resetPasswordToken = async (req, res) => {
         const { email } = req.body;
 
         // check user for email, email validation
+        if(!email){
+            return res.status(403).json({
+                success: false,
+                message: "Email is required"
+            });
+        }
         const user = await User.findOne({ email: email });
         if (!user) {
             return res.status(401).json({
@@ -37,7 +43,7 @@ exports.resetPasswordToken = async (req, res) => {
         await mailSender(email, "Password reset Link", resetPassword(email, name, url));
 
         // return response
-        return res.json({
+        return res.status(200).json({
             success: true,
             message: "Email sent successfully,  please check email and change password.",
             updatedDetails: updatedDetails,
@@ -83,7 +89,7 @@ exports.resetPassword = async (req, res) => {
         if (userDetails.resetPasswordExpires < Date.now()) {
             return res.status(402).json({
                 success: false,
-                message: "Token is expired. Plaease regenerate your token.",
+                message: "Token is expired. Please regenerate your token.",
             });
         }
 
@@ -104,16 +110,21 @@ exports.resetPassword = async (req, res) => {
 
         console.log("updatedUser", updatedUser);
         if (!updatedUser) {
-            return res.status(500).json({
+            return res.status(410).json({
                 success: false,
                 message: "Failed to update password.",
             });
         }
 
+        // send mail password updated
+        const email = updatedUser.email;
+        const emailInfo = await mailSender(email, "Password updated Successfully", passwordUpdated(email, userDetails.profileDetails.fullName))
+
         // return reponse
         return res.status(200).json({
             success: true,
             message: "Password reset successfully.",
+            emailInfo
         });
 
     } catch (err) {

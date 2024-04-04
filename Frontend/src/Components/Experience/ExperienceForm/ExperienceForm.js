@@ -66,7 +66,7 @@ function ExperienceForm() {
               setFlashMessage({
                 type: "success",
                 message:
-                  "We recieved your questions, will be update in 2 working days. Happy to see you soon!",
+                  "Experience added successfully.!",
               });
               navigate("/Experience")
 
@@ -75,19 +75,33 @@ function ExperienceForm() {
           .catch((error) => {
             if (error.response) {
               console.error("Error:", error);
-              setFlashMessage({
-                type: "error",
-                message: "Reservation failed, try again!",
-              });
+              if (error.response.status === 400) {
+                console.error("Error:", error);
+                setFlashMessage({
+                  type: "error",
+                  message: "All fields are required.",
+                });
+              } else if (error.response.status === 500) {
+                setFlashMessage({
+                  type: "error",
+                  message: "Unable to update experience, try again!",
+                });
+              }
+
             } else {
               console.error("Network or request error");
+              setFlashMessage({
+                type: "error",
+                message: "Network error",
+              });
             }
           });
       }
       else {
+        console.log("Token not found");
         setFlashMessage({
           type: "error",
-          message: "Token not generated",
+          message: "Not added,try again",
         });
       }
     }
@@ -120,7 +134,7 @@ function ExperienceForm() {
       <div className="experience-form-container">
         {/* <img src={images.garima} alt="Dal-makhani" /> */}
         <form id="experience-form" onSubmit={handleFormSubmit}>
-        <div className="pb-4">
+          <div className="pb-4">
             <strong >Add Your Experience</strong>
           </div>
           <label htmlFor="experienceTitle" aria-required="true">
@@ -137,7 +151,7 @@ function ExperienceForm() {
           </label>
           <label htmlFor="experienceDescription" >
             Share your Experience/Review:
-            <MyCKeditor className="pb-3"  onDescriptionChange={handleDescriptionChange} />
+            <MyCKeditor className="pb-3" onDescriptionChange={handleDescriptionChange} />
           </label>
 
           <div className="btn-post" >

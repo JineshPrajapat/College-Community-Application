@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link,Routes, Route, useNavigate } from 'react-router-dom';
+import { Link, Routes, Route, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import baseURL from '../../api/api';
 import { useSignUp } from '../../AuthProvider/SignUpProvider';
@@ -11,8 +11,9 @@ import { images } from '../../constants'
 function SignUp() {
 
     const { setIsSignedUp } = useSignUp();
-    
+
     const [flashMessage, setFlashMessage] = useState(null);
+    const [processing, setProcessing] = useState(false);
     const navigate = useNavigate();
 
     const [formValue, setformValue] = useState({
@@ -34,7 +35,8 @@ function SignUp() {
 
     const sendOTP = async (event) => {
         event.preventDefault();
-        console.log("otp sent");
+        console.log("otp sent function invoked");
+        setProcessing(true);
         axios.post(`${baseURL}/user/sendOTP`, {
             email: formValue.email
         })
@@ -55,7 +57,7 @@ function SignUp() {
                     if (error.response.status === 401) {
                         // handle already registered
                         console.error('Already registered');
-                        setFlashMessage({ type: 'error', message: 'Already registered' });
+                        setFlashMessage({ type: 'info', message: 'Already registered' });
                         window.location.href = 'http://localhost:3000/login';
                     }
                     else if (error.response.status === 403) {
@@ -70,11 +72,15 @@ function SignUp() {
                     console.error('Network or request error:', error);
                 }
             })
+            .finally(() => {
+                setProcessing(false);       // Set loading back to false regardless of success or failure
+            });
 
     }
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
+        setProcessing(true);
         axios.post(`${baseURL}/user/signup`, {
             username: formValue.username,
             email: formValue.email,
@@ -88,19 +94,34 @@ function SignUp() {
                     //  successful registration flash message
                     setFlashMessage({ type: 'success', message: 'Registred Successfull' });
                     const token = response.data.token;
-                    localStorage.setItem('token', token); 
-                    console.log("signup",token);
+                    localStorage.setItem('token', token);
+                    console.log("signup", token);
                     setIsSignedUp(true);
                     navigate("/UserForm");
                 }
             })
             .catch(error => {
                 if (error.response) {
-                    if (error.response.status === 400) {
+                    if (error.response.status === 409) {
                         // handle already registered
                         console.error('Already registered');
                         setFlashMessage({ type: 'error', message: 'Already registered' });
-                        // window.location.href = 'http://localhost:3000/login';
+                        window.location.href = 'http://localhost:3000/login';
+
+                    } else if (error.response.status === 410) {
+                        // handle already registered
+                        console.error('UserName already used');
+                        setFlashMessage({ type: 'error', message: 'UserName already used, Please choose other UserName.' });
+                        window.location.href = 'http://localhost:3000/Signup';
+                    }
+                    else if (error.response.status === 400) {
+                        // handle already registered
+                        console.error('Otp expires');
+                        setFlashMessage({ type: 'error', message: 'OTP expires' });
+                        window.location.href = 'http://localhost:3000/login';
+                    } else if (error.response.status === 401) {
+                        console.error("OTP doesn't match");
+                        setFlashMessage({ type: 'error', message: "OTP doesn't match, try again" });
                     }
                     else if (error.response.status === 403) {
                         setFlashMessage({ type: 'error', message: 'All fields required' });
@@ -108,13 +129,15 @@ function SignUp() {
                     else {
                         //handle other error
                         console.error('Error:', error);
-
                     }
                 } else {
                     // handle network or request error
                     console.error('Network or request error:', error);
                 }
             })
+            .finally(() => {
+                setProcessing(false);            // Set loading back to false regardless of success or failure
+            });
     }
 
 
@@ -193,7 +216,11 @@ function SignUp() {
                                 required
                             />
                         </div>
-                        <button title='Sign In' type='submit' className='sign-in_btn' ><span>Sign Up</span></button>
+
+                        <button title='Sign In' type='submit' className={`sign-in_btn ${processing ? " bg-blue-200" : ""}`} disabled={processing}>
+                            <span>{processing ? 'Sending OTP...' : 'Sign Up'}</span>
+                        </button>
+
                         <div className='separartor'>
                             {/* <hr className='line'/> */}
                             {/* <span>Or</span> */}
@@ -228,13 +255,12 @@ function SignUp() {
                                 required
                             />
                         </div>
-                        <button title='Submit' type='submit' className='submit_btn'>
-                            <span>Submit</span>
+                        <button title='Submit' type='submit' className={`submit_btn sign-in_btn ${processing ? " bg-blue-200" : ""}`} disabled={processing}>
+                            <span>{processing ? 'Processing...' : 'Verify OTP'}</span>
                         </button>
                     </form>
                 )}
             </>
-            <Link to="/UserForm">hello</Link>
             {/* <Routes>
                 <Route path="/UserForm" element={<MultiForm />} />
             </Routes> */}

@@ -7,11 +7,11 @@ const {
     sendOTP } = require("../controllers/Auth");
 const {
     updateProfile,
-    deleteAccount,
+    // deleteAccount,
     getUserDetails,
     updateDisplayPicture } = require("../controllers/Profile");
 
-router.delete("/deleteProfile", auth, isAdmin, deleteAccount);
+// router.delete("/deleteProfile", auth, isAdmin, deleteAccount);
 
 router.put("/updateProfile", auth, isAdmin, updateProfile);
 

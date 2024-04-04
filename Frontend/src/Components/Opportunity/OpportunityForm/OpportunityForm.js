@@ -91,6 +91,10 @@ function OpportunityForm() {
               });
             } else {
               console.error("Network or request error");
+              setFlashMessage({
+                type: "error",
+                message: "Network error, try again!",
+              });
             }
           });
       }

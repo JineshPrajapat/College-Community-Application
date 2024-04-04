@@ -50,11 +50,9 @@ const profileSchema = new mongoose.Schema({
             type: {
                 type: String,
                 enum: ["LinkedIn", "GitHub", "Twitter", "YouTube"],
-                required: true
             },
             url: {
                 type: String,
-                required: true
             }
         }
     ],

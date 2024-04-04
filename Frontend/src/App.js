@@ -41,6 +41,7 @@ import { motion } from 'framer-motion';
 import SingleComment from "./Components/Discuss/SingleComment/SingleComment";
 import { Chat } from "./Components/Chat/Chat";
 import Bookmark from "./Components/BookMark/BookMark";
+import { Setting } from "./Components/Setting/Setting";
 
 
 function App() {
@@ -68,8 +69,8 @@ function App() {
           <Header />
           <div className="flex flex-row gap-3">
             <NavBar />
+            <FloatingButton />
             <div className=" pt-12 sm:pt-16 sm:pl-16 min-h-screen w-full  bg=blue-100">
-              <FloatingButton />
               <Routes >
                 <Route path="/" element={<Landing />} />
                 <Route path="Users" element={<Users />} />
@@ -80,9 +81,10 @@ function App() {
                 <Route path="Discuss/addQuery" element={<AddQuery />} />          {/* new added line fo addQuery */}
                 <Route path="Chat" element={<Chat/>}/>
                 <Route path="Bookmark/*" element={<Bookmark/>}/>
-
                 <Route path=":userName/*" element={<UserProfile />} />
                 <Route path="Discuss/:discussTitle" element={<SingleComment/>}/>
+                <Route path="Setting/*" element={<Setting/>}/>
+
 
                 <Route path="PlacementStats" element={<Placement />} />
                 <Route path="Community" element={<Community />} />
