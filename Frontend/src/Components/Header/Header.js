@@ -88,7 +88,7 @@ import { SlideIn } from '../SlideIn/SlideIn';
 
 export const Header = () => {
 
-    const userName= localStorage.getItem("userName");
+    const userName = localStorage.getItem("userName");
     const fullName = localStorage.getItem("fullName");
     const avatarUrl = localStorage.getItem("avatarUrl");
     const email = localStorage.getItem("email");
@@ -114,7 +114,7 @@ export const Header = () => {
         }
     };
 
-    
+
     const profilePath = `/${userName}`;
     // profile controls
     const ProfileMenufirst = [
@@ -128,7 +128,7 @@ export const Header = () => {
         { name: "Help Center", icon: helpCircleOutline, path: "/help" },
     ]
 
-    const [isProfileBar, setIsProfileBar] = useState(0);
+    const [isProfileBar, setIsProfileBar] = useState(false);
     const handleProfileClick = (isProfileBar) => {
         setIsProfileBar(!isProfileBar);
     }
@@ -147,7 +147,7 @@ export const Header = () => {
         }
     };
 
-    
+
 
     return (
         <div>
@@ -181,7 +181,7 @@ export const Header = () => {
                             <img src={avatarUrl ? avatarUrl : images.userlogo} className=' w-full h-full rounded-full' alt='' />
                         </div>
 
-                        
+
                     </div>
                 </div>
                 <Routes>
@@ -200,10 +200,10 @@ export const Header = () => {
 
             {/* profile bar */}
             {isProfileBar && (
-                <div ref={profileRef} className='flex flex-col fixed shadow-md w-[254px] sm:w-[295px] top-12 right-4 sm:top-20 sm:right-6 z-50   '>
+                <div ref={profileRef} className={`flex flex-col fixed shadow-md w-[254px] sm:w-[295px] top-12 right-4 sm:top-20 sm:right-6 z-50 `}>
                     <div className=' pt-3 pb-4 w-[254px] sm:w-[295px] absolute bg-white rounded-lg shadow-2xl shadow-black '>
                         <div className=' px-4 pb-3 text-left font-sans'>
-                            <div className='text-[16px] sm:text-2xl '>{fullName ? fullName : "" }</div>
+                            <div className='text-[16px] sm:text-2xl '>{fullName ? fullName : ""}</div>
                             <div className=' text-xs  sm:text-[16px] '>{email ? email : ""}</div>
                         </div>
                         <hr className=' m-0' />

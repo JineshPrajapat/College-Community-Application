@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import './ForgetPassword.scss'; // Import the SCSS file for styling
-import { responsivePropType } from 'react-bootstrap/esm/createUtilityClasses';
 import FlashMessage from '../FlashMessage/FlashMessage';
 import axios from 'axios';
 import baseURL from '../../api/api';
@@ -67,6 +66,7 @@ function ForgetPassword() {
           <label>Email:</label>
           <input
             type="email"
+            placeholder='Enter Email ID'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -81,7 +81,10 @@ function ForgetPassword() {
           <h2>Check Email</h2>
           <p>A reset password link has been sent to {email}.</p>
           <div>
-            <Link to="/login" className='text-blue-500 hover:underline transition-colors duration-300'>
+            <Link 
+              to="/login" 
+              onClick={() => window.location.reload()}
+              className='text-blue-500 hover:underline transition-colors duration-300'>
               Back to login
             </Link>
           </div>

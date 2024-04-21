@@ -36,6 +36,8 @@ function SingleComment() {
     const [discussionTopic, setDiscussTopic] = useState({});
     const { discussTitle } = useParams();
 
+    console.log("discussTitle", discussTitle);
+
     useEffect(() => {
         fetchData(`${baseURL}/discuss/${discussTitle}`, setDiscussTopic);
     }, [discussTitle]);

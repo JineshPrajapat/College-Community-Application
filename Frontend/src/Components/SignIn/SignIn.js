@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
 import baseURL from "../../api/api";
+import appURL from "../../api/webapp";
 import { useAuth } from "../../AuthProvider/AuthProvider";
-import { Link, useNavigate } from 'react-router-dom';
-import '../SignUp/SignUp.scss';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+// import '../SignUp/SignUp.scss';
+import "./SignIn.scss";
 import FlashMessage from "../FlashMessage/FlashMessage";
 import { images } from '../../constants';
 import ForgetPassword from '../ForgetPassword/ForgetPassword';
+import '@fortawesome/fontawesome-free/css/all.css';
 
 
 function Login() {
@@ -77,13 +80,13 @@ function Login() {
                         // Handle user not found
                         console.error('User not found');
                         setFlashMessage({ type: 'error', message: 'User not found' });
-                        window.location.href = 'http://localhost:3000/Login';
+                        window.location.href = `${appURL}/Login`;
 
                     } else if (error.response.status === 401) {
                         // Handle authentication failure
                         console.error('User is not registered. Please signup first');
                         setFlashMessage({ type: 'error', message: 'User is not registered. Please signup first' });
-                        window.location.href = 'http://localhost:3000/Login';
+                        window.location.href = `${appURL}/Signup`;
 
                     } else if (error.response.status === 403) {
                         setFlashMessage({ type: 'error', message: 'All fields are required, please try again.' });
@@ -91,7 +94,7 @@ function Login() {
 
                     } else if (error.response.status === 402) {
                         setFlashMessage({ type: 'error', message: 'Incorrect password.' });
-                        window.location.href = 'http://localhost:3000/Login';
+                        window.location.href = `${appURL}/Login`;
                     } else {
                         // Handle other errors
                         console.error('Error:', error.response);
@@ -108,63 +111,83 @@ function Login() {
     }
 
     return (
-        <div className="Login-page">
+        <div className="">
 
             {flashMessage &&
                 <FlashMessage type={flashMessage.type} message={flashMessage.message} />}
 
-            {!showForgetPassword ? (
-                <form className="form_container" id="login-form" onSubmit={handleFormSubmit}>
-                    <div className="logo_container">
-                        <img src={images.jinesh} alt="Khaao"></img>
+            <div className='login-form '>
+                <div className='mb-20'>
+                    <div className='bg-[#101A2F] rounded-b-[14vw] md:rounded-b-[6vw] h-[14vh] relative '>
+                        <div className='flex px-3 items-center justify-between py-3'>
+                            <NavLink to="/" className='text-white'>
+                                <i class="fa-solid fa-arrow-left text-xl"></i>
+                            </NavLink>
+                            <div className='text-white text-2xl '>Sign in to</div>
+                            <div></div>
+                        </div>
                     </div>
-                    <div className="title_container">
-                        <p className="title">Login to your Account</p>
-                        <span className="subtitle">Welcome back, just sigin and enjoy the experience</span>
+                    <div className='bg-white mx-[20vw] w-[60vw] px-2 py-[10px] rounded-2xl absolute top-20 md:top-24 shadow-md'>
+                        <div className='flex flex-row justify-center items-center gap-2'>
+                            <div className=' w-6 h-6'>
+                                <img className='w-full h-full' src={images.mainLogo1} alt="logo" />
+                            </div>
+                            <div className=' text-2xl'>Let's Chat</div>
+                        </div>
                     </div>
-                    <br />
-                    <div className="input_container">
-                        <label className="input_label" htmlFor="email_field">Email</label>
-                        <img className="icon" src={images.email} viewBox='0 0 24 24'></img>
-                        <input
-                            className="input_field"
-                            placeholder="name@gmail.com"
-                            name="email"
-                            type="text"
-                            id="email_field"
-                            value={formValue.email}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-                    <div className="input_container">
-                        <label className="input_label" htmlFor="password_field">Password</label>
-                        <img className="icon" src={images.password} viewBox='0 0 24 24'></img>
-                        <input
-                            className="input_field"
-                            placeholder="Password"
-                            name="password"
-                            type="password"
-                            id="password_field"
-                            value={formValue.password}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-                    {/* <Link to="/ForgetPassword" className="forget_password" href="#">Forgot password?</Link> */}
-                    <div className="forget_password cursor-pointer hover:text-red-600" onClick={handleFormChange}>Forget Password?</div>
+                </div>
 
-                    <button title='Sign In' type='submit' className={`sign-in_btn ${processing ? " bg-blue-200" : ""}`} disabled={processing}>
-                        <span>{processing ? 'Signing In...' : 'Sign In'}</span>
-                    </button>
+                {!showForgetPassword ? (
+                    <div className="body">
+                        <form id="login-form" onSubmit={handleFormSubmit}>
+                            <div className="input_container">
+                                <label className="input_label" htmlFor="email_field">Email</label>
+                                <img className="icon" src={images.emailsvgrepo} viewBox='0 0 24 24'></img>
+                                <input
+                                    className="input_field"
+                                    placeholder="name@gmail.com"
+                                    name="email"
+                                    type="text"
+                                    id="email_field"
+                                    value={formValue.email}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
+                            <div className="input_container">
+                                <label className="input_label" htmlFor="password_field">Password</label>
+                                <img className="icon" src={images.passwordsvgrepo} viewBox='0 0 24 24'></img>
+                                <input
+                                    className="input_field"
+                                    placeholder="Password"
+                                    name="password"
+                                    type="password"
+                                    id="password_field"
+                                    value={formValue.password}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
 
-                    <div className="new_to_account">
-                        <h4 >New to CareerPerpHub?<Link to="/Signup">Create Account</Link></h4>
+                            <button title='Sign In' type='submit' className={`sign-in_btn ${processing ? " bg-blue-200" : ""}`} disabled={processing}>
+                                <span>{processing ? 'Signing In...' : 'Continue '}</span>
+                                {!processing && <i class="fa-solid fa-arrow-right text-xl"></i>}
+                            </button>
+
+                            <div className="forget_password" onClick={handleFormChange}>Forget your password?</div>
+
+                        </form>
+
+                        <div className="new_to_account">
+                            <h4 >New to Let's Chat?</h4>
+                            <span><Link to="/Signup">Sign Up</Link></span>
+                        </div>
                     </div>
-                </form>
-            ) : (
-                <ForgetPassword />
-            )}
+                ) : (
+                    <ForgetPassword />
+                )}
+            </div>
+
 
 
 

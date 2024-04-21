@@ -20,8 +20,8 @@ function CoverPage() {
 
 
                 <div className='container d-flex flex-column align-items-center'>
-                    <div className='mt-0 mb-5'>
-                        <img src={images.logo12}></img>
+                    <div className='mt-0 mb-5 w-40 h-40'>
+                        <img src={images.mainLogo1}></img>
                     </div>
                     <h2 className='text-2xl '>Welcome To</h2>
                     <h1 className='text-center text-4xl pb-4'>CareerPrepHub</h1>

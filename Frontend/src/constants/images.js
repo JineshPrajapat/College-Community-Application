@@ -25,6 +25,11 @@ import logo12 from '../assets/logo12.png';
 import mainLogo1 from '../assets/logo/mainLogo1.png';
 import mainLogo2 from '../assets/logo/mainLogo2.png';
 import mainLogo3 from '../assets/logo/mainLogo3.png';
+
+import emailsvgrepo from "../assets/icons/emailsvgrepo.svg";
+import passwordsvgrepo from "../assets/icons/passwordsvgrepo.svg"
+import usersvgrepo from "../assets/icons/usersvgrepo.svg"
+import arrowrightsvgrepo from "../assets/icons/arrowrightsvgrepo.svg"
 export default {
     email,
     password,
@@ -52,7 +57,11 @@ export default {
     logo12,
     mainLogo1,
     mainLogo2,
-    mainLogo3
+    mainLogo3,
+    emailsvgrepo,
+    passwordsvgrepo,
+    usersvgrepo,
+    arrowrightsvgrepo
 };
 
 // export default images
