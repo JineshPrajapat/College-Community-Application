@@ -5,7 +5,7 @@ import baseURL from "../../../api/api";
 import { images } from "../../../constants";
 import './SingleComment.scss';
 import FlashMessage from "../../FlashMessage/FlashMessage";
-import Comment from "../../Comment Sections/Comment";
+// import Comment from "../../Comment Sections/Comment";
 import { fetchData } from "../../../FetchData/FetchData";
 import { formatTimeAgo } from "../../formatTimeAgo/formatTimeAgo";
 
@@ -242,7 +242,7 @@ function SingleComment() {
                     </div>
 
 
-                    <Comment discussionId={discussion?._id} />
+                    {/* <Comment discussionId={discussion?._id} /> */}
 
                     {/* <div className="comment-box-container">
                         <div className="comments-sections">

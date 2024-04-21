@@ -1,9 +1,6 @@
 import React from 'react'
-import AdvancedComponent from './AdvancedComponent'
 import ClassComponent from './ClassComponent'
-import CustomComponent from './CustomComponent'
-import DefaultComponent from './DefaultComponent'
-import LogInComponent from './LogInComponent'
+
 
 const Comment = (props) => {
     const { discussionId } = props;
