@@ -45,8 +45,8 @@ app.use(express.static('../public'));
 cloudinaryConnect();
 
 // app.use(express.urlencoded({extended:false}));
-// "app.use(cors(*));"
-app.use(cors());
+app.use(cors("*"));
+// app.use(cors());
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/userinfo", submitInfoRoutes);
 app.use("/api/v1/admin", adminRoutes);
