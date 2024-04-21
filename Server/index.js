@@ -55,7 +55,8 @@ cloudinaryConnect();
 const allowedOrigins = [
     'https://ctae-website.vercel.app',
     'http://localhost:3000',
-    'https://collegechatts.netlify.app/' 
+    'https://collegechatts.netlify.app',
+    '*' 
   ];
   
   app.use(cors({

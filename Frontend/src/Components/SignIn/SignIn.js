@@ -42,7 +42,7 @@ function Login() {
         event.preventDefault();
 
         setProcessing(true);
-        axios.post(`https://ctae-website-fzxz.vercel.app/api/v1/user/login`, {
+        axios.post(`${baseURL}/user/login`, {
             email: formValue.email,
             password: formValue.password,
         })
