@@ -48,10 +48,20 @@ cloudinaryConnect();
 // app.use(cors("*"));
 // app.use(cors());
 
-app.use(cors({
-    origin: 'https://ctae-website.vercel.app'
-  }));
+// app.use(cors({
+//     origin: 'https://ctae-website.vercel.app'
+//   }));
+
+const allowedOrigins = [
+    'https://ctae-website.vercel.app',
+    'http://localhost:3000',
+    'https://collegechatts.netlify.app/' 
+  ];
   
+  app.use(cors({
+    origin: allowedOrigins
+  }));
+
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/userinfo", submitInfoRoutes);
 app.use("/api/v1/admin", adminRoutes);
