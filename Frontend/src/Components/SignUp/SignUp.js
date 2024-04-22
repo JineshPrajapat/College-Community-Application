@@ -149,13 +149,13 @@ function SignUp() {
             {flashMessage &&
                 <FlashMessage type={flashMessage.type} message={flashMessage.message} />}
             <div className='login-form '>
-                <div className='mb-20'>
+                <div className='mb-20 md:mb-40'>
                     <div className='bg-[#101A2F] rounded-b-[14vw] md:rounded-b-[6vw] h-[14vh] relative '>
                         <div className='flex px-3 items-center justify-between py-3'>
                             <NavLink to="/" className='text-white'>
-                                <i class="fa-solid fa-arrow-left text-xl"></i>
+                                <i class="fa-solid fa-arrow-left text-xl md:text-3xl"></i>
                             </NavLink>
-                            <div className='text-white text-2xl'>Sign Up to</div>
+                            <div className='text-white text-2xl md:text-3xl font-bold'>Sign Up to</div>
                             <div></div>
                         </div>
                         
@@ -169,8 +169,10 @@ function SignUp() {
                         </div>
                     </div>
                 </div>
+
+                <div className='body'>
                 {!showOTPForm ? (
-                    <div className='body'>
+                    <div className="flex flex-col justify-between flex-1" >
                         <form className='form_container' onSubmit={sendOTP}>
                             {/* <div className='logo_container'>
                             <img src={images.jinesh} alt='' />
@@ -269,8 +271,8 @@ function SignUp() {
                 ) : (
                     <form className='form_container' onSubmit={handleFormSubmit}>
                         <div className='input_container'>
-                            <h1>Verify Email</h1>
-                            <p>A verification has been sent to you. Enter the code below.</p>
+                            <h1 className=' text-center text-xl font-bold pb-4'>Verify Email</h1>
+                            <p className='pb-3'>A verification has been sent to you. Enter the code below.</p>
                             <label className='input_label font-extrabold'>
                                 Enter OTP
                             </label>
@@ -290,6 +292,7 @@ function SignUp() {
                         </button>
                     </form>
                 )}
+                </div>
             </div>
         </div>
     );

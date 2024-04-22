@@ -1,2 +1,2 @@
-const appURL = process.env.REACT_APP_BASE_URL;
+const appURL = "https://ctae-website.vercel.app/";
 export default appURL;

@@ -61,5 +61,14 @@
   "devDependencies": {
     "sass": "^1.63.4",
     "tailwindcss": "^3.4.1"
-  }
+  },
+
+  "description": "A platform for college students to connect with alumni, fostering mentorship, networking, and knowledge sharing. Built with React, this project aims to bridge the gap between current students and alumni, providing opportunities for guidance, career advice, and collaboration.",
+  "author": "Jinesh Prajapt <prajapatjinesh585@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JineshPrajapat/CTAE-Website"
+  },
+  "homepage": "https://ctae-website.vercel.app/"
 }

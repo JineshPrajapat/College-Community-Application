@@ -117,13 +117,13 @@ function Login() {
                 <FlashMessage type={flashMessage.type} message={flashMessage.message} />}
 
             <div className='login-form '>
-                <div className='mb-20'>
+                <div className='mb-20 md:mb-40'>
                     <div className='bg-[#101A2F] rounded-b-[14vw] md:rounded-b-[6vw] h-[14vh] relative '>
                         <div className='flex px-3 items-center justify-between py-3'>
                             <NavLink to="/" className='text-white'>
-                                <i class="fa-solid fa-arrow-left text-xl"></i>
+                                <i class="fa-solid fa-arrow-left text-xl md:text-3xl"></i>
                             </NavLink>
-                            <div className='text-white text-2xl '>Sign in to</div>
+                            <div className='text-white text-2xl md:text-3xl font-bold '>Sign in to</div>
                             <div></div>
                         </div>
                     </div>
@@ -137,8 +137,9 @@ function Login() {
                     </div>
                 </div>
 
+                <div className="body">
                 {!showForgetPassword ? (
-                    <div className="body">
+                    <div className="flex flex-col justify-between flex-1" >
                         <form id="login-form" onSubmit={handleFormSubmit}>
                             <div className="input_container">
                                 <label className="input_label" htmlFor="email_field">Email</label>
@@ -186,6 +187,7 @@ function Login() {
                 ) : (
                     <ForgetPassword />
                 )}
+                </div>
             </div>
 
 

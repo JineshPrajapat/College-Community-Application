@@ -14,14 +14,13 @@
     justify-content: space-between;
     flex-grow: 1;
 
-    @media (min-width: 768px){
+    @media (min-width: 600px){
         padding: 0 20px;
-        max-width: 36vw; 
-        margin-left:33vw;
-        margin-right: 33vw;
+        min-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
 
     }
-
 
     form {
         text-align: left;
