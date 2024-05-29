@@ -3,6 +3,7 @@ import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "./AuthProvider/AuthProvider";
 import { SignUpProvider, useSignUp } from "./AuthProvider/SignUpProvider";
+import {checkAndClearExpiredData} from "./utils/storage";
 import { useState, useEffect } from "react";
 import Question from "./Components/Questions/Questions";
 import Users from "./Components/Users/Users";
@@ -50,6 +51,10 @@ function App() {
   const { isLoggedIn } = useAuth();
   const { isSignedUp } = useSignUp();
 
+  useEffect(() => {
+    checkAndClearExpiredData();
+  }, []);
+
   return (
     <div className="App">
       {!isLoggedIn ? (
@@ -87,7 +92,7 @@ function App() {
 
 
                 <Route path="PlacementStats" element={<Placement />} />
-                <Route path="Community" element={<Community />} />
+                {/* <Route path="Community" element={<Community />} /> */}
                 <Route path="/SlideIn" element={<SlideIn />} />
                 <Route path="ForgetPassword" element={<ForgetPassword />} />
                 {/* <Route path="UserDetail" element={<UserProfileSettings />} /> */}

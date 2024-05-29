@@ -7,6 +7,10 @@
     // row-gap: 12px;
     column-gap: 5px;
 
+    @media screen  and (max-width:390px){
+        justify-content: center;
+    }
+
     .opportunity-card{
         width: max-content;
         text-align: center;

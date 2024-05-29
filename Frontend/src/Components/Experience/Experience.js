@@ -17,7 +17,7 @@ const Experience = () => {
 
         <>
             <div className='experience pt-3'>
-                <h1>Interview Experience</h1>
+                {/* <h1>Interview Experience</h1> */}
                 <div className="head-tabs">
                     {/* <SearchingForm /> */}
                     {/* <Link to="./AddExperience" className='addexperience' >Add Experience</Link> */}

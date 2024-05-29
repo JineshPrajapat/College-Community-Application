@@ -1,7 +1,7 @@
 .user-list {
     display: flex;
-    // flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
+    // flex-wrap: wrap;
     margin:10px;
     
 
@@ -11,21 +11,22 @@
     }
 
     .filter-section {
-        flex: none; 
-        width: 250px;
-        height: 90vh;
-        position: -webkit-sticky; 
-        position: sticky;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        width: full;
+        // position: -webkit-sticky; 
+        // position: sticky;
         top: 74px;
         padding: 20px;
-        background-color: #f9f9f9;
-        overflow-y: auto;
+        background-color: white;
+        overflow: hidden;
+        overflow-x: auto;
         border-radius: .4rem;
         box-shadow: 2px 2px 16px -8px black;
 
         @media screen and (max-width:600px) {
-          position :relative;
-          top: 14px;
+          width: 97vw;
         }
 
         h2{
@@ -39,15 +40,22 @@
               display: block;
               margin-bottom: 5px;
               font-weight: bold;
+              text-align: left;
             }
         
             select,
             input {
-              width: 100%;
+              background-color: #f2f2f2;
+              width: 300px;
               padding: 8px;
               border: 1px solid #ccc;
               border-radius: 5px;
-              font-size: 16px;
+              font-size: 16px; 
+
+              @media screen and (max-width:600px) {
+                width: 250px;
+              }
+
             }
           }
     }

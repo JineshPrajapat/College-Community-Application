@@ -311,7 +311,7 @@ const Users = () => {
             <div className="user-list">
                 {/* Filter options */}
                 <div className="filter-section">
-                    <h2>Filters</h2>
+                    {/* <h2>Filters</h2> */}
 
                     <div className="filter-option">
                         <label htmlFor="year">Name:</label>

@@ -13,7 +13,7 @@ const Opportunity = () => {
     return (
         <>
         <div className='opportunity'>
-            <h1>Oppotunity</h1>
+            {/* <h1>Oppotunity</h1> */}
 
             <div className="head-tabs">
                 {/* <SearchingForm /> */}

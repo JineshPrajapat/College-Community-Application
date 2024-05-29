@@ -57,6 +57,7 @@ function Login() {
                     const avatarUrl = response.data.user.profileImage;
                     const userProfession = response.data.user.profileDetails.profession;
                     const email = response.data.user.email;
+                    const expirationTime = new Date().getTime() + 2 * 60 * 60 * 1000;
 
                     // localStorage.setItem('userId', userId);
                     localStorage.setItem('token', token);
@@ -65,6 +66,7 @@ function Login() {
                     localStorage.setItem('avatarUrl', avatarUrl);
                     localStorage.setItem('userProfession', userProfession);
                     localStorage.setItem('email', email);
+                    localStorage.setItem('expirationTime', expirationTime);
 
                     // localStorage.setItem('userId', userId);                  
                     console.log(token);

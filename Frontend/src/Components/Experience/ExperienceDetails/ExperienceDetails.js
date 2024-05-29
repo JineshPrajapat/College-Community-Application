@@ -19,7 +19,35 @@ const review = [
     },
     {
         name: 'Garima Ahari',
-        imgUrl: images.garima,
+        imgUrl: images.jinesh,
+        company: 'Amazon',
+        experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
+        jobRole: 'Software Engineer'
+    },
+    {
+        name: 'Garima Ahari',
+        imgUrl: images.laksh,
+        company: 'Amazon',
+        experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
+        jobRole: 'Software Engineer'
+    },
+    {
+        name: 'Garima Ahari',
+        imgUrl: images.yuvraj,
+        company: 'Amazon',
+        experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
+        jobRole: 'Software Engineer'
+    },
+    {
+        name: 'Garima Ahari',
+        imgUrl: images.luv,
+        company: 'Amazon',
+        experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
+        jobRole: 'Software Engineer'
+    },
+    {
+        name: 'Garima Ahari',
+        imgUrl: images.shashank,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
         jobRole: 'Software Engineer'
@@ -33,7 +61,35 @@ const review = [
     },
     {
         name: 'Garima Ahari',
-        imgUrl: images.garima,
+        imgUrl: images.jinesh,
+        company: 'Amazon',
+        experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
+        jobRole: 'Software Engineer'
+    },
+    {
+        name: 'Garima Ahari',
+        imgUrl: images.yuvraj,
+        company: 'Amazon',
+        experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
+        jobRole: 'Software Engineer'
+    },
+    {
+        name: 'Garima Ahari',
+        imgUrl: images.laksh,
+        company: 'Amazon',
+        experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.jknjjkksdfmskdklfjsknvscklsfksdkdcdnciso',
+        jobRole: 'Software Engineer'
+    },
+    {
+        name: 'Garima Ahari',
+        imgUrl: images.shashank,
+        company: 'Amazon',
+        experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
+        jobRole: 'Software Engineer'
+    },
+    {
+        name: 'Garima Ahari',
+        imgUrl: images.luv,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
         jobRole: 'Software Engineer'
@@ -47,28 +103,35 @@ const review = [
     },
     {
         name: 'Garima Ahari',
-        imgUrl: images.garima,
+        imgUrl: images.laksh,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
         jobRole: 'Software Engineer'
     },
     {
         name: 'Garima Ahari',
-        imgUrl: images.garima,
+        imgUrl: images.yuvraj,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
         jobRole: 'Software Engineer'
     },
     {
         name: 'Garima Ahari',
-        imgUrl: images.garima,
+        imgUrl: images.jinesh,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
         jobRole: 'Software Engineer'
     },
     {
         name: 'Garima Ahari',
-        imgUrl: images.garima,
+        imgUrl: images.shashank,
+        company: 'Amazon',
+        experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
+        jobRole: 'Software Engineer'
+    },
+    {
+        name: 'Garima Ahari',
+        imgUrl: images.luv,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
         jobRole: 'Software Engineer'
@@ -82,112 +145,49 @@ const review = [
     },
     {
         name: 'Garima Ahari',
-        imgUrl: images.garima,
+        imgUrl: images.laksh,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
         jobRole: 'Software Engineer'
     },
     {
         name: 'Garima Ahari',
-        imgUrl: images.garima,
+        imgUrl: images.luv,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
         jobRole: 'Software Engineer'
     },
     {
         name: 'Garima Ahari',
-        imgUrl: images.garima,
+        imgUrl: images.jinesh,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
         jobRole: 'Software Engineer'
     },
     {
         name: 'Garima Ahari',
-        imgUrl: images.garima,
+        imgUrl: images.shashank,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
         jobRole: 'Software Engineer'
     },
     {
         name: 'Garima Ahari',
-        imgUrl: images.garima,
+        imgUrl: images.yuvraj,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
         jobRole: 'Software Engineer'
     },
     {
         name: 'Garima Ahari',
-        imgUrl: images.garima,
+        imgUrl: images.luv,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
         jobRole: 'Software Engineer'
     },
     {
         name: 'Garima Ahari',
-        imgUrl: images.garima,
-        company: 'Amazon',
-        experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
-        jobRole: 'Software Engineer'
-    },
-    {
-        name: 'Garima Ahari',
-        imgUrl: images.garima,
-        company: 'Amazon',
-        experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
-        jobRole: 'Software Engineer'
-    },
-    {
-        name: 'Garima Ahari',
-        imgUrl: images.garima,
-        company: 'Amazon',
-        experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.jknjjkksdfmskdklfjsknvscklsfksdkdcdnciso',
-        jobRole: 'Software Engineer'
-    },
-    {
-        name: 'Garima Ahari',
-        imgUrl: images.garima,
-        company: 'Amazon',
-        experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
-        jobRole: 'Software Engineer'
-    },
-    {
-        name: 'Garima Ahari',
-        imgUrl: images.garima,
-        company: 'Amazon',
-        experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
-        jobRole: 'Software Engineer'
-    },
-    {
-        name: 'Garima Ahari',
-        imgUrl: images.garima,
-        company: 'Amazon',
-        experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
-        jobRole: 'Software Engineer'
-    },
-    {
-        name: 'Garima Ahari',
-        imgUrl: images.garima,
-        company: 'Amazon',
-        experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
-        jobRole: 'Software Engineer'
-    },
-    {
-        name: 'Garima Ahari',
-        imgUrl: images.garima,
-        company: 'Amazon',
-        experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
-        jobRole: 'Software Engineer'
-    },
-    {
-        name: 'Garima Ahari',
-        imgUrl: images.garima,
-        company: 'Amazon',
-        experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
-        jobRole: 'Software Engineer'
-    },
-    {
-        name: 'Garima Ahari',
-        imgUrl: images.garima,
+        imgUrl: images.laksh,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
         jobRole: 'Software Engineer'
@@ -290,7 +290,7 @@ function ExperienceDetails() {
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.5, delay: 0.1 }}
                         >
-                            <div className='image-container'>
+                            <div className='image-container '>
                                 <img src={review[expandedIndex].imgUrl} alt={review[expandedIndex].name}>{review[expandedIndex].user}</img>
                             </div>
                             <div className='info'>
