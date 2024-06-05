@@ -64,7 +64,7 @@ const UpdateProfileSettings = () => {
 
   return (
     <div className="user-update-settings">
-      <h2>Update Profile</h2>
+      {/* <h2>Update Profile</h2> */}
       <form>
         {/* Render each input with an update button */}
 

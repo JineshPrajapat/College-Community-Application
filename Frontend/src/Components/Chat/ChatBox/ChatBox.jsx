@@ -14,8 +14,8 @@ export const ChatBox = (chat, currentUser, setSendMessage, receivedMessage) => {
 
     return (
         <>
-            <div className="ChatBox-container bg-white h-full relative">
-                {chat ? (
+            <div className="ChatBox-container bg-white h-full relative full">
+                {chat.chat ? (
                     <>
                         {/* chat-header */}
                         <div className="chat-header bg-blue-300 p-2 rounded-md shadow-lg shadow-black">
@@ -60,8 +60,8 @@ export const ChatBox = (chat, currentUser, setSendMessage, receivedMessage) => {
                         </div> */}
                     </>
                 ) : (
-                    <span className="chatbox-empty-message">
-                        Tap on a chat to start conversation...
+                    <span className="chatbox-empty-message flex justify-center items-center mt-16">
+                        <p className='text-2xl font-bold font-mono '>Tap on a chat to start conversation...</p>
                     </span>
                 )}
             </div>

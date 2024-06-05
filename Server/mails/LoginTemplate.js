@@ -65,7 +65,7 @@ exports.loginTemplate = (username, loginStatus, timestamp, deviceInfo) => {
   </head>
   <body>
     <div class="container">
-      <a href=""><img class="logo" src="./mainLogo1.png" alt="Your Logo" /></a>
+      <a href="https://ctae-website.vercel.app/"><img class="logo" src="https://res.cloudinary.com/dqvkis3qg/image/upload/v1717553664/CollegeChat/mainLogo1_lzcrbc.png" alt="Your Logo" /></a>
       <div class="message">Login Notification</div>
       <div class="body">
         <p>Dear ${username},</p>

@@ -132,16 +132,17 @@ const Placement = () => {
                     {!selectedYear && selectedBranch && ` for ${selectedBranch}`}
                     {selectedYear && selectedBranch && ` for ${selectedBranch} - ${selectedYear}`}
                 </h2>
-                <table className="placements-table">
-                    <thead>
-                        <tr>
-                            <th>Year</th>
-                            <th>Branch</th>
-                            <th>Company</th>
-                            <th>Number of Students Applied</th>
-                            <th>Number of Students Placed</th>
-                        </tr>
-                    </thead>
+                <div className='table-container'>
+                    <table className="placements-table">
+                        <thead>
+                            <tr>
+                                <th>Year</th>
+                                <th>Branch</th>
+                                <th>Company</th>
+                                <th>Number of Students Applied</th>
+                                <th>Number of Students Placed</th>
+                            </tr>
+                        </thead>
                         <tbody className='bg-white cursor-pointer'>
                             {filteredData.map(item => (
                                 item.placements.map(placement => (
@@ -155,7 +156,8 @@ const Placement = () => {
                                 ))
                             ))}
                         </tbody>
-                </table>
+                    </table>
+                </div>
             </div></>
     );
 };

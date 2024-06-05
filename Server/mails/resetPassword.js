@@ -63,8 +63,8 @@ exports.resetPassword = (email, name, link) => {
   </head>
   <body>
     <div class="container">
-      <a href=""
-        ><img class="logo" src="./logo.png" alt="CampusConnect Logo"
+      <a href="https://ctae-website.vercel.app/"
+        ><img class="logo" src="https://res.cloudinary.com/dqvkis3qg/image/upload/v1717553664/CollegeChat/mainLogo1_lzcrbc.png" alt="CampusConnect Logo"
       /></a>
       <div class="message">OTP Verification Email</div>
       <div class="body">
@@ -84,7 +84,7 @@ exports.resetPassword = (email, name, link) => {
       <div class="support">
         If you have any questions or need futher assistance, please feel free to
         reach us at
-        <a href="mailto:cannon.khan786@gmail.com">info@CampusConnect.com</a>. We
+        <a href="mailto:college.chat242@gmail.con">info@letschat.com</a>. We
         are here to help!
       </div>
     </div>

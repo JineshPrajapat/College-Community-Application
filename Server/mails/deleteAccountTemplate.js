@@ -60,6 +60,9 @@ exports.deleteTemplate = (username) => {
     </head>
     <body>
         <div class="container">
+            <a href="https://ctae-website.vercel.app/">
+                <img class="logo" src="https://res.cloudinary.com/dqvkis3qg/image/upload/v1717553664/CollegeChat/mainLogo1_lzcrbc.png" alt="Let's Chat Logo"/>
+            </a>
             <div class="message">Account Deletion Confirmation</div>
             <div class="body">
                 <p>Dear ${username},</p>

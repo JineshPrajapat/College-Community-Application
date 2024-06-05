@@ -30,6 +30,8 @@ import emailsvgrepo from "../assets/icons/emailsvgrepo.svg";
 import passwordsvgrepo from "../assets/icons/passwordsvgrepo.svg"
 import usersvgrepo from "../assets/icons/usersvgrepo.svg"
 import arrowrightsvgrepo from "../assets/icons/arrowrightsvgrepo.svg"
+import undrawcontact from "../assets/stock/undrawcontact.svg";
+
 export default {
     email,
     password,
@@ -61,7 +63,8 @@ export default {
     emailsvgrepo,
     passwordsvgrepo,
     usersvgrepo,
-    arrowrightsvgrepo
+    arrowrightsvgrepo,
+    undrawcontact
 };
 
 // export default images

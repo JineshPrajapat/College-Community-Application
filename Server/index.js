@@ -16,6 +16,7 @@ const submitInfoRoutes =  require("./routes/SubmitInformation");
 const allUserRoutes = require("./routes/AllUsers");
 const achievementRoutes = require("./routes/Achievement");
 const bookMarkRoutes =  require("./routes/BookMark");
+const contactRoutes = require("./routes/Contact");
 
 
 
@@ -74,6 +75,7 @@ app.use("/api/v1/discuss", discussRoutes);
 app.use("/api/v1/allusers", allUserRoutes);
 app.use("/api/v1/achievement", achievementRoutes);
 app.use("/api/v1/bookmark",bookMarkRoutes );
+app.use("/api/v1/contact", contactRoutes);
 
 
 

@@ -86,9 +86,9 @@ export const Header = () => {
                         <NavLink to="/Chat" className='chat-option w-5 h-5'>
                             <IonIcon icon={chatbubblesOutline} className=' w-full h-full text-gray-500' alt='' />
                         </NavLink>
-                        <NavLink to="/Notification" className='groups w-5 h-5'>
+                        {/* <NavLink to="/Notification" className='groups w-5 h-5'>
                             <IonIcon icon={notificationsSharp} className=' w-full h- text-gray-500 ' alt='' />
-                        </NavLink>
+                        </NavLink> */}
 
                         <div
                             className={`hamburger chat-option w-5 h-5 sm:hidden   ${isSlideInToggle === 1 && ""}`}

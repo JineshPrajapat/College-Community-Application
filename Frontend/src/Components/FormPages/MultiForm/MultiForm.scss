@@ -2,19 +2,35 @@
 
 body {
   font-family: 'Montserrat', Arial, Verdana;
+  height: 100vh;
 }
 
 .mscontainer{
-    background: linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));
-    height: 100%;
+    // background: linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));
+    background: linear-gradient(rgba(0, 0, 196, 0.6), rgba(137, 89, 182, 0.6));
     padding: 50px;
+    height: 100vh;
+
+    @media screen and (max-width:680px) {
+      padding: 50px 0 50px 0;
+      margin: auto;
+    }
 }
 
 #msform {
-  width: 600px;
-  margin: 50px auto;
+  max-width: 600px;
+  min-width: 600px;
+  margin: auto;
   text-align: center;
   position: relative;
+
+  @media screen and (max-width:680px){
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
 
   fieldset {
     background: white;
@@ -26,6 +42,10 @@ body {
     width: 80%;
     margin: 0 10%;
     position: relative;
+
+    @media screen and (max-width:680px){
+      width: 95vw;
+    }
 
     &:not(:first-of-type) {
       display: none;
@@ -46,6 +66,11 @@ body {
 
     .form-type-buttons {
         margin-bottom: 20px;
+
+        @media screen and (max-width:680px){
+          display: flex;
+          gap: 14px;
+        }
       
         .form-type-button {
           padding: 10px 20px;
@@ -56,6 +81,11 @@ body {
           background-color: #eee;
           color: #333;
           transition: background-color 0.3s ease;
+
+          @media screen and (max-width:680px){
+            padding: 10px 20px;
+            margin: 0;
+          }
       
           &:hover {
             background-color: #ccc;
@@ -152,8 +182,6 @@ body {
     }
   }
 }
-
-
 
 .gender-radio {
     display: flex;

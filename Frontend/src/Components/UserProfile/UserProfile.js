@@ -128,7 +128,7 @@ function UserProfile() {
               {/* <Home/> */}
               <Routes>
                 <Route path="/*" element={<Home userData={userData} />} />
-                <Route path="Contact" element={<Contact />} />
+                <Route path="Contact" element={<Contact userData={userData} />} />
                 <Route path="Achievement/*" element={<Achievement />} />
                 
 

@@ -15,6 +15,12 @@
                 padding: 30px;
                 display: flex;
 
+                @media screen and (max-width:640px) {
+                    padding:0;
+                    flex-direction: column;
+                    align-items: center;
+                }
+
                 .user-img{
                     padding: 20px;
                     width:200px;
@@ -40,6 +46,12 @@
                         font-weight: 700;
                         color: #FFF;
                         font-size: 2.2rem;
+
+                        @media screen and (max-width:640px){
+                            font-size: 1.2rem;
+                            font-weight: 900;
+                            text-align: center;
+                        }
                     }
 
                     p{
@@ -65,6 +77,12 @@
                 margin-top: 0;
                 list-style: none;
 
+                @media screen and (max-width:768px) {
+                    flex-wrap: nowrap;
+                    overflow: hidden;
+                    overflow-x: auto;
+                }
+
                 .nav-item{
                     // margin-bottom: -1px;
                     // color: #495057;
@@ -74,6 +92,10 @@
                     padding: 10px 60px;
                     cursor: pointer;
                     transition: 0.5s all ease-in;
+
+                    @media screen and (max-width:768px){
+                        padding: 10px 20px;
+                    }
 
                     .nav-link{
                         font-size: 1.2rem;

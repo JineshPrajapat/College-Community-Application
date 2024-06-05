@@ -96,6 +96,10 @@
                     opacity: 0.8;
                     transition: transform 0.5s ease, opacity 0.5s ease;
         
+                    @media screen and (max-width:640px) {
+                      min-width: 450px;
+                      height: 350px;
+                    }
                     &.active {
                         // width: 500px;
                         opacity: 1;
@@ -143,6 +147,11 @@
       text-align: left;
       align-items: center;
 
+      @media screen and (max-width: 640px) {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
       
       
       h2{
@@ -154,14 +163,14 @@
         font-size: 1.3rem;
       }
 
-      @media screen and (max-width:390px) {
+      @media screen and (max-width:640px) {
         display: flex;
         flex-direction: column;
         padding: 10%;
         gap:1rem;
 
         h2{
-          font-size: 2rem;
+          font-size: 1.5rem;
         }
       }
     }

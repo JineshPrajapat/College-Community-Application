@@ -62,7 +62,7 @@ exports.passwordUpdated = (email, name) => {
 </head>
 <body>
   <div class="container">
-    <a href=""><img class="logo" src="./logo.png" alt="CampusConnect Logo" /></a>
+    <a href="https://ctae-website.vercel.app/"><img class="logo" src="https://res.cloudinary.com/dqvkis3qg/image/upload/v1717553664/CollegeChat/mainLogo1_lzcrbc.png" alt="Let's Chat Logo" /></a>
     <div class="message">Your Password Updated Successfully</div>
     <div class="body">
       <p class="highlight">Dear ${name},</p>
@@ -72,7 +72,7 @@ exports.passwordUpdated = (email, name) => {
     </div>
     <div class="support">
       If you have any questions or need further assistance, please feel free to reach us at
-      <a href="mailto:info@CampusConnect.com">info@CampusConnect.com</a>. We are here to help!
+      <a href="mailto:college.chat242@gamil.com">info@Letschat.com</a>. We are here to help!
     </div>
   </div>
 </body>

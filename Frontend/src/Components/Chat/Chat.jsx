@@ -23,12 +23,12 @@ export const Chat = () => {
     return (
         <div>
             <div className="Chat">
-                <div className="Left-side-chat ">
+                <div className="Left-side-chat my-1 ml-1">
 
-                    <div className="LogoSearch flex justify-center ">
-                        <input className="input"
+                    <div className=" w-full flex justify-center ">
+                        <input className="input w-full px-3 h-12 my-2 mx-3 bg-slate-200 rounded-md"
                             type="search"
-                            placeholder="Search topics or comments"
+                            placeholder="Search"
                         />
                     </div>
 
@@ -53,7 +53,7 @@ export const Chat = () => {
                     </div>
                 </div>
 
-                <div className="Right-side-chat m-2">
+                <div className="Right-side-chat m-1">
                     <ChatBox
                         chat={currentChat}
                         currentUser={currentChatUserId}

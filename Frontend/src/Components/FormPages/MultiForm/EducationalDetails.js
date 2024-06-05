@@ -162,7 +162,7 @@ export const EducationalDetails = ({ handleFormSubmit }) => {
                             required
                         />
 
-                        <lebel className=''>Student Id
+                        <label className=' text-left w-full'>Student Id
                             <input
                                 type="file"
                                 name="studentId"
@@ -171,7 +171,7 @@ export const EducationalDetails = ({ handleFormSubmit }) => {
                                 id='studentId_field'
                                 onChange={handleFileChange}
                             />
-                        </lebel>
+                        </label>
                     </>
                 )}
                 {formType === 'professional' && (
