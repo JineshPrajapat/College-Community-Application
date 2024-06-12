@@ -40,7 +40,7 @@ exports.saveBookmarkForUser = async (req, res) => {
         }
 
         const bookMark = await BookMark.findOne({ userId: userId });
-        console.log(bookMark);
+        // console.log(bookMark);
         if (!bookMark) {
             const newBookMark = new BookMark({
                 userId,
@@ -61,9 +61,21 @@ exports.saveBookmarkForUser = async (req, res) => {
                     existingPost.postId.push(postId);
                 }
                 else {
-                    return res.status(402).json({
-                        success: false,
-                        message: `Post with ID ${postId} already saved in ${postType}`
+                    // Remove the postId from the array
+                    const index = existingPost.postId.indexOf(postId);
+                    if (index > -1) {
+                        existingPost.postId.splice(index, 1);
+                    }
+
+                    await BookMark.findOneAndUpdate(
+                        { userId: userId },
+                        { savedPosts: bookMark.savedPosts }, // Update the savedPosts array
+                        { new: true } // To return the updated document
+                    );
+
+                    return res.status(202).json({
+                        success: true,
+                        message: `Post with ID ${postId} already saved in ${postType}, and has been removed from the list.`
                     });
                 }
             }
@@ -115,11 +127,53 @@ exports.getDiscussBookMark = async (req, res) => {
     }
 }
 
+exports.bookmarkStatebyId = async (req, res) => {
+    const userId = req.user.id;
+
+    try {
+        const { postId } = req.params;
+        const bookmark = await BookMark.findOne({ userId }).populate("savedPosts.postId");
+
+        if (bookmark) {
+            let bookmarkState = 0;
+
+            const discussPosts = bookmark.savedPosts.filter(post => post.type === "Discuss");
+            const discussPostIds = discussPosts.map(post => post.postId).flat();
+            const discussId = discussPostIds.filter(post => post._id.equals(postId));
+
+            if (discussId.length == 1) {
+                bookmarkState = 1;
+            }
+
+            return res.status(200).json({
+                success: true,
+                message: "status fetched",
+                bookmarkState: bookmarkState
+            })
+        }
+
+        else {
+            return res.status(200).json({
+                success: true,
+                message: "status fetched",
+                bookmarkState: 0
+            })
+        }
+    }
+    catch (err) {
+        console.log(err);
+        return res.status(500).json({
+            success: false,
+            message: err.message + "error while fetching discuss",
+        });
+    }
+}
+
 exports.getExperienceBookMark = async (req, res) => {
     const userId = req.user.id;
     try {
         const bookmark = await BookMark.findOne({ userId }).populate("savedPosts.postId");
-        
+
         if (bookmark) {
             const discussPosts = bookmark.savedPosts.filter(post => post.type === "Experience");
             const discussPostIds = discussPosts.map(post => post.postId).flat(); // Flattening arrays of postIds

@@ -2,6 +2,22 @@ const Comment = require("../models/Comment");
 const Discuss = require("../models/Discuss");
 require("dotenv").config();
 
+// Recursive function to populate nested comments
+async function populateNestedComments(comment) {
+    const populatedComment = await Comment.findById(comment._id)
+        .populate('userId', 'username profileImage')
+        .lean();
+
+    if (populatedComment.replies.length > 0) {
+        populatedComment.replies = await Promise.all(
+            populatedComment.replies.map(populateNestedComments)
+        );
+    }
+
+    return populatedComment;
+}
+
+
 exports.sendDiscuss = async (req, res) => {
     try {
         const {
@@ -88,7 +104,7 @@ exports.getDiscussbyTitle = async (req, res) => {
             .populate("comments")
             .sort({ createdAt: -1 })
             .exec();
-        console.log("discuss", discuss);
+        // console.log("discuss", discuss);
 
         if (!discuss) {
             return res.status(404).json({
@@ -162,6 +178,87 @@ exports.sendComment = async (req, res) => {
     }
 };
 
+exports.addNestedCommet = async(req, res) =>{
+    const { commentID, discussionId  } = req.params;
+    const { nestedComment } = req.body;
+    const UserId = req.user.id;
+
+    console.log("nested comment", req.params);
+    try{
+        const parentComment = await Comment.findById(commentID);
+
+        if (!parentComment) {
+            return res.status(404).json({
+                success: false,
+                message: "Parent comment not found"
+            });
+        }
+
+        // Create a new nested comment
+        const newComment = new Comment({
+            userId: UserId,
+            body: nestedComment,
+            replies: []
+        });
+
+        // Save the new nested comment
+        const savedComment = await newComment.save();
+
+        // Add the new nested comment's ID to the parent comment's replies array
+        parentComment.replies.push(savedComment._id);
+
+        await parentComment.save();
+
+        res.status(201).json({
+            success: true,
+            message: "Nested comment added successfully",
+            comment: savedComment
+        });
+
+        console.log("commentInfo");
+    }
+    catch (error) {
+        console.error("Error fetching comments:", error);
+        return res.status(500).json({
+            success: false,
+            message: "Internal server error",
+            error: error.message,
+        });
+    }
+
+}
+
+exports.getCommentsByDiscussionId = async (req, res) => {
+    const { discussionId } = req.params;
+
+    try {
+        // Fetch the comments for the discussion
+        const discussion = await Discuss.findById(discussionId);
+
+        let comments = await Comment.find({ _id: { $in: discussion.comments } })
+            .populate('userId', 'username profileImage')
+            .lean();
+
+        // Populate nested replies
+        comments = await Promise.all(
+            comments.map(populateNestedComments)
+        );
+
+        res.status(200).json({
+            success: true,
+            comments,
+        });
+    } catch (error) {
+        console.error("Error fetching comments:", error);
+        return res.status(500).json({
+            success: false,
+            message: "Internal server error",
+            error: error.message,
+        });
+    }
+};
+
+
 
 exports.getComment = async (req, res) => {
     try {
@@ -190,44 +287,6 @@ exports.getComment = async (req, res) => {
         });
     }
 }
-
-exports.getCommentsByDiscussionId = async (req, res) => {
-    try {
-        const { discussionId } = req.params;
-
-        // Find the discussion by its ID
-        const discussion = await Discuss.findById(discussionId);
-        console.log("discusssion", discussion)
-        if (!discussion) {
-            return res.status(404).json({
-                success: false,
-                message: "Discussion not found",
-            });
-        }
-
-        // Find all comments associated with the discussion
-        const comments = await Comment.find({ _id: { $in: discussion.comments } })
-            .populate("userId") // Populate the user details
-            .populate({
-                path: "replies",
-                populate: { path: "userId", select: "username email" } // Populate replies user details
-            });
-        console.log("Comments", comments);
-
-        return res.status(200).json({
-            success: true,
-            message: "Comments retrieved successfully",
-            comments: comments,
-        });
-    } catch (error) {
-        console.error("Error fetching comments:", error);
-        return res.status(500).json({
-            success: false,
-            message: "Internal server error",
-            error: error.message,
-        });
-    }
-};
 
 
 // exports.sendComment = async (req, res) => {

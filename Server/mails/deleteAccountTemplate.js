@@ -25,7 +25,7 @@ exports.deleteTemplate = (username) => {
             }
 
             .logo {
-                max-width: 200px;
+                max-width: 50px;
                 margin-bottom: 20px;
                 border: none;
                 border-radius: 30px;

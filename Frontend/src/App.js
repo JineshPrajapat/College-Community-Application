@@ -47,7 +47,6 @@ import { Setting } from "./Components/Setting/Setting";
 
 function App() {
 
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { isLoggedIn } = useAuth();
   const { isSignedUp } = useSignUp();
 
