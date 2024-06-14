@@ -6,7 +6,7 @@ import FlashMessage from '../../FlashMessage/FlashMessage';
 import { images } from '../../../constants';
 import { formatTimeAgo } from '../../formatTimeAgo/formatTimeAgo';
 import { NavLink } from 'react-router-dom';
-import { arrowUndoOutline, chatboxEllipsesOutline } from "ionicons/icons";
+import { arrowUndoOutline, chatboxEllipsesOutline, warningOutline } from "ionicons/icons";
 import { IonIcon } from "@ionic/react";
 
 const reactions = [
@@ -69,6 +69,10 @@ export const CommentList = ({ discussionId }) => {
             }
         });
     };
+
+    // const handleReportButtonClick = (commentId) =>{
+
+    // }
 
     const handleSingleCommentSubmit = (event) => {
         if (event) {
@@ -195,7 +199,7 @@ export const CommentList = ({ discussionId }) => {
 
 const CommentItem = ({ comment, index, handleReplyButtonClick, handleShowReplyButtonClick, showReplyInput, showReplies, handleNestedCommentForm, formValue, handleChange }) => {
     return (
-        <div className="reactions">
+        <div className="reactions ">
             <div className="profile-info">
                 <NavLink to={`/${comment?.userId?.username}`}>
                     <img src={comment?.userId?.profileImage} alt={comment?.userId?.username} />
@@ -222,6 +226,12 @@ const CommentItem = ({ comment, index, handleReplyButtonClick, handleShowReplyBu
                         <span className='text-xs'>Reply</span>
                     </button>
                 </div>
+                {/* <div className='flex justify-end opacity-0 hover:opacity-100'>
+                    <button className="flex items-center gap-1  text-gray-500 font-medium  py-1 px-2 rounded-lg mt-2 hover:bg-gray-200 hover:text-black hover:font-semibold transition duration-300" onClick={() => handleReportButtonClick(comment?._id)}>
+                        <IonIcon icon={warningOutline} className=' text-xl font-bold' />
+                        <span className='text-xs'>Report</span>
+                    </button>
+                </div> */}
 
 
             </div>

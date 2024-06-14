@@ -23,9 +23,11 @@
   gap: 1rem;
   border-radius: 1rem;
   height: auto;
-  min-height: 90vh;
   overflow: scroll;
   width: 100%;
+  @media screen and (max-width:768px) {
+    min-height: 90vh;
+  }
 }
 
 .Chat-list {

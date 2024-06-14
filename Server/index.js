@@ -95,9 +95,9 @@ app.get("/", (req, res) => {
         success: true,
         message: "Your server is up and running..."
     });
-    res.send(`<h1>Backend is Running and this is '/' Route</h1>`);
+    // res.send(`<h1>Backend is Running and this is '/' Route</h1>`);
 });
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`App is running at ${PORT}`);
 });

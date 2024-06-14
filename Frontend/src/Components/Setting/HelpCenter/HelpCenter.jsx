@@ -1,6 +1,8 @@
-import React from 'react'
+import React from 'react';
+import appURL from "../../../api/webapp";
 
 export const HelpCenter = () => {
+  const userName = localStorage.getItem("userName");
   return (
     <div>
       <div className="mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
@@ -9,16 +11,16 @@ export const HelpCenter = () => {
           <h3 className="text-lg font-semibold mb-2">Account Settings:</h3>
           <ul className="list-disc ml-6 mb-4">
             <li className="mb-2">
-              <a href="/change-password" className="text-blue-500 hover:underline">Change Password</a>
+              <a href={`${appURL}/Setting/Security/resetPassword`} className="text-blue-500 hover:underline">Change Password</a>
             </li>
             <li className="mb-2">
-              <a href="/change-username" className="text-blue-500 hover:underline">Change Username</a>
+              <a href={`${appURL}/Setting/Security/resetUsername`} className="text-blue-500 hover:underline">Change Username</a>
             </li>
             <li className="mb-2">
-              <a href="/change-email" className="text-blue-500 hover:underline">Change Email</a>
+              <a href={`${appURL}/Setting/Security/changeEmail`} className="text-blue-500 hover:underline">Change Email</a>
             </li>
             <li className="mb-2">
-              <a href="/profile-settings" className="text-blue-500 hover:underline">Profile Settings</a>
+              <a href={`${appURL}/${userName}/Update`} className="text-blue-500 hover:underline">Profile Settings</a>
             </li>
           </ul>
         </div>

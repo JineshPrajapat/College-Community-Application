@@ -2,7 +2,7 @@ import React from 'react';
 
 const Connection = () => {
   return (
-    <div className=" mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
+    <div className=" mx-auto mt-8 p-6 bg-white rounded-lg shadow-md font-sans">
       <h2 className="text-2xl font-semibold mb-4">Connection Information</h2>
       <div className="mb-4">
         <p className="text-gray-600 mb-2">

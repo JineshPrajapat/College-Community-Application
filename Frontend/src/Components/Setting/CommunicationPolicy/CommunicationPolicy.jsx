@@ -3,7 +3,7 @@ import React from 'react'
 export const CommunicationPolicy = () => {
   return (
     <div>
-      <div className=" mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
+      <div className=" mx-auto mt-8 p-6 bg-white rounded-lg shadow-md font-sans">
         <h2 className="text-2xl font-semibold mb-4">Communication Policy</h2>
         <p className="mb-4">
           Our platform is committed to fostering a professional and respectful environment for all users. By engaging in communication on our platform, you agree to adhere to the following guidelines:

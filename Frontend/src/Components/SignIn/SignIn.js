@@ -51,7 +51,7 @@ function Login() {
 
                 if (response.status === 200) {
                     const token = response.data.token;
-                    // const userId = response.data.user._id;
+                    const userId = response.data.user._id;
                     const userName = response.data.user.username;
                     const fullName = response.data.user.profileDetails.fullName;
                     const avatarUrl = response.data.user.profileImage;
@@ -59,7 +59,7 @@ function Login() {
                     const email = response.data.user.email;
                     const expirationTime = new Date().getTime() + 2 * 60 * 60 * 1000;
 
-                    // localStorage.setItem('userId', userId);
+                    localStorage.setItem('userId', userId);
                     localStorage.setItem('token', token);
                     localStorage.setItem('userName', userName);              // Store token in local storage
                     localStorage.setItem('fullName', fullName);

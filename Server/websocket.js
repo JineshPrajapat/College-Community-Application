@@ -1,4 +1,3 @@
-
 const WebSocket = require("ws");
 const { connectedClients } = require("./websocketStore");
 
@@ -16,7 +15,6 @@ module.exports = (server) => {
                 const content = parsedMessage.content;
 
                 const recipientSocket = connectedClients[recipientId];
-
                 if (recipientSocket && recipientSocket.readyState === WebSocket.OPEN) {
                     recipientSocket.send(JSON.stringify({
                         type: "chat",
@@ -49,7 +47,6 @@ module.exports = (server) => {
         ws.on("message", async (message) => {
             const parsedMessage = JSON.parse(message);
             const clientId = parsedMessage.clientId;
-
             connectedClients[clientId] = ws;
 
         });

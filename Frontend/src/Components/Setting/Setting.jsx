@@ -52,7 +52,7 @@ export const Setting = () => {
     };
 
     return (
-        <div className='bg-white h-full '>
+        <div className='bg-white h-full font-sans'>
             <div className=" header flex items-center p-3 sticky top-12 border-b-2 bg-white border-gray-300">
                 <div className=' cursor-pointer sm:pl-2'
                     onClick={() => handleCancel()}

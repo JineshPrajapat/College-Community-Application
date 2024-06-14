@@ -88,10 +88,28 @@
     }
 }
 
-// text-editor for ckeditor
-.ck-content{
-    height: 60vh;
-    @media screen and (max-width:600px) {
-        height:30vh;
-    }
-}
+// // text-editor for ckeditor
+// .ck-content{
+//     height: 60vh;
+//     @media screen and (max-width:600px) {
+//         height:30vh;
+//     }
+// }
+
+
+
+
+// // text-editor css for MyQuillEditor
+// .ql-snow .ql-editor pre.ql-syntax{
+//     min-height: 400px;
+//     @media screen and (max-width:600px) {
+//         height:30vh;
+//     }
+//   }
+  
+//   .ql-editor p{
+//     min-height: 400px;
+//     @media screen and (max-width:600px) {
+//         height:30vh;
+//     }
+//   }

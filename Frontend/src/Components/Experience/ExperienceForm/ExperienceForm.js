@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import MyCKeditor from "../../MyCKEditor/MyCKEditor";
+import MyQuillEditor from "../../MyQuillEditor/MyQuillEditor"
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import baseURL from "../../../api/api";
@@ -151,7 +152,8 @@ function ExperienceForm() {
           </label>
           <label htmlFor="experienceDescription" >
             Share your Experience/Review:
-            <MyCKeditor className="pb-3" onDescriptionChange={handleDescriptionChange} />
+            {/* <MyCKeditor className="pb-3" onDescriptionChange={handleDescriptionChange} /> */}
+            <MyQuillEditor classNamepb-3 onDescriptionChange={handleDescriptionChange}/>
           </label>
 
           <div className="btn-post" >

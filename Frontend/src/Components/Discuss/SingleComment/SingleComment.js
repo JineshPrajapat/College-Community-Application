@@ -180,7 +180,7 @@ function SingleComment() {
 
 
     return (
-        <div className="discuss-form-container">
+        <div className="discuss-form-container ">
             <div className="comment-block">
                 <div className='comments'>
                     

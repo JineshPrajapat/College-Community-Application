@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import MyCKeditor from "../../MyCKEditor/MyCKEditor";
+import MyQuillEditor from "../../MyQuillEditor/MyQuillEditor";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import baseURL from "../../../api/api";
@@ -195,7 +196,8 @@ function QuestionForm() {
                             value={formValue.questionDescription}
                             onChange={handleChange}
                         /> */}
-            <MyCKeditor onDescriptionChange={handleDescriptionChange} />
+            {/* <MyCKeditor onDescriptionChange={handleDescriptionChange} /> */}
+            <MyQuillEditor onDescriptionChange={handleDescriptionChange} />
           </label>
           <label htmlFor="link">
             Question Link:

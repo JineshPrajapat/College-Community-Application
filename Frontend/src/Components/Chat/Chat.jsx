@@ -44,7 +44,7 @@ export const Chat = () => {
                                 >
                                     <Conversation
                                         data={chat}
-                                        currentUser={chat._id}
+                                        currentUser={currentChatUserId}
                                     // online={checkOnlineStatus(chat.chat)}
                                     />
                                 </div>

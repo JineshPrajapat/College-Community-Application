@@ -4,6 +4,7 @@ import axios from "axios";
 import baseURL from "../../../api/api";
 import './AddQuery.scss'
 import MyCKeditor from "../../MyCKEditor/MyCKEditor";
+import MyQuillEditor from "../../MyQuillEditor/MyQuillEditor";
 import FlashMessage from "../../FlashMessage/FlashMessage";
 import ConfirmationDialog from "../../ConfirmationDialog/ConfirmationDialog";
 
@@ -116,7 +117,8 @@ function AddQuery() {
                             </button>
                         </div>
                     </div>
-                    <MyCKeditor onDescriptionChange={handleDescriptionChange} />
+                    {/* <MyCKeditor onDescriptionChange={handleDescriptionChange} /> */}
+                    <MyQuillEditor onDescriptionChange={handleDescriptionChange} />
                 </form>
 
 

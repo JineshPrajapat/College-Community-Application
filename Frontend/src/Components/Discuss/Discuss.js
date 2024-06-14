@@ -142,7 +142,7 @@ function Discuss() {
 
     return (
         <>
-            <div className="main-conatiner">
+            <div className="main-conatiner ">
                 <div className="left-panel">
                     <div className="full-wrapper">
                         <div className="header">
