@@ -5,6 +5,7 @@ import baseURL from '../../../api/api';
 
 export const PersionalDetails = ({ handleFormSubmit }) => {
 
+    const [processing, setProcessing] = useState(false);
     const [formValue, setFormValue] = useState({
         fullName: '',
         gender: '',
@@ -17,7 +18,7 @@ export const PersionalDetails = ({ handleFormSubmit }) => {
         const value = target.type === 'radio' ? target.checked ? target.value : '' : target.value;
         const name = target.name;
 
-        console.log(name,":", value)
+        console.log(name, ":", value)
 
         setFormValue({
             ...formValue,
@@ -35,9 +36,7 @@ export const PersionalDetails = ({ handleFormSubmit }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Handle form submission logic here
-        console.log(formValue)
-        console.log("fullname", formValue);
+        setProcessing(true);
         const token = localStorage.getItem('token');
         console.log("PersonDetails token", token)
         axios.put(`${baseURL}/profile/updateProfile`, {
@@ -50,26 +49,27 @@ export const PersionalDetails = ({ handleFormSubmit }) => {
                 Authorization: `Bearer ${token}`
             }
         })
-            .then(response =>{
+            .then(response => {
                 console.log("Response", response);
-                if(response.status === 200)
-                {
+                if (response.status === 200) {
                     console.log("Personal Details updated Succesfully");
                     // call handle formsubmit function to call other form
                     handleFormSubmit();
-                    
+
                 }
             })
-            .catch(error =>{
-                if(error.response.status === 400){
+            .catch(error => {
+                if (error.response.status === 400) {
                     // console.log("Error:", error);
                     console.log("all fields are required");
                 }
-                else if( error.response.status === 500){
+                else if (error.response.status === 500) {
                     console.log("Unable to update profile");
                 }
             })
-
+            .finally(() => {
+                setProcessing(false);
+            });
     };
 
     return (
@@ -126,8 +126,8 @@ export const PersionalDetails = ({ handleFormSubmit }) => {
                     value={formValue.state}
                     onChange={handleChange}
                 />
-                <button type="submit" className="submit action-button" >
-                    Submit
+                <button type="submit" className={`submit action-button`}  disabled={processing}>
+                    {processing ? 'Processing...' : 'Submit'}
                 </button>
             </form>
         </div>

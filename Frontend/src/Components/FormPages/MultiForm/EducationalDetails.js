@@ -5,6 +5,7 @@ import axios from 'axios';
 
 export const EducationalDetails = ({ handleFormSubmit }) => {
 
+    const [processing, setProcessing] = useState(false);
     const [formType, setFormType] = useState('college');
     const [formValue, setFormValue] = useState({
         collegeName: '',
@@ -41,6 +42,7 @@ export const EducationalDetails = ({ handleFormSubmit }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setProcessing(true);
 
         const token = localStorage.getItem("token");
         console.log("token", token);
@@ -84,6 +86,9 @@ export const EducationalDetails = ({ handleFormSubmit }) => {
                         console.error('Network or request error:', error);
                     }
                 })
+                .finally(() => {
+                    setProcessing(false);
+                });
         }
         catch (error) {
             console.error('Network or request error:', error);
@@ -181,7 +186,8 @@ export const EducationalDetails = ({ handleFormSubmit }) => {
                         <input type="text" name="companyId" placeholder="Company ID" />
                     </>
                 )}
-                <button type="submit" className="submit action-button" > Save & Next
+                <button type="submit" className={`submit action-button`} disabled={processing} > 
+                    {processing ? "Processing..." :"Save & Next"}
                 </button>
             </form>
         </div>

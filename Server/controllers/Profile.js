@@ -3,7 +3,7 @@ const User = require("../models/User");
 const { uploadImageToCloudinary } = require("../utils/imageUploader");
 require("dotenv").config();
 
-function isFileTypeSupported (type, supportedTypes){
+function isFileTypeSupported(type, supportedTypes) {
     return supportedTypes.includes(type)
 }
 // update the profile after signup
@@ -198,18 +198,22 @@ exports.getUserDetails = async (req, res) => {
     }
 };
 
+
+
+// below are single endpoints controller defind
+
 // update the profile picture
 exports.updateDisplayPicture = async (req, res) => {
     try {
         const userId = req.user.id;
-        console.log("UserId -> ", userId);
-        console.log("Type of userId -> ", typeof (userId));
-        const profilePicture = req.files.profilePicture;
+        const profilePicture = req.files.profileImage;
         const folderName = process.env.FOLDER_NAME;
         const supportedTypes = ['jpg', 'jpeg', 'png'];
-        const fileType = profilePicture.name.split(".")[1].toLowerCase();
+        const profilePicturefileType = profilePicture.name.split(".")[1].toLowerCase();
+        console.log("profilePicturefiletype", profilePicture);
 
-        if (!supportedTypes.includes(fileType)) {
+        if (!isFileTypeSupported(profilePicturefileType, supportedTypes)) {
+            console.log("file not supported")
             return res.status(400).json({
                 success: false,
                 message: "File type not Supperted",
@@ -218,12 +222,20 @@ exports.updateDisplayPicture = async (req, res) => {
 
         const response = await uploadImageToCloudinary(profilePicture, folderName);
         console.log("response -> ", response);
+
+        if (!userId) {
+            return res.status(404).json({
+                success: flase,
+                message: "userId not found"
+            });
+        }
+
         const userDetails = await User.findByIdAndUpdate(userId);
         userDetails.profileImage = response.secure_url;
         await userDetails.save();
         console.log("User Details -> ", userDetails);
 
-        return res.json({
+        return res.status(200).json({
             success: true,
             image_url: response.secure_url,
             message: "Image Uploaded successfully",
@@ -237,45 +249,3 @@ exports.updateDisplayPicture = async (req, res) => {
         });
     }
 };
-
-
-
-
-// // delete account
-// exports.deleteAccount = async (req, res) => {
-//     try {
-
-//         // fetch id
-//         const id = req.user.id;
-//         console.log("id ->", id)
-//         // validate
-//         const userDetails = await User.findById(id);
-//         console.log("userDetails ->", userDetails);
-//         if (!userDetails) {
-//             return res.status(404).json({
-//                 success: false,
-//                 message: "User not found.",
-//             });
-//         }
-
-//         // delete profile
-//         await Profile.findByIdAndDelete({ _id: userDetails.profileDetails });
-
-//         // delete user
-//         await User.findByIdAndDelete({ _id: id });
-
-//         // return response
-//         return res.status(200).json({
-//             success: true,
-//             message: "User Deleted successfully.",
-//         });
-
-//     } catch (err) {
-//         console.log(err);
-//         return res.status(500).json({
-//             success: false,
-//             message: "Unable to delete profile.",
-//             error: err.message,
-//         });
-//     }
-// };

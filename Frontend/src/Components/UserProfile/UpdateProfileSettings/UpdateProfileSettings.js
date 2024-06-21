@@ -17,7 +17,6 @@ const UpdateProfileSettings = () => {
     references: [],
     socialMedia: [],
     languages: [],
-    photo: null,
     coverPhoto: null,
     resume: null,
     studentID: null
@@ -40,7 +39,7 @@ const UpdateProfileSettings = () => {
 
   const handleUpdate = async () => {
     try {
-      const response = await axios.post(`${baseURL}/userProfile/setting`, formValue, {
+      const response = await axios.put(`${baseURL}/userProfile/setting`, formValue, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -73,9 +72,9 @@ const UpdateProfileSettings = () => {
             <div key={key} className='input_container'>
               {/* <label className='input_label' htmlFor={`${key}_field`}>{key}</label> */}
               <label className='input_label' htmlFor={`${key}_field`}>{key.charAt(0).toUpperCase() + key.slice(1)}</label>
-              {key === 'photo' || key === 'coverPhoto' || key === 'pdf' || key === 'studentID' || key === 'resume' ? (
+              {key === 'coverPhoto' || key === 'pdf' || key === 'studentID' || key === 'resume' ? (
                 <input
-                  className='input_field'
+                  className='input_field '
                   name={key}
                   type='file'
                   id={`${key}_field`}
@@ -101,6 +100,7 @@ const UpdateProfileSettings = () => {
 
       {/* flash component */}
       {flashMessage && <FlashMessage type={flashMessage.type} message={flashMessage.message} />}
+      <FlashMessage type={"success"} message={"Updated successfully"} />
     </div>
   );
 };

@@ -97,7 +97,7 @@ function MultiForm() {
         nextStep();                 // Move to the next step within MultiForm
     };
 
-    
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -109,11 +109,12 @@ function MultiForm() {
         <div className='mscontainer'>
             <div id="msform" onSubmit={handleSubmit}>
                 {/* progressbar */}
-                <ul id="progressbar">
-                    <li className={step === 1 ? 'active' : ''}>Educational Details</li>
-                    <li className={step === 2 ? 'active' : ''}>Personal Details</li>
+                <ul className="progressbar">
+                    <li className={step >= 1 ? 'completed' : '' + step === 1 ? 'active' : ''}>Educational Details</li>
+                    <li className={step >= 2 ? 'completed' : '' + step === 2 ? 'active' : ''}>Personal Details</li>
                     <li className={step === 3 ? 'active' : ''}>Social Profiles</li>
                 </ul>
+
 
                 {/* college or professional form */}
                 {step === 1 && (
@@ -125,7 +126,7 @@ function MultiForm() {
                 {/* presonal details */}
                 {step === 2 && (
                     <fieldset >
-                        <PersionalDetails handleFormSubmit={handleFormSubmit}/>
+                        <PersionalDetails handleFormSubmit={handleFormSubmit} />
                     </fieldset>
                 )}
 

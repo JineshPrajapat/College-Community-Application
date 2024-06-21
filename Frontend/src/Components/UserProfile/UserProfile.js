@@ -14,6 +14,7 @@ import UserProfileSettings from './UserProfileSettings/UserProfileSettings';
 import UpdateProfileSettings from './UpdateProfileSettings/UpdateProfileSettings';
 import Header from '../Header/Header';
 import UnauthorizedAccess from "../../Components/UnauthorizedAccess/UnauthorizedAccess";
+import { ProfileImageUpdater } from './UpdateProfileSettings/ProfileImageUpdater';
 
 
 // import Home from './Home/Home'
@@ -39,6 +40,7 @@ import UnauthorizedAccess from "../../Components/UnauthorizedAccess/Unauthorized
 function UserProfile() {
 
   const [userInfo, setUserInfo] = useState([]);
+  const [profileFromOpen, setProfileFormOpen] = useState(false)
 
   // extracting username from link
   const { userName } = useParams();
@@ -58,29 +60,41 @@ function UserProfile() {
 
   console.log("Data;", userData);
 
+  const handleUpdateProfileImage = () => {
+    setProfileFormOpen(true);
+  }
 
   return (
 
     <>
-      {userData.Data ?
-        <div className="top-cover">
-          <div className="profile-box">
-            {/* profile landing */}
+      <>
+        {userData.Data ?
+          <div className="top-cover">
+            <div className="profile-box">
+              {/* profile landing */}
 
-            <div className="cover-in" style={{ backgroundImage: `url(${(userData?.Data?.profileDetails?.coverImage || images?.cover)})` }}>
-              <div className="cover-row">
-                <div className="user-img">
-                  <img src={`${(userData?.Data?.profileImage || userData?.userlogo)}`} alt={(userData?.Data?.profileDetails?.fullName)} />
-                </div>
-                <div className="user-bio">
-                  <h2>{(userData?.Data?.profileDetails?.fullName)} / {(userData?.Data?.profileDetails?.profession)}</h2>
-                  <p>{(userData?.Data?.profileDetails?.about)}</p>
+              <div className="cover-in" style={{ backgroundImage: `url(${(userData?.Data?.profileDetails?.coverImage || images?.cover)})` }}>
+                <div className="cover-row">
+                  <div className="user-img relative">
+                    <img src={`${(userData?.Data?.profileImage || userData?.userlogo)}`} alt={(userData?.Data?.profileDetails?.fullName)} />
+                    {isOwnProfile() &&
+                      <div className='absolute bottom-8 left-2 bg-blue-200 text-black p-1 rounded-md text-xs hover:scale-105'
+                        onClick={handleUpdateProfileImage}
+                      >
+                        <i class="fa-solid fa-pen pr-1 " />
+                        <strong>Edit</strong>
+                      </div>
+                    }
+                  </div>
+                  <div className="user-bio">
+                    <h2>{(userData?.Data?.profileDetails?.fullName)} / {(userData?.Data?.profileDetails?.profession)}</h2>
+                    <p>{(userData?.Data?.profileDetails?.about)}</p>
+                  </div>
                 </div>
               </div>
-            </div>
 
 
-            {/* <div className="cover-in" style={{ backgroundImage: `url(${userData.Data.profileDetails.coverImage ? userData.Data.profileDetails.coverImage :images.cover})` }}>
+              {/* <div className="cover-in" style={{ backgroundImage: `url(${userData.Data.profileDetails.coverImage ? userData.Data.profileDetails.coverImage :images.cover})` }}>
           <div className="cover-row">
             <div className="user-img">
               <img src={`${userData.Data.profileImage ? userData.Data.profileImage :userData.userlogo}`} alt={'Jinesh Prajapat'} />
@@ -92,59 +106,63 @@ function UserProfile() {
           </div>
         </div> */}
 
-            {/* nav-bar */}
-            <div className="nav-tabs">
-              <ul className="tab-list">
-                <li className="nav-item" >
-                  <Link to="./" className="nav-link" id="home-tab" activeClassName="active">Home</Link>
-                </li>
-                {/* <li className="nav-item">
+              {/* nav-bar */}
+              <div className="nav-tabs">
+                <ul className="tab-list">
+                  <li className="nav-item" >
+                    <Link to="./" className="nav-link" id="home-tab" activeClassName="active">Home</Link>
+                  </li>
+                  {/* <li className="nav-item">
               <Link to="./Profile" className="nav-link" id="profile-tab" activeClassName="active">Profile</Link>
             </li> */}
-                {/* <li className="nav-item">
+                  {/* <li className="nav-item">
               <Link to="./Resume" className="nav-link" id="resume-tab" activeClassName="active">Resume</Link>
             </li> */}
-                <li className="nav-item">
-                  <Link to="./Achievement" className="nav-link" id="achievement-tab" activeClassName="active">Achievement</Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="./Contact" className="nav-link" id="contact-tab" activeClassName="active">Contact</Link>
-                </li>
-                {/* <li className="nav-item">
+                  <li className="nav-item">
+                    <Link to="./Achievement" className="nav-link" id="achievement-tab" activeClassName="active">Achievement</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link to="./Contact" className="nav-link" id="contact-tab" activeClassName="active">Contact</Link>
+                  </li>
+                  {/* <li className="nav-item">
               <Link to="./Setting" className="nav-link" id="contact-tab" activeClassName="active">Setting</Link>
             </li> */}
-                {isOwnProfile() &&
-                  <li className="nav-item">
-                    <Link to="./Update" className="nav-link" id="contact-tab" activeClassName="active">Update</Link>
-                  </li>
-                }
+                  {isOwnProfile() &&
+                    <li className="nav-item">
+                      <Link to="./Update" className="nav-link" id="contact-tab" activeClassName="active">Update</Link>
+                    </li>
+                  }
 
 
-              </ul>
+                </ul>
+              </div>
+
+              {/* calling route path */}
+              <div className="tab-content">
+                {/* <Home/> */}
+                <Routes>
+                  <Route path="/*" element={<Home userData={userData} />} />
+                  <Route path="Contact" element={<Contact userData={userData} />} />
+                  <Route path="Achievement/*" element={<Achievement />} />
+
+
+                  {isOwnProfile() &&
+                    <Route path="Update" element={<UpdateProfileSettings />} />
+                  }
+                </Routes>
+                {/* <Route path="Setting" element={<UserProfileSettings />} /> */}
+                {/* <Route path="Profile" element={<Profile/>} /> */}
+                {/* <Route path="Resume" element={<Resume/>} /> */}
+
+              </div>
+
             </div>
+          </div> : <>User Not Found</>
+        }
+      </>
 
-            {/* calling route path */}
-            <div className="tab-content">
-              {/* <Home/> */}
-              <Routes>
-                <Route path="/*" element={<Home userData={userData} />} />
-                <Route path="Contact" element={<Contact userData={userData} />} />
-                <Route path="Achievement/*" element={<Achievement />} />
-                
-
-                {isOwnProfile() &&
-                  <Route path="Update" element={<UpdateProfileSettings />} />
-                }
-              </Routes>
-              {/* <Route path="Setting" element={<UserProfileSettings />} /> */}
-              {/* <Route path="Profile" element={<Profile/>} /> */}
-              {/* <Route path="Resume" element={<Resume/>} /> */}
-              
-            </div>
-
-          </div>
-        </div> : <>User Not Found</>
-
+      {profileFromOpen &&
+        <ProfileImageUpdater setProfileFormOpen={setProfileFormOpen} />
       }
     </>
   );
