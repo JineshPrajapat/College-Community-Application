@@ -1,6 +1,6 @@
 import { IonIcon } from '@ionic/react';
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { analyticsSharp, homeOutline,chatboxEllipsesOutline, chatbubbleOutline, bookOutline, briefcaseOutline, arrowForward, shieldOutline, shieldSharp, personOutline, thumbsUpOutline, bookmarkOutline } from "ionicons/icons";
 
 export const SideBar = () => {
@@ -18,6 +18,7 @@ export const SideBar = () => {
     ]
     const [isToggle, setIsToggle] = useState(false);
     const [active, setActive] = useState(0);
+    const location = useLocation();
 
     const handleToggleBtn = (isToggle) => {
         setIsToggle(!isToggle);
@@ -51,16 +52,16 @@ export const SideBar = () => {
                     {Menus.map((menu, i) => (
                         <li className='links ' >
                             <NavLink
-                                className={`flex gap-3 py-2 px-2 rounded-3xl duration-500 ${i === active && "bg-blue-400 "}`}
+                                className={`flex gap-3 py-2 px-2 rounded-3xl duration-500 ${((location.pathname.startsWith(menu.path))) && "bg-blue-400 "}`}
                                 to={menu.path}
                                 activeClassName="text-blue"
                                 onClick={() => handleClick(i)}
                             >
-                                <span className={`icon text-xl duration-500 flex items-center ${i === active && "text-white"}`}>
+                                <span className={`icon text-xl duration-500 flex items-center ${ (location.pathname.startsWith(menu.path))  &&  "text-white"}`}>
                                     <IonIcon icon={menu.icon} />
                                 </span>
                                 <span className={`links-name text-xs font-sans duration-500
-                                                    ${isToggle === false ? "hidden" : ""}  ${i === active && "text-white duration-700"}`}
+                                                    ${isToggle === false ? "hidden" : ""}  ${(location.pathname.startsWith(menu.path))  &&  "text-white duration-700"}`}
                                 >
                                     {menu.name}
                                 </span>

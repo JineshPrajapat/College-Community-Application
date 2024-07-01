@@ -1,23 +1,29 @@
 const mongoose = require("mongoose");
 
 const messageSchema = new mongoose.Schema({
-    content: {
+    text: {
         type: String,
+        default: ""
     },
-    from: {
+    imageUrl: {
+        type: String,
+        default: ""
+    },
+    videoUrl: {
+        type: String,
+        default: ""
+    },
+    seen: {
+        type: Boolean,
+        default: false
+    },
+    msgByUserId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
         required: true,
-    },
-    to: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
-    },
-    messagedAt: {
-        type: Date,
-        default: Date.now(),
-    },
-});
+        ref: 'User'
+    }
+}, {
+    timestamps: true
+})
 
 module.exports = mongoose.model("Message", messageSchema);

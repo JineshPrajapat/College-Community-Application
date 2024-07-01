@@ -1,20 +1,6 @@
 .Chat {
-  position: relative;
+  // position: relative;
   display: flex;
-}
-
-.Left-side-chat {
-  display: flex;
-  flex-direction: column;
-  min-width: 300px;
-  background-color: white;
-
-  @media screen and (max-width:768px) {
-    width: 100%;;
-  }
-  @media screen and (min-width:1024px) {
-    min-width: 375px;
-  }
 }
 
 .Chat-container {
@@ -23,7 +9,7 @@
   gap: 1rem;
   border-radius: 1rem;
   height: auto;
-  overflow: scroll;
+  // overflow: scroll;
   width: 100%;
   @media screen and (max-width:768px) {
     min-height: 90vh;
@@ -36,27 +22,4 @@
   gap: 1rem;
 }
 
-.Right-side-chat {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 1rem;
-
-  @media screen and (max-width:768px) {
-    display: none;
-  }
-}
-.conversation:hover {
-  background: #80808038;
-  cursor: pointer;
-}
-
-.conversation {
-  border-radius: 0.5rem;
-  padding: 10px;
-}
-
-.conversation > div {
-  position: relative;
-}
 

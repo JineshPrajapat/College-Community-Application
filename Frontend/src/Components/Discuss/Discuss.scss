@@ -7,6 +7,7 @@
     background-color: #f1f1f1;
     height: 100vh;
 
+
     @media screen and (max-width: 600px) {
         padding: 0;
     }
@@ -15,7 +16,7 @@
         min-height: 600px;
         background: white;
         border-radius: 5px;
-        margin-bottom: 50px;
+        margin-bottom: 10px;
         font-size: 14px;
         padding: 20px 30px;
         box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.08);
@@ -25,6 +26,7 @@
 
         @media screen and (max-width: 600px) {
             padding: 0;
+            margin-bottom: 0;
         }
 
         .header {
@@ -65,8 +67,6 @@
                             padding-left: 0;
                         }
                     }
-
-                    
                 }
 
                 .subheader-search-input {
@@ -144,31 +144,29 @@
                             align-items: center;
                             justify-content: space-between;
 
-                            
-
                             @media screen and (max-width: 600px) {
                                 height: 55px;
                             }
 
-                            .left-side{
+                            .left-side {
                                 display: flex;
                                 justify-content: center;
                                 align-items: center;
-                                
-                                a{
+
+                                a {
                                     color: #9e9e9e;
                                     font-size: 12px;
                                     width: 40px;
                                     height: 40px;
                                     margin-left: 15px;
                                     margin-right: 20px;
-    
+
                                     img {
                                         width: 100%;
                                         height: 100%;
                                         border-radius: 50%;
                                     }
-    
+
                                     @media screen and (max-width: 600px) {
                                         width: 20px;
                                         height: 20px;
@@ -179,7 +177,7 @@
                                 .topic-title {
                                     cursor: pointer;
                                     // width: 600px;
-    
+
                                     .item-header {
                                         display: flex;
                                         align-items: center;
@@ -195,18 +193,16 @@
                                             margin-bottom: 0;
                                         }
                                     }
-    
+
                                     .topic-info {
                                         color: #717171;
                                         font-size: 12px;
                                         white-space: nowrap;
-                                        overflow: hidden;                                      
+                                        overflow: hidden;
                                         text-overflow: ellipsis;
                                     }
                                 }
                             }
-
-                            
 
                             .upvote-view-container {
                                 display: flex;

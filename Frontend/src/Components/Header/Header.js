@@ -73,7 +73,7 @@ export const Header = () => {
 
     return (
         <div>
-            <header className='max-h-12 sm:max-h-20 w-full bg-white border-b-2 fixed top-0 left-0 z-50'>
+            <header className='max-h-12 sm:max-h-[10vh] w-full bg-white border-b-2 fixed top-0 left-0 z-50'>
                 <div className=' p-2 calcsm:px-8 sm:py-4 flex flex-row justify-between items-center'>
                     <NavLink to="/" className='flex cursor-pointer'>
                         <div className='w-7 h-7 sm:w-9 sm:h-9 flex items-center'>

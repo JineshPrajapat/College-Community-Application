@@ -212,12 +212,12 @@ function Discuss() {
                                     )
                                     ))}
 
-                                    {expandedIndex !== null && (
+                                    {/* {expandedIndex !== null && (
                                         <SingleComment
                                             index={expandedIndex}
                                             discussion={discussionTopicData.discuss[expandedIndex]}
                                             setExpandedIndex={setExpandedIndex} />
-                                    )}
+                                    )} */}
                                 </div>
                             </div>
                         </div>

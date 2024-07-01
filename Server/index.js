@@ -2,7 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const http = require("http")
-const setupWebSocket = require("./websocket");
+const  {initializeSocketServer}  = require('./socketServer.js');
+
 
 const server = http.createServer(app);
 
@@ -88,7 +89,8 @@ app.use("/api/v1/post", postRoutes);
 app.use("/api/v1/request", requestRoutes);
 app.use("/api/v1/search", searchRoutes);
 
-setupWebSocket(server);
+// setupWebSocket(server);
+initializeSocketServer(server);
 
 app.get("/", (req, res) => {
     res.json({

@@ -267,7 +267,7 @@ exports.login = async (req, res) => {
             // sending mail after login
             const emailInfo = await mailSender(email, `Your Gateway to Let's Chat: Welcome Back!`, loginTemplate(user.profileDetails.fullName, "Successful", timeStamp, device))
             if (!emailInfo) {
-                conole.log("email not send");
+                console.log("email not send");
             }
 
             // create cookie and send respond

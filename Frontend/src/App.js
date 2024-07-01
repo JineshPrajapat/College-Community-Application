@@ -1,10 +1,11 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { AuthProvider, useAuth } from "./AuthProvider/AuthProvider";
 import { SignUpProvider, useSignUp } from "./AuthProvider/SignUpProvider";
-import {checkAndClearExpiredData} from "./utils/storage";
+import { checkAndClearExpiredData } from "./utils/storage";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Question from "./Components/Questions/Questions";
 import Users from "./Components/Users/Users";
 import ImageCarousel from "./Components/ImageCarousel/ImageCarousel";
@@ -49,11 +50,12 @@ function App() {
 
   const { isLoggedIn } = useAuth();
   const { isSignedUp } = useSignUp();
+  const location = useLocation();
 
   useEffect(() => {
     checkAndClearExpiredData();
   }, []);
-
+  
   return (
     <div className="App">
       {!isLoggedIn ? (
@@ -72,9 +74,10 @@ function App() {
         <>
           <Header />
           <div className="flex flex-row gap-3">
-            <NavBar />
-            <FloatingButton />
-            <div className=" pt-12 sm:pt-16 sm:pl-16 min-h-screen w-full  bg=blue-100">
+          {location.pathname.startsWith("/Chat") && location.pathname.endsWith("/Chat/") !== location.pathname.startsWith("/Chat") ? null : <NavBar />}
+            
+            {location.pathname.startsWith("/Chat") ? null : <FloatingButton />}
+            <div className={`pt-12 sm:pt-16 min-h-screen w-full  bg=blue-100 ${location.pathname.startsWith("/Chat") ? "": "sm:pl-16"} `}>
               <Routes >
                 <Route path="/" element={<Landing />} />
                 <Route path="Users" element={<Users />} />
@@ -83,11 +86,11 @@ function App() {
                 <Route path="Experience/*" element={<Experience />} />
                 <Route path="Discuss/*" element={<Discuss />} />
                 <Route path="Discuss/addQuery" element={<AddQuery />} />          {/* new added line fo addQuery */}
-                <Route path="Chat" element={<Chat/>}/>
-                <Route path="Bookmark/*" element={<Bookmark/>}/>
+                <Route path="Chat/*" element={<Chat />} />
+                <Route path="Bookmark/*" element={<Bookmark />} />
                 <Route path=":userName/*" element={<UserProfile />} />
-                <Route path="Discuss/:discussTitle" element={<SingleComment/>}/>
-                <Route path="Setting/*" element={<Setting/>}/>
+                <Route path="Discuss/:discussTitle" element={<SingleComment />} />
+                <Route path="Setting/*" element={<Setting />} />
 
 
                 <Route path="PlacementStats" element={<Placement />} />

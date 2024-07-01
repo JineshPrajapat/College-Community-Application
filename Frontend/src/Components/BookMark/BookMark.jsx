@@ -115,10 +115,10 @@ const Bookmark = () => {
 
                 {/* if only discuss */}
                 {path === "Discuss" && (
-                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 sm:px-2">
+                    <div className="grid grid-cols-1 gap-2 md:gap-4 sm:grid-cols-2 lg:grid-cols-3 sm:px-2">
                         {discussPost?.bookmark?.length > 0 ? (
                             discussPost?.bookmark?.map(post => (
-                                <section className=' bg-white px-4 py-2 rounded-lg'>
+                                <section className=' bg-white px-4 py-2  rounded-lg'>
                                     <NavLink to={`/Discuss/${post.discussTitle}`} className="topic-title " >
                                         <div key={post._id} className=" text-left">
                                             <h3 className="text-xs md:text-[16px] pt-2 font-bold whitespace-nowrap overflow-hidden ">{post?.discussTitle}</h3>

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { IonIcon } from "@ionic/react";
 import { home, chatbubble, people, book, briefcase } from "ionicons/icons";
 import { SideBar } from "./SideBar/SideBar";
+import useScrollDirection from "../../hooks/useScrollDirection";
 
 const NavBar = () => {
   const MobileMenus = [
@@ -14,6 +15,9 @@ const NavBar = () => {
   ];
   const [active, setActive] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const scrollDirection = useScrollDirection();
+
+  const location =useLocation();
 
   useEffect(() => {
     const handleResize = () => {
@@ -39,7 +43,8 @@ const NavBar = () => {
   return (
     <>
       {isMobile ? (
-        <div className="bg-white max-h-[4.4rem] px-6 rounded-t-xl w-full fixed bottom-0 z-40">
+        <div className={`bg-white max-h-[4.4rem] px-6 rounded-t-xl w-full fixed bottom-0 z-40 duration-500 ${scrollDirection === 'down' ? 'translate-y-full' : 'translate-y-0'
+          } `}>
           <ul className="flex relative pb-1">
             {/* <span
               className={`bg-blue-500 duration-500 ${MobileMenus[active].dis} border-5 border-blue-50 h-16 w-16 absolute
@@ -54,10 +59,10 @@ const NavBar = () => {
                   activeClassName="text-white"
                   onClick={() => handleClick(i)}
                 >
-                  <span className={`cursor-pointer text-xl duration-500 ${i === active && "-mt-6 text-white border-5 border-blue-50 bg-blue-500 rounded-full pt-1 "}`} >
+                  <span className={`cursor-pointer text-xl duration-500 ${((location.pathname == menu.path)   && scrollDirection !== 'down') && "-mt-6 text-white border-5 border-blue-50 bg-blue-500 rounded-full pt-1 "}`} >
                     <IonIcon icon={menu.icon} />
                   </span>
-                  <span className={` ${active === i ? " translate-y-2 text-[10px] duration-500 opacity-100 " : "text-[10px] duration-500 opacity-100"}`}>
+                  <span className={` ${active === i  ? " translate-y-2 text-[10px] duration-500 opacity-100 " : "text-[10px] duration-500 opacity-100"}`}>
                     {menu.name}
                   </span>
                 </NavLink>

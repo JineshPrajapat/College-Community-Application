@@ -241,7 +241,7 @@ function ExperienceDetails() {
     };
 
     return (
-        <div className=' pb-14 ' onScroll={handleScroll} ref={containerRef}>
+        <div className=' pb-2 md:pb-10 ' onScroll={handleScroll} ref={containerRef}>
             <div className='Experience-cards '>
                 {loadedReviews.map((review, index) => (
                     <motion.div
