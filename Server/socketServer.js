@@ -15,7 +15,6 @@ const allowedOrigins = [
   'https://ctae-website.vercel.app',
   'http://localhost:3000',
   'https://collegechatts.netlify.app',
-  '*' 
 ];
 
 module.exports.initializeSocketServer = async (server) => {
@@ -24,6 +23,7 @@ module.exports.initializeSocketServer = async (server) => {
     cors: {
       origin: allowedOrigins,
       methods: ["GET", "POST"],
+      credentials: true
     },
     // adapter: createAdapter()
   });

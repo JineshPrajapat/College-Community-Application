@@ -1,11 +1,27 @@
 require("dotenv").config();
 const express = require("express");
-const app = express();
-const http = require("http")
+const http = require("http");
+const fileUpload = require("express-fileupload");
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
+
+const database = require("./config/database");
+const { cloudinaryConnect } = require("./config/cloudinary");
 const  {initializeSocketServer}  = require('./socketServer.js');
 
-
+const app = express();
 const server = http.createServer(app);
+
+const allowedOrigins = [
+  'https://ctae-website.vercel.app',
+  'http://localhost:3000',
+  'https://collegechatts.netlify.app',
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
 
 const userRoutes = require("./routes/User");
 const profileRoutes = require("./routes/Profile");
@@ -29,41 +45,15 @@ const messageRoutes = require("./routes/Message");
 const broadcastRoutes = require("./routes/Broadcast");
 const adminRoutes = require("./routes/Admin");
 
-const database = require("./config/database");
-const cookieParser = require("cookie-parser");
-const cors = require("cors");
-const { cloudinaryConnect } = require("./config/cloudinary");
-const fileUpload = require("express-fileupload");
-
 const PORT = process.env.PORT || 4000;
 
 database.connect();
+cloudinaryConnect();
 
 app.use(express.json());
 app.use(cookieParser());
-// app.use(cors({setAllowedOrigin:"*", origin: ["https://localhost:4000","https://localhost:3000", "https://localhost:3001" ], credentials: true, }));
 app.use(fileUpload({ useTempFiles: true, tempFileDir: "/tmp", }));
 app.use(express.static('../public'));
-cloudinaryConnect();
-
-// app.use(express.urlencoded({extended:false}));
-// app.use(cors("*"));
-// app.use(cors());
-
-// app.use(cors({
-//     origin: 'https://ctae-website.vercel.app'
-//   }));
-
-const allowedOrigins = [
-    'https://ctae-website.vercel.app',
-    'http://localhost:3000',
-    'https://collegechatts.netlify.app',
-    '*' 
-  ];
-  
-  app.use(cors({
-    origin: allowedOrigins
-  }));
 
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/userinfo", submitInfoRoutes);
