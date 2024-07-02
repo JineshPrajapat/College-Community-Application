@@ -7,6 +7,7 @@ let socket = null;
 
 export const connectWithSocketServer = () => {
     socket = io('https://ctae-website-fzxz.vercel.app', {
+        path: '/socket.io',
         auth: {
             token: localStorage.getItem('token')
         },

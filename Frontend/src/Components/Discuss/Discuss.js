@@ -11,6 +11,7 @@ import Contact from "../UserProfile/Contact/Contact";
 import Header from "../Header/Header";
 import { fetchData } from '../../FetchData/FetchData';
 import { formatTimeAgo } from "../formatTimeAgo/formatTimeAgo";
+import Loading from "../Loading/Loading";
 
 
 // const discussionTopicData = [
@@ -106,9 +107,12 @@ function Discuss() {
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredTopics, setFilteredTopics] = useState([]);
     const [expandedIndex, setExpandedIndex] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     useState(() => {
+        setIsLoading(true);
         fetchData(`${baseURL}/discuss`, setdiscussionTopicData);
+        setIsLoading(false);
     }, []);
     console.log("discuss", discussionTopicData.discuss);
 
@@ -174,59 +178,69 @@ function Discuss() {
                         {/* <Outlet/> */}
                         <div className="topic-list-container">
                             <div className="topic-list-content">
-                                <div>
-                                    {!discussionTopic ? (
-                                        <p>No topics found</p>
-                                    ) : (discussionTopic.map((discussion, index) => (
-                                        <div className="topic-item-container">
-                                            <div className="topic-item">
-                                                <div className="left-side">
-                                                    <NavLink to={`/${discussion?.userId?.username}`}><img src={discussion?.userId?.profileImage} alt="" /></NavLink>
-                                                    <div className="topic-title">
-                                                        <NavLink to={`/Discuss/${discussion?.discussTitle}`} className="topic-title" >
-                                                            <div className="item-header"  >
-                                                                {discussion.discussTitle}
-                                                            </div>
-                                                            <div className="topic-info">
-                                                                {/* {discussion.discussDescription} */}
-                                                                <div className=" text-left" dangerouslySetInnerHTML={{ __html: discussion.discussDescription.slice(0, 30) + '...' }} />
-                                                            </div>
-                                                            <div className="text-left text-[8px] sm:text-xs text-gray-400 sm:pt-2">{formatTimeAgo(discussion.createdAt)}</div>
-                                                        </NavLink>
-                                                    </div>
-                                                </div>
-                                                <div className="upvote-view-container">
-                                                    <div className="upvotes">
-                                                        <i class="fa-solid fa-circle-up" ></i>
-                                                        <div className="no-of-upvotes">
-                                                            {discussion?.upvotes.length}votes
+                                {!isLoading ? (
+                                    <div>
+                                        {!discussionTopic ? (
+                                            <p>No topics found</p>
+                                        ) : (discussionTopic.map((discussion, index) => (
+                                            <div className="topic-item-container">
+                                                <div className="topic-item">
+                                                    <div className="left-side">
+                                                        <NavLink to={`/${discussion?.userId?.username}`}><img src={discussion?.userId?.profileImage} alt="" /></NavLink>
+                                                        <div className="topic-title">
+                                                            <NavLink to={`/Discuss/${discussion?.discussTitle}`} className="topic-title" >
+                                                                <div className="item-header"  >
+                                                                    {discussion.discussTitle}
+                                                                </div>
+                                                                <div className="topic-info">
+                                                                    {/* {discussion.discussDescription} */}
+                                                                    <div className=" text-left" dangerouslySetInnerHTML={{ __html: discussion.discussDescription.slice(0, 30) + '...' }} />
+                                                                </div>
+                                                                <div className="text-left text-[8px] sm:text-xs text-gray-400 sm:pt-2">{formatTimeAgo(discussion.createdAt)}</div>
+                                                            </NavLink>
                                                         </div>
                                                     </div>
-                                                    <div className="views">
-                                                        <i class="fa-solid fa-eye"></i>
-                                                        <div className="no-of-views">{discussion.views}80k</div>
+                                                    <div className="upvote-view-container">
+                                                        <div className="upvotes">
+                                                            <i class="fa-solid fa-circle-up" ></i>
+                                                            <div className="no-of-upvotes">
+                                                                {discussion?.upvotes.length}votes
+                                                            </div>
+                                                        </div>
+                                                        <div className="views">
+                                                            <i class="fa-solid fa-eye"></i>
+                                                            <div className="no-of-views">{discussion.views}80k</div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    )
-                                    ))}
+                                        )
+                                        ))}
 
-                                    {/* {expandedIndex !== null && (
+                                        {/* {expandedIndex !== null && (
                                         <SingleComment
                                             index={expandedIndex}
                                             discussion={discussionTopicData.discuss[expandedIndex]}
                                             setExpandedIndex={setExpandedIndex} />
                                     )} */}
-                                </div>
+                                    </div>
+                                ) : (
+                                    <div className="mt-[25vh]">
+                                        <Loading />
+                                    </div>
+                                )}
                             </div>
+
                         </div>
+
                     </div>
                 </div>
+
                 {/* <div className="right-panel">
 
             </div> */}
             </div>
+
         </>
 
     );

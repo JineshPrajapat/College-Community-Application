@@ -20,6 +20,7 @@ const allowedOrigins = [
 module.exports.initializeSocketServer = async (server) => {
   const io = new Server(server, {
     connectionStatesRecovery: {},
+    path: '/socket.io',
     cors: {
       origin: allowedOrigins,
       methods: ["GET", "POST"],
