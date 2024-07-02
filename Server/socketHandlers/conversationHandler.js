@@ -1,4 +1,4 @@
-const Conversation = require("../models/conversation");
+const Conversation = require("../models/Conversation");
 const serverStore = require("../serverStore");
 const getRecieverSocketID = require("./utils/getRecieverSocketID");
 const getConversation = require("./utils/getConversation");

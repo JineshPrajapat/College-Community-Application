@@ -1,5 +1,5 @@
-const Message = require("../../models/message");
-const Conversation = require("../../models/conversation");
+const Message = require("../../models/Message");
+const Conversation = require("../../models/Conversation");
 const serverStore = require("../../serverStore")
 
 const getConversation = async (currentUserId) => {
