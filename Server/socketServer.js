@@ -11,12 +11,18 @@ const disconnectHandler = require("./socketHandlers/disconnectHandler");
 const deleteMessageHandler = require("./socketHandlers/deleteMessageHandler");
 
 // const createAdapter = require("@socket.io/cluster-adapter");
+const allowedOrigins = [
+  'https://ctae-website.vercel.app',
+  'http://localhost:3000',
+  'https://collegechatts.netlify.app',
+  '*' 
+];
 
 module.exports.initializeSocketServer = async (server) => {
   const io = new Server(server, {
     connectionStatesRecovery: {},
     cors: {
-      origin: "*",
+      origin: allowedOrigins,
       methods: ["GET", "POST"],
     },
     // adapter: createAdapter()
