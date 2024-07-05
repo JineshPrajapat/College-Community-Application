@@ -24,7 +24,7 @@ function CoverPage() {
                         <img src={images.mainLogo1}></img>
                     </div>
                     <h2 className='text-2xl '>Welcome To</h2>
-                    <h1 className='text-center text-4xl pb-4'>CareerPrepHub</h1>
+                    <h1 className='text-center text-4xl pb-4'>Let's Chat</h1>
                     <p className=' text-xl pb-5'>" Bridge to Brighter Futures "</p>
                     <p className=' pb-5'>Connect with your <strong>Seniors</strong> and <strong>Collegemates</strong> for unparalleled opportunities!</p>
                     <div className='d-flex flex-sm-column flex-md-row align-items-center gap-8'>

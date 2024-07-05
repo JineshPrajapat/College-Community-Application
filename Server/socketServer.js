@@ -26,6 +26,8 @@ module.exports.initializeSocketServer = async (server) => {
       methods: ["GET", "POST"],
       credentials: true
     },
+    transports: ['websocket', 'polling'], 
+    allowEIO3: true 
     // adapter: createAdapter()
   });
 
