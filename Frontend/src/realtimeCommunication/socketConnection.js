@@ -11,7 +11,6 @@ export const connectWithSocketServer = () => {
         auth: {
             token: localStorage.getItem('token')
         },
-        transports: ['websocket', 'polling'],
     });
 
     socket.on("connect", () => {
