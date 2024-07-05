@@ -139,56 +139,64 @@ function Login() {
                     </div>
                 </div>
 
-                <div className="body">
-                {!showForgetPassword ? (
-                    <div className="flex flex-col justify-between flex-1" >
-                        <form id="login-form" onSubmit={handleFormSubmit}>
-                            <div className="input_container">
-                                <label className="input_label" htmlFor="email_field">Email</label>
-                                <img className="icon" src={images.emailsvgrepo} viewBox='0 0 24 24'></img>
-                                <input
-                                    className="input_field"
-                                    placeholder="name@gmail.com"
-                                    name="email"
-                                    type="text"
-                                    id="email_field"
-                                    value={formValue.email}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
-                            <div className="input_container">
-                                <label className="input_label" htmlFor="password_field">Password</label>
-                                <img className="icon" src={images.passwordsvgrepo} viewBox='0 0 24 24'></img>
-                                <input
-                                    className="input_field"
-                                    placeholder="Password"
-                                    name="password"
-                                    type="password"
-                                    id="password_field"
-                                    value={formValue.password}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
-
-                            <button title='Sign In' type='submit' className={`sign-in_btn ${processing ? " bg-blue-200" : ""}`} disabled={processing}>
-                                <span>{processing ? 'Signing In...' : 'Continue '}</span>
-                                {!processing && <i class="fa-solid fa-arrow-right text-xl"></i>}
-                            </button>
-
-                            <div className="forget_password" onClick={handleFormChange}>Forget your password?</div>
-
-                        </form>
-
-                        <div className="new_to_account">
-                            <h4 >New to Let's Chat?</h4>
-                            <span><Link to="/Signup">Sign Up</Link></span>
-                        </div>
+                <div className="flex flex-col justify-center mx-auto px-4 mb-2 font-sans">
+                    <i className="text-red-500 pb-1">Please use the following credentials to access the website:</i>
+                    <div className="flex flex-col justify-start items-start pl-4">
+                        <p>Email: <strong>chinmayjain854@gmail.com</strong></p>
+                        <p>Password: <strong className="">Chinmay@1234</strong></p>
                     </div>
-                ) : (
-                    <ForgetPassword />
-                )}
+                </div>
+
+                <div className="body">
+                    {!showForgetPassword ? (
+                        <div className="flex flex-col justify-between flex-1" >
+                            <form id="login-form" onSubmit={handleFormSubmit}>
+                                <div className="input_container">
+                                    <label className="input_label" htmlFor="email_field">Email</label>
+                                    <img className="icon" src={images.emailsvgrepo} viewBox='0 0 24 24'></img>
+                                    <input
+                                        className="input_field"
+                                        placeholder="name@gmail.com"
+                                        name="email"
+                                        type="text"
+                                        id="email_field"
+                                        value={formValue.email}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                </div>
+                                <div className="input_container">
+                                    <label className="input_label" htmlFor="password_field">Password</label>
+                                    <img className="icon" src={images.passwordsvgrepo} viewBox='0 0 24 24'></img>
+                                    <input
+                                        className="input_field"
+                                        placeholder="Password"
+                                        name="password"
+                                        type="password"
+                                        id="password_field"
+                                        value={formValue.password}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                </div>
+
+                                <button title='Sign In' type='submit' className={`sign-in_btn ${processing ? " bg-blue-200" : ""}`} disabled={processing}>
+                                    <span>{processing ? 'Signing In...' : 'Continue '}</span>
+                                    {!processing && <i class="fa-solid fa-arrow-right text-xl"></i>}
+                                </button>
+
+                                <div className="forget_password" onClick={handleFormChange}>Forget your password?</div>
+
+                            </form>
+
+                            <div className="new_to_account">
+                                <h4 >New to Let's Chat?</h4>
+                                <span><Link to="/Signup">Sign Up</Link></span>
+                            </div>
+                        </div>
+                    ) : (
+                        <ForgetPassword />
+                    )}
                 </div>
             </div>
 

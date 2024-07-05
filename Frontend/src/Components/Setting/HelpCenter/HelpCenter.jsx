@@ -34,7 +34,7 @@ export const HelpCenter = () => {
           </p>
         </div>
         <div>
-          <h3 className="text-lg font-semibold mb-2">More Information:</h3>
+          {/* <h3 className="text-lg font-semibold mb-2">More Information:</h3> */}
           {/* Add more information as needed */}
         </div>
       </div>

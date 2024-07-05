@@ -46,8 +46,8 @@ export const Header = () => {
     ]
 
     const ProfileMenuSecond = [
-        { name: "Dark Mode", icon: moonOutline, path: "/darmode" },
-        { name: "Help Center", icon: helpCircleOutline, path: "/help" },
+        // { name: "Dark Mode", icon: moonOutline, path: "/darmode" },
+        { name: "Help Center", icon: helpCircleOutline, path: "/Setting/helpCenter" },
     ]
 
     const [isProfileBar, setIsProfileBar] = useState(false);
