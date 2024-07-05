@@ -24,10 +24,9 @@ module.exports.initializeSocketServer = async (server) => {
     cors: {
       origin: allowedOrigins,
       methods: ["GET", "POST"],
+      transports: ['websocket', 'polling'],
       credentials: true
     },
-    transports: ['websocket', 'polling'], 
-    allowEIO3: true 
     // adapter: createAdapter()
   });
 

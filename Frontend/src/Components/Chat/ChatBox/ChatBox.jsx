@@ -46,8 +46,10 @@ export const ChatBox = () => {
     const handleMouseLeave = () => setShowTooltip(false);
 
     useEffect(() => {
+        setLoading(true);
         getCurrentUser(currentUserName);
         setSelectedMessages("");
+        setLoading(false);
     }, [currentUserName]);
 
     useEffect(() => {
@@ -228,208 +230,217 @@ export const ChatBox = () => {
 
     return (
         <div className={`${showConfirmation ? 'show-confirmattion' : ''}`}>
-            <div className={`ChatBox-container bg-white  ${!currentChat?.currentUserID ? "flex items-center justify-center" : ""} `}>
-                {currentUserName ? (
-                    <div className="flex flex-col">
-                        {/* chat-header */}
-                        <div className="chat-header bg-blue-300 h-[6vh] md:h-[8vh]  p-2 rounded-b-sm shadow-sm shadow-black  items-center">
+            {!loading && currentChat ?
+                (
+                    <div className={`ChatBox-container bg-white  ${!currentChat?.currentUserID ? "flex items-center justify-center" : ""} `}>
+                        {currentUserName ? (
+                            <div className="flex flex-col">
+                                {/* chat-header */}
+                                <div className="chat-header bg-blue-300 h-[6vh] md:h-[8vh]  p-2 rounded-b-sm shadow-sm shadow-black  items-center">
 
-                            {selectedMessages.length > 0 ?
-                                (<div className='flex flex-row justify-between font-sans items-center font-semibold'>
-                                    <div className='pl-2'>{selectedMessages.length > 0 ? `${selectedMessages.length} Selected` : ""}</div>
-                                    <div className='flex flex-row gap-1 items-center'>
-                                        <div className='px-2 md:py-2  text-slate-600 font-semibold rounded-sm duration-500 cursor-pointer hover:text-slate-900 hover:scale-110 relative'
-                                            onMouseEnter={handleMouseEnter}
-                                            onMouseLeave={handleMouseLeave}
-                                            onClick={handleDeleteMessage}
-                                        >
-                                            <IonIcon className='font-semibold text-2xl' icon={trashOutline} />
-                                            {/* <Tooltip
+                                    {selectedMessages.length > 0 ?
+                                        (<div className='flex flex-row justify-between font-sans items-center font-semibold'>
+                                            <div className='pl-2'>{selectedMessages.length > 0 ? `${selectedMessages.length} Selected` : ""}</div>
+                                            <div className='flex flex-row gap-1 items-center'>
+                                                <div className='px-2 md:py-2  text-slate-600 font-semibold rounded-sm duration-500 cursor-pointer hover:text-slate-900 hover:scale-110 relative'
+                                                    onMouseEnter={handleMouseEnter}
+                                                    onMouseLeave={handleMouseLeave}
+                                                    onClick={handleDeleteMessage}
+                                                >
+                                                    <IonIcon className='font-semibold text-2xl' icon={trashOutline} />
+                                                    {/* <Tooltip
                                             content="Delete selected messages"
                                             handleMouseEnter={handleMouseEnter}
                                             handleMouseLeave={handleMouseLeave}
                                             showTooltip={showTooltip}
                                         /> */}
-                                        </div>
-                                        <button className=" border-1 border-slate-700 bg-slate-600 text-sm px-2 py-1 md:px-3 md:py-2 rounded text-white hover:bg-slate-700 transition duration-300" onClick={() => setSelectedMessages("")}>Cancel</button>
-                                    </div>
-                                </div>) :
-                                (
-                                    <div className='flex items-center gap-1 md:gap-3 font-bold'>
-                                        <NavLink to={"/Chat"}>
-                                            <span className='text-xl flex items-center cursor-pointer duration-500 hover:scale-125'>
-                                                <IonIcon icon={chevronBackOutline} />
-                                            </span>
-                                        </NavLink>
-
-                                        <div className='relative'>
-                                            <div className='w-8 h-8 md:w-12 md:h-12 rounded-full'>
-                                                <img
-                                                    src={currentChat?.profileImage ? currentChat?.profileImage : ""}
-                                                    alt="Profile"
-                                                    className="followerImage w-full h-full rounded-full"
-                                                />
+                                                </div>
+                                                <button className=" border-1 border-slate-700 bg-slate-600 text-sm px-2 py-1 md:px-3 md:py-2 rounded text-white hover:bg-slate-700 transition duration-300" onClick={() => setSelectedMessages("")}>Cancel</button>
                                             </div>
-                                            {currentChat?.online && (
-                                                <div className='absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white'></div>
-                                            )}
-                                        </div>
-                                        <div className="name flex flex-col justify-start" >
-                                            <span className='text-sm md:text-xl'>
-                                                {currentChat?.fullName}
-                                            </span>
-                                            {
-                                                currentChat.online ? <span className='text-primary -my-2 text-sm text-left'>online</span> : <span className='text-slate-400'></span>
-                                            }
-                                        </div>
-                                    </div>
-                                )
+                                        </div>) :
+                                        (
+                                            <div className='flex items-center gap-1 md:gap-3 font-bold'>
+                                                <NavLink to={"/Chat"}>
+                                                    <span className='text-xl flex items-center cursor-pointer duration-500 hover:scale-125'>
+                                                        <IonIcon icon={chevronBackOutline} />
+                                                    </span>
+                                                </NavLink>
 
-                            }
-                        </div>
+                                                <div className='relative'>
+                                                    <div className='w-8 h-8 md:w-12 md:h-12 rounded-full'>
+                                                        <img
+                                                            src={currentChat?.profileImage ? currentChat?.profileImage : ""}
+                                                            alt="Profile"
+                                                            className="followerImage w-full h-full rounded-full"
+                                                        />
+                                                    </div>
+                                                    {currentChat?.online && (
+                                                        <div className='absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white'></div>
+                                                    )}
+                                                </div>
+                                                <div className="name flex flex-col justify-start" >
+                                                    <span className='text-sm md:text-xl'>
+                                                        {currentChat?.fullName}
+                                                    </span>
+                                                    {
+                                                        currentChat.online ? <span className='text-primary -my-2 text-sm text-left'>online</span> : <span className='text-slate-400'></span>
+                                                    }
+                                                </div>
+                                            </div>
+                                        )
 
-                        <div className="chat-body bg-[#F5F7F8] lg:px-6 md:px-4 p-4 pb-6 h-[calc(100vh-19vh)] sm:h-[calc(100vh-21vh)] md:h-[calc(100vh-24vh)] overflow-x-hidden overflow-y-scroll scrollbar">
-                            {/* Display messages */}
+                                    }
+                                </div>
 
-                            {Object.entries(messages)?.map(([date, messageArray]) => (
-                                <div key={date}>
-                                    <span className='px-2 py-1 text-xs text-white font-sans bg-gray-600 rounded  '>{groupedMessageDate(date)}</span>
-                                    {Array.isArray(messageArray) && messageArray.map((message) => (
-                                        <div className={`my-1`}>
-                                            <ChatMessage key={message._id}
-                                                message={message}
-                                                currentChat={currentChat}
-                                                isSelected={selectedMessages.includes(message._id)}
-                                                onDeleteMessage={handleMessageSelection}
-                                            />
+                                <div className="chat-body bg-[#F5F7F8] lg:px-6 md:px-4 p-4 pb-6 h-[calc(100vh-19vh)] sm:h-[calc(100vh-21vh)] md:h-[calc(100vh-24vh)] overflow-x-hidden overflow-y-scroll scrollbar">
+                                    {/* Display messages */}
+
+                                    {Object.entries(messages)?.map(([date, messageArray]) => (
+                                        <div key={date}>
+                                            <span className='px-2 py-1 text-xs text-white font-sans bg-gray-600 rounded  '>{groupedMessageDate(date)}</span>
+                                            {Array.isArray(messageArray) && messageArray.map((message) => (
+                                                <div className={`my-1`}>
+                                                    <ChatMessage key={message._id}
+                                                        message={message}
+                                                        currentChat={currentChat}
+                                                        isSelected={selectedMessages.includes(message._id)}
+                                                        onDeleteMessage={handleMessageSelection}
+                                                    />
+                                                </div>
+                                            ))}
                                         </div>
                                     ))}
+
+                                    {
+                                        message.imageUrl && (
+                                            <div className='w-60 h-60 sticky bottom-0 bg-white flex justify-center items-center rounded overflow-hidden'>
+                                                <div className='w-fit p-2 absolute top-0 right-0 cursor-pointer hover:text-red-600' onClick={handleClearUploadImage}>
+                                                    <IonIcon icon={closeOutline} />
+                                                </div>
+                                                <div className=''>
+                                                    <img
+                                                        src={message.imageUrl}
+                                                        alt='uploadImage'
+                                                        className='aspect-square w-60 h-full max-w-sm m-2 object-scale-down'
+                                                    />
+                                                </div>
+                                            </div>
+                                        )
+                                    }
+
+                                    {/**upload video display */}
+                                    {
+                                        message.videoUrl && (
+                                            <div className='w-60 h-72 sticky bottom-0 bg-slate-200 flex justify-center items-center rounded overflow-hidden'>
+                                                <div className=' p-2 text-2xl absolute top-0 right-0 cursor-pointer hover:text-red-600' onClick={handleClearUploadVideo}>
+                                                    <IonIcon icon={closeOutline} />
+                                                </div>
+                                                <div className=''>
+                                                    <video
+                                                        src={message.videoUrl}
+                                                        className='aspect-square w-60 h-full max-w-sm m-2 object-scale-down'
+                                                        controls
+                                                        muted
+                                                        autoPlay
+                                                    />
+                                                </div>
+                                            </div>
+                                        )
+                                    }
+
+                                    {
+                                        loading && (
+                                            <div className='w-60 h-60 flex sticky bottom-0 justify-center items-center'>
+                                                <Loading />
+                                            </div>
+                                        )
+                                    }
                                 </div>
-                            ))}
 
-                            {
-                                message.imageUrl && (
-                                    <div className='w-60 h-60 sticky bottom-0 bg-white flex justify-center items-center rounded overflow-hidden'>
-                                        <div className='w-fit p-2 absolute top-0 right-0 cursor-pointer hover:text-red-600' onClick={handleClearUploadImage}>
-                                            <IonIcon icon={closeOutline} />
-                                        </div>
-                                        <div className=''>
-                                            <img
-                                                src={message.imageUrl}
-                                                alt='uploadImage'
-                                                className='aspect-square w-60 h-full max-w-sm m-2 object-scale-down'
-                                            />
-                                        </div>
+                                <section className='flex flex-row items-center bg-slate-200'>
+                                    <div className='relative '>
+                                        <button onClick={handleUploadImageVideoOpen} className='flex justify-center items-center text-2xl font-bold rounded-full ml-1 p-2 duration-500 bg-slate-300 hover:bg-slate-700 hover:text-white'>
+                                            <IonIcon icon={addOutline} />
+                                        </button>
+
+                                        {/**video and image */}
+                                        {
+                                            openImageVideoUpload && (
+                                                <div className='bg-white shadow rounded absolute bottom-14 w-36 p-2'>
+                                                    <form>
+                                                        <label htmlFor='uploadImage' className='flex items-center p-2 px-3 gap-3 hover:bg-slate-200 cursor-pointer'>
+                                                            <div className='text-primary'>
+                                                                <IonIcon icon={imageOutline} />
+                                                            </div>
+                                                            <p>Image</p>
+                                                        </label>
+                                                        <label htmlFor='uploadVideo' className='flex items-center p-2 px-3 gap-3 hover:bg-slate-200 cursor-pointer'>
+                                                            <div className='text-purple-500'>
+                                                                <IonIcon icon={videocamOutline} />
+                                                            </div>
+                                                            <p>Video</p>
+                                                        </label>
+
+                                                        <input
+                                                            type='file'
+                                                            id='uploadImage'
+                                                            accept='image/*'
+                                                            onChange={handleUploadImage}
+                                                            className='hidden'
+                                                        />
+
+                                                        <input
+                                                            type='file'
+                                                            id='uploadVideo'
+                                                            accept='video/*'
+                                                            onChange={handleUploadVideo}
+                                                            className='hidden'
+                                                        />
+                                                    </form>
+                                                </div>
+                                            )
+                                        }
                                     </div>
-                                )
-                            }
+                                    <form onSubmit={handleSendMessage} className='flex items-center gap-2 min-h-[7vh] w-full bg-slate-200' >
+                                        <input type="text"
+                                            className="chatbox-empty-message font-serif p-3 outline-none w-full h-full bg-slate-200  rounded-md"
+                                            placeholder='Type your message...'
+                                            spellCheck="true"
+                                            lang='en'
+                                            // value={newMessage}
+                                            // onChange={(e) => setNewMessage(e.target.value)}
+                                            value={message.text}
+                                            onChange={handleOnChange}
+                                            onKeyDown={handleKeyPressed}
+                                        />
+                                        <button type='submit' className='flex items-center text-blue-600 hover:text-blue-800 text-2xl px-3'><IonIcon icon={send} /></button>
+                                    </form>
+                                </section>
 
-                            {/**upload video display */}
-                            {
-                                message.videoUrl && (
-                                    <div className='w-60 h-72 sticky bottom-0 bg-slate-200 flex justify-center items-center rounded overflow-hidden'>
-                                        <div className=' p-2 text-2xl absolute top-0 right-0 cursor-pointer hover:text-red-600' onClick={handleClearUploadVideo}>
-                                            <IonIcon icon={closeOutline} />
-                                        </div>
-                                        <div className=''>
-                                            <video
-                                                src={message.videoUrl}
-                                                className='aspect-square w-60 h-full max-w-sm m-2 object-scale-down'
-                                                controls
-                                                muted
-                                                autoPlay
-                                            />
-                                        </div>
-                                    </div>
-                                )
-                            }
 
-                            {
-                                loading && (
-                                    <div className='w-60 h-60 flex sticky bottom-0 justify-center items-center'>
-                                        <Loading />
-                                    </div>
-                                )
-                            }
-                        </div>
-
-                        <section className='flex flex-row items-center bg-slate-200'>
-                            <div className='relative '>
-                                <button onClick={handleUploadImageVideoOpen} className='flex justify-center items-center text-2xl font-bold rounded-full ml-1 p-2 duration-500 bg-slate-300 hover:bg-slate-700 hover:text-white'>
-                                    <IonIcon icon={addOutline} />
-                                </button>
-
-                                {/**video and image */}
-                                {
-                                    openImageVideoUpload && (
-                                        <div className='bg-white shadow rounded absolute bottom-14 w-36 p-2'>
-                                            <form>
-                                                <label htmlFor='uploadImage' className='flex items-center p-2 px-3 gap-3 hover:bg-slate-200 cursor-pointer'>
-                                                    <div className='text-primary'>
-                                                        <IonIcon icon={imageOutline} />
-                                                    </div>
-                                                    <p>Image</p>
-                                                </label>
-                                                <label htmlFor='uploadVideo' className='flex items-center p-2 px-3 gap-3 hover:bg-slate-200 cursor-pointer'>
-                                                    <div className='text-purple-500'>
-                                                        <IonIcon icon={videocamOutline} />
-                                                    </div>
-                                                    <p>Video</p>
-                                                </label>
-
-                                                <input
-                                                    type='file'
-                                                    id='uploadImage'
-                                                    accept='image/*'
-                                                    onChange={handleUploadImage}
-                                                    className='hidden'
-                                                />
-
-                                                <input
-                                                    type='file'
-                                                    id='uploadVideo'
-                                                    accept='video/*'
-                                                    onChange={handleUploadVideo}
-                                                    className='hidden'
-                                                />
-                                            </form>
-                                        </div>
-                                    )
-                                }
                             </div>
-                            <form onSubmit={handleSendMessage} className='flex items-center gap-2 min-h-[7vh] w-full bg-slate-200' >
-                                <input type="text"
-                                    className="chatbox-empty-message font-serif p-3 outline-none w-full h-full bg-slate-200  rounded-md"
-                                    placeholder='Type your message...'
-                                    spellCheck="true"
-                                    lang='en'
-                                    // value={newMessage}
-                                    // onChange={(e) => setNewMessage(e.target.value)}
-                                    value={message.text}
-                                    onChange={handleOnChange}
-                                    onKeyDown={handleKeyPressed}
-                                />
-                                <button type='submit' className='flex items-center text-blue-600 hover:text-blue-800 text-2xl px-3'><IonIcon icon={send} /></button>
-                            </form>
-                        </section>
-
+                        ) : (
+                            <span className="chatbox-empty-message flex flex-col justify-center items-center ">
+                                <div>
+                                    <img
+                                        src={images.mainLogo1}
+                                        className=' opacity-10'
+                                        width={150}
+                                        alt='logo'
+                                    />
+                                </div>
+                                <p className='text-lg mt-2 text-slate-500'>Select user to send message</p>
+                            </span>
+                        )}
 
                     </div>
-                ) : (
-                    <span className="chatbox-empty-message flex flex-col justify-center items-center ">
-                        <div>
-                            <img
-                                src={images.mainLogo1}
-                                className=' opacity-10'
-                                width={150}
-                                alt='logo'
-                            />
-                        </div>
-                        <p className='text-lg mt-2 text-slate-500'>Select user to send message</p>
-                    </span>
-                )}
-
-            </div>
+                ) :
+                (
+                    <div className="mt-[25vh]">
+                        <Loading />
+                    </div>
+                )
+            }
             {showConfirmation && (
                 <ConfirmationDialog
                     buttonContent={`Delete for everyone`}

@@ -6,12 +6,12 @@ import { setConversation, setOnlineUser, setCurrentChat } from "../Redux/chatSli
 let socket = null;
 
 export const connectWithSocketServer = () => {
-    socket = io('https://ctae-website-fzxz.vercel.app/', {
+    socket = io('https://ctae-website-fzxz.vercel.app', {
         path: '/socket.io',
         auth: {
             token: localStorage.getItem('token')
         },
-        transports: ['websocket','polling']
+        transports: ['websocket', 'polling'],
     });
 
     socket.on("connect", () => {
