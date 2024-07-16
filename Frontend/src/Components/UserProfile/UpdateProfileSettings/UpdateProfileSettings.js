@@ -100,7 +100,6 @@ const UpdateProfileSettings = () => {
 
       {/* flash component */}
       {flashMessage && <FlashMessage type={flashMessage.type} message={flashMessage.message} />}
-      <FlashMessage type={"success"} message={"Updated successfully"} />
     </div>
   );
 };

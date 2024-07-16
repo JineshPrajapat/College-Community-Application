@@ -14,11 +14,11 @@ function QuestionForm() {
 
   const [formValue, setformValue] = useState({
     company: "",
-    branch: "",
+    branch: "Computer Science & AI Engineering",
     link: "",
     year: "",
     title: "",
-    difficulty: "",
+    difficulty: "Easy",
     questionDescription: "",
   });
 
@@ -52,7 +52,7 @@ function QuestionForm() {
     if (isConfirmed) {
       // Retrieve token from localStorage
       const token = localStorage.getItem('token');
-      console.log("frontend token",token);
+      console.log("frontend token",formValue);
       
       axios
         .post(`${baseURL}/questions/addQuestions`, {
@@ -134,19 +134,16 @@ function QuestionForm() {
               value={formValue.branch}
               onChange={handleChange}
             >
-              <option value="cse">Computer Science Engineering</option>
-              <option value="ai&Da">
-                Artificial Intelligence and Data Science
-              </option>
-              <option value="ece">
+              <option value="Computer Science & AI Engineering">Computer Science & AI Engineering</option>
+              <option value="Electronics and Communication Engineering">
                 Electronics and Communication Engineering
               </option>
-              <option value="ee">Electrical Engineering</option>
-              <option value="me">Mechanical Engineering</option>
-              <option value="ag">Agriculture Engineering</option>
-              <option value="ce">Civil Engineering</option>
-              <option value="mge">MiningEngineering</option>
-              <option value="other">Other</option>
+              <option value="Electrical Engineering">Electrical Engineering</option>
+              <option value="Mechanical Engineering">Mechanical Engineering</option>
+              <option value="Agriculture Engineering">Agriculture Engineering</option>
+              <option value="Civil Engineering">Civil Engineering</option>
+              <option value="MiningEngineering">MiningEngineering</option>
+              <option value="Other">Other</option>
             </select>
           </label>
           <label htmlFor="year">Year:
@@ -181,9 +178,9 @@ function QuestionForm() {
               value={formValue.difficulty}
               onChange={handleChange}
             >
-              <option value="easy">Easy</option>
-              <option value="medium">Medium</option>
-              <option value="hard">Hard</option>
+              <option value="Easy">Easy</option>
+              <option value="Medium">Medium</option>
+              <option value="Hard">Hard</option>
             </select>
           </label>
           <label htmlFor="questionDescription">

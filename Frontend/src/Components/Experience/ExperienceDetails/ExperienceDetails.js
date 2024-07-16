@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import baseURL from '../../../api/api';
-import fetchData from '../../../FetchData/FetchData';
+import {fetchData} from '../../../FetchData/FetchData'
 import '@fortawesome/fontawesome-free/css/all.css';
 import ExperienceForm from "../ExperienceForm/ExperienceForm";
 import { images } from '../../../constants';
@@ -18,35 +18,35 @@ const review = [
         jobRole: 'Software Engineer'
     },
     {
-        name: 'Garima Ahari',
+        name: 'Jinesh Prajapat',
         imgUrl: images.jinesh,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
         jobRole: 'Software Engineer'
     },
     {
-        name: 'Garima Ahari',
+        name: 'Laksh Raj',
         imgUrl: images.laksh,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
         jobRole: 'Software Engineer'
     },
     {
-        name: 'Garima Ahari',
+        name: 'Yuvraj Singh',
         imgUrl: images.yuvraj,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
         jobRole: 'Software Engineer'
     },
     {
-        name: 'Garima Ahari',
+        name: 'Luv Panchal',
         imgUrl: images.luv,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
         jobRole: 'Software Engineer'
     },
     {
-        name: 'Garima Ahari',
+        name: 'Shashank Jain',
         imgUrl: images.shashank,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
@@ -60,35 +60,35 @@ const review = [
         jobRole: 'Software Engineer'
     },
     {
-        name: 'Garima Ahari',
+        name: 'Jinesh Prajapat',
         imgUrl: images.jinesh,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
         jobRole: 'Software Engineer'
     },
     {
-        name: 'Garima Ahari',
+        name: 'Yuvraj Singh',
         imgUrl: images.yuvraj,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
         jobRole: 'Software Engineer'
     },
     {
-        name: 'Garima Ahari',
+        name: 'Laksh Raj',
         imgUrl: images.laksh,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.jknjjkksdfmskdklfjsknvscklsfksdkdcdnciso',
         jobRole: 'Software Engineer'
     },
     {
-        name: 'Garima Ahari',
+        name: 'Shashank Jain',
         imgUrl: images.shashank,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
         jobRole: 'Software Engineer'
     },
     {
-        name: 'Garima Ahari',
+        name: 'Luv Panchal',
         imgUrl: images.luv,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
@@ -102,35 +102,35 @@ const review = [
         jobRole: 'Software Engineer'
     },
     {
-        name: 'Garima Ahari',
+        name: 'Laksh Raj',
         imgUrl: images.laksh,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
         jobRole: 'Software Engineer'
     },
     {
-        name: 'Garima Ahari',
+        name: 'Yuvraj Singh',
         imgUrl: images.yuvraj,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
         jobRole: 'Software Engineer'
     },
     {
-        name: 'Garima Ahari',
+        name: 'Jinesh Prajapat',
         imgUrl: images.jinesh,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
         jobRole: 'Software Engineer'
     },
     {
-        name: 'Garima Ahari',
+        name: 'Shashank Jain',
         imgUrl: images.shashank,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
         jobRole: 'Software Engineer'
     },
     {
-        name: 'Garima Ahari',
+        name: 'Luv Panchal',
         imgUrl: images.luv,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
@@ -144,49 +144,49 @@ const review = [
         jobRole: 'Software Engineer'
     },
     {
-        name: 'Garima Ahari',
+        name: 'Laksh Raj',
         imgUrl: images.laksh,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
         jobRole: 'Software Engineer'
     },
     {
-        name: 'Garima Ahari',
+        name: 'Luv Panchal',
         imgUrl: images.luv,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
         jobRole: 'Software Engineer'
     },
     {
-        name: 'Garima Ahari',
+        name: 'Jinesh Prajapat',
         imgUrl: images.jinesh,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
         jobRole: 'Software Engineer'
     },
     {
-        name: 'Garima Ahari',
+        name: 'Shashank Jain',
         imgUrl: images.shashank,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
         jobRole: 'Software Engineer'
     },
     {
-        name: 'Garima Ahari',
+        name: 'Yuvraj Singh',
         imgUrl: images.yuvraj,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
         jobRole: 'Software Engineer'
     },
     {
-        name: 'Garima Ahari',
+        name: 'Luv Panchal',
         imgUrl: images.luv,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
         jobRole: 'Software Engineer'
     },
     {
-        name: 'Garima Ahari',
+        name: 'Laksh Raj',
         imgUrl: images.laksh,
         company: 'Amazon',
         experienceDescription: 'I had a total of 3 rounds all scheduled for 45 mins, all being virtual as well as eliminatory rounds.',
@@ -208,8 +208,10 @@ function ExperienceDetails() {
     // // fetching data
     // const [review, setReview] = useState([]);
     // useState(()=>{
-    //     fetchData(`${baseURL}/review`, setReview);
+    //     fetchData(`${baseURL}/experience`, setReview);
     // })
+
+    // console.log("review", review);
 
     const [expandedIndex, setExpandedIndex] = useState(null);
     const [loadedReviews, setLoadedReviews] = useState([]);
@@ -219,7 +221,10 @@ function ExperienceDetails() {
     const loadNextPage = () => {
         const startIndex = pageIndex * PAGE_SIZE;
         const endIndex = startIndex + PAGE_SIZE;
-        const newReviews = review.slice(startIndex, endIndex);
+        const newReviews = review.slice(startIndex, endIndex).map((item, idx) => ({
+            ...item,
+            originalIndex: startIndex + idx
+        }));
         setLoadedReviews(prevReviews => [...prevReviews, ...newReviews]);
         setPageIndex(prevPageIndex => prevPageIndex + 1);
     };
@@ -237,6 +242,7 @@ function ExperienceDetails() {
     }, []);
 
     const handleCardClick = (index) => {
+        console.log("index value",index);
         setExpandedIndex(index === expandedIndex ? null : index);
     };
 
@@ -249,9 +255,9 @@ function ExperienceDetails() {
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.5, delay: 0.2 * (index%10) }}
 
-                        className={`experience-card ${index === expandedIndex ? 'expanded' : ''}`}
-                        key={index}
-                        onClick={() => handleCardClick(index)}
+                        className={`experience-card ${review.originalIndex === expandedIndex ? 'expanded' : ''}`}
+                        key={review.originalIndex}
+                        onClick={() => handleCardClick(review.originalIndex)}
                     >
                         <div className='Profile'>
                             <div className='image-container'>
@@ -281,7 +287,7 @@ function ExperienceDetails() {
 
             {expandedIndex !== null && (
                 <div className='modal py-1'>
-                    <div className='modal-content'>
+                    <div className='modal-contents'>
                         <span className='close' onClick={() => setExpandedIndex(null)}>
                             <i class="fa fa-times" aria-hidden="true"></i>
                         </span>

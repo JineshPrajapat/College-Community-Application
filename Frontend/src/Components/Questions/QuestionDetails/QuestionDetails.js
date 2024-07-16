@@ -26,10 +26,12 @@ function QuestionDetails() {
 
     // fetching data
     const [questions, setQuestions] = useState([]);
-    useState(()=>{
+    useState(() => {
         fetchData(`${baseURL}/questions`, setQuestions);
-    },[]);
+    }, []);
 
+
+    console.log("questions", questions);
 
     const MAX_WORDS = 10;               // Maximum words before truncation
 
@@ -49,33 +51,41 @@ function QuestionDetails() {
             <table className="question-table">
                 <thead>
                     <tr>
-                        <th>Question No.</th>
-                        <th>Branch</th>
+                        {/* <th>Question No.</th> */}
                         <th>Question Description</th>
                         <th>Link</th>
                         <th>Difficulty Level</th>
+                        <th>Branch</th>
                         <th>Company</th>
                         <th>Year</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {questions.question && questions.question.map((question, index) => (
+                    {questions?.question && questions.question.map((question, index) => (
                         <React.Fragment key={index}>
                             <tr>
-                                <td>{question.questionNo}</td>
-                                <td>{question.branch}</td>
-                                <td className='question-description' onClick={() => toggleQuestionExpansion(index)}>
-                                    {expandedQuestion === index ? question.questionDescription : truncateString(question.questionDescription)}
+                                {/* <td className='text-center'>{index + 1}</td> */}
+
+                                <td className='question-description font-sans max-w-36 md:max-w-96' onClick={() => toggleQuestionExpansion(index)}>
+                                    {index + 1 + ". "}{expandedQuestion === index ? question.questionTitle : truncateString(question.questionTitle)}
                                 </td>
-                                <td><a href={question.questionLink}>{question.questionLink}</a></td>
-                                <td>{question.difficulty}</td>
-                                <td>{question.company}</td>
-                                <td>{question.year}</td>
+
+                                <td className='text-center'><a href={question.questionLink} target='_blank'>{"View"} <i class="fa-solid fa-arrow-up-right-from-square" /></a></td>
+                                <td className={`flex items-center justify-center w-full" `}>
+                                    <div className={`  rounded-full  px-3 py-1 outline-0 ${question.difficulty === "Medium" ? " bg-yellow-200 text-yellow-700" : question.difficulty === "Hard" ? "bg-red-200 text-red-600" : "bg-green-300 text-green-800"}`}>
+                                        {question.difficulty}
+                                    </div>
+                                </td>
+                                <td>{question.branch}</td>
+                                <td className=''>{question.company}</td>
+                                <td className={`text-center`}>{question.year}</td>
                             </tr>
                             {expandedQuestion === index && (
-                                <tr>
-                                    <td colSpan="7">
-                                        <div className="expanded-description"><div dangerouslySetInnerHTML={{ __html: question.questionDescription }} /></div>
+                                <tr >
+                                    <td colSpan="7" >
+                                        <div className="expanded-description ">
+                                            <div className='overflow-hidden' dangerouslySetInnerHTML={{ __html: question.questionDescription }} />
+                                        </div>
                                     </td>
                                 </tr>
                             )}
